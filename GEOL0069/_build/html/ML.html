@@ -1,0 +1,604 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction to AI/Machine Learning &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ML';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prototype-2.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rollout.html">Roll-out on a Full Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ML.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to AI/Machine Learning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to AI/Machine Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#artificial-intelligence-and-machine-learning-what-are-they">Artificial Intelligence and Machine Learning. What are they?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-machine-learning-processing-chain">Understanding the Machine Learning Processing Chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lifecycle-of-a-machine-learning-project">The Lifecycle of a Machine Learning Project</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts">Core concepts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">Supervised Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting-in-machine-learning">Overfitting and Underfitting in Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-the-peril-of-learning-too-much">Overfitting: The Peril of Learning Too Much</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-the-problem-of-oversimplification">Underfitting: The Problem of Oversimplification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loss-functions-and-optimizers">Loss Functions and Optimizers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loss-functions-gauging-model-accuracy">Loss Functions: Gauging Model Accuracy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizers-steering-the-learning-process">Optimizers: Steering the Learning Process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-set-and-test-set">Training Set and Test Set</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partitioning-data-training-and-testing">Partitioning Data: Training and Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-ai-machine-learning">
+<h1>Introduction to AI/Machine Learning<a class="headerlink" href="#introduction-to-ai-machine-learning" title="Permalink to this heading">#</a></h1>
+<section id="artificial-intelligence-and-machine-learning-what-are-they">
+<h2>Artificial Intelligence and Machine Learning. What are they?<a class="headerlink" href="#artificial-intelligence-and-machine-learning-what-are-they" title="Permalink to this heading">#</a></h2>
+<p>Artificial Intelligence, or AI, is a field of computer science that focuses on creating machines capable of intelligent behaviour. Machine Learning, a vital subset of AI, has evolved significantly since its conceptualization. Coined by Arthur Samuel in 1959, ML was initially described as the field in which computers have the ability to learn without being explicitly programmed. Over the years, this field has grown exponentially, propelled by advancements in computational power and data availability. Today’s ML algorithms can analyze complex datasets, recognize patterns, and make predictions with remarkable accuracy. These capabilities have made ML an indispensable tool in numerous fields, including Earth observation, where it helps in analysing satellite imagery and climate data.</p>
+</section>
+<section id="understanding-the-machine-learning-processing-chain">
+<h2>Understanding the Machine Learning Processing Chain<a class="headerlink" href="#understanding-the-machine-learning-processing-chain" title="Permalink to this heading">#</a></h2>
+<section id="the-lifecycle-of-a-machine-learning-project">
+<h3>The Lifecycle of a Machine Learning Project<a class="headerlink" href="#the-lifecycle-of-a-machine-learning-project" title="Permalink to this heading">#</a></h3>
+<p>Machine Learning projects typically follow a structured process, often referred to as the ML processing chain. This chain comprises several key stages, each crucial for the success of the project. Understanding this workflow is essential for anyone delving into the field of ML, especially in applications like Earth observation.</p>
+<ol class="arabic simple">
+<li><p><strong>Problem definition</strong>: Before any data is collected or models are built, it’s essential to clearly define the problem you’re trying to solve with ML. This includes understanding the objectives, constraints, and the potential impact of the solution. For example, the major problem we will be discussing is discrimination of sea-ice and lead.</p></li>
+<li><p><strong>Data Collection</strong>: Data is the cornerstone of any ML project. This stage involves gathering the necessary data relevant to the problem. The quality, quantity, and variety of data can significantly influence the model’s performance. Collecting a dataset of satellite images like OLCI, will be the general process of collecting data. However, the raw data we will use are mostly publicly availbel online for downloading.</p></li>
+<li><p><strong>Data preprocessing</strong>: Raw data often needs to be cleaned and formatted before it can be used. This step includes converting the raw data into data that can be interpretable by ML models, it also includes handling missing values, normalising data, and feature engineering. In previous chapters, we introduced a way to creating machine learning dataset by IRIS.</p></li>
+<li><p><strong>Feature Selection and Engineering</strong>: Features are the attributes used by ML models to make predictions. Feature selection involves choosing the most relevant attributes, while feature engineering involves creating new features from the existing data. For example, every bands in 21 bands of OLCI imagery will be one attribute and we may retain all of the features if they are all important, and we may also discard some of them if they are not useful and redundant.</p></li>
+<li><p><strong>Model Selection and Training</strong>: This stage involves choosing an appropriate ML algorithm and using the processed data to train the model. The choice of algorithm depends on the problem type, data characteristics, and desired outcome.</p></li>
+<li><p><strong>Model Evaluation</strong>: Once a model is trained, it’s evaluated to determine its performance. Common evaluation metrics include accuracy, precision, recall, and the F1 score.</p></li>
+<li><p><strong>Model Optimization</strong>: Based on the evaluation results, the model might need to be fine-tuned. This can involve adjusting parameters, using different algorithms, or further preprocessing the data. This may invove tweaking hyperparameters of the model to improve accuracy.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="core-concepts">
+<h1>Core concepts<a class="headerlink" href="#core-concepts" title="Permalink to this heading">#</a></h1>
+<section id="types-of-machine-learning">
+<h2>Types of Machine Learning<a class="headerlink" href="#types-of-machine-learning" title="Permalink to this heading">#</a></h2>
+<p>Before delving into specific concepts, it’s essential to distinguish between the two primary variations of AI and ML algorithms.</p>
+<section id="supervised-learning">
+<h3>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Permalink to this heading">#</a></h3>
+<p>In supervised learning, the algorithm is trained on a labeled dataset. This dataset provides the algorithm with example inputs and their corresponding outputs. The goal is to learn a mapping from inputs to outputs, allowing the model to make predictions on unseen data. A classic example is image recognition, where the model is trained on a dataset of labeled images and learns to recognize and categorize new images.
+Below shows an example of supervised learning: Simple Linear Regression</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python code for linear regression</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># Sample data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+<span class="c1"># Model training</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Predictions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Simple Linear Regression&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="unsupervised-learning">
+<h3>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this heading">#</a></h3>
+<p>Unsupervised learning involves working with data that doesn’t have labels. The algorithms seek to identify inherent structures or patterns in the data. A common technique in unsupervised learning is clustering, where data is grouped based on similarities. For instance, clustering can be used to segment customers in a market based on their purchasing habits. Below shows an example of unsupervised learning: K-Means Clustering</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python code for K-means clustering</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Sample data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># K-means model</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y_kmeans</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_kmeans</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">centers</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centers</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="overfitting-and-underfitting-in-machine-learning">
+<h2>Overfitting and Underfitting in Machine Learning<a class="headerlink" href="#overfitting-and-underfitting-in-machine-learning" title="Permalink to this heading">#</a></h2>
+<section id="overfitting-the-peril-of-learning-too-much">
+<h3>Overfitting: The Peril of Learning Too Much<a class="headerlink" href="#overfitting-the-peril-of-learning-too-much" title="Permalink to this heading">#</a></h3>
+<p>Overfitting is akin to a student who memorizes facts but fails to understand the underlying principles. In machine learning, this happens when a model learns the training data too thoroughly - capturing noise and anomalies as if they were significant patterns. The model thus becomes excellent at predicting or fitting the training data but fails to perform well on any new data, losing its ability to generalize. Imagine a model trained to recognize cats in photos, but it focuses too much on irrelevant details like the photo’s background. It performs well with the training images but poorly with new images of cats in different settings.</p>
+</section>
+<section id="underfitting-the-problem-of-oversimplification">
+<h3>Underfitting: The Problem of Oversimplification<a class="headerlink" href="#underfitting-the-problem-of-oversimplification" title="Permalink to this heading">#</a></h3>
+<p>Underfitting occurs when a model is too simple to capture the complexity and variability in the data, resulting in a model that performs poorly even on the training data. It’s unable to make accurate predictions or decisions because it hasn’t learned enough. For example, a linear regression model trying to capture a complex, non-linear relationship in data would typically underfit, much like trying to fit a straight line through a wildly curving dataset.</p>
+</section>
+</section>
+<section id="loss-functions-and-optimizers">
+<h2>Loss Functions and Optimizers<a class="headerlink" href="#loss-functions-and-optimizers" title="Permalink to this heading">#</a></h2>
+<section id="loss-functions-gauging-model-accuracy">
+<h3>Loss Functions: Gauging Model Accuracy<a class="headerlink" href="#loss-functions-gauging-model-accuracy" title="Permalink to this heading">#</a></h3>
+<p>A loss function, also known as a cost function, quantifies how far off a model’s predictions are from the actual values. It’s a method of evaluating how well the algorithm models the given data. If predictions deviate significantly from actual results, the loss function will output a higher number. Minimizing this loss is central to training an effective model. Common loss functions include Mean Squared Error for regression tasks and Cross-Entropy for classification tasks.</p>
+</section>
+<section id="optimizers-steering-the-learning-process">
+<h3>Optimizers: Steering the Learning Process<a class="headerlink" href="#optimizers-steering-the-learning-process" title="Permalink to this heading">#</a></h3>
+<p>Optimizers are algorithms or methods used to change the attributes of the neural network, like weights, to reduce the loss function. An optimizer iteratively adjusts parameters like learning rate to find the model configuration that minimizes loss. Common optimizers include Gradient Descent, Stochastic Gradient Descent (SGD), and Adam (Adaptive Moment Estimation).</p>
+</section>
+</section>
+<section id="training-set-and-test-set">
+<h2>Training Set and Test Set<a class="headerlink" href="#training-set-and-test-set" title="Permalink to this heading">#</a></h2>
+<section id="partitioning-data-training-and-testing">
+<h3>Partitioning Data: Training and Testing<a class="headerlink" href="#partitioning-data-training-and-testing" title="Permalink to this heading">#</a></h3>
+<p>In ML, datasets are typically split into a training set and a test set. The training set is used to teach or ‘train’ the model, while the test set is used to evaluate its performance. This split is crucial to validate the model’s ability to generalize to new data. If a model is only evaluated on the data it was trained on, there’s no way to know if it has learned meaningful patterns or just memorized the data.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to AI/Machine Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#artificial-intelligence-and-machine-learning-what-are-they">Artificial Intelligence and Machine Learning. What are they?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-machine-learning-processing-chain">Understanding the Machine Learning Processing Chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lifecycle-of-a-machine-learning-project">The Lifecycle of a Machine Learning Project</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts">Core concepts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">Supervised Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting-in-machine-learning">Overfitting and Underfitting in Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-the-peril-of-learning-too-much">Overfitting: The Peril of Learning Too Much</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-the-problem-of-oversimplification">Underfitting: The Problem of Oversimplification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loss-functions-and-optimizers">Loss Functions and Optimizers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loss-functions-gauging-model-accuracy">Loss Functions: Gauging Model Accuracy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizers-steering-the-learning-process">Optimizers: Steering the Learning Process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-set-and-test-set">Training Set and Test Set</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partitioning-data-training-and-testing">Partitioning Data: Training and Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

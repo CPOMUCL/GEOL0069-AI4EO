@@ -1,4 +1,6 @@
-# Welcome to your Jupyter Book
+# Welcome to GEOL0069 AI for Earth Observation
+
+Here we write module introduction and general information.
 
 This is a small sample book to give you a feel for how book content is
 structured.
