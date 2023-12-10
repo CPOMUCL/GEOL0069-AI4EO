@@ -4,7 +4,7 @@ format: jb-book
 root: intro
 
 parts:
-  - caption: Chapter 1  # This is your big chapter or part heading
+  - caption: Chapter 1 
     chapters:
       - file: Chapter 1:Preparation
       - file: Chapter 1:IRIS
@@ -16,6 +16,6 @@ parts:
 
   - caption: Chapter 2 Optimal Interpolation
     chapters:
-      - file: AI_Algorithms
-      - file: rollout
-      - file: References1
+      - file: Chapter2:Optimal_Interpolation
+      - file: Chapter2:Intro to Gaussian Processes
+      - file: Chapter2:Practical_Applications
