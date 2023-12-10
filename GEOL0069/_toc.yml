@@ -1,13 +1,21 @@
 # Table of contents
 # Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
 root: intro
-chapters:
-- file: Preparation
-- file: Chapter 1:IRIS
-- file: Prototype-2
-- file: ML
-- file: AI_Algorithms
-- file: rollout
-- file: References1
+
+parts:
+  - caption: Chapter 1  # This is your big chapter or part heading
+    chapters:
+      - file: Chapter 1:Preparation
+      - file: Chapter 1:IRIS
+      - file: Chapter 1:Prototype-2
+      - file: Chapter 1:ML
+      - file: Chapter 1:AI_Algorithms
+      - file: Chapter 1:rollout
+      - file: References1
+
+  - caption: Chapter 2 Optimal Interpolation
+    chapters:
+      - file: AI_Algorithms
+      - file: rollout
+      - file: References1
