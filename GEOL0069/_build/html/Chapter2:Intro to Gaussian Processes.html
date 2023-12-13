@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter2:Intro to Gaussian Processes';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -172,8 +174,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Chapter2%3AOptimal_Interpolation.html">Introduction to Optimal Interpolation</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Gaussian Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapter2%3APractical_Applications.html">Applications of Gaussian Processes on Optimal Interpolation</a></li>
-
-
 </ul>
 
     </div>
@@ -321,7 +321,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-and-definition">Overview and Definition</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-framework">Mathematical Framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-framework">Mathematical Framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">Basic Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance-functions-kernels">Covariance Functions (Kernels)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-variance">Mean and Variance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-a-logical-processing-chain">Gaussian Process - A Logical Processing Chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples">Practical Examples</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -337,9 +346,130 @@ document.write(`
 <h1>Introduction to Gaussian Processes<a class="headerlink" href="#introduction-to-gaussian-processes" title="Permalink to this heading">#</a></h1>
 <section id="overview-and-definition">
 <h2>Overview and Definition<a class="headerlink" href="#overview-and-definition" title="Permalink to this heading">#</a></h2>
+<p>Gaussian Processes (GPs) are closely related to Optimal Interpolation (OI) in the context of statistical modeling and machine learning. Essentially, a Gaussian Process is a collection of random variables, any finite number of which have a joint Gaussian distribution. This makes GPs a natural choice for modeling distributions over functions. They are particularly powerful for regression problems, where the goal is to predict continuous outcomes.</p>
+<p>The connection between GPs and OI is rooted in their treatment of uncertainty and the use of probabilistic models. Both GPs and OI employ similar concepts of covariance functions (or kernels) to model the relationships in data. In essence, GPs can be seen as a generalization of OI, extending the core ideas of OI to a broader, more flexible framework. This allows for more sophisticated handling of uncertainty and correlations in data, making GPs a versatile tool in various complex data analysis scenarios, especially where the underlying data-generating processes are unknown or hard to specify.</p>
 </section>
 <section id="mathematical-framework">
 <h2>Mathematical Framework<a class="headerlink" href="#mathematical-framework" title="Permalink to this heading">#</a></h2>
+<section id="basic-concepts">
+<h3>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading">#</a></h3>
+<p>A Gaussian Process (GP) is essentially an advanced form of a Gaussian (or normal) distribution, but instead of being over simple variables, it’s over functions. Imagine a GP as a method to predict or estimate a function based on known data points.</p>
+<p>In mathematical terms, a GP is defined for a set of function values, where these values follow a Gaussian distribution. Specifically, for any selection of points from a set <span class="math notranslate nohighlight">\(X\)</span>, the values that a function <span class="math notranslate nohighlight">\(f\)</span> takes at these points follow a joint Gaussian distribution.</p>
+<p>The key to understanding GPs lies in two main concepts:</p>
+<ol class="arabic simple">
+<li><p><strong>Mean Function</strong>: <span class="math notranslate nohighlight">\(m: X \rightarrow Y\)</span>. This function gives the average expected value of the function <span class="math notranslate nohighlight">\(f(x)\)</span> at each point <span class="math notranslate nohighlight">\(x\)</span> in the set <span class="math notranslate nohighlight">\(X\)</span>. It’s like predicting the average outcome based on the known data.</p></li>
+<li><p><strong>Kernel or Covariance Function</strong>: <span class="math notranslate nohighlight">\(k: X \times X \rightarrow Y\)</span>. This function tells us how much two points in the set <span class="math notranslate nohighlight">\(X\)</span> are related or how they influence each other. It’s a way of understanding the relationship or similarity between different points in our data.</p></li>
+</ol>
+<p>To apply GPs in a practical setting, we typically select several points in our input space <span class="math notranslate nohighlight">\(X\)</span>, calculate the mean and covariance at these points, and then use this information to make predictions. This process involves working with vectors and matrices derived from the mean and kernel functions to graphically represent the Gaussian Process.</p>
+<p><strong>Note</strong>: In mathematical notation, for a set of points <span class="math notranslate nohighlight">\( \mathbf{X}=x_1, \ldots, x_N \)</span>, the mean vector <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> and covariance matrix <span class="math notranslate nohighlight">\( \mathbf{K} \)</span> are constructed from these points using the mean and kernel functions. Each element of <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> and <span class="math notranslate nohighlight">\( \mathbf{K} \)</span> corresponds to the mean and covariance values calculated for these points.</p>
+</section>
+<section id="covariance-functions-kernels">
+<h3>Covariance Functions (Kernels)<a class="headerlink" href="#covariance-functions-kernels" title="Permalink to this heading">#</a></h3>
+<p>Covariance functions, or kernels, determine how a Gaussian Process (GP) generalizes from observed data. They are fundamental in defining the GP’s behavior.</p>
+<ul>
+<li><p><strong>Concept and Mathematical Representation</strong>:</p>
+<ul class="simple">
+<li><p>Kernels measure the similarity between points in input space. The function <span class="math notranslate nohighlight">\(k(x, x')\)</span> computes the covariance between the outputs corresponding to inputs <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>.</p></li>
+<li><p>For example, the Radial Basis Function (RBF) kernel is defined as <span class="math notranslate nohighlight">\(k(x, x') = \exp\left(-\frac{1}{2l^2} \| x - x' \|^2\right)\)</span>, where <span class="math notranslate nohighlight">\(l\)</span> is the length-scale parameter.</p></li>
+</ul>
+</li>
+<li><p><strong>Types of Kernels and Their Uses</strong>:</p>
+<ul class="simple">
+<li><p><strong>RBF Kernel</strong>: Suited for smooth functions. The length-scale <span class="math notranslate nohighlight">\(l\)</span> controls how rapidly the correlation decreases with distance.</p></li>
+<li><p><strong>Linear Kernel</strong>: <span class="math notranslate nohighlight">\(k(x, x') = x^T x'\)</span>, useful for linear relationships.</p></li>
+<li><p><strong>Periodic Kernels</strong>: Capture periodic behavior, expressed as <span class="math notranslate nohighlight">\(k(x, x') = \exp\left(-\frac{2\sin^2(\pi|x - x'|)}{l^2}\right)\)</span>.</p></li>
+</ul>
+<p>In our context, the <strong>RBF Kernel</strong> will be used in most cases. More practical examples are in future chapters.</p>
+</li>
+<li><p><strong>Hyperparameter Tuning</strong>:</p>
+<ul class="simple">
+<li><p>Hyperparameters like <span class="math notranslate nohighlight">\(l\)</span> in RBF or periodicity in periodic kernels crucially affect GP modeling. Their tuning, often through methods like maximum likelihood, adapts the GP to the specific data structure.</p></li>
+</ul>
+</li>
+<li><p><strong>Choosing the Right Kernel</strong>:</p>
+<ul class="simple">
+<li><p>Involves understanding data characteristics. RBF is a default choice for many, but specific data patterns might necessitate different or combined kernels.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mean-and-variance">
+<h3>Mean and Variance<a class="headerlink" href="#mean-and-variance" title="Permalink to this heading">#</a></h3>
+<p>The mean and variance functions in a Gaussian Process (GP) provide predictions and their uncertainties.</p>
+<ul class="simple">
+<li><p><strong>Mean Function - Mathematical Explanation</strong>:</p>
+<ul>
+<li><p>The mean function, often denoted as <span class="math notranslate nohighlight">\(m(x)\)</span>, gives the expected value of the function at each point. A common assumption is <span class="math notranslate nohighlight">\(m(x) = 0\)</span>, although non-zero means can incorporate prior trends.</p></li>
+</ul>
+</li>
+<li><p><strong>Variance Function - Quantifying Uncertainty</strong>:</p>
+<ul>
+<li><p>The variance, denoted as <span class="math notranslate nohighlight">\(\sigma^2(x)\)</span>, represents the uncertainty in predictions. It’s calculated as <span class="math notranslate nohighlight">\(\sigma^2(x) = k(x, x) - K(X, x)^T[K(X, X) + \sigma^2_nI]^{-1}K(X, x)\)</span>, where <span class="math notranslate nohighlight">\(K(X, x)\)</span> and <span class="math notranslate nohighlight">\(K(X, X)\)</span> are covariance matrices, and <span class="math notranslate nohighlight">\(\sigma^2_n\)</span> is the noise term.</p></li>
+</ul>
+</li>
+<li><p><strong>Practical Interpretation</strong>:</p>
+<ul>
+<li><p>High variance at a point suggests low confidence in predictions there, guiding decisions on where more data might be needed or caution in using the predictions.</p></li>
+</ul>
+</li>
+<li><p><strong>Mean and Variance in Predictions</strong>:</p>
+<ul>
+<li><p>Together, they provide a probabilistic forecast. The mean offers the best guess, while the variance indicates reliability. This duo is key in risk-sensitive applications.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="gaussian-process-a-logical-processing-chain">
+<h2>Gaussian Process - A Logical Processing Chain<a class="headerlink" href="#gaussian-process-a-logical-processing-chain" title="Permalink to this heading">#</a></h2>
+<p>Just like other machine learning algorithm, the logical processing chain for a Gaussian Process (GP) involves thoese key steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Defining the Problem</strong>:</p>
+<ul class="simple">
+<li><p>Start by identifying the problem to be solved using GP, such as regression, classification, or another task where predicting a continuous function is required.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Preparation</strong>:</p>
+<ul class="simple">
+<li><p>Organise the data into a suitable format. This includes input features and corresponding target values.</p></li>
+</ul>
+</li>
+<li><p><strong>Choosing a Kernel Function</strong>:</p>
+<ul class="simple">
+<li><p>Select an appropriate kernel (covariance function) for the GP. The choice depends on the nature of the data and the problem.</p></li>
+</ul>
+</li>
+<li><p><strong>Setting the Hyperparameters</strong>:</p>
+<ul class="simple">
+<li><p>Initialise hyperparameters for the chosen kernel. These can include parameters like length-scale in the RBF kernel or periodicity in a periodic kernel.</p></li>
+</ul>
+</li>
+<li><p><strong>Model Training</strong>:</p>
+<ul class="simple">
+<li><p>Train the GP model by optimizing the hyperparameters. This usually involves maximizing the likelihood of the observed data under the GP model.</p></li>
+</ul>
+</li>
+<li><p><strong>Prediction</strong>:</p>
+<ul class="simple">
+<li><p>Use the trained GP model to make predictions. This involves computing the mean and variance of the GP’s posterior distribution.</p></li>
+</ul>
+</li>
+<li><p><strong>Model Evaluation</strong>:</p>
+<ul class="simple">
+<li><p>Evaluate the model’s performance using suitable metrics. For regression, this could be RMSE or MAE; for classification, accuracy or AUC.</p></li>
+</ul>
+</li>
+<li><p><strong>Refinement</strong>:</p>
+<ul class="simple">
+<li><p>Based on the evaluation, refine the model by adjusting hyperparameters or kernel choice, and retrain if necessary.</p></li>
+</ul>
+</li>
+</ol>
+<p>This chain provides a comprehensive overview of the steps involved in applying Gaussian Processes to a problem, from initial setup to prediction and evaluation.</p>
+<section id="practical-examples">
+<h3>Practical Examples<a class="headerlink" href="#practical-examples" title="Permalink to this heading">#</a></h3>
+<p>You’ve now covered the essential concepts of Gaussian Processes. Next, let’s dive into a practical application by exploring a toy example of GP implementation using the GPyTorch library.</p>
+</section>
 </section>
 </section>
 
@@ -411,7 +541,16 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-and-definition">Overview and Definition</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-framework">Mathematical Framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-framework">Mathematical Framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">Basic Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance-functions-kernels">Covariance Functions (Kernels)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-variance">Mean and Variance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-a-logical-processing-chain">Gaussian Process - A Logical Processing Chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples">Practical Examples</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
