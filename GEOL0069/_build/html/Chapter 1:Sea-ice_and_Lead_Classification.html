@@ -64,6 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter 1:Sea-ice_and_Lead_Classification';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="AI/Machine Learning Implementation" href="Chapter%201%3AAI_Algorithms.html" />
+    <link rel="prev" title="Introduction to AI/Machine Learning" href="Chapter%201%3AML.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -155,11 +157,12 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
 
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sea-ice and Lead Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AAI_Algorithms.html">AI/Machine Learning Implementation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3Arollout.html">Roll-out on a Full Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
@@ -339,6 +342,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="sea-ice-and-lead-classification">
 <h1>Sea-ice and Lead Classification<a class="headerlink" href="#sea-ice-and-lead-classification" title="Permalink to this heading">#</a></h1>
+<p>📘 <strong>Interactive Version</strong>: For a hands-on experience with this chapter’s content, access the interactive notebook in <a class="reference external" href="https://colab.research.google.com/drive/YourNotebookLinkHere">Google Colab</a>.</p>
 <section id="intro-to-sea-ice-lead-classification">
 <h2>Intro to Sea-ice &amp; Lead Classification<a class="headerlink" href="#intro-to-sea-ice-lead-classification" title="Permalink to this heading">#</a></h2>
 <section id="definition-and-importance">
@@ -366,71 +370,87 @@ document.write(`
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
-<span class="c1"># Define the path to the main folder</span>
-<span class="n">main_folder_path</span> <span class="o">=</span> <span class="s1">&#39;path/to/data&#39;</span>  <span class="c1"># Adjust this to your main folder&#39;s path</span>
+<span class="c1"># Define the path to the main folder where your data is stored.</span>
+<span class="c1"># You need to replace &#39;path/to/data&#39; with the actual path to your data folder.</span>
+<span class="n">main_folder_path</span> <span class="o">=</span> <span class="s1">&#39;path/to/data&#39;</span> 
 
-<span class="c1"># List all directories in the main_folder</span>
+<span class="c1"># This part of the code is responsible for finding all directories in the main_folder that end with &#39;.SEN3&#39;.</span>
+<span class="c1"># &#39;.SEN3&#39; is the format of the folder containing specific satellite data files (in this case, OLCI data files).</span>
 <span class="n">directories</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.SEN3&#39;</span><span class="p">)]</span>
 
-
+<span class="c1"># Loop over each directory (i.e., each set of data) found above.</span>
 <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">directories</span><span class="p">:</span>
+    <span class="c1"># Construct the path to the OLCI data file within the directory.</span>
+    <span class="c1"># This path is used to access the data files.</span>
     <span class="n">OLCI_file_p</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing: </span><span class="si">{</span><span class="n">OLCI_file_p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># This will print the path to each sub-subfolder</span>
+    
+    <span class="c1"># Print the path to the current data file being processed.</span>
+    <span class="c1"># This is helpful for tracking which file is being processed at any time.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing: </span><span class="si">{</span><span class="n">OLCI_file_p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Load instrument data</span>
+    <span class="c1"># Load the instrument data from a file named &#39;instrument_data.nc&#39; inside the directory.</span>
+    <span class="c1"># This file contains various data about the instrument that captured the satellite data.</span>
     <span class="n">instrument_data</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/instrument_data.nc&#39;</span><span class="p">)</span>
-    <span class="n">solar_flux</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;solar_flux&#39;</span><span class="p">][:]</span>
-    <span class="n">detector_index</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;detector_index&#39;</span><span class="p">][:]</span>
+    <span class="n">solar_flux</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;solar_flux&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract the solar flux data.</span>
+    <span class="n">detector_index</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;detector_index&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract the detector index.</span>
 
-    <span class="c1"># Load tie geometries</span>
+    <span class="c1"># Load tie geometries from a file named &#39;tie_geometries.nc&#39;.</span>
+    <span class="c1"># Tie geometries contain information about viewing angles, which are important for data analysis.</span>
     <span class="n">tie_geometries</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/tie_geometries.nc&#39;</span><span class="p">)</span>
-    <span class="n">SZA</span> <span class="o">=</span> <span class="n">tie_geometries</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;SZA&#39;</span><span class="p">][:]</span>
+    <span class="n">SZA</span> <span class="o">=</span> <span class="n">tie_geometries</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;SZA&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract the Solar Zenith Angle (SZA).</span>
 
-    <span class="c1"># Extract the desired numbers using regular expressions</span>
-    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;_(\d</span><span class="si">{3}</span><span class="s1">_\d</span><span class="si">{3}</span><span class="s1">)_&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-        <span class="n">save_name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="c1"># Create a directory for the current OLCI data in the parent folder</span>
-        <span class="n">save_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;path/to/save&#39;</span><span class="p">,</span> <span class="n">save_name</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">save_directory</span><span class="p">):</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">save_directory</span><span class="p">)</span>
+    <span class="c1"># Create a directory for saving the processed data using the original directory name.</span>
+    <span class="c1"># This directory will be used to store output files.</span>
+    <span class="n">save_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;path/to/save&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">save_directory</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">save_directory</span><span class="p">)</span>
 
-    <span class="c1"># Loop over radiance bands for OLCI_data array</span>
+    <span class="c1"># This loop processes each radiance band in the OLCI data.</span>
+    <span class="c1"># OLCI instruments capture multiple bands, each representing different wavelengths.</span>
     <span class="n">OLCI_data</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">Radiance</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">Radiance</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">):</span>  <span class="c1"># There are 21 bands in OLCI data.</span>
         
-        <span class="n">Rstr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">Radiance</span>
-        <span class="n">solar_flux_band</span> <span class="o">=</span> <span class="n">solar_flux</span><span class="p">[</span><span class="n">Radiance</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">Rstr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">Radiance</span>  <span class="c1"># Formatting the band number.</span>
+        <span class="n">solar_flux_band</span> <span class="o">=</span> <span class="n">solar_flux</span><span class="p">[</span><span class="n">Radiance</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Get the solar flux for the current band.</span>
 
+        <span class="c1"># Print information about the current band being processed.</span>
+        <span class="c1"># This includes the band number and its corresponding solar flux.</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing Band: </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solar Flux for Band </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">solar_flux_band</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
+        <span class="c1"># Load radiance values from the OLCI data file for the current band.</span>
         <span class="n">OLCI_nc</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/Oa&#39;</span> <span class="o">+</span> <span class="n">Rstr</span> <span class="o">+</span> <span class="s1">&#39;_radiance.nc&#39;</span><span class="p">)</span>
         <span class="n">radiance_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">OLCI_nc</span><span class="p">[</span><span class="s1">&#39;Oa&#39;</span> <span class="o">+</span> <span class="n">Rstr</span> <span class="o">+</span> <span class="s1">&#39;_radiance&#39;</span><span class="p">])</span>
 
+        <span class="c1"># Initialize an array to store angle data, which will be calculated based on SZA.</span>
         <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">radiance_values</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">angle</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="n">angle</span><span class="p">[:,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">SZA</span><span class="p">[:,</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="mi">64</span><span class="p">)]</span>
 
+        <span class="c1"># Calculate the Top of Atmosphere Bidirectional Reflectance Factor (TOA BRF) for the current band.</span>
         <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">radiance_values</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">solar_flux_band</span><span class="p">[</span><span class="n">detector_index</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">)))</span>
 
+        <span class="c1"># Add the calculated TOA BRF data to the OLCI_data list.</span>
         <span class="n">OLCI_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">)</span>
 
+        <span class="c1"># Print the range of reflectance values for the current band.</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reflectance Values Range for Band </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">)</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="c1"># Reshape the OLCI_data</span>
+    <span class="c1"># Reshape the OLCI_data array for further analysis or visualization.</span>
     <span class="n">reshaped_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">OLCI_data</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reshaped array shape:&quot;</span><span class="p">,</span> <span class="n">reshaped_array</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-        <span class="c1"># Split the reshaped_array into chunks along the second dimension</span>
+    <span class="c1"># Split the reshaped array into smaller chunks along the second dimension.</span>
+    <span class="c1"># This can be useful for handling large datasets more efficiently.</span>
     <span class="n">split_arrays</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">reshaped_array</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-        <span class="c1"># Save the chunks</span>
+    <span class="c1"># Save each chunk of data separately.</span>
+    <span class="c1"># This is helpful for processing or analyzing smaller portions of data at a time.</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">arr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">split_arrays</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chunk </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> shape:&quot;</span><span class="p">,</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-            <span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_directory</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;chunk_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_band_</span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">.npy&quot;</span><span class="p">)</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">arr</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved Chunk </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> for Band </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chunk </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> shape:&quot;</span><span class="p">,</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_directory</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;chunk_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_band_</span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">.npy&quot;</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">arr</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved Chunk </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> for Band </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -683,6 +703,24 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter%201%3AML.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to AI/Machine Learning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter%201%3AAI_Algorithms.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">AI/Machine Learning Implementation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
