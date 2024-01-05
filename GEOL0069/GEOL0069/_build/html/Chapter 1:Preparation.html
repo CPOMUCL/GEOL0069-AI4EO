@@ -320,7 +320,10 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-use-google-colab">Steps to Use Google Colab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-drive">Google Drive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-drive">Google Drive</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-use-google-drive">Steps to Use Google Drive</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -356,7 +359,68 @@ document.write(`
 </section>
 <section id="google-drive">
 <h3>Google Drive<a class="headerlink" href="#google-drive" title="Permalink to this heading">#</a></h3>
-<p>For chapter 1, all the necessary code and data can be assessed from this folder on <a class="reference external" href="https://drive.google.com/drive/folders/11ZUsqtzzZ6c_UArYvX_5nFU4HDMDDVqX?usp=sharing">Google Drive</a></p>
+<p>For chapter 1, all the necessary code and data can be assessed from this folder on <a class="reference external" href="https://drive.google.com/drive/folders/11ZUsqtzzZ6c_UArYvX_5nFU4HDMDDVqX?usp=sharing">Google Drive</a>
+The steps of accessing the drive and ways of copying the shared folder to your own Google Drive is listed below:</p>
+<section id="steps-to-use-google-drive">
+<h4>Steps to Use Google Drive<a class="headerlink" href="#steps-to-use-google-drive" title="Permalink to this heading">#</a></h4>
+<ol class="arabic">
+<li><p><strong>Access Google Drive</strong>:</p>
+<ul class="simple">
+<li><p>Log in to your Google account.</p></li>
+<li><p>Navigate to <a class="reference external" href="https://drive.google.com">Google Drive</a> by typing the URL in your web browser or accessing it through the Google apps menu.</p></li>
+</ul>
+</li>
+<li><p><strong>Locate the Shared Folder</strong>:</p>
+<ul class="simple">
+<li><p>Find the shared folder link provided by the course instructor (the link should be a URL pointing to the Google Drive folder).</p></li>
+<li><p>Click on the link to access the shared folder.</p></li>
+</ul>
+</li>
+<li><p><strong>Copy the Folder to Your Drive</strong>:</p>
+<ul class="simple">
+<li><p>Right-click on the folder name in Google Drive.</p></li>
+<li><p>Select “Make a copy” from the context menu. This will create a copy of the folder in your drive. The copied folder will be named “Copy of [original folder name].”</p></li>
+<li><p>Alternatively, if you have “Add to My Drive” option, you can use this to add the shared folder directly to your Drive for easy access.</p></li>
+</ul>
+</li>
+<li><p><strong>Organize the Copied Folder</strong> (Optional):</p>
+<ul class="simple">
+<li><p>Navigate to “My Drive” where you’ll find the copied folder.</p></li>
+<li><p>You can click and drag to move the folder, or right-click and select “Move to…” to organise it within your drive’s directory structure.</p></li>
+<li><p>You are not expected to change the general structure of the folder. You are welcomed to add data files of your own that could be used for analysis.</p></li>
+</ul>
+</li>
+<li><p><strong>Access the Files within the Copied Folder</strong>:</p>
+<ul class="simple">
+<li><p>Double-click on the copied folder to open it.</p></li>
+<li><p>Here you can access all the files, including Jupyter notebooks and data files, as provided by us.</p></li>
+</ul>
+</li>
+<li><p><strong>Open Jupyter notebooks with Google Colab</strong>:</p>
+<ul class="simple">
+<li><p>For Jupyter notebooks, right-click on the file and choose “Open with” followed by “Google Colab” to open and run the notebook in Colab.</p></li>
+</ul>
+</li>
+<li><p><strong>Connect Colab to your Google Drive</strong></p>
+<ul>
+<li><p>In your Colab notebook, you can access files stored in Google Drive by mounting your drive.</p></li>
+<li><p>Use the following code snippet in a Colab cell to mount your drive:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Follow the authentication steps provided by Colab, which will involve copying an authentication code from a Google login flow.</p></li>
+</ul>
+</li>
+<li><p><strong>Work with Files</strong>:</p>
+<ul class="simple">
+<li><p>You can view and edit files directly in Google Drive. For editing Jupyter notebooks, use Google Colab as described above.</p></li>
+<li><p>If you’re working with non-code files, you can use Google Drive’s integrated apps like Google Docs, Sheets, or Slides to edit documents.</p></li>
+</ul>
+</li>
+</ol>
+</section>
 </section>
 </section>
 </section>
@@ -430,7 +494,10 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-use-google-colab">Steps to Use Google Colab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-drive">Google Drive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-drive">Google Drive</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-use-google-drive">Steps to Use Google Drive</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
