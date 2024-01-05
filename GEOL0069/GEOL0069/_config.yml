@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: GEOL0069 Guide Book
-author: Michel Tsamados
+author: Michel Tsamados/Weibin Chen
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
