@@ -9,13 +9,4 @@ parts:
       - file: Chapter 1:Preparation
       - file: Chapter 1:IRIS
       - file: Chapter 1:ML
-      - file: Chapter 1:Sea-ice_and_Lead_Classification
-      - file: Chapter 1:AI_Algorithms
-      - file: Chapter 1:rollout
-      - file: References1
 
-  - caption: Chapter 2 Optimal Interpolation
-    chapters:
-      - file: Chapter2:Optimal_Interpolation
-      - file: Chapter2:Intro to Gaussian Processes
-      - file: Chapter2:Practical_Applications
