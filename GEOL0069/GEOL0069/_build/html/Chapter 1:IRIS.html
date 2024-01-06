@@ -162,6 +162,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
 </ul>
 
     </div>
@@ -330,8 +331,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-intelligently-reinforced-image-segmentation-iris">
 <h1>Introduction to Intelligently Reinforced Image Segmentation (IRIS)<a class="headerlink" href="#introduction-to-intelligently-reinforced-image-segmentation-iris" title="Permalink to this heading">#</a></h1>
-<p>Throughout this project, we have extensively utilized IRIS, a user-friendly, web-based Flask application developed by ESA-PhiLab. IRIS has been indispensable in our workflow, particularly in the efficient generation of ground-truth training data for our machine learning tasks. Its intuitive ‘click &amp; train’ functionality has greatly simplified the process of creating accurate masks for Earth observation datasets. We are deeply thankful to ESA-PhiLab for providing such an innovative tool that significantly enhances our capabilities in dataset creation.</p>
-<p>We would like to extend our special gratitude to Alistair Francis from ESA-PhiLab, whose invaluable assistance and insights have been instrumental in the successful application of IRIS in our work.</p>
+<p>Throughout this project, we have extensively utilised IRIS, a user-friendly, web-based Flask application developed by ESA-PhiLab, with special thanks to Alistair Francis whose guidance has been instrumental. IRIS has been indispensable in our workflow, particularly in the efficient generation of ground-truth training data for our machine learning tasks. Its intuitive ‘click &amp; train’ functionality has greatly simplified the process of creating accurate masks for Earth observation datasets, enhancing our capabilities in dataset creation. You may access the original repo at <a class="github reference external" href="https://github.com/ESA-PhiLab/iris">ESA-PhiLab/iris</a>.</p>
 <section id="installation-why-docker">
 <h2>Installation: Why Docker?<a class="headerlink" href="#installation-why-docker" title="Permalink to this heading">#</a></h2>
 <p>The direct installation of Iris from the GitHub repository can be complex and time-consuming, requiring manual installation of dependencies and configuration setup. By leveraging Docker, users can easily deploy and run Iris in a containerized environment, eliminating the need for manual dependency management and providing a consistent and reproducible execution environment. Docker simplifies the deployment process, enhances portability across different machines, and ensures consistent behaviour, making it an ideal solution for users looking for a streamlined and hassle-free way to access and use the Iris application.</p>
@@ -393,6 +393,11 @@ document.write(`
 <p>After setting the password, you will see:
 <img alt="Interface" src="_images/url_interface.png" /></p>
 <p>Once the Docker container is running, access Iris by opening your web browser and navigating to <a class="reference external" href="http://localhost:80">http://localhost:80</a>. Note: do not open the link provided in the terminal, use <a class="reference external" href="http://localhost:80">http://localhost:80</a> instead. For example, if the terminal asks you to open <a class="reference external" href="http://127.0.0.1:5000">http://127.0.0.1:5000</a>, you need to open <a class="reference external" href="http://127.0.0.1:80">http://127.0.0.1:80</a> instead. The Iris web interface should be accessible, and you can start using the application with the provided data and configuration.</p>
+<p>Upon following the provided link, you’ll be greeted with the following interface:
+<img alt="Interface" src="_images/iris_interface2.png" /></p>
+<p>To get started, simply click the registration button, which will lead you to the screen shown below:
+<img alt="Interface" src="_images/iris_interface1.png" />
+At this point, you can choose a username and password to your preference. Once you fill in these details, click the ‘Register’ button to complete the process. Subsequently, you’ll be redirected to the application, ready to begin your session.</p>
 </section>
 </section>
 <section id="how-to-use-iris">
