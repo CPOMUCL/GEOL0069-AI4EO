@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter 1:ML';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -323,6 +325,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-or-classification">Regression or Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern">Overfitting and Underfitting in Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-the-peril-of-learning-too-much">Overfitting: The Peril of Learning Too Much</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-the-problem-of-oversimplification">Underfitting: The Problem of Oversimplification</a></li>
@@ -386,7 +389,7 @@ document.write(`
 Below shows an example of supervised learning: Simple Linear Regression</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python code for linear regression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python code for linear regression</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
@@ -416,7 +419,7 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
 <p>Unsupervised learning involves working with data that doesn’t have labels. The algorithms seek to identify inherent structures or patterns in the data. A common technique in unsupervised learning is clustering, where data is grouped based on similarities. For instance, clustering can be used to segment customers in a market based on their purchasing habits. Below shows an example of unsupervised learning: K-Means Clustering</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python code for K-means clustering</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python code for K-means clustering</span>
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -440,6 +443,9 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
 </div>
 </section>
 </section>
+<section id="regression-or-classification">
+<h2>Regression or Classification<a class="headerlink" href="#regression-or-classification" title="Permalink to this heading">#</a></h2>
+</section>
 <section id="overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern">
 <h2>Overfitting and Underfitting in Machine Learning <span id="id3">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">WF02</a>]</span><a class="headerlink" href="#overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern" title="Permalink to this heading">#</a></h2>
 <section id="overfitting-the-peril-of-learning-too-much">
@@ -449,6 +455,49 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
 <section id="underfitting-the-problem-of-oversimplification">
 <h3>Underfitting: The Problem of Oversimplification<a class="headerlink" href="#underfitting-the-problem-of-oversimplification" title="Permalink to this heading">#</a></h3>
 <p>Underfitting occurs when a model is too simple to capture the complexity and variability in the data, resulting in a model that performs poorly even on the training data. It’s unable to make accurate predictions or decisions because it hasn’t learned enough. For example, a linear regression model trying to capture a complex, non-linear relationship in data would typically underfit, much like trying to fit a straight line through a wildly curving dataset.</p>
+<p>The following code illustrates different degrees of a polynomial regression will result in different fitting situations (underfitting and overfitting). Polynomial regression is an extension of linear regression where the relationship between the independent variable <span class="math notranslate nohighlight">\(x\)</span> and the dependent variable <span class="math notranslate nohighlight">\(y\)</span> is modeled as an <span class="math notranslate nohighlight">\(n^{th}\)</span> degree polynomial. It provides a way to fit a nonlinear model to the data by adding powers of the input variable as new features, allowing for a more flexible fit that can capture the curvature in the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numpy.polynomial.polynomial</span> <span class="kn">import</span> <span class="n">Polynomial</span>
+
+<span class="c1"># Generate synthetic data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Polynomial degrees to be considered</span>
+<span class="n">degrees</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Fit and plot polynomial for each degree</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">degree</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">degrees</span><span class="p">):</span>
+    <span class="n">coefs</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">degree</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span><span class="o">.</span><span class="n">coef</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">coefs</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">x_poly</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">y_poly</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="n">x_poly</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_poly</span><span class="p">,</span> <span class="n">y_poly</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;M=</span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="s1"> fit&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Polynomial Fit: M=</span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/42c81137052b84ff2d3a8cac884e31bb301493d52aebcf4a0134fc0ea3bdb4bd.png" src="_images/42c81137052b84ff2d3a8cac884e31bb301493d52aebcf4a0134fc0ea3bdb4bd.png" />
+</div>
+</div>
+<p>It’s obvious that as the degrees of polynomial increase, the model fits the data better. But overfitting happens when the degrees of polynomial increase to a certain level.</p>
 </section>
 </section>
 <section id="loss-functions-and-optimizers">
@@ -552,6 +601,7 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-or-classification">Regression or Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern">Overfitting and Underfitting in Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-the-peril-of-learning-too-much">Overfitting: The Peril of Learning Too Much</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-the-problem-of-oversimplification">Underfitting: The Problem of Oversimplification</a></li>
