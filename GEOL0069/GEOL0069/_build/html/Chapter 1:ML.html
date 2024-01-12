@@ -320,12 +320,15 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts">Core concepts</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning-witten2002data-bishop2006pattern">Types of Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning-witten2002data-bishop2006pattern">Types of Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-or-classification">Regression or Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression">Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-differences">Key Differences</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">Supervised Learning</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-or-classification">Regression or Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern">Overfitting and Underfitting in Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-the-peril-of-learning-too-much">Overfitting: The Peril of Learning Too Much</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-the-problem-of-oversimplification">Underfitting: The Problem of Oversimplification</a></li>
@@ -383,6 +386,47 @@ document.write(`
 <section id="types-of-machine-learning-witten2002data-bishop2006pattern">
 <h2>Types of Machine Learning <span id="id2">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">WF02</a>]</span><a class="headerlink" href="#types-of-machine-learning-witten2002data-bishop2006pattern" title="Permalink to this heading">#</a></h2>
 <p>Before delving into specific concepts, it’s essential to distinguish between the two primary variations of AI and ML algorithms.</p>
+</section>
+<section id="regression-or-classification">
+<h2>Regression or Classification<a class="headerlink" href="#regression-or-classification" title="Permalink to this heading">#</a></h2>
+<p>In machine learning, tasks are generally categorised into regression and classification, each serving different types of problems and requiring distinct approaches. Understanding the differences and applications of each is fundamental in choosing the right model for a given dataset.</p>
+<section id="regression">
+<h3>Regression<a class="headerlink" href="#regression" title="Permalink to this heading">#</a></h3>
+<p><strong>Definition</strong>: Regression models are used when the output variable is a real or continuous value. These models are best suited for predicting numerical quantities.</p>
+<p><strong>Examples</strong>:</p>
+<ul class="simple">
+<li><p>Predicting housing prices based on various features like size, location, and age.</p></li>
+<li><p>Forecasting sales figures for future months or years.</p></li>
+</ul>
+<p><strong>Key Characteristics</strong>:</p>
+<ul class="simple">
+<li><p>The output variable is continuous.</p></li>
+<li><p>Common algorithms include Linear Regression, Polynomial Regression, and Random Forest Regression.</p></li>
+</ul>
+</section>
+<section id="classification">
+<h3>Classification<a class="headerlink" href="#classification" title="Permalink to this heading">#</a></h3>
+<p><strong>Definition</strong>: Classification models are used when the output variable is categorical. These models categorize or classify input data into classes or groups.</p>
+<p><strong>Examples</strong>:</p>
+<ul class="simple">
+<li><p>Identifying whether an email is spam or not spam.</p></li>
+<li><p>Diagnosing whether a tumor is malignant or benign based on medical imaging.</p></li>
+</ul>
+<p><strong>Key Characteristics</strong>:</p>
+<ul class="simple">
+<li><p>The output variable is categorical (binary or multi-class).</p></li>
+<li><p>Common algorithms include Logistic Regression, Support Vector Machines, Decision Trees, and Neural Networks.</p></li>
+</ul>
+</section>
+<section id="key-differences">
+<h3>Key Differences<a class="headerlink" href="#key-differences" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Output Type</strong>: Regression predicts continuous values, while classification predicts discrete categories.</p></li>
+<li><p><strong>Evaluation Metrics</strong>: Regression models are evaluated using metrics like Mean Squared Error (MSE) or Root Mean Squared Error (RMSE), whereas classification models use accuracy, precision, recall, F1 score, etc.</p></li>
+<li><p><strong>Problem Nature</strong>: Regression is used for estimating values (e.g., temperature, prices), while classification is for deciding which category an observation belongs to.</p></li>
+</ol>
+<p>Understanding whether your problem is a regression or a classification task is crucial in selecting the right machine learning model and approach, which directly impacts the effectiveness of your solution. It’s important to note that in part 1 we will mainly dealing with classification problem of discrimination of sea-ice and lead. Regression is typically supervised, while classification can be supervised or unsupervised.</p>
+</section>
 <section id="supervised-learning">
 <h3>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Permalink to this heading">#</a></h3>
 <p>In supervised learning, the algorithm is trained on a labeled dataset. This dataset provides the algorithm with example inputs and their corresponding outputs. The goal is to learn a mapping from inputs to outputs, allowing the model to make predictions on unseen data. A classic example is image recognition, where the model is trained on a dataset of labeled images and learns to recognize and categorize new images.
@@ -442,9 +486,6 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
 </div>
 </div>
 </section>
-</section>
-<section id="regression-or-classification">
-<h2>Regression or Classification<a class="headerlink" href="#regression-or-classification" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern">
 <h2>Overfitting and Underfitting in Machine Learning <span id="id3">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">WF02</a>]</span><a class="headerlink" href="#overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern" title="Permalink to this heading">#</a></h2>
@@ -596,12 +637,15 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts">Core concepts</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning-witten2002data-bishop2006pattern">Types of Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning-witten2002data-bishop2006pattern">Types of Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-or-classification">Regression or Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression">Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-differences">Key Differences</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">Supervised Learning</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-or-classification">Regression or Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern">Overfitting and Underfitting in Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-the-peril-of-learning-too-much">Overfitting: The Peril of Learning Too Much</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-the-problem-of-oversimplification">Underfitting: The Problem of Oversimplification</a></li>
