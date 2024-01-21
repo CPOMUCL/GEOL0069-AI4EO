@@ -12,4 +12,5 @@ parts:
       - file: Chapter 1:Sea-ice_and_Lead_Classification
       - file: Chapter 1:AI_Algorithms
       - file: Chapter 1:Fetching_Data
+      - file: Chapter 1:rollout
       - file: References1
