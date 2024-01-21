@@ -1,0 +1,796 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Data Fetching &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter 1:Fetching_Data';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="References" href="References1.html" />
+    <link rel="prev" title="AI/Machine Learning Implementation" href="Chapter%201%3AAI_Algorithms.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3ASea-ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AAI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Fetching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Chapter 1:Fetching_Data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Fetching</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copernicus-data-space">Copernicus Data Space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-earth-engine">Google Earth Engine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-accounts">Set up Accounts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-fetching-logic">Data Fetching Logic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-set-up">Step 0: Set Up</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-read-in-functions-needed">Step 1: Read in Functions Needed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-extract-filenames-from-google-earth-engine">Step 2: Extract Filenames from Google Earth Engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-convert-google-ee-filenames-to-copernicus-format">Step 3: Convert Google EE Filenames to Copernicus Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-download">Step 4: Download</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-fetching">
+<h1>Data Fetching<a class="headerlink" href="#data-fetching" title="Permalink to this heading">#</a></h1>
+<p>In this section, we will delve into the process of acquiring the dataset that has been integral to our analyses – the OLCI data from the Sentinel-3 satellite, part of the Copernicus Dataspace. This segment will guide you through the nuances of accessing this rich dataset, understanding its structure, and efficiently retrieving the data you need for your work.</p>
+<section id="copernicus-data-space">
+<h2>Copernicus Data Space<a class="headerlink" href="#copernicus-data-space" title="Permalink to this heading">#</a></h2>
+<p><strong>Overview</strong><br />
+Copernicus Data Space is a cornerstone of the European Union’s Earth observation program, providing a wealth of data from the Sentinel satellites. Aimed at monitoring the Earth’s environment, it supports applications in areas like climate change, disaster response, and urban planning.</p>
+<p><strong>Key Features</strong></p>
+<ul class="simple">
+<li><p><strong>Diverse Datasets</strong>: Offers imagery, atmospheric measurements, and climate indicators.</p></li>
+<li><p><strong>Accessibility</strong>: Data is freely accessible, fostering open science and research.</p></li>
+</ul>
+<p><strong>Resources</strong><br />
+For more information and data access, visit the <a class="reference external" href="https://dataspace.copernicus.eu">Copernicus Dataspace</a>.</p>
+</section>
+<hr class="docutils" />
+<section id="google-earth-engine">
+<h2>Google Earth Engine<a class="headerlink" href="#google-earth-engine" title="Permalink to this heading">#</a></h2>
+<p><strong>Overview</strong><br />
+Google Earth Engine is a powerful platform for analyzing geospatial data at scale. It combines a multi-petabyte catalog of satellite imagery with cloud computing resources, enabling planetary-scale environmental data analysis.</p>
+<p><strong>Capabilities</strong></p>
+<ul class="simple">
+<li><p><strong>Rich Data Catalog</strong>: Access to extensive satellite imagery and geospatial datasets.</p></li>
+<li><p><strong>Powerful Computing</strong>: Leverages Google’s cloud infrastructure for large-scale data processing.</p></li>
+</ul>
+<p><strong>Resources</strong><br />
+Explore tutorials and community scripts at the <a class="reference external" href="https://earthengine.google.com/">Google Earth Engine’s official site</a>.</p>
+<p>For this notebook, we will use both Google Earth Engine and Copernicus Dataspace to help us to get the raw OLCI dataset.</p>
+</section>
+<section id="set-up-accounts">
+<h2>Set up Accounts<a class="headerlink" href="#set-up-accounts" title="Permalink to this heading">#</a></h2>
+<p>Before delving into the specifics of data retrieval, it’s crucial to ensure you have access to the necessary platforms. We’ll be working with two primary data sources: Google Earth Engine and Copernicus Dataspace.</p>
+<ol class="arabic simple">
+<li><p><strong>Google Earth Engine:</strong> Most of you might already have a Google account. If so, you’re a step ahead! You can use the same account to access Google Earth Engine.</p></li>
+<li><p><strong>Copernicus Dataspace:</strong> Accessing data from the Copernicus Dataspace requires a separate registration. If you haven’t done so, please take a moment to create an account. Simply visit the <a class="reference external" href="https://dataspace.copernicus.eu">Copernicus Dataspace registration page</a> and follow the instructions to sign up.</p></li>
+</ol>
+</section>
+<section id="data-fetching-logic">
+<h2>Data Fetching Logic<a class="headerlink" href="#data-fetching-logic" title="Permalink to this heading">#</a></h2>
+<p>The process of data fetching is meticulously structured to ensure we efficiently retrieve accurate and comprehensive data. The logic underlying this process involves several key steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Area and Time Specification:</strong> Initially, we define the geographical scope and the specific time frame of interest. This precise specification allows us to target our data retrieval effectively.</p></li>
+<li><p><strong>Retrieving File Names from Google Earth Engine:</strong> Once the area and time parameters are set, we proceed to fetch a list of relevant file names from Google Earth Engine. This platform provides a robust interface for identifying datasets that match our specified criteria.</p></li>
+<li><p><strong>Converting to Copernicus Filename Format:</strong> After obtaining the list of file names from Google Earth Engine, the next step involves transforming these names into the format recognised by the Copernicus Dataspace. This conversion is crucial for ensuring compatibility and facilitating the subsequent data retrieval process.</p></li>
+<li><p><strong>Fetching Raw Data from Copernicus Dataspace:</strong> With the correctly formatted file names in hand, we then access the Copernicus Dataspace to retrieve the raw data. It’s important to note that Google Earth Engine does not provide raw data in the same format as the Copernicus Dataspace. Hence, this step is essential for obtaining the data in its native, unaltered format.</p></li>
+</ol>
+<section id="step-0-set-up">
+<h3>Step 0: Set Up<a class="headerlink" href="#step-0-set-up" title="Permalink to this heading">#</a></h3>
+<p>Before we dive into the data fetching process, it’s essential to lay the groundwork by setting up the necessary packages and ensuring proper authentication. Follow these preparatory steps to create a smooth and efficient workflow:</p>
+<ol class="arabic simple">
+<li><p><strong>Install Required Packages:</strong> Make sure all the necessary packages are installed in your working environment. This includes libraries specific to data handling, geospatial analysis, and any other tools relevant to your project.</p></li>
+<li><p><strong>Authenticate with Google Earth Engine:</strong> Access to Google Earth Engine requires proper authentication. Ensure that you’re logged into your Google account and have followed the authentication procedures to obtain access to the datasets and tools offered by Google Earth Engine.</p></li>
+</ol>
+<p>By completing these initial setup steps, you’re ensuring that your environment is ready and equipped with the tools needed for data fetching and analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Point</span>
+<span class="kn">import</span> <span class="nn">ee</span> 
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
+<span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-1-read-in-functions-needed">
+<h3>Step 1: Read in Functions Needed<a class="headerlink" href="#step-1-read-in-functions-needed" title="Permalink to this heading">#</a></h3>
+<p>To streamline our data fetching and processing, we’ll first load the essential functions. These functions are designed to handle various tasks such as data retrieval, format conversion, and preliminary data processing. Ensure that you’ve imported all the required functions before proceeding to the next steps of the workflow. All functions have docstrings so please read them to get some ideas of what they do.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse_gee_filename</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parses the Google Earth Engine filename to extract satellite name, sensing date, and start time.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    gee_filename (str): Filename obtained from Google Earth Engine.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    tuple: Contains satellite name, sensing date, and start time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">gee_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">satellite</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_OL_1_EFR&#39;</span>
+    <span class="n">start_datetime</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">end_datetime</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="c1"># Extract date from the start_datetime (assuming the format is like &#39;20180601T014926&#39;)</span>
+    <span class="n">sensing_date</span> <span class="o">=</span> <span class="n">start_datetime</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>  
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">start_datetime</span><span class="p">[</span><span class="mi">9</span><span class="p">:]</span>   
+
+    <span class="k">return</span> <span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span>
+
+<span class="k">def</span> <span class="nf">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves access token from Copernicus Dataspace using the provided credentials.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    username (str): Username for Copernicus Dataspace.</span>
+<span class="sd">    password (str): Password for Copernicus Dataspace.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    str: Access token for authenticated sessions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;grant_type&#39;</span><span class="p">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+        <span class="s1">&#39;client_id&#39;</span><span class="p">:</span> <span class="s1">&#39;cdse-public&#39;</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">query_sentinel3_olci_data</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Queries Sentinel-3 OLCI data from Copernicus Data Space based on satellite name, sensing date, and start time.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    satellite (str): Name of the satellite.</span>
+<span class="sd">    sensing_date (str): Date of the data sensing.</span>
+<span class="sd">    start_time (str): Start time of the data sensing.</span>
+<span class="sd">    token (str): Access token for authentication.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    DataFrame: A DataFrame containing the query results with details about the Sentinel-3 OLCI data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Convert sensing_date to datetime object and format it for the query</span>
+    <span class="n">sensing_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sensing_date</span><span class="si">}</span><span class="s1">T</span><span class="si">{</span><span class="n">start_time</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">T%H%M%S&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Construct the request URL using the filter structure provided</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;https://catalogue.dataspace.copernicus.eu/odata/v1/Products?&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;$filter=contains(Name,&#39;</span><span class="si">{</span><span class="n">satellite</span><span class="si">}</span><span class="s2">&#39;) and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;ContentDate/Start gt </span><span class="si">{</span><span class="n">sensing_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.000Z&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;ContentDate/Start lt </span><span class="si">{</span><span class="p">(</span><span class="n">sensing_datetime</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.000Z&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&amp;&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;$orderby=ContentDate/Start&amp;$top=1000&quot;</span>
+    <span class="p">)</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+
+    <span class="c1"># Print the URL for debugging</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="c1"># Make the API request</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="c1"># Check if the request was successful</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="c1"># Print error details and return an empty DataFrame if the request failed</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: Unable to fetch data. Status Code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">. Response: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+    <span class="c1"># Convert the JSON response to a DataFrame</span>
+    <span class="n">search_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># Convert the &#39;ContentDate/Start&#39; to datetime objects and sort the results</span>
+    <span class="n">search_results_df</span><span class="p">[</span><span class="s1">&#39;SensingStart&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">search_results_df</span><span class="p">[</span><span class="s1">&#39;ContentDate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;Start&#39;</span><span class="p">]))</span>
+    <span class="n">search_results_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;SensingStart&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">search_results_df</span>
+
+
+
+<span class="k">def</span> <span class="nf">fetch_S3_images_by_area_and_date</span><span class="p">(</span><span class="n">date_range</span><span class="p">,</span> <span class="n">spatial_extent</span><span class="p">,</span> <span class="n">area_of_interest</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetches Sentinel-3 OLCI images based on a specified date range and area of interest.</span>
+<span class="sd">    </span>
+<span class="sd">    :param date_range: List containing the start and end dates (e.g., [&#39;2018-06-01&#39;, &#39;2018-06-02&#39;])</span>
+<span class="sd">    :param spatial_extent: List containing the spatial extent [min_lon, min_lat, max_lon, max_lat]</span>
+<span class="sd">    :param area_of_interest: ee.Geometry object defining the specific area for which to fetch images</span>
+<span class="sd">    </span>
+<span class="sd">    :return: List of dictionaries, each containing details about a fetched image, including its ID, date, and download URL.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Initialize the Earth Engine module</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+
+    <span class="c1"># Define variables for Sentinel-3 OLCI query</span>
+    <span class="n">S3_product</span> <span class="o">=</span> <span class="s1">&#39;COPERNICUS/S3/OLCI&#39;</span>
+
+    <span class="c1"># Query for Sentinel-3 data within the specified date range and area of interest</span>
+    <span class="n">S3_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="n">S3_product</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">date_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">date_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">area_of_interest</span><span class="p">)</span>
+
+    <span class="c1"># Convert S3_collection to a list of image IDs</span>
+    <span class="n">S3_image_ids</span> <span class="o">=</span> <span class="n">S3_collection</span><span class="o">.</span><span class="n">aggregate_array</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+    <span class="n">S3_images_info</span> <span class="o">=</span> <span class="n">S3_collection</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()[</span><span class="s1">&#39;features&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Initialize an empty list to store details</span>
+    <span class="n">S3_image_details</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Iterate through each image in the collection</span>
+    <span class="k">for</span> <span class="n">img_info</span> <span class="ow">in</span> <span class="n">S3_images_info</span><span class="p">:</span>
+        <span class="c1"># Fetch image ID</span>
+        <span class="n">image_id</span> <span class="o">=</span> <span class="n">img_info</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># Fetch image date and other properties as needed</span>
+        <span class="n">image_date</span> <span class="o">=</span> <span class="n">img_info</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">]</span>  <span class="c1"># Example property</span>
+        
+        <span class="c1"># Append the details to the list</span>
+        <span class="n">S3_image_details</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">image_id</span><span class="p">,</span>
+            <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="n">image_date</span>
+        <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">S3_image_details</span>
+
+<span class="k">def</span> <span class="nf">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">download_dir</span><span class="o">=</span><span class="s2">&quot;downloaded_products&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download a single product from the Copernicus Data Space.</span>
+
+<span class="sd">    :param product_id: The unique identifier for the product.</span>
+<span class="sd">    :param file_name: The name of the file to be downloaded.</span>
+<span class="sd">    :param access_token: The access token for authorization.</span>
+<span class="sd">    :param download_dir: The directory where the product will be saved.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Ensure the download directory exists</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Construct the download URL</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://zipper.dataspace.copernicus.eu/odata/v1/Products(</span><span class="si">{</span><span class="n">product_id</span><span class="si">}</span><span class="s2">)/$value&quot;</span>
+
+    <span class="c1"># Set up the session and headers</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="c1"># Perform the request</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Check if the request was successful</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="c1"># Define the path for the output file</span>
+        <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_dir</span><span class="p">,</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;.zip&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Stream the content to a file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloaded: </span><span class="si">{</span><span class="n">output_file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to download product </span><span class="si">{</span><span class="n">product_id</span><span class="si">}</span><span class="s2">. Status Code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-extract-filenames-from-google-earth-engine">
+<h3>Step 2: Extract Filenames from Google Earth Engine<a class="headerlink" href="#step-2-extract-filenames-from-google-earth-engine" title="Permalink to this heading">#</a></h3>
+<p>Once you have set up your environment and are authenticated with Google Earth Engine, the next step is to extract the filenames that meet your specific criteria. This involves querying the Google Earth Engine datasets based on your area of interest, time frame, and any other relevant parameters. The code snippet below demonstrates how to perform this task effectively:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">arctic_region_mask_line</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;region_mask_line.txt&#39;</span><span class="p">)</span>
+<span class="c1"># Create a polygon object representing the Arctic Ocean boundary</span>
+<span class="n">boundary_polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">arctic_region_mask_line</span><span class="p">)</span>
+<span class="n">region_mask_line_tt</span> <span class="o">=</span> <span class="p">[(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span> <span class="k">for</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="ow">in</span> <span class="n">arctic_region_mask_line</span><span class="p">]</span>
+<span class="n">area_of_interest</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">LineString</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="n">region_mask_line_tt</span><span class="p">,</span> <span class="n">proj</span><span class="o">=</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">,</span> <span class="n">geodesic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2018-06-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-06-02&#39;</span><span class="p">]</span>
+<span class="n">spatial_extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>  <span class="c1"># Example coordinates</span>
+
+<span class="n">export_tasks</span> <span class="o">=</span> <span class="n">fetch_S3_images_by_area_and_date</span><span class="p">(</span><span class="n">date_range</span><span class="p">,</span> <span class="n">spatial_extent</span><span class="p">,</span> <span class="n">area_of_interest</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-convert-google-ee-filenames-to-copernicus-format">
+<h3>Step 3: Convert Google EE Filenames to Copernicus Format<a class="headerlink" href="#step-3-convert-google-ee-filenames-to-copernicus-format" title="Permalink to this heading">#</a></h3>
+<p>After retrieving the filenames from Google Earth Engine, the next crucial step is to convert these filenames into the format recognized by the Copernicus Dataspace. This conversion is essential for ensuring compatibility and enabling you to query and retrieve the corresponding datasets from Copernicus. Below is an example code snippet that demonstrates this conversion process. Note that you will need your username and password for the Copernicus Dataspace to authenticate and access the required data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example GEE image ID</span>
+<span class="n">gee_image_id</span> <span class="o">=</span> <span class="s1">&#39;S3B_20180601T182924_20180601T183224&#39;</span>
+
+<span class="c1"># Parse the GEE filename to get the date and time</span>
+<span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span> <span class="o">=</span> <span class="n">parse_gee_filename</span><span class="p">(</span><span class="n">gee_image_id</span><span class="p">)</span>
+
+<span class="c1"># Get access token for Copernicus Data Space (ensure your credentials are correct)</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="c1"># Query the Copernicus Data Space for the corresponding Sentinel-3 OLCI data</span>
+<span class="n">s3_olci_data</span> <span class="o">=</span> <span class="n">query_sentinel3_olci_data</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+
+<span class="c1"># Print the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After converting the filenames from Google Earth Engine format to Copernicus format and querying the Copernicus dataspace, you might receive multiple filenames in the response. Typically, the relevant filename you are looking for is the first one in the list. Here’s how you can access the desired filename and its unique id:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming s3_olci_data is a DataFrame or a dictionary containing the query results</span>
+<span class="c1"># Print the first filename and id from the list, which is usually the one we want</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-download">
+<h3>Step 4: Download<a class="headerlink" href="#step-4-download" title="Permalink to this heading">#</a></h3>
+<p>Once you have the correct filename in the Copernicus format, the final step is to download the data. This process involves authenticating with your Copernicus dataspace credentials and sending a request to download the specified file. Below is an example code snippet demonstrating how to perform the download. Ensure that your username and password are accurate and up-to-date to avoid any authentication issues.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">access_token</span> <span class="o">=</span> <span class="n">token</span>  <span class="c1"># Replace with your actual access token</span>
+<span class="n">download_dir</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># Replace with your desired download directory</span>
+<span class="n">product_id</span> <span class="o">=</span> <span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Download the single product</span>
+<span class="n">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">download_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Until here, you should have the dataset downloaded in the directory you specified.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter%201%3AAI_Algorithms.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">AI/Machine Learning Implementation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="References1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">References</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copernicus-data-space">Copernicus Data Space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-earth-engine">Google Earth Engine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-accounts">Set up Accounts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-fetching-logic">Data Fetching Logic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-set-up">Step 0: Set Up</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-read-in-functions-needed">Step 1: Read in Functions Needed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-extract-filenames-from-google-earth-engine">Step 2: Extract Filenames from Google Earth Engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-convert-google-ee-filenames-to-copernicus-format">Step 3: Convert Google EE Filenames to Copernicus Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-download">Step 4: Download</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados/Weibin Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
