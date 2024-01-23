@@ -387,8 +387,12 @@ Explore tutorials and community scripts at the <a class="reference external" hre
 <h3>Step 0: Set Up<a class="headerlink" href="#step-0-set-up" title="Permalink to this heading">#</a></h3>
 <p>Before we dive into the data fetching process, it’s essential to lay the groundwork by setting up the necessary packages and ensuring proper authentication. Follow these preparatory steps to create a smooth and efficient workflow:</p>
 <ol class="arabic simple">
-<li><p><strong>Install Required Packages:</strong> Make sure all the necessary packages are installed in your working environment. This includes libraries specific to data handling, geospatial analysis, and any other tools relevant to your project.</p></li>
-<li><p><strong>Authenticate with Google Earth Engine:</strong> Access to Google Earth Engine requires proper authentication. Ensure that you’re logged into your Google account and have followed the authentication procedures to obtain access to the datasets and tools offered by Google Earth Engine.</p></li>
+<li><p><strong>Install Required Packages:</strong> Make sure all the necessary packages are installed in your working environment. This includes libraries specific to data handling, geospatial analysis, and any other tools relevant to your project. On Google Colab you don’t need to do this, but this is a commpn practice when you exceute the code on your local machine.</p></li>
+<li><p><strong>Authenticate with Google Earth Engine:</strong> Access to Google Earth Engine requires proper authentication. Ensure that you’re logged into your Google account and have followed the authentication procedures to obtain access to the datasets and tools offered by Google Earth Engine. On Google Colab, the authentication process is a bit different. You need to navigate to <a class="reference external" href="https://console.cloud.google.com/">Google Cloud Console</a> first to create a project there. You will see an interface like this:
+<img alt="Interface" src="_images/cloud_int.png" />
+You can see your project name and id here. Now, you need to click on ‘API and Service’ button on the interface. You will then see an interface like this:
+<img alt="Interface" src="_images/api_int.png" />
+You can then click on ‘Enable APIs and Services’ button, search for Google Earth Engine and enable it. Finally, you need to register the project you just created to Google Earth Engine. Please navigate to this <a class="reference external" href="https://code.earthengine.google.com/register">page</a> and follow the instructions there.</p></li>
 </ol>
 <p>By completing these initial setup steps, you’re ensuring that your environment is ready and equipped with the tools needed for data fetching and analysis.</p>
 <div class="cell docutils container">
@@ -402,12 +406,12 @@ Explore tutorials and community scripts at the <a class="reference external" hre
 <span class="kn">import</span> <span class="nn">subprocess</span>
 
 <span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
-<span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+<span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="s1">&#39;project_id&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>You may encounter issue with this process. Please visit this <a class="reference external" href="https://github.com/googlecolab/colabtools/issues/4228#issuecomment-1859068706">page</a> for the solution.</p>
+<p>Remember to replace ‘project_id’ with your actual project id.</p>
 </section>
 <section id="step-1-read-in-functions-needed">
 <h3>Step 1: Read in Functions Needed<a class="headerlink" href="#step-1-read-in-functions-needed" title="Permalink to this heading">#</a></h3>
