@@ -1,0 +1,642 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter1:Data_Colocating_S2_S3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3ASea-ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AAI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3Arollout.html">Roll-out on a Full Image</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Chapter1:Data_Colocating_S2_S3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-functions-needed">Read in Functions Needed</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="colocating-sentinel-3-olci-and-sentinal-2-optical-data">
+<h1>Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data<a class="headerlink" href="#colocating-sentinel-3-olci-and-sentinal-2-optical-data" title="Permalink to this heading">#</a></h1>
+<section id="read-in-functions-needed">
+<h2>Read in Functions Needed<a class="headerlink" href="#read-in-functions-needed" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ee</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Point</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">get_matched_S2_image_ids</span><span class="p">(</span><span class="n">s3_image</span><span class="p">,</span><span class="n">boundary_geometry</span><span class="p">):</span>
+        <span class="n">s3_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">s3_image</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+        
+        <span class="c1"># Define a time window for S2 search (±3 hours from S3 image time)</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">s3_time</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">s3_time</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+        <span class="c1"># Query for S2 images within the time window and spatial extent of S3</span>
+        <span class="n">S2_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">boundary_geometry</span><span class="p">)</span>
+
+        <span class="c1"># Return the list of S2 image IDs</span>
+        <span class="k">return</span> <span class="n">S2_collection</span><span class="o">.</span><span class="n">aggregate_array</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">find_matched_satellite_images</span><span class="p">(</span><span class="n">S3_date_range</span><span class="p">,</span> <span class="n">S3_spatial_extent</span><span class="p">,</span> <span class="n">boundary_geometry</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to find matched Sentinel-2 image IDs for each Sentinel-3 image in the given date range and spatial extent.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Define variables for Sentinel-3 query</span>
+    <span class="n">S3_product</span> <span class="o">=</span> <span class="s1">&#39;COPERNICUS/S3/OLCI&#39;</span>
+
+    <span class="c1"># Query for Sentinel-3 data</span>
+    <span class="n">S3_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="n">S3_product</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">S3_date_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">S3_date_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">boundary_geometry</span><span class="p">)</span>
+
+    <span class="c1"># Convert S3_collection to a list of image IDs</span>
+    <span class="n">S3_image_ids</span> <span class="o">=</span> <span class="n">S3_collection</span><span class="o">.</span><span class="n">aggregate_array</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+
+    <span class="c1"># List to store matched pairs</span>
+    <span class="n">matched_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Loop through each S3 image ID and find matching S2 images</span>
+    <span class="k">for</span> <span class="n">s3_image_id</span> <span class="ow">in</span> <span class="n">S3_image_ids</span><span class="p">:</span>
+        <span class="n">s3_image</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">S3_collection</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">,</span> <span class="n">s3_image_id</span><span class="p">))</span><span class="o">.</span><span class="n">first</span><span class="p">())</span>
+        <span class="n">matched_S2_image_ids</span> <span class="o">=</span> <span class="n">get_matched_S2_image_ids</span><span class="p">(</span><span class="n">s3_image</span><span class="p">,</span><span class="n">boundary_geometry</span><span class="p">)</span>
+
+        <span class="c1"># Record each pair of matched S3 and S2 images</span>
+        <span class="k">for</span> <span class="n">s2_image_id</span> <span class="ow">in</span> <span class="n">matched_S2_image_ids</span><span class="p">:</span>
+            <span class="n">matched_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s3_image_id</span><span class="p">,</span> <span class="n">s2_image_id</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">matched_pairs</span>
+
+
+<span class="k">def</span> <span class="nf">get_matched_S3_image_ids</span><span class="p">(</span><span class="n">s2_image</span><span class="p">,</span><span class="n">boundary_geometry</span><span class="p">):</span>
+        <span class="n">s2_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">s2_image</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+        
+        <span class="c1"># Define a time window for S2 search (±3 hours from S3 image time)</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">s2_time</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">s2_time</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+        <span class="c1"># Query for S2 images within the time window and spatial extent of S3</span>
+        <span class="n">S3_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S3/OLCI&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">boundary_geometry</span><span class="p">)</span>
+
+        <span class="c1"># Return the list of S2 image IDs</span>
+        <span class="k">return</span> <span class="n">S3_collection</span><span class="o">.</span><span class="n">aggregate_array</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">find_matched_satellite_images_s2</span><span class="p">(</span><span class="n">S2_date_range</span><span class="p">,</span> <span class="n">S3_spatial_extent</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to find matched Sentinel-2 image IDs for each Sentinel-3 image in the given date range and spatial extent.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Define variables for Sentinel-3 query</span>
+    <span class="n">S2_product</span> <span class="o">=</span> <span class="s1">&#39;COPERNICUS/S2&#39;</span>
+    
+    <span class="c1"># Create a rectangle from the S3_spatial_extent if boundary_geometry is not provided</span>
+    
+    <span class="n">min_lon</span><span class="p">,</span> <span class="n">min_lat</span><span class="p">,</span> <span class="n">max_lon</span><span class="p">,</span> <span class="n">max_lat</span> <span class="o">=</span> <span class="n">S3_spatial_extent</span>
+    <span class="n">boundary_geometry</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">([</span><span class="n">min_lon</span><span class="p">,</span> <span class="n">min_lat</span><span class="p">,</span> <span class="n">max_lon</span><span class="p">,</span> <span class="n">max_lat</span><span class="p">])</span>
+    
+    <span class="c1"># Query for Sentinel-2 data</span>
+    <span class="n">S2_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="n">S2_product</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">S2_date_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">S2_date_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">boundary_geometry</span><span class="p">)</span>
+
+    <span class="c1"># Convert S3_collection to a list of image IDs</span>
+    <span class="n">S2_image_ids</span> <span class="o">=</span> <span class="n">S2_collection</span><span class="o">.</span><span class="n">aggregate_array</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+
+    <span class="c1"># List to store matched pairs</span>
+    <span class="n">matched_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Loop through each S3 image ID and find matching S2 images</span>
+    <span class="k">for</span> <span class="n">s2_image_id</span> <span class="ow">in</span> <span class="n">S2_image_ids</span><span class="p">:</span>
+        <span class="n">s3_image</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">S2_collection</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">,</span> <span class="n">s2_image_id</span><span class="p">))</span><span class="o">.</span><span class="n">first</span><span class="p">())</span>
+        <span class="n">matched_S3_image_ids</span> <span class="o">=</span> <span class="n">get_matched_S3_image_ids</span><span class="p">(</span><span class="n">s3_image</span><span class="p">,</span><span class="n">boundary_geometry</span><span class="p">)</span>
+
+        <span class="c1"># Record each pair of matched S3 and S2 images</span>
+        <span class="k">for</span> <span class="n">s3_image_id</span> <span class="ow">in</span> <span class="n">matched_S3_image_ids</span><span class="p">:</span>
+            <span class="n">matched_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s2_image_id</span><span class="p">,</span> <span class="n">s3_image_id</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">matched_pairs</span>
+
+<span class="k">def</span> <span class="nf">parse_gee_filename</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">):</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">gee_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">sensing_date</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">tile_number</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">tile_number</span>
+
+<span class="c1"># Function to get an access token</span>
+<span class="k">def</span> <span class="nf">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;grant_type&#39;</span><span class="p">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+        <span class="s1">&#39;client_id&#39;</span><span class="p">:</span> <span class="s1">&#39;cdse-public&#39;</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
+
+<span class="c1"># Function to query Sentinel-2 data from Copernicus Data Space</span>
+<span class="k">def</span> <span class="nf">query_sentinel2_data</span><span class="p">(</span><span class="n">sensing_start_date</span><span class="p">,</span> <span class="n">tile_number</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+    <span class="c1"># Convert sensing_start_date to datetime object and format it for the query</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">sensing_start_date</span><span class="p">,</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">T%H%M%S&#39;</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">start_time</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Adjust the time window as necessary</span>
+    <span class="n">start_time_str</span> <span class="o">=</span> <span class="n">start_time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ&#39;</span><span class="p">)</span>
+    <span class="n">end_time_str</span> <span class="o">=</span> <span class="n">end_time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Construct the request URL with the contains function for tile number</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://catalogue.dataspace.copernicus.eu/odata/v1/Products?$filter=contains(Name,&#39;</span><span class="si">{</span><span class="n">tile_number</span><span class="si">}</span><span class="s2">&#39;) and Collection/Name eq &#39;SENTINEL-2&#39; and ContentDate/Start gt </span><span class="si">{</span><span class="n">start_time_str</span><span class="si">}</span><span class="s2"> and ContentDate/Start lt </span><span class="si">{</span><span class="n">end_time_str</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+
+    <span class="c1"># Make the API request</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">extract_correct_product_name</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">tile_number</span><span class="p">):</span>
+    <span class="c1"># Adjusted regex pattern to match the filename format</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;MSIL1C.*</span><span class="si">{</span><span class="n">start_time</span><span class="si">}</span><span class="s1">.*_</span><span class="si">{</span><span class="n">tile_number</span><span class="si">}</span><span class="s1">_&#39;</span>
+    <span class="n">filtered_products</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
+    
+    
+    <span class="c1"># Return the first matching product name, or None if not found</span>
+    <span class="k">return</span> <span class="n">filtered_products</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">filtered_products</span><span class="o">.</span><span class="n">empty</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span> <span class="n">filtered_products</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">filtered_products</span><span class="o">.</span><span class="n">empty</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">process_image_pair</span><span class="p">(</span><span class="n">s2_ee_image_id</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+    <span class="n">sensing_start_date</span> <span class="o">=</span> <span class="n">s2_ee_image_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">tile_number</span> <span class="o">=</span> <span class="n">s2_ee_image_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="c1"># Query the Copernicus Data Space</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">query_sentinel2_data</span><span class="p">(</span><span class="n">sensing_start_date</span><span class="p">,</span> <span class="n">tile_number</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+
+    <span class="c1"># Extract the correct MSIL1C product name</span>
+    <span class="k">return</span> <span class="n">extract_correct_product_name</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sensing_start_date</span><span class="p">,</span> <span class="n">tile_number</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+<span class="n">S2_date_range</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2018-06-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-06-02&#39;</span><span class="p">]</span>
+<span class="n">S2_spatial_extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">83</span><span class="p">]</span>  <span class="c1"># Arctic region coordinates</span>
+<span class="n">matched_pairs</span> <span class="o">=</span> <span class="n">find_matched_satellite_images_s2</span><span class="p">(</span><span class="n">S2_date_range</span><span class="p">,</span> <span class="n">S2_spatial_extent</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matched S2 and S3 Image Pairs:&quot;</span><span class="p">,</span> <span class="n">matched_pairs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matched S2 and S3 Image Pairs: [(&#39;20180601T151911_20180601T151910_T23XNE&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XVK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XVL&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XWK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XWL&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XWM&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XWN&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XDE&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XDF&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XDG&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XDH&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XED&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XEE&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XEF&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XEG&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XEH&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XEJ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XMJ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XMK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XML&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XMM&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XMN&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XMP&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNL&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNM&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNN&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNP&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNQ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XVF&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XVG&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XVH&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XVJ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XVK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XWG&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XWH&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XWJ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XWK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T28XDP&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T28XDQ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T28XDR&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T165851_20180601T165853_T20XNK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T20XNK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T20XNL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T20XNL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T20XNM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T20XNM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T20XNN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T20XNN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XVE&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XVE&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XVF&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XVF&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XVG&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XVG&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XVH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XVH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWD&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWD&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWE&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWE&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWF&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWF&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWG&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWG&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XEL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XEL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XEM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XEM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XEN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XEN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XEP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XEP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XEQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XEQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XMF&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XMF&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XMG&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XMG&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XMH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XMH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XMJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XMJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XMK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XMK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XNG&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XNG&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XNH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XNH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XNJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XNJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XNK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XNK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XNL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XNL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XVM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XVM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XVN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XVN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XVP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XVP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XVQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XVQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XVR&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XVR&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XWN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XWN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XWP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XWP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XWQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XWQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XWR&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XWR&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XWS&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XWS&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XDH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XDH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XDJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XDJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XDK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XDK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XDL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XDL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XEH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XEH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XEJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XEJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XEK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XEK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XEL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XEL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XEM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XEM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XMN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XMN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XMP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XMP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XMQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XMQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XMR&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XMR&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XNP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XNP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XNQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XNQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XNR&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XNR&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XNS&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XNS&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XVJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XVJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XVK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XVK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XVL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XVL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XWJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XWJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XWK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XWK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XWL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XWL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XWM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XWM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T28XDP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T28XDP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T28XDQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T28XDQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T28XDR&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T28XDR&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T20XNJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T20XNJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T20XNK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T20XNK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T20XNL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T20XNL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T21XVD&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T21XVD&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T21XVE&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T21XVE&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T21XVF&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T21XVF&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T21XWD&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T21XWD&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T21XWE&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T21XWE&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T183931_20180601T183930_T20XNN&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T20XNP&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T20XNQ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T20XNR&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T20XNS&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XVH&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XVJ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XVK&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XVL&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XWH&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XWJ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XWK&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XWL&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XWM&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XDP&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XDQ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XDR&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XEP&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XEQ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XER&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XES&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XMJ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XMK&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XML&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XNJ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XNK&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XNL&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XNM&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XVP&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XVQ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XVR&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XWP&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XWQ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XWR&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XWS&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T25XDJ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T25XDK&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T25XDL&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T201851_20180601T201850_T20XNP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T20XNP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T20XNQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T20XNQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T20XNR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T20XNR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T20XNS&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T20XNS&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T20XNT&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T20XNT&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XVJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XVJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XVK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XVK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XVL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XVL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XWJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XWJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XWK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XWK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XWL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XWL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XWM&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XWM&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XDP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XDP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XDQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XDQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XDR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XDR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XEP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XEP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XEQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XEQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XER&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XER&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XES&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XES&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XMJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XMJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XMK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XMK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XML&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XML&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XNJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XNJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XNK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XNK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XNL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XNL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XNM&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XNM&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XVP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XVP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XVQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XVQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XVR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XVR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XWP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XWP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XWQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XWQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XWR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XWR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XWS&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XWS&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XDH&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XDH&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XDJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XDJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XDK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XDK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XDL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XDL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XEH&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XEH&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XEJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XEJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XEK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XEK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XEL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XEL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XEM&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XEM&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T26XMP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T26XMP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T26XMQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T26XMQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T26XMR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T26XMR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T26XNQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T26XNQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T26XNR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T26XNR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T27XVK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T27XVK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T27XVL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T27XVL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we have filenames of Sentinel-2 and Sentinel-3 OLCI, we need to convert it into Copernicus file format as we did in last week.
+In this example, we only take one from Sentinel-2 and one from Sentinel-3 OLCI to show the download process. Now we start with Sentinel-2. We start by getting its filename in Copernicus format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;ucfbwc0@ucl.ac.uk&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;Psos28633682Sosp~~~~&#39;</span>
+
+    <span class="c1"># Get the access token</span>
+
+<span class="n">gee_filename</span> <span class="o">=</span> <span class="s1">&#39;20190228T215529_20190228T215527_T05WNU&#39;</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">process_image_pair</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;S2B_MSIL1C_20190228T215529_N0207_R029_T05WNU_20190228T233133.SAFE&#39;,
+ &#39;b4a388de-ae53-58f0-bebf-9d2367058c00&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-functions-needed">Read in Functions Needed</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados/Weibin Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
