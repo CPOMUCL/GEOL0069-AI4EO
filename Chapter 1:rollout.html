@@ -348,7 +348,9 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyproj</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do pip install netCDF4 if needed</span>
+<span class="kn">import</span> <span class="nn">netCDF4</span>
+<span class="kn">import</span> <span class="nn">pyproj</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction</span> <span class="kn">import</span> <span class="n">image</span>
@@ -480,7 +482,7 @@ document.write(`
 
 <span class="c1"># Directory setup for data files</span>
 <span class="n">directory</span> <span class="o">=</span> <span class="n">folder_name</span>
-<span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;/lustre/home/zcakwc1/project/03/&#39;</span> <span class="o">+</span> <span class="n">directory</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">directory</span>
+<span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="n">directory</span> 
 
 <span class="c1"># Load in geolocation data from a NetCDF file</span>
 <span class="n">geolocation</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">directory</span><span class="o">+</span><span class="s1">&#39;/geo_coordinates.nc&#39;</span><span class="p">)</span>
