@@ -13,4 +13,6 @@ parts:
       - file: Chapter 1:AI_Algorithms
       - file: Chapter 1:Fetching_Data
       - file: Chapter 1:rollout
+      - file: Chapter1:Data_Colocating_S2_S3
+      - file: Chapter1:Unsupervised_Learning_Methods
       - file: References1
