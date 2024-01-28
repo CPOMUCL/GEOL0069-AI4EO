@@ -1,0 +1,1066 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Unsupervised Learning &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter1:Unsupervised_Learning_Methods';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="References" href="References1.html" />
+    <link rel="prev" title="Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data" href="Chapter1%3AData_Colocating_S2_S3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3ASea-ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AAI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3Arollout.html">Roll-out on a Full Image</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AData_Colocating_S2_S3.html">Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Chapter1:Unsupervised_Learning_Methods.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Unsupervised Learning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-unsupervised-learning-methods-bishop2006pattern">Introduction to Unsupervised Learning Methods <span class="xref cite">bishop2006pattern</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-k-means-clustering">Introduction to K-means Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-k-means-for-clustering">Why K-means for Clustering?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-k-means">Key Components of K-means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iterative-process-of-k-means">The Iterative Process of K-means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-k-means">Advantages of K-means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-code-implementation">Basic Code Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-mixture-models-gmm-bishop2006pattern">Gaussian Mixture Models (GMM) <span class="xref cite">bishop2006pattern</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-gaussian-mixture-models">Introduction to Gaussian Mixture Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-gaussian-mixture-models-for-clustering">Why Gaussian Mixture Models for Clustering?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-gmm">Key Components of GMM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-em-algorithm-in-gmm">The EM Algorithm in GMM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-gmm">Advantages of GMM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Basic Code Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine">Support Vector Machine</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-classification">Image Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-implementation">K-Means Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gmm-implementation">GMM Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#altimetry-classification">Altimetry Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-functions-needed">Read in Functions Needed</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="unsupervised-learning">
+<h1>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this heading">#</a></h1>
+<p>This section marks our journey into another significant domain of machine learning and AI: unsupervised learning. Rather than delving deep into theoretical intricacies, our focus here will be on offering a practical guide. We aim to equip you with a clear understanding and effective tools for employing unsupervised learning methods in real-world (EO) scenarios.</p>
+<p>It’s important to note that, while unsupervised learning encompasses a broad range of applications, our discussion will predominantly revolve around classification tasks. This is because unsupervised learning techniques are exceptionally adept at identifying patterns and categorising data when the classifications are not explicitly labeled. By exploring these techniques, you’ll gain insights into how to discern structure and relationships within your datasets, even in the absence of predefined categories or labels.</p>
+<p>The tasks in this notebook will be mainly two:</p>
+<ol class="arabic simple">
+<li><p>Discrimination of Sea ice and lead based on image classification based on Sentinel-2 optical data.</p></li>
+<li><p>Discrimination of Sea ice and lead based on altimetry data classification based on Sentinel-3 altimetry data.</p></li>
+</ol>
+<section id="introduction-to-unsupervised-learning-methods-bishop2006pattern">
+<h2>Introduction to Unsupervised Learning Methods <span id="id1">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>]</span><a class="headerlink" href="#introduction-to-unsupervised-learning-methods-bishop2006pattern" title="Permalink to this heading">#</a></h2>
+<section id="introduction-to-k-means-clustering">
+<h3>Introduction to K-means Clustering<a class="headerlink" href="#introduction-to-k-means-clustering" title="Permalink to this heading">#</a></h3>
+<p>K-means clustering is a type of unsupervised learning algorithm used for partitioning a dataset into a set of k groups (or clusters), where k represents the number of groups pre-specified by the analyst. It classifies the data points based on the similarity of the features of the data <span id="id2">[<a class="reference internal" href="References1.html#id12" title="James MacQueen and others. Some methods for classification and analysis of multivariate observations. In Proceedings of the fifth Berkeley symposium on mathematical statistics and probability, volume 1, 281–297. Oakland, CA, USA, 1967.">M+67</a>]</span>. The basic idea is to define k centroids, one for each cluster, and then assign each data point to the nearest centroid, while keeping the centroids as small as possible.</p>
+</section>
+<section id="why-k-means-for-clustering">
+<h3>Why K-means for Clustering?<a class="headerlink" href="#why-k-means-for-clustering" title="Permalink to this heading">#</a></h3>
+<p>K-means clustering is particularly well-suited for applications where:</p>
+<ul class="simple">
+<li><p><strong>The structure of the data is not known beforehand</strong>: K-means doesn’t require any prior knowledge about the data distribution or structure, making it ideal for exploratory data analysis.</p></li>
+<li><p><strong>Simplicity and scalability</strong>: The algorithm is straightforward to implement and can scale to large datasets relatively easily.</p></li>
+</ul>
+</section>
+<section id="key-components-of-k-means">
+<h3>Key Components of K-means<a class="headerlink" href="#key-components-of-k-means" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Choosing K</strong>: The number of clusters (k) is a parameter that needs to be specified before applying the algorithm.</p></li>
+<li><p><strong>Centroids Initialization</strong>: The initial placement of the centroids can affect the final results.</p></li>
+<li><p><strong>Assignment Step</strong>: Each data point is assigned to its nearest centroid, based on the squared Euclidean distance.</p></li>
+<li><p><strong>Update Step</strong>: The centroids are recomputed as the center of all the data points assigned to the respective cluster.</p></li>
+</ol>
+</section>
+<section id="the-iterative-process-of-k-means">
+<h3>The Iterative Process of K-means<a class="headerlink" href="#the-iterative-process-of-k-means" title="Permalink to this heading">#</a></h3>
+<p>The assignment and update steps are repeated iteratively until the centroids no longer move significantly, meaning the within-cluster variation is minimised. This iterative process ensures that the algorithm converges to a result, which might be a local optimum.</p>
+</section>
+<section id="advantages-of-k-means">
+<h3>Advantages of K-means<a class="headerlink" href="#advantages-of-k-means" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Efficiency</strong>: K-means is computationally efficient.</p></li>
+<li><p><strong>Ease of interpretation</strong>: The results of k-means clustering are easy to understand and interpret.</p></li>
+</ul>
+</section>
+<section id="basic-code-implementation">
+<h3>Basic Code Implementation<a class="headerlink" href="#basic-code-implementation" title="Permalink to this heading">#</a></h3>
+<p>Below, you’ll find a basic implementation of the K-means clustering algorithm. This serves as a foundational understanding and a starting point for applying the algorithm to your specific data analysis tasks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python code for K-means clustering</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Sample data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># K-means model</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y_kmeans</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_kmeans</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">centers</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centers</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/weibinchen/miniforge3/envs/s3s2_env/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:1416: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  super()._check_params_vs_input(X, default_n_init=10)
+</pre></div>
+</div>
+<img alt="_images/2f8e9ee1b541f2b8dac77470c95995f498b8dd1aad856f5b09b25d5028ccd92a.png" src="_images/2f8e9ee1b541f2b8dac77470c95995f498b8dd1aad856f5b09b25d5028ccd92a.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="gaussian-mixture-models-gmm-bishop2006pattern">
+<h2>Gaussian Mixture Models (GMM) <span id="id3">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>]</span><a class="headerlink" href="#gaussian-mixture-models-gmm-bishop2006pattern" title="Permalink to this heading">#</a></h2>
+<section id="introduction-to-gaussian-mixture-models">
+<h3>Introduction to Gaussian Mixture Models<a class="headerlink" href="#introduction-to-gaussian-mixture-models" title="Permalink to this heading">#</a></h3>
+<p>Gaussian Mixture Models (GMM) are a probabilistic model for representing normally distributed subpopulations within an overall population. The model assumes that the data is generated from a mixture of several Gaussian distributions, each with its own mean and variance <span id="id4">[<a class="reference internal" href="References1.html#id13" title="Douglas A Reynolds and others. Gaussian mixture models. Encyclopedia of biometrics, 2009.">R+09</a>]</span>. GMMs are widely used for clustering and density estimation, as they provide a method for representing complex distributions through the combination of simpler ones.</p>
+</section>
+<section id="why-gaussian-mixture-models-for-clustering">
+<h3>Why Gaussian Mixture Models for Clustering?<a class="headerlink" href="#why-gaussian-mixture-models-for-clustering" title="Permalink to this heading">#</a></h3>
+<p>Gaussian Mixture Models are particularly powerful in scenarios where:</p>
+<ul class="simple">
+<li><p><strong>Soft clustering is needed</strong>: Unlike K-means, GMM provides the probability of each data point belonging to each cluster, offering a soft classification and understanding of the uncertainties in our data.</p></li>
+<li><p><strong>Flexibility in cluster covariance</strong>: GMM allows for clusters to have different sizes and different shapes, making it more flexible to capture the true variance in the data.</p></li>
+</ul>
+</section>
+<section id="key-components-of-gmm">
+<h3>Key Components of GMM<a class="headerlink" href="#key-components-of-gmm" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Number of Components (Gaussians)</strong>: Similar to K in K-means, the number of Gaussians (components) is a parameter that needs to be set.</p></li>
+<li><p><strong>Expectation-Maximization (EM) Algorithm</strong>: GMMs use the EM algorithm for fitting, iteratively improving the likelihood of the data given the model.</p></li>
+<li><p><strong>Covariance Type</strong>: The shape, size, and orientation of the clusters are determined by the covariance type of the Gaussians (e.g., spherical, diagonal, tied, or full covariance).</p></li>
+</ol>
+</section>
+<section id="the-em-algorithm-in-gmm">
+<h3>The EM Algorithm in GMM<a class="headerlink" href="#the-em-algorithm-in-gmm" title="Permalink to this heading">#</a></h3>
+<p>The Expectation-Maximization (EM) algorithm is a two-step process:</p>
+<ul class="simple">
+<li><p><strong>Expectation Step (E-step)</strong>: Calculate the probability that each data point belongs to each cluster.</p></li>
+<li><p><strong>Maximization Step (M-step)</strong>: Update the parameters of the Gaussians (mean, covariance, and mixing coefficient) to maximize the likelihood of the data given these assignments.</p></li>
+</ul>
+<p>This process is repeated until convergence, meaning the parameters do not significantly change from one iteration to the next.</p>
+</section>
+<section id="advantages-of-gmm">
+<h3>Advantages of GMM<a class="headerlink" href="#advantages-of-gmm" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Soft Clustering</strong>: Provides a probabilistic framework for soft clustering, giving more information about the uncertainties in the data assignments.</p></li>
+<li><p><strong>Cluster Shape Flexibility</strong>: Can adapt to ellipsoidal cluster shapes, thanks to the flexible covariance structure.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>Basic Code Implementation<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>Below, you’ll find a basic implementation of the Gaussian Mixture Model. This should serve as an initial guide for understanding the model and applying it to your data analysis projects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Sample data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># GMM model</span>
+<span class="n">gmm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">gmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y_gmm</span> <span class="o">=</span> <span class="n">gmm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_gmm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">centers</span> <span class="o">=</span> <span class="n">gmm</span><span class="o">.</span><span class="n">means_</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centers</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian Mixture Model&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0c2d3cbe81d307a6c1e38a1a1765728bed42aa0b11fb58f2c4820e6fde0c486c.png" src="_images/0c2d3cbe81d307a6c1e38a1a1765728bed42aa0b11fb58f2c4820e6fde0c486c.png" />
+</div>
+</div>
+</section>
+<section id="support-vector-machine">
+<h3>Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="image-classification">
+<h2>Image Classification<a class="headerlink" href="#image-classification" title="Permalink to this heading">#</a></h2>
+<p>Now, let’s explore the application of these unsupervised methods to image classification tasks, focusing specifically on distinguishing between sea ice and leads in Sentinel-2 imagery.</p>
+<section id="k-means-implementation">
+<h3>K-Means Implementation<a class="headerlink" href="#k-means-implementation" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Paths to the band images</span>
+<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;/Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S2B_MSIL1C_20190621T234139_N0207_R073_T12XVR_20190621T234938.SAFE/GRANULE/L1C_T12XVR_A011968_20190621T234142/IMG_DATA/&quot;</span>
+<span class="n">bands_paths</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;B4&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B04.jp2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;B3&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B03.jp2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;B2&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B02.jp2&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Read and stack the band images</span>
+<span class="n">band_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">]:</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bands_paths</span><span class="p">[</span><span class="n">band</span><span class="p">])</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="n">band_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">band_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">(</span><span class="n">band_data</span><span class="p">)</span>
+
+<span class="c1"># Reshape for K-means</span>
+<span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">band_stack</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">band_stack</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_samples</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># K-means clustering</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
+
+<span class="c1"># Plotting the result</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;K-means clustering on Sentinel-2 Bands&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/weibinchen/miniforge3/envs/s3s2_env/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:1416: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  super()._check_params_vs_input(X, default_n_init=10)
+</pre></div>
+</div>
+<img alt="_images/0d257f51020fa2236bac94a10ea21af9f57a43a4913503151e1bcebca7947d4d.png" src="_images/0d257f51020fa2236bac94a10ea21af9f57a43a4913503151e1bcebca7947d4d.png" />
+</div>
+</div>
+</section>
+<section id="gmm-implementation">
+<h3>GMM Implementation<a class="headerlink" href="#gmm-implementation" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Paths to the band images</span>
+<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;/Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S2B_MSIL1C_20190621T234139_N0207_R073_T12XVR_20190621T234938.SAFE/GRANULE/L1C_T12XVR_A011968_20190621T234142/IMG_DATA/&quot;</span>
+<span class="n">bands_paths</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;B4&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B04.jp2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;B3&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B03.jp2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;B2&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B02.jp2&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Read and stack the band images</span>
+<span class="n">band_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">]:</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bands_paths</span><span class="p">[</span><span class="n">band</span><span class="p">])</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="n">band_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">band_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">(</span><span class="n">band_data</span><span class="p">)</span>
+
+<span class="c1"># Reshape for GMM</span>
+<span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">band_stack</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">band_stack</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_samples</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># GMM clustering</span>
+<span class="n">gmm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">gmm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
+
+<span class="c1"># Plotting the result</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GMM clustering on Sentinel-2 Bands&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ec1eb4c4a3e0e447cf2255aa80d43a665eb33a79c176a0b1c24835b3a5c4ed55.png" src="_images/ec1eb4c4a3e0e447cf2255aa80d43a665eb33a79c176a0b1c24835b3a5c4ed55.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="altimetry-classification">
+<h2>Altimetry Classification<a class="headerlink" href="#altimetry-classification" title="Permalink to this heading">#</a></h2>
+<p>Now, let’s explore the application of these unsupervised methods to altimetry classification tasks, focusing specifically on distinguishing between sea ice and leads in Sentinel-3 altimetry dataset.</p>
+<section id="read-in-functions-needed">
+<h3>Read in Functions Needed<a class="headerlink" href="#read-in-functions-needed" title="Permalink to this heading">#</a></h3>
+<p>Before delving into the modeling process, it’s crucial to preprocess the data to ensure compatibility with our analytical models. This involves transforming the raw data into meaningful variables, such as peakniness and stack standard deviation (SSD), etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">griddata</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap</span>
+<span class="kn">import</span> <span class="nn">numpy.ma</span> <span class="k">as</span> <span class="nn">ma</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<span class="kn">import</span> <span class="nn">scipy.spatial</span> <span class="k">as</span> <span class="nn">spatial</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">KDTree</span>
+
+<span class="kn">import</span> <span class="nn">pyproj</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span><span class="p">,</span> <span class="n">DBSCAN</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span><span class="n">MinMaxScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
+<span class="kn">from</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="kn">import</span> <span class="n">linkage</span><span class="p">,</span> <span class="n">fcluster</span>
+
+<span class="c1">#=========================================================================================================</span>
+<span class="c1">#===================================  SUBFUNCTIONS  ======================================================</span>
+<span class="c1">#=========================================================================================================</span>
+
+<span class="c1">#*args and **kwargs allow you to pass an unspecified number of arguments to a function,</span>
+<span class="c1">#so when writing the function definition, you do not need to know how many arguments will be passed to your function</span>
+<span class="c1">#**kwargs allows you to pass keyworded variable length of arguments to a function.</span>
+<span class="c1">#You should use **kwargs if you want to handle named arguments in a function.</span>
+<span class="c1">#double star allows us to pass through keyword arguments (and any number of them).</span>
+<span class="k">def</span> <span class="nf">peakiness</span><span class="p">(</span><span class="n">waves</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="s2">&quot;finds peakiness of waveforms.&quot;</span>
+
+    <span class="c1">#print(&quot;Beginning peakiness&quot;)</span>
+    <span class="c1"># Kwargs are:</span>
+    <span class="c1">#          wf_plots. specify a number n: wf_plots=n, to show the first n waveform plots. \</span>
+
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">matplotlib</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+    <span class="kn">import</span> <span class="nn">time</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running peakiness function...&quot;</span><span class="p">)</span>
+
+    <span class="n">size</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">waves</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#.shape property is a tuple of length .ndim containing the length of each dimensions</span>
+                            <span class="c1">#Tuple of array dimensions.</span>
+
+    <span class="n">waves1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">waves1</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#number of array dimensions</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;only one waveform in file&#39;</span><span class="p">)</span>
+        <span class="n">waves2</span><span class="o">=</span><span class="n">waves1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">waves1</span><span class="p">))</span> <span class="c1">#numpy.reshape(a, newshape, order=&#39;C&#39;), a=array to be reshaped</span>
+        <span class="n">waves1</span><span class="o">=</span><span class="n">waves2</span>
+
+    <span class="c1"># *args is used to send a non-keyworded variable length argument list to the function</span>
+    <span class="k">def</span> <span class="nf">by_row</span><span class="p">(</span><span class="n">waves</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="s2">&quot;calculate peakiness for each waveform&quot;</span>
+        <span class="n">maximum</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">maximum</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="n">maximum_bin</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">waves</span><span class="o">==</span><span class="n">maximum</span><span class="p">)</span>
+            <span class="c1">#print(maximum_bin)</span>
+            <span class="n">maximum_bin</span><span class="o">=</span><span class="n">maximum_bin</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">waves_128</span><span class="o">=</span><span class="n">waves</span><span class="p">[</span><span class="n">maximum_bin</span><span class="o">-</span><span class="mi">50</span><span class="p">:</span><span class="n">maximum_bin</span><span class="o">+</span><span class="mi">78</span><span class="p">]</span>
+
+            <span class="n">waves</span><span class="o">=</span><span class="n">waves_128</span>
+
+            <span class="n">noise_floor</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">waves</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">])</span>
+            <span class="n">where_above_nf</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">waves</span> <span class="o">&gt;</span> <span class="n">noise_floor</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">where_above_nf</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">maximum</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">waves</span><span class="p">[</span><span class="n">where_above_nf</span><span class="p">])</span>
+                <span class="n">total</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">waves</span><span class="p">[</span><span class="n">where_above_nf</span><span class="p">])</span>
+                <span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">waves</span><span class="p">[</span><span class="n">where_above_nf</span><span class="p">])</span>
+                <span class="n">peaky</span><span class="o">=</span><span class="n">maximum</span><span class="o">/</span><span class="n">mean</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">peaky</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+                <span class="n">maximum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+                <span class="n">total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">peaky</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            <span class="n">maximum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+        <span class="k">if</span> <span class="s1">&#39;maxs&#39;</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">maximum</span>
+        <span class="k">if</span> <span class="s1">&#39;totals&#39;</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">total</span>
+        <span class="k">if</span> <span class="s1">&#39;peaky&#39;</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">peaky</span>
+
+    <span class="n">peaky</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">by_row</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">waves1</span><span class="p">,</span> <span class="s1">&#39;peaky&#39;</span><span class="p">)</span> <span class="c1">#numpy.apply_along_axis(func1d, axis, arr, *args, **kwargs)</span>
+
+    <span class="k">if</span> <span class="s1">&#39;wf_plots&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">maximums</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">by_row</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">waves1</span><span class="p">,</span> <span class="s1">&#39;maxs&#39;</span><span class="p">)</span>
+        <span class="n">totals</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">by_row</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">waves1</span><span class="p">,</span> <span class="s1">&#39;totals&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;wf_plots&#39;</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Plotting first &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;wf_plots&#39;</span><span class="p">])</span><span class="o">+</span><span class="s2">&quot; waveforms&quot;</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">waves1</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span><span class="c1">#, a, col[i],label=label[i])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">maximums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Bin (of 256)&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Power&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">maximums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="s2">&quot;maximum=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">maximums</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">maximums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mi">2500</span><span class="p">,</span><span class="s2">&quot;total=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">totals</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">maximums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mi">5000</span><span class="p">,</span><span class="s2">&quot;peakiness=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">peaky</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;waveform &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; of &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">. Noise floor average taken between red lines.&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+    <span class="k">return</span> <span class="n">peaky</span>
+
+<span class="c1">#=========================================================================================================</span>
+<span class="c1">#=========================================================================================================</span>
+<span class="c1">#=========================================================================================================</span>
+
+
+<span class="k">def</span> <span class="nf">unpack_gpod</span><span class="p">(</span><span class="n">variable</span><span class="p">):</span>
+
+    <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+
+    <span class="n">time_1hz</span><span class="o">=</span><span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time_01&#39;</span><span class="p">][:]</span>
+    <span class="n">time_20hz</span><span class="o">=</span><span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time_20_ku&#39;</span><span class="p">][:]</span>
+    <span class="n">time_20hzC</span> <span class="o">=</span> <span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time_20_c&#39;</span><span class="p">][:]</span>
+
+    <span class="n">out</span><span class="o">=</span><span class="p">(</span><span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">variable</span><span class="p">][:])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>  <span class="c1"># convert from integer array to float.</span>
+
+    <span class="c1">#if ma.is_masked(dataset.variables[variable][:]) == True:</span>
+    <span class="c1">#print(variable,&#39;is masked. Removing mask and replacing masked values with nan&#39;)</span>
+    <span class="n">out</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">time_1hz</span><span class="p">):</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span><span class="s1">&#39;is 1hz. Expanding to 20hz...&#39;</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">time_1hz</span><span class="p">,</span><span class="n">out</span><span class="p">,</span><span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)(</span><span class="n">time_20hz</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">time_20hzC</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="s1">&#39;is c band, expanding to 20hz ku band dimension&#39;</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">time_20hzC</span><span class="p">,</span><span class="n">out</span><span class="p">,</span><span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)(</span><span class="n">time_20hz</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="c1">#=========================================================================================================</span>
+<span class="c1">#=========================================================================================================</span>
+<span class="c1">#=========================================================================================================</span>
+
+<span class="k">def</span> <span class="nf">calculate_SSD</span><span class="p">(</span><span class="n">RIP</span><span class="p">):</span>
+
+    <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+    <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">asarray</span> <span class="k">as</span> <span class="n">ar</span><span class="p">,</span><span class="n">exp</span>
+    <span class="n">do_plot</span><span class="o">=</span><span class="s1">&#39;Off&#39;</span>
+
+    <span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="n">SSD</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">RIP</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">RIP</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">RIP</span><span class="p">)[</span><span class="mi">0</span><span class="p">]):</span>
+
+        <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">RIP</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">y</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">==</span><span class="kc">True</span><span class="p">)]</span><span class="o">=</span><span class="mi">0</span>
+
+        <span class="k">if</span> <span class="s1">&#39;popt&#39;</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">():</span>
+            <span class="k">del</span><span class="p">(</span><span class="n">popt</span><span class="p">,</span><span class="n">pcov</span><span class="p">)</span>
+
+        <span class="n">SSD_calc</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span>
+        <span class="c1">#print(&#39;SSD calculated from equation&#39;,SSD)</span>
+
+        <span class="c1">#n = len(x)</span>
+        <span class="n">mean_est</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">sigma_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean_est</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="c1">#print(&#39;est. mean&#39;,mean,&#39;est. sigma&#39;,sigma_est)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">popt</span><span class="p">,</span><span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">gaussian</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">mean_est</span><span class="p">,</span> <span class="n">sigma_est</span><span class="p">],</span><span class="n">maxfev</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gaussian SSD curve-fit error: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="c1">#plt.plot(y)</span>
+            <span class="c1">#plt.show()</span>
+
+        <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gaussian SSD curve-fit error: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">do_plot</span><span class="o">==</span><span class="s1">&#39;ON&#39;</span><span class="p">:</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">*</span><span class="n">popt</span><span class="p">),</span><span class="s1">&#39;ro:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Navy&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;popt&#39;</span><span class="p">,</span><span class="n">popt</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;curve fit SSD&#39;</span><span class="p">,</span><span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="s1">&#39;popt&#39;</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">():</span>
+            <span class="n">SSD</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+
+    <span class="k">return</span> <span class="n">SSD</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">SAR_file</span><span class="o">=</span><span class="s1">&#39;S3A_SR_2_LAN_SI_20190307T005808_20190307T012503_20230527T225016_1614_042_131______LN3_R_NT_005.SEN3&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;overlapping SAR file is&#39;</span><span class="p">,</span><span class="n">SAR_file</span><span class="p">)</span>
+<span class="n">SAR_data</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">SAR_file</span><span class="o">+</span><span class="s1">&#39;/enhanced_measurement.nc&#39;</span><span class="p">)</span>
+
+<span class="n">SAR_lat</span><span class="p">,</span> <span class="n">SAR_lon</span><span class="p">,</span> <span class="n">waves</span><span class="p">,</span> <span class="n">sig_0</span><span class="p">,</span> <span class="n">RIP</span><span class="o">=</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;lat_20_ku&#39;</span><span class="p">),</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;lon_20_ku&#39;</span><span class="p">),</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;waveform_20_ku&#39;</span><span class="p">),</span><span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;sig0_water_20_ku&#39;</span><span class="p">),</span><span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;rip_20_ku&#39;</span><span class="p">)</span><span class="c1">#unpack_gpod(&#39;Sigma0_20Hz&#39;)</span>
+<span class="n">SAR_index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">SAR_lat</span><span class="p">))</span>
+
+<span class="n">find</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">SAR_lat</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">99999</span><span class="p">)</span><span class="c1">#60</span>
+<span class="n">SAR_lat</span><span class="o">=</span><span class="n">SAR_lat</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
+<span class="n">SAR_lon</span><span class="o">=</span><span class="n">SAR_lon</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
+<span class="n">SAR_index</span><span class="o">=</span><span class="n">SAR_index</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
+<span class="n">waves</span><span class="o">=</span><span class="n">waves</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
+<span class="n">sig_0</span><span class="o">=</span><span class="n">sig_0</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
+<span class="n">RIP</span><span class="o">=</span><span class="n">RIP</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
+
+<span class="n">PP</span><span class="o">=</span><span class="n">peakiness</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>
+<span class="n">SSD</span><span class="o">=</span><span class="n">calculate_SSD</span><span class="p">(</span><span class="n">RIP</span><span class="p">)</span>
+<span class="n">sig_0_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sig_0</span><span class="p">)</span>  <span class="c1"># Replace [...] with your data</span>
+<span class="n">RIP_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">RIP</span><span class="p">)</span>
+<span class="n">PP_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">PP</span><span class="p">)</span>
+<span class="n">SSD_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SSD</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">sig_0_np</span><span class="p">,</span><span class="n">PP_np</span><span class="p">,</span> <span class="n">SSD_np</span><span class="p">))</span>
+<span class="c1"># Standardize the data</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">data_normalized</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>overlapping SAR file is S3A_SR_2_LAN_SI_20190307T005808_20190307T012503_20230527T225016_1614_042_131______LN3_R_NT_005.SEN3
+Running peakiness function...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vj/y1xmlvz14mx3w9q4j79d5ll80000gn/T/ipykernel_93121/264357313.py:67: RuntimeWarning: Mean of empty slice
+  noise_floor=np.nanmean(waves[10:20])
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gaussian SSD curve-fit error: Optimal parameters not found: Number of calls to function has reached maxfev = 10000.
+Gaussian SSD curve-fit error: Optimal parameters not found: Number of calls to function has reached maxfev = 10000.
+Gaussian SSD curve-fit error: Optimal parameters not found: Number of calls to function has reached maxfev = 10000.
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are some NaN values in the dataset so one way to deal with this is to delete them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nan_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data_normalized</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of NaN values in the array: </span><span class="si">{</span><span class="n">nan_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">data_cleaned</span> <span class="o">=</span> <span class="n">data_normalized</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data_normalized</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of NaN values in the array: 1283
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s proceed with running the GMM model as usual. Remember, you have the flexibility to substitute this with K-Means or any other preferred model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gmm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_cleaned</span><span class="p">)</span>
+<span class="n">clusters_gmm</span> <span class="o">=</span> <span class="n">gmm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_cleaned</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also inspect how many data points are there in each class of your clustering prediction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unique</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">clusters_gmm</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">class_counts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">unique</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">class_counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: 18945, 1: 4947}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter1%3AData_Colocating_S2_S3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="References1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">References</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-unsupervised-learning-methods-bishop2006pattern">Introduction to Unsupervised Learning Methods <span class="xref cite">bishop2006pattern</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-k-means-clustering">Introduction to K-means Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-k-means-for-clustering">Why K-means for Clustering?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-k-means">Key Components of K-means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iterative-process-of-k-means">The Iterative Process of K-means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-k-means">Advantages of K-means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-code-implementation">Basic Code Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-mixture-models-gmm-bishop2006pattern">Gaussian Mixture Models (GMM) <span class="xref cite">bishop2006pattern</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-gaussian-mixture-models">Introduction to Gaussian Mixture Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-gaussian-mixture-models-for-clustering">Why Gaussian Mixture Models for Clustering?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-gmm">Key Components of GMM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-em-algorithm-in-gmm">The EM Algorithm in GMM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-gmm">Advantages of GMM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Basic Code Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine">Support Vector Machine</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-classification">Image Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-implementation">K-Means Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gmm-implementation">GMM Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#altimetry-classification">Altimetry Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-functions-needed">Read in Functions Needed</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados/Weibin Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

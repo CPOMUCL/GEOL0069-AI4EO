@@ -64,6 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter1:Data_Colocating_S2_S3';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Unsupervised Learning" href="Chapter1%3AUnsupervised_Learning_Methods.html" />
+    <link rel="prev" title="Roll-out on a Full Image" href="Chapter%201%3Arollout.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -155,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
@@ -165,6 +167,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3Arollout.html">Roll-out on a Full Image</a></li>
 
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AUnsupervised_Learning_Methods.html">Unsupervised Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
 </ul>
 
@@ -312,7 +316,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-functions-needed">Read in Functions Needed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-read-in-functions-needed">Step 0: Read in Functions Needed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-get-the-pairs-of-colocated-s2-s3">Step 1: Get the Pairs of Colocated S2/S3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-download">Step 2: Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initiating-the-download-for-sentinel-2">Initiating the Download for Sentinel-2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceeding-with-sentinel-3-olci-download">Proceeding with Sentinel-3 OLCI Download</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-colocated-altimetry-data-of-sentinel-3-olci">Downloading Colocated Altimetry Data of Sentinel-3 OLCI</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -326,8 +337,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="colocating-sentinel-3-olci-and-sentinal-2-optical-data">
 <h1>Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data<a class="headerlink" href="#colocating-sentinel-3-olci-and-sentinal-2-optical-data" title="Permalink to this heading">#</a></h1>
-<section id="read-in-functions-needed">
-<h2>Read in Functions Needed<a class="headerlink" href="#read-in-functions-needed" title="Permalink to this heading">#</a></h2>
+<p>In this section, we embark on a detailed exploration of colocating Sentinel-3 OLCI (Ocean and Land Colour Instrument) data with Sentinel-2 optical data. Colocation of data from these two satellite missions enables a powerful synergy, harnessing the high spatial resolution of Sentinel-2 and the comprehensive coverage and colocated altimeter data from Sentinel-3. This fusion of datasets provides a richer, more detailed perspective of Earth’s surface.</p>
+<p>In the following sections, we will guide you through the necessary steps to efficiently identify and align these datasets.</p>
+<section id="step-0-read-in-functions-needed">
+<h2>Step 0: Read in Functions Needed<a class="headerlink" href="#step-0-read-in-functions-needed" title="Permalink to this heading">#</a></h2>
+<p>To streamline our data fetching and processing, we’ll first load the essential functions. These functions are designed to handle various tasks such as data retrieval, format conversion, and preliminary data processing. Ensure that you’ve imported all the required functions before proceeding to the next steps of the workflow. All functions have docstrings so please read them to get some ideas of what they do.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ee</span>
@@ -437,13 +451,53 @@ document.write(`
     <span class="k">return</span> <span class="n">matched_pairs</span>
 
 <span class="k">def</span> <span class="nf">parse_gee_filename</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parses the Google Earth Engine filename to extract satellite name, sensing date, and start time.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    gee_filename (str): Filename obtained from Google Earth Engine.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    tuple: Contains satellite name, sensing date, and start time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parts</span> <span class="o">=</span> <span class="n">gee_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
     <span class="n">sensing_date</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">tile_number</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">tile_number</span>
 
+<span class="k">def</span> <span class="nf">parse_gee_filename_s3</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parses the Google Earth Engine filename to extract satellite name, sensing date, and start time.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    gee_filename (str): Filename obtained from Google Earth Engine.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    tuple: Contains satellite name, sensing date, and start time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">gee_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">satellite</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_OL_1_EFR&#39;</span>
+    <span class="n">start_datetime</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">end_datetime</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="c1"># Extract date from the start_datetime (assuming the format is like &#39;20180601T014926&#39;)</span>
+    <span class="n">sensing_date</span> <span class="o">=</span> <span class="n">start_datetime</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>  
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">start_datetime</span><span class="p">[</span><span class="mi">9</span><span class="p">:]</span>   
+
+    <span class="k">return</span> <span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span>
+
 <span class="c1"># Function to get an access token</span>
 <span class="k">def</span> <span class="nf">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves access token from Copernicus Dataspace using the provided credentials.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    username (str): Username for Copernicus Dataspace.</span>
+<span class="sd">    password (str): Password for Copernicus Dataspace.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    str: Access token for authenticated sessions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token&#39;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;grant_type&#39;</span><span class="p">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
@@ -455,8 +509,24 @@ document.write(`
     <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
 
+
 <span class="c1"># Function to query Sentinel-2 data from Copernicus Data Space</span>
 <span class="k">def</span> <span class="nf">query_sentinel2_data</span><span class="p">(</span><span class="n">sensing_start_date</span><span class="p">,</span> <span class="n">tile_number</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Queries the Sentinel-2 data from the Copernicus Data Space based on sensing start date, tile number, and access token.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    sensing_start_date (str): The start date and time for the data sensing in the format &#39;YYYYMMDDTHHMMSS&#39;.</span>
+<span class="sd">    tile_number (str): The specific tile number of the Sentinel-2 data to be queried.</span>
+<span class="sd">    token (str): The access token for authenticating requests to the Copernicus Data Space.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    DataFrame: A DataFrame containing the query results with details about the Sentinel-2 data.</span>
+<span class="sd">    </span>
+<span class="sd">    The function constructs a query URL with specified parameters, sends a request to the Copernicus Data Space,</span>
+<span class="sd">    and returns the results as a DataFrame. It filters the data based on the tile number and the content start date</span>
+<span class="sd">    within a certain time window.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Convert sensing_start_date to datetime object and format it for the query</span>
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">sensing_start_date</span><span class="p">,</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">T%H%M%S&#39;</span><span class="p">)</span>
     <span class="n">end_time</span> <span class="o">=</span> <span class="n">start_time</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Adjust the time window as necessary</span>
@@ -474,6 +544,17 @@ document.write(`
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
 
 <span class="k">def</span> <span class="nf">extract_correct_product_name</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">tile_number</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the correct product name and ID from a dataframe based on a specific start time and tile number.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    df (DataFrame): The dataframe containing product information.</span>
+<span class="sd">    start_time (str): The start time used to filter the products.</span>
+<span class="sd">    tile_number (str): The tile number used to filter the products.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    tuple: A tuple containing the first matching product name and ID, or (None, None) if no match is found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Adjusted regex pattern to match the filename format</span>
     <span class="n">pattern</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;MSIL1C.*</span><span class="si">{</span><span class="n">start_time</span><span class="si">}</span><span class="s1">.*_</span><span class="si">{</span><span class="n">tile_number</span><span class="si">}</span><span class="s1">_&#39;</span>
     <span class="n">filtered_products</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
@@ -483,6 +564,16 @@ document.write(`
     <span class="k">return</span> <span class="n">filtered_products</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">filtered_products</span><span class="o">.</span><span class="n">empty</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span> <span class="n">filtered_products</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">filtered_products</span><span class="o">.</span><span class="n">empty</span> <span class="k">else</span> <span class="kc">None</span>
 
 <span class="k">def</span> <span class="nf">process_image_pair</span><span class="p">(</span><span class="n">s2_ee_image_id</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Processes a pair of Sentinel-2 images by querying the Copernicus Data Space to find the corresponding product name and ID.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    s2_ee_image_id (str): The Sentinel-2 Earth Engine image ID.</span>
+<span class="sd">    token (str): The access token for authenticating requests to the Copernicus Data Space.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    tuple: A tuple containing the product name and ID for the corresponding Sentinel-2 image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sensing_start_date</span> <span class="o">=</span> <span class="n">s2_ee_image_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">tile_number</span> <span class="o">=</span> <span class="n">s2_ee_image_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
 
@@ -491,10 +582,144 @@ document.write(`
 
     <span class="c1"># Extract the correct MSIL1C product name</span>
     <span class="k">return</span> <span class="n">extract_correct_product_name</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sensing_start_date</span><span class="p">,</span> <span class="n">tile_number</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">download_dir</span><span class="o">=</span><span class="s2">&quot;downloaded_products&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download a single product from the Copernicus Data Space.</span>
+
+<span class="sd">    :param product_id: The unique identifier for the product.</span>
+<span class="sd">    :param file_name: The name of the file to be downloaded.</span>
+<span class="sd">    :param access_token: The access token for authorization.</span>
+<span class="sd">    :param download_dir: The directory where the product will be saved.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Ensure the download directory exists</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Construct the download URL</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://zipper.dataspace.copernicus.eu/odata/v1/Products(</span><span class="si">{</span><span class="n">product_id</span><span class="si">}</span><span class="s2">)/$value&quot;</span>
+
+    <span class="c1"># Set up the session and headers</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="c1"># Perform the request</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Check if the request was successful</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="c1"># Define the path for the output file</span>
+        <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_dir</span><span class="p">,</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;.zip&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Stream the content to a file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloaded: </span><span class="si">{</span><span class="n">output_file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to download product </span><span class="si">{</span><span class="n">product_id</span><span class="si">}</span><span class="s2">. Status Code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">query_sentinel3_olci_data</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Queries Sentinel-3 OLCI data from Copernicus Data Space based on satellite name, sensing date, and start time.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    satellite (str): Name of the satellite.</span>
+<span class="sd">    sensing_date (str): Date of the data sensing.</span>
+<span class="sd">    start_time (str): Start time of the data sensing.</span>
+<span class="sd">    token (str): Access token for authentication.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    DataFrame: A DataFrame containing the query results with details about the Sentinel-3 OLCI data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Convert sensing_date to datetime object and format it for the query</span>
+    <span class="n">sensing_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sensing_date</span><span class="si">}</span><span class="s1">T</span><span class="si">{</span><span class="n">start_time</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">T%H%M%S&#39;</span><span class="p">)</span>
+    <span class="n">sensing_datetime</span> <span class="o">=</span> <span class="n">sensing_datetime</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># Construct the request URL using the filter structure provided</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;https://catalogue.dataspace.copernicus.eu/odata/v1/Products?&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;$filter=contains(Name,&#39;</span><span class="si">{</span><span class="n">satellite</span><span class="si">}</span><span class="s2">&#39;) and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;ContentDate/Start ge </span><span class="si">{</span><span class="n">sensing_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.000Z&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;ContentDate/Start le </span><span class="si">{</span><span class="p">(</span><span class="n">sensing_datetime</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.000Z&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&amp;&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;$orderby=ContentDate/Start&amp;$top=1000&quot;</span>
+    <span class="p">)</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+
+    <span class="c1"># Print the URL for debugging</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="c1"># Make the API request</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="c1"># Check if the request was successful</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="c1"># Print error details and return an empty DataFrame if the request failed</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: Unable to fetch data. Status Code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">. Response: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+    <span class="c1"># Convert the JSON response to a DataFrame</span>
+    <span class="n">search_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># Convert the &#39;ContentDate/Start&#39; to datetime objects and sort the results</span>
+    <span class="n">search_results_df</span><span class="p">[</span><span class="s1">&#39;SensingStart&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">search_results_df</span><span class="p">[</span><span class="s1">&#39;ContentDate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;Start&#39;</span><span class="p">]))</span>
+    <span class="n">search_results_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;SensingStart&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">search_results_df</span>
+
+
+
+<span class="k">def</span> <span class="nf">fetch_S3_images_by_area_and_date</span><span class="p">(</span><span class="n">date_range</span><span class="p">,</span> <span class="n">spatial_extent</span><span class="p">,</span> <span class="n">area_of_interest</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetches Sentinel-3 OLCI images based on a specified date range and area of interest.</span>
+<span class="sd">    </span>
+<span class="sd">    :param date_range: List containing the start and end dates (e.g., [&#39;2018-06-01&#39;, &#39;2018-06-02&#39;])</span>
+<span class="sd">    :param spatial_extent: List containing the spatial extent [min_lon, min_lat, max_lon, max_lat]</span>
+<span class="sd">    :param area_of_interest: ee.Geometry object defining the specific area for which to fetch images</span>
+<span class="sd">    </span>
+<span class="sd">    :return: List of dictionaries, each containing details about a fetched image, including its ID, date, and download URL.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Initialize the Earth Engine module</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+
+    <span class="c1"># Define variables for Sentinel-3 OLCI query</span>
+    <span class="n">S3_product</span> <span class="o">=</span> <span class="s1">&#39;COPERNICUS/S3/OLCI&#39;</span>
+
+    <span class="c1"># Query for Sentinel-3 data within the specified date range and area of interest</span>
+    <span class="n">S3_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="n">S3_product</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">date_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">date_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">area_of_interest</span><span class="p">)</span>
+
+    <span class="c1"># Convert S3_collection to a list of image IDs</span>
+    <span class="n">S3_image_ids</span> <span class="o">=</span> <span class="n">S3_collection</span><span class="o">.</span><span class="n">aggregate_array</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+    <span class="n">S3_images_info</span> <span class="o">=</span> <span class="n">S3_collection</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()[</span><span class="s1">&#39;features&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Initialize an empty list to store details</span>
+    <span class="n">S3_image_details</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Iterate through each image in the collection</span>
+    <span class="k">for</span> <span class="n">img_info</span> <span class="ow">in</span> <span class="n">S3_images_info</span><span class="p">:</span>
+        <span class="c1"># Fetch image ID</span>
+        <span class="n">image_id</span> <span class="o">=</span> <span class="n">img_info</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># Fetch image date and other properties as needed</span>
+        <span class="n">image_date</span> <span class="o">=</span> <span class="n">img_info</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">]</span>  <span class="c1"># Example property</span>
+        
+        <span class="c1"># Append the details to the list</span>
+        <span class="n">S3_image_details</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">image_id</span><span class="p">,</span>
+            <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="n">image_date</span>
+        <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">S3_image_details</span>
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="step-1-get-the-pairs-of-colocated-s2-s3">
+<h2>Step 1: Get the Pairs of Colocated S2/S3<a class="headerlink" href="#step-1-get-the-pairs-of-colocated-s2-s3" title="Permalink to this heading">#</a></h2>
+<p>Once you have set up your environment and are authenticated with Google Earth Engine, the next step is to extract the matched filenames that meet your specific criteria. This involves querying the Google Earth Engine datasets based on your area of interest, time frame, and any other relevant parameters. The code snippet below demonstrates how to perform this task effectively:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
@@ -505,34 +730,264 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matched S2 and S3 Image Pairs: [(&#39;20180601T151911_20180601T151910_T23XNE&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XVK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XVL&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XWK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XWL&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XWM&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T24XWN&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XDE&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XDF&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XDG&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XDH&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XED&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XEE&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XEF&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XEG&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XEH&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T25XEJ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XMJ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XMK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XML&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XMM&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XMN&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XMP&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNL&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNM&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNN&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNP&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T26XNQ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XVF&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XVG&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XVH&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XVJ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XVK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XWG&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XWH&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XWJ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T27XWK&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T28XDP&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T28XDQ&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T151911_20180601T151910_T28XDR&#39;, &#39;S3B_20180601T151325_20180601T151625&#39;), (&#39;20180601T165851_20180601T165853_T20XNK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T20XNK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T20XNL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T20XNL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T20XNM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T20XNM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T20XNN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T20XNN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XVE&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XVE&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XVF&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XVF&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XVG&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XVG&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XVH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XVH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWD&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWD&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWE&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWE&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWF&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWF&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWG&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWG&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T21XWJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T21XWJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XDQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XDQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XEL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XEL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XEM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XEM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XEN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XEN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XEP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XEP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T22XEQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T22XEQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XMF&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XMF&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XMG&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XMG&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XMH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XMH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XMJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XMJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XMK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XMK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XNG&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XNG&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XNH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XNH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XNJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XNJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XNK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XNK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T23XNL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T23XNL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XVM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XVM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XVN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XVN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XVP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XVP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XVQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XVQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XVR&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XVR&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XWN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XWN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XWP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XWP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XWQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XWQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XWR&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XWR&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T24XWS&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T24XWS&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XDH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XDH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XDJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XDJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XDK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XDK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XDL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XDL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XEH&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XEH&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XEJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XEJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XEK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XEK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XEL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XEL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T25XEM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T25XEM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XMN&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XMN&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XMP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XMP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XMQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XMQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XMR&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XMR&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XNP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XNP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XNQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XNQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XNR&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XNR&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T26XNS&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T26XNS&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XVJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XVJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XVK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XVK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XVL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XVL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XWJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XWJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XWK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XWK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XWL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XWL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T27XWM&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T27XWM&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T28XDP&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T28XDP&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T28XDQ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T28XDQ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T165853_T28XDR&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T165853_T28XDR&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T20XNJ&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T20XNJ&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T20XNK&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T20XNK&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T20XNL&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T20XNL&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T21XVD&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T21XVD&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T21XVE&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T21XVE&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T21XVF&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T21XVF&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T21XWD&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T21XWD&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T165851_20180601T170139_T21XWE&#39;, &#39;S3B_20180601T165125_20180601T165425&#39;), (&#39;20180601T165851_20180601T170139_T21XWE&#39;, &#39;S3B_20180601T165425_20180601T165725&#39;), (&#39;20180601T183931_20180601T183930_T20XNN&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T20XNP&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T20XNQ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T20XNR&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T20XNS&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XVH&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XVJ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XVK&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XVL&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XWH&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XWJ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XWK&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XWL&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T21XWM&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XDP&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XDQ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XDR&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XEP&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XEQ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XER&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T22XES&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XMJ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XMK&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XML&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XNJ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XNK&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XNL&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T23XNM&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XVP&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XVQ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XVR&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XWP&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XWQ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XWR&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T24XWS&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T25XDJ&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T25XDK&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T183931_20180601T183930_T25XDL&#39;, &#39;S3B_20180601T183524_20180601T183824&#39;), (&#39;20180601T201851_20180601T201850_T20XNP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T20XNP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T20XNQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T20XNQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T20XNR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T20XNR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T20XNS&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T20XNS&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T20XNT&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T20XNT&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XVJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XVJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XVK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XVK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XVL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XVL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XWJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XWJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XWK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XWK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XWL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XWL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T21XWM&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T21XWM&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XDP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XDP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XDQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XDQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XDR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XDR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XEP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XEP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XEQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XEQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XER&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XER&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T22XES&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T22XES&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XMJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XMJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XMK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XMK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XML&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XML&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XNJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XNJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XNK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XNK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XNL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XNL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T23XNM&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T23XNM&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XVP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XVP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XVQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XVQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XVR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XVR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XWP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XWP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XWQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XWQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XWR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XWR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T24XWS&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T24XWS&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XDH&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XDH&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XDJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XDJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XDK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XDK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XDL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XDL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XEH&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XEH&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XEJ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XEJ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XEK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XEK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XEL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XEL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T25XEM&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T25XEM&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T26XMP&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T26XMP&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T26XMQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T26XMQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T26XMR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T26XMR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T26XNQ&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T26XNQ&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T26XNR&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T26XNR&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T27XVK&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T27XVK&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;), (&#39;20180601T201851_20180601T201850_T27XVL&#39;, &#39;S3B_20180601T201024_20180601T201324&#39;), (&#39;20180601T201851_20180601T201850_T27XVL&#39;, &#39;S3B_20180601T201324_20180601T201624&#39;)]
-</pre></div>
 </div>
-</div>
-</div>
-<p>Now we have filenames of Sentinel-2 and Sentinel-3 OLCI, we need to convert it into Copernicus file format as we did in last week.
-In this example, we only take one from Sentinel-2 and one from Sentinel-3 OLCI to show the download process. Now we start with Sentinel-2. We start by getting its filename in Copernicus format.</p>
+</section>
+<section id="step-2-download">
+<h2>Step 2: Download<a class="headerlink" href="#step-2-download" title="Permalink to this heading">#</a></h2>
+<p>Having successfully obtained the filenames for both Sentinel-2 and Sentinel-3 OLCI datasets, our next step is to translate these names into the Copernicus dataspace-compatible format, mirroring the procedure we employed in the previous session. For demonstration purposes, this section will focus on a practical example, involving the download of a single dataset from each, Sentinel-2 and Sentinel-3 OLCI, to illustrate the download process in a step-by-step manner.</p>
+<section id="initiating-the-download-for-sentinel-2">
+<h3>Initiating the Download for Sentinel-2<a class="headerlink" href="#initiating-the-download-for-sentinel-2" title="Permalink to this heading">#</a></h3>
+<p>We’ll begin with the Sentinel-2 dataset. Our first task is to convert the Sentinel-2 filename to the Copernicus format, setting the stage for the subsequent download. This conversion is a critical step, ensuring seamless integration and access to the Copernicus dataspace resources.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;ucfbwc0@ucl.ac.uk&#39;</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;Psos28633682Sosp~~~~&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
-    <span class="c1"># Get the access token</span>
-
-<span class="n">gee_filename</span> <span class="o">=</span> <span class="s1">&#39;20190228T215529_20190228T215527_T05WNU&#39;</span>
 <span class="n">token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-<span class="n">process_image_pair</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+<span class="n">access_token</span> <span class="o">=</span> <span class="n">token</span>  <span class="c1"># Replace with your actual access token</span>
+<span class="n">download_dir</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<span class="n">gee_filename</span> <span class="o">=</span> <span class="s1">&#39;20190621T234139_20190621T234142_T12XVR&#39;</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">file_name</span><span class="p">,</span> <span class="n">product_id</span> <span class="o">=</span> <span class="n">process_image_pair</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+<span class="n">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">download_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;S2B_MSIL1C_20190228T215529_N0207_R029_T05WNU_20190228T233133.SAFE&#39;,
- &#39;b4a388de-ae53-58f0-bebf-9d2367058c00&#39;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S2B_MSIL1C_20190621T234139_N0207_R073_T12XVR_20190621T234938.SAFE.zip
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="proceeding-with-sentinel-3-olci-download">
+<h3>Proceeding with Sentinel-3 OLCI Download<a class="headerlink" href="#proceeding-with-sentinel-3-olci-download" title="Permalink to this heading">#</a></h3>
+<p>Moving forward, we turn our attention to downloading the Sentinel-3 OLCI data. The process mirrors the approach we took with Sentinel-2, maintaining consistency in our methodology. We’ll apply the same logic of filename conversion and follow the structured steps to retrieve the data from the Copernicus dataspace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example GEE image ID</span>
+<span class="n">gee_image_id</span> <span class="o">=</span> <span class="s1">&#39;S3B_20180601T201324_20180601T201624&#39;</span>
+<span class="c1"># Parse the GEE filename to get the date and time</span>
+<span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span> <span class="o">=</span> <span class="n">parse_gee_filename_s3</span><span class="p">(</span><span class="n">gee_image_id</span><span class="p">)</span>
+
+<span class="c1"># Query the Copernicus Data Space for the corresponding Sentinel-3 OLCI data</span>
+<span class="n">s3_olci_data</span> <span class="o">=</span> <span class="n">query_sentinel3_olci_data</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+<span class="n">download_dir</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="c1"># Replace with your desired download directory</span>
+<span class="n">product_id</span> <span class="o">=</span> <span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Download the single product</span>
+<span class="n">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">download_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="downloading-colocated-altimetry-data-of-sentinel-3-olci">
+<h3>Downloading Colocated Altimetry Data of Sentinel-3 OLCI<a class="headerlink" href="#downloading-colocated-altimetry-data-of-sentinel-3-olci" title="Permalink to this heading">#</a></h3>
+<p>The Sentinel-3 satellite offers an exceptional capability in Earth observation: the simultaneous acquisition of optical data from its OLCI instrument and altimetry measurements.  In this section, we will guide you through the process of downloading this colocated altimetry data alongside the Sentinel-3 OLCI optical data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtain an access token to the Copernicus Data Space Ecosystem.</span>
+<span class="sd">    Necessary for the download of hosted products.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span>  <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;curl --location --request POST &#39;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token&#39; </span><span class="se">\</span>
+<span class="s2">            --header &#39;Content-Type: application/x-www-form-urlencoded&#39; </span><span class="se">\</span>
+<span class="s2">            --data-urlencode &#39;grant_type=password&#39; </span><span class="se">\</span>
+<span class="s2">            --data-urlencode &#39;username=</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&#39; </span><span class="se">\</span>
+<span class="s2">            --data-urlencode &#39;password=</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">&#39; </span><span class="se">\</span>
+<span class="s2">            --data-urlencode &#39;client_id=cdse-public&#39;&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">access_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">access_dict</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">],</span> <span class="n">access_dict</span><span class="p">[</span><span class="s1">&#39;refresh_token&#39;</span><span class="p">]</span>
+
+<span class="c1">#=============================================================================================================================================================#</span>
+
+<span class="k">def</span> <span class="nf">get_new_access_token</span><span class="p">(</span><span class="n">refresh_token</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtain a new access token to the Copernicus Data Space Ecosystem using a previously provided refesh token.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span>  <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;curl --location --request POST &#39;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token&#39; </span><span class="se">\</span>
+<span class="s2">    --header &#39;Content-Type: application/x-www-form-urlencoded&#39; </span><span class="se">\</span>
+<span class="s2">    --data-urlencode &#39;grant_type=refresh_token&#39; </span><span class="se">\</span>
+<span class="s2">    --data-urlencode &#39;refresh_token=</span><span class="si">{</span><span class="n">refresh_token</span><span class="si">}</span><span class="s2">&#39; </span><span class="se">\</span>
+<span class="s2">    --data-urlencode &#39;client_id=cdse-public&#39;&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">access_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">access_dict</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">],</span> <span class="n">access_dict</span><span class="p">[</span><span class="s1">&#39;refresh_token&#39;</span><span class="p">]</span>
+
+<span class="c1">#=============================================================================================================================================================#</span>
+
+<span class="k">def</span> <span class="nf">get_S3_SI_search_results_df</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtain a pandas dataframe of Sentinel-3 sea ice thematic products for a given date.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">json</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://catalogue.dataspace.copernicus.eu/odata/v1/Products?$filter=Collection/Name eq &#39;SENTINEL-3&#39; and Attributes/OData.CSC.StringAttribute/any(att:att/Name eq &#39;productType&#39; and att/OData.CSC.StringAttribute/Value eq &#39;SR_2_LAN_SI&#39;) and Attributes/OData.CSC.StringAttribute/any(att:att/Name eq &#39;timeliness&#39; and att/OData.CSC.StringAttribute/Value eq &#39;NT&#39;) and ContentDate/Start gt </span><span class="si">{</span><span class="p">(</span><span class="n">date</span><span class="o">-</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> and ContentDate/End lt </span><span class="si">{</span><span class="p">(</span><span class="n">date</span><span class="o">+</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&amp;$top=1000&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+    <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;Satellite&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span> 
+    <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;SensingStart&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ContentDate&#39;</span><span class="p">][</span><span class="s1">&#39;Start&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span> 
+    <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;SensingEnd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ContentDate&#39;</span><span class="p">][</span><span class="s1">&#39;End&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span> 
+    <span class="n">results_df</span> <span class="o">=</span>  <span class="n">results_df</span><span class="p">[(</span><span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;SensingEnd&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">date</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;SensingStart&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">date</span><span class="o">+</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))]</span>
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;SensingStart&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">results_df</span> 
+
+
+<span class="c1">#=============================================================================================================================================================#</span>
+
+<span class="k">def</span> <span class="nf">filter_duplicate_products_versions</span><span class="p">(</span><span class="n">results_df</span><span class="p">,</span> <span class="n">keep_latest</span><span class="o">=</span><span class="kc">True</span> <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Filter Sentinel-3 product dataframe to remove duplicate verions of files.</span>
+<span class="sd">    By default, we keep the latest version of the file. E.g., where an operation version</span>
+<span class="sd">    and a reprocessed version exists, we keep the reprocessed version.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;name_snippet&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">][:</span><span class="mi">47</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span> 
+    <span class="k">if</span>  <span class="n">keep_latest</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="n">keep</span> <span class="o">=</span> <span class="s1">&#39;first&#39;</span>
+    
+    <span class="n">results_df</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">results_df</span>
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;ModificationDate&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name_snippet&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="n">keep</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name_snippet&#39;</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;SensingStart&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results_df</span>
+
+<span class="k">def</span> <span class="nf">find_overlapping_sar</span><span class="p">(</span><span class="n">olci_filename</span><span class="p">,</span> <span class="n">search_results_df</span><span class="p">):</span>
+    <span class="c1"># Extract date and time from OLCI filename</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">olci_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">olci_date_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">T%H%M%S&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Filter SAR filenames based on overlapping criteria</span>
+    <span class="c1"># This is a placeholder logic, adjust according to your specific criteria</span>
+    <span class="n">overlapping_sar</span> <span class="o">=</span> <span class="n">search_results_df</span><span class="p">[</span><span class="n">search_results_df</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;S3&#39;</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="s1">&#39;SR_2_LAN_SI&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">overlapping_sar</span>
+
+
+<span class="k">def</span> <span class="nf">get_date_from_olci_filename</span><span class="p">(</span><span class="n">olci_filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the date from an OLCI filename.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    olci_filename (str): The OLCI filename.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    datetime.date: The date extracted from the filename.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">olci_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">date_str</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">7</span><span class="p">][:</span><span class="mi">8</span><span class="p">]</span>  <span class="c1"># Extract date part and truncate to YYYYMMDD format</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date_str</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">get_overlapping_sar_file</span><span class="p">(</span><span class="n">olci_filename</span><span class="p">,</span> <span class="n">get_S3_SI_search_results_df</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+    <span class="n">olci_date</span> <span class="o">=</span> <span class="n">get_date_from_olci_filename</span><span class="p">(</span><span class="n">olci_filename</span><span class="p">)</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="n">olci_date</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="n">olci_date</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+
+    <span class="n">all_overlapping_sar</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>  <span class="c1"># Collect all overlapping SAR files</span>
+
+    <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+        <span class="n">search_results_df</span> <span class="o">=</span> <span class="n">get_S3_SI_search_results_df</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">search_results_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No SAR data found for date: </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">filter_duplicate_products_versions</span><span class="p">(</span><span class="n">search_results_df</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">filtered_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No SAR data after filtering for date: </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="n">overlapping_sar</span> <span class="o">=</span> <span class="n">find_overlapping_sar</span><span class="p">(</span><span class="n">olci_filename</span><span class="p">,</span> <span class="n">filtered_df</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">overlapping_sar</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="n">all_overlapping_sar</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">all_overlapping_sar</span><span class="p">,</span> <span class="n">overlapping_sar</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">all_overlapping_sar</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">def</span> <span class="nf">check_overlap</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">olci_filename</span><span class="p">,</span> <span class="n">olci_start</span><span class="p">,</span> <span class="n">olci_end</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Checks if the SAR file&#39;s sensing period overlaps with the OLCI file&#39;s sensing period and if it&#39;s from the same satellite.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    row (Series): A row from the SAR search results DataFrame.</span>
+<span class="sd">    olci_filename (str): The OLCI filename.</span>
+<span class="sd">    olci_start (datetime): Start time of OLCI sensing period.</span>
+<span class="sd">    olci_end (datetime): End time of OLCI sensing period.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    bool: True if there&#39;s an overlap and the satellite is consistent, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Extract satellite identifier from the OLCI filename</span>
+    <span class="n">satellite</span> <span class="o">=</span> <span class="n">olci_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># e.g., S3A or S3B</span>
+
+    <span class="c1"># Parse SAR start and end times</span>
+    <span class="n">sar_start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ContentDate&#39;</span><span class="p">][</span><span class="s1">&#39;Start&#39;</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span><span class="p">)</span>
+    <span class="n">sar_end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ContentDate&#39;</span><span class="p">][</span><span class="s1">&#39;End&#39;</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Check for temporal overlap and satellite consistency</span>
+    <span class="n">is_temporal_overlap</span> <span class="o">=</span> <span class="n">sar_start</span> <span class="o">&lt;=</span> <span class="n">olci_end</span> <span class="ow">and</span> <span class="n">sar_end</span> <span class="o">&gt;=</span> <span class="n">olci_start</span>
+    <span class="n">is_same_satellite</span> <span class="o">=</span> <span class="n">satellite</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">is_temporal_overlap</span> <span class="ow">and</span> <span class="n">is_same_satellite</span>
+
+<span class="c1"># Adjust the find_overlapping_sar function to include the OLCI filename in the check_overlap call</span>
+<span class="k">def</span> <span class="nf">find_overlapping_sar</span><span class="p">(</span><span class="n">olci_filename</span><span class="p">,</span> <span class="n">search_results_df</span><span class="p">):</span>
+    <span class="c1"># Extract date and time from OLCI filename</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">olci_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">olci_sensing_start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">T%H%M%S&#39;</span><span class="p">)</span>
+    <span class="n">olci_sensing_end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">T%H%M%S&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Filter for SAR files that overlap with the OLCI sensing period</span>
+    <span class="n">overlapping_sar</span> <span class="o">=</span> <span class="n">search_results_df</span><span class="p">[</span><span class="n">search_results_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">check_overlap</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">olci_filename</span><span class="p">,</span> <span class="n">olci_sensing_start</span><span class="p">,</span> <span class="n">olci_sensing_end</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">overlapping_sar</span>
+
+
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">token</span><span class="p">,</span> <span class="n">refresh_token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">olci_filename</span> <span class="o">=</span> <span class="s2">&quot;S3A_OL_1_EFR____20190307T011852_20190307T012152_20190308T054622_0179_042_131_1980_LN1_O_NT_002.SEN3&quot;</span> <span class="c1">## This is an example, which you should replace with the one you are interested in.</span>
+<span class="n">overlapped_df</span> <span class="o">=</span> <span class="n">get_overlapping_sar_file</span><span class="p">(</span><span class="n">olci_filename</span><span class="p">,</span> <span class="n">get_S3_SI_search_results_df</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+<span class="n">product_id</span> <span class="o">=</span> <span class="n">overlapped_df</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="n">overlapped_df</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">download_dir</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">download_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ve now gathered Sentinel-2 optical data, Sentinel-3 OLCI, and altimetry data, enabling us to advance into a comprehensive analysis leveraging their combined strengths.</p>
+</section>
 </section>
 </section>
 
@@ -567,6 +1022,24 @@ In this example, we only take one from Sentinel-2 and one from Sentinel-3 OLCI t
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter%201%3Arollout.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Roll-out on a Full Image</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter1%3AUnsupervised_Learning_Methods.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Unsupervised Learning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -585,7 +1058,14 @@ In this example, we only take one from Sentinel-2 and one from Sentinel-3 OLCI t
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-functions-needed">Read in Functions Needed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-read-in-functions-needed">Step 0: Read in Functions Needed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-get-the-pairs-of-colocated-s2-s3">Step 1: Get the Pairs of Colocated S2/S3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-download">Step 2: Download</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initiating-the-download-for-sentinel-2">Initiating the Download for Sentinel-2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceeding-with-sentinel-3-olci-download">Proceeding with Sentinel-3 OLCI Download</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-colocated-altimetry-data-of-sentinel-3-olci">Downloading Colocated Altimetry Data of Sentinel-3 OLCI</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
