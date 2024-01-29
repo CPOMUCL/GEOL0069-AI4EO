@@ -519,12 +519,11 @@ document.write(`
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="c1"># Paths to the band images</span>
-<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;/Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S2B_MSIL1C_20190621T234139_N0207_R073_T12XVR_20190621T234938.SAFE/GRANULE/L1C_T12XVR_A011968_20190621T234142/IMG_DATA/&quot;</span>
+<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;/S2A_MSIL1C_20190301T235611_N0207_R116_T01WCU_20190302T014622.SAFE/GRANULE/L1C_T01WCU_A019275_20190301T235610/IMG_DATA/&quot;</span> <span class="c1"># You need to specify the path</span>
 <span class="n">bands_paths</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;B4&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B04.jp2&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;B3&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B03.jp2&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;B2&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B02.jp2&#39;</span>
+    <span class="s1">&#39;B4&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B04.jp2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;B3&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B03.jp2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;B2&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B02.jp2&#39;</span>
 <span class="p">}</span>
 
 <span class="c1"># Read and stack the band images</span>
@@ -533,19 +532,27 @@ document.write(`
     <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bands_paths</span><span class="p">[</span><span class="n">band</span><span class="p">])</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
         <span class="n">band_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 
+<span class="c1"># Stack bands and create a mask for valid data (non-zero values in all bands)</span>
 <span class="n">band_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">(</span><span class="n">band_data</span><span class="p">)</span>
+<span class="n">valid_data_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">band_stack</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># Reshape for K-means</span>
-<span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">band_stack</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">band_stack</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_samples</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># Reshape for K-means, only including valid data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">band_stack</span><span class="p">[</span><span class="n">valid_data_mask</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1"># K-means clustering</span>
 <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+
+<span class="c1"># Create an empty array for the result, filled with a no-data value (e.g., -1)</span>
+<span class="n">labels_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">band_stack</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Place cluster labels in the locations corresponding to valid data</span>
+<span class="n">labels_image</span><span class="p">[</span><span class="n">valid_data_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
 
 <span class="c1"># Plotting the result</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;K-means clustering on Sentinel-2 Bands&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cluster Label&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -555,7 +562,7 @@ document.write(`
   super()._check_params_vs_input(X, default_n_init=10)
 </pre></div>
 </div>
-<img alt="_images/0d257f51020fa2236bac94a10ea21af9f57a43a4913503151e1bcebca7947d4d.png" src="_images/0d257f51020fa2236bac94a10ea21af9f57a43a4913503151e1bcebca7947d4d.png" />
+<img alt="_images/af7c1c536e4d3c16db186d28e5de7c6744c63d95c8752fc8cc00c9f7e095d4e6.png" src="_images/af7c1c536e4d3c16db186d28e5de7c6744c63d95c8752fc8cc00c9f7e095d4e6.png" />
 </div>
 </div>
 </section>
@@ -569,11 +576,11 @@ document.write(`
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Paths to the band images</span>
-<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;/Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S2B_MSIL1C_20190621T234139_N0207_R073_T12XVR_20190621T234938.SAFE/GRANULE/L1C_T12XVR_A011968_20190621T234142/IMG_DATA/&quot;</span>
+<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;/S2A_MSIL1C_20190301T235611_N0207_R116_T01WCU_20190302T014622.SAFE/GRANULE/L1C_T01WCU_A019275_20190301T235610/IMG_DATA/&quot;</span>
 <span class="n">bands_paths</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;B4&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B04.jp2&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;B3&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B03.jp2&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;B2&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T12XVR_20190621T234139_B02.jp2&#39;</span>
+    <span class="s1">&#39;B4&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B04.jp2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;B3&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B03.jp2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;B2&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B02.jp2&#39;</span>
 <span class="p">}</span>
 
 <span class="c1"># Read and stack the band images</span>
@@ -582,25 +589,33 @@ document.write(`
     <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bands_paths</span><span class="p">[</span><span class="n">band</span><span class="p">])</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
         <span class="n">band_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 
+<span class="c1"># Stack bands and create a mask for valid data (non-zero values in all bands)</span>
 <span class="n">band_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">(</span><span class="n">band_data</span><span class="p">)</span>
+<span class="n">valid_data_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">band_stack</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># Reshape for GMM</span>
-<span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">band_stack</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">band_stack</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_samples</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># Reshape for GMM, only including valid data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">band_stack</span><span class="p">[</span><span class="n">valid_data_mask</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1"># GMM clustering</span>
 <span class="n">gmm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="n">gmm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">gmm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Create an empty array for the result, filled with a no-data value (e.g., -1)</span>
+<span class="n">labels_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">band_stack</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Place GMM labels in the locations corresponding to valid data</span>
+<span class="n">labels_image</span><span class="p">[</span><span class="n">valid_data_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
 
 <span class="c1"># Plotting the result</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">labels_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GMM clustering on Sentinel-2 Bands&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cluster Label&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ec1eb4c4a3e0e447cf2255aa80d43a665eb33a79c176a0b1c24835b3a5c4ed55.png" src="_images/ec1eb4c4a3e0e447cf2255aa80d43a665eb33a79c176a0b1c24835b3a5c4ed55.png" />
+<img alt="_images/ccbfbeb0d56337e9ff4e84b8ab47a601e958569a7d6d9e0d18278f2a976b4b40.png" src="_images/ccbfbeb0d56337e9ff4e84b8ab47a601e958569a7d6d9e0d18278f2a976b4b40.png" />
 </div>
 </div>
 </section>
