@@ -15,4 +15,5 @@ parts:
       - file: Chapter 1:rollout
       - file: Chapter1:Data_Colocating_S2_S3
       - file: Chapter1:Unsupervised_Learning_Methods
+      - file: Chapter1:Regression
       - file: References1
