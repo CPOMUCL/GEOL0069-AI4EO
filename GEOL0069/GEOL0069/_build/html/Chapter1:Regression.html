@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Regression Techniques for Predictive Analysis &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter1:Regression';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="References" href="References1.html" />
+    <link rel="prev" title="Unsupervised Learning" href="Chapter1%3AUnsupervised_Learning_Methods.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3ASea-ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AAI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3Arollout.html">Roll-out on a Full Image</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AData_Colocating_S2_S3.html">Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AUnsupervised_Learning_Methods.html">Unsupervised Learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regression Techniques for Predictive Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Chapter1:Regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Regression Techniques for Predictive Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Regression Techniques for Predictive Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression-draper1998applied">Polynomial Regression <span class="xref cite">draper1998applied</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-polynomial-regression">Introduction to Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-polynomial-regression">Why Polynomial Regression?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-polynomial-regression">Key Components of Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-polynomial-regression">Understanding Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-polynomial-regression">Advantages of Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-code-implementation">Basic Code Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks-goodfellow2016deep">Neural Networks <span class="xref cite">goodfellow2016deep</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-neural-networks">Introduction to Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-neural-networks-for-regression-and-classification">Why Neural Networks for Regression and Classification?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-neural-networks">Key Components of Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-fully-connected-neural-networks">Understanding Fully Connected Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-neural-networks">Advantages of Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Basic Code Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-processes">Gaussian Processes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-framework">Mathematical Framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">Basic Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance-functions-kernels">Covariance Functions (Kernels)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-variance">Mean and Variance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-a-logical-processing-chain">Gaussian Process - A Logical Processing Chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples">Practical Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="regression-techniques-for-predictive-analysis">
+<h1>Regression Techniques for Predictive Analysis<a class="headerlink" href="#regression-techniques-for-predictive-analysis" title="Permalink to this heading">#</a></h1>
+<p>Following our exploration of classification tasks in machine learning, such as distinguishing between sea ice and open water, we now shift our focus to regression techniques. Regression analysis is pivotal in predictive modeling, allowing us to estimate continuous outcomes. This could include predicting sea ice concentration levels from optical satellite data. We will examine three distinct regression methods, each with its unique advantages and applicability to different types of data:</p>
+<ol class="arabic simple">
+<li><p><strong>Polynomial Regression</strong>: An extension of linear regression that models the relationship between the response variable and polynomial features of the predictors. It is particularly useful when the relationship between variables is non-linear.</p></li>
+<li><p><strong>Neural Networks</strong>: These versatile and powerful models can capture complex patterns in data, making them suitable for a wide range of problems, including those with high-dimensional inputs such as multispectral or hyperspectral imagery.</p></li>
+<li><p><strong>Gaussian Processes</strong>: A probabilistic approach that provides not only predictions but also a measure of uncertainty, which can be crucial when dealing with sparse or noisy data, as is often the case in remote sensing.</p></li>
+</ol>
+<p>By comparing these methods, we aim to understand their strengths and limitations in the context of geospatial analysis and find the best fit for our specific application in monitoring the polar regions.</p>
+<section id="polynomial-regression-draper1998applied">
+<h2>Polynomial Regression <span id="id1">[]</span><a class="headerlink" href="#polynomial-regression-draper1998applied" title="Permalink to this heading">#</a></h2>
+<section id="introduction-to-polynomial-regression">
+<h3>Introduction to Polynomial Regression<a class="headerlink" href="#introduction-to-polynomial-regression" title="Permalink to this heading">#</a></h3>
+<p>Polynomial regression is a form of regression analysis in which the relationship between the independent variable <span class="math notranslate nohighlight">\(x\)</span> and the dependent variable <span class="math notranslate nohighlight">\(y\)</span> is modeled as an <span class="math notranslate nohighlight">\(n\)</span> th degree polynomial. Polynomial regression fits a nonlinear relationship between the value of <span class="math notranslate nohighlight">\(x\)</span> and the corresponding conditional mean of <span class="math notranslate nohighlight">\(y\)</span>, denoted <span class="math notranslate nohighlight">\(E(y |x)\)</span>.</p>
+</section>
+<section id="why-polynomial-regression">
+<h3>Why Polynomial Regression?<a class="headerlink" href="#why-polynomial-regression" title="Permalink to this heading">#</a></h3>
+<p>Polynomial regression can be used in situations where the relationship between the independent and dependent variables is nonlinear. It can model the curve in the data by adding higher degree terms of an independent variable, which is a straightforward way to model nonlinearity.</p>
+</section>
+<section id="key-components-of-polynomial-regression">
+<h3>Key Components of Polynomial Regression<a class="headerlink" href="#key-components-of-polynomial-regression" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Polynomial Terms</strong>: Introduces polynomial terms (<span class="math notranslate nohighlight">\(x^2, x^3, \ldots, x^n \)</span>) into a linear regression model, capturing the non-linear relationship between <span class="math notranslate nohighlight">\( x \)</span> and <span class="math notranslate nohighlight">\( y \)</span>.</p></li>
+<li><p><strong>Degree of Polynomial</strong>: The degree <span class="math notranslate nohighlight">\( n \)</span> of the polynomial regression determines the flexibility of the model to fit the data. The higher the degree, the more flexible the model.</p></li>
+<li><p><strong>Model Fitting</strong>: The polynomial regression model is fitted using the method of least squares, which minimizes the sum of the squares of the differences between the observed and predicted values.</p></li>
+</ol>
+</section>
+<section id="understanding-polynomial-regression">
+<h3>Understanding Polynomial Regression<a class="headerlink" href="#understanding-polynomial-regression" title="Permalink to this heading">#</a></h3>
+<p>The model assumes that the relationship between variables can be described as a polynomial of degree <span class="math notranslate nohighlight">\(n\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+y = \beta_0 + \beta_1 x + \beta_2 x^2 + \ldots + \beta_n x^n + \epsilon
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y\)</span> is the response variable.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x\)</span> is the predictor variable.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_0, \beta_1, \ldots, \beta_n\)</span> are the model coefficients.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term, capturing the deviation from the model.</p></li>
+</ul>
+</section>
+<section id="advantages-of-polynomial-regression">
+<h3>Advantages of Polynomial Regression<a class="headerlink" href="#advantages-of-polynomial-regression" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Flexibility</strong>: Can fit a wide range of curvatures in the data.</p></li>
+<li><p><strong>Interpretability</strong>: Coefficients can be easily interpreted as the rate of change in <span class="math notranslate nohighlight">\(y\)</span> for a unit change in <span class="math notranslate nohighlight">\(x\)</span> when all other predictors are held constant.</p></li>
+</ul>
+</section>
+<section id="basic-code-implementation">
+<h3>Basic Code Implementation<a class="headerlink" href="#basic-code-implementation" title="Permalink to this heading">#</a></h3>
+<p>Below is a simple implementation of polynomial regression using scikit-learn’s <code class="docutils literal notranslate"><span class="pre">PolynomialFeatures</span></code> and <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> classes. This illustrates how to fit a polynomial regression model to a dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Sample data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Predictor variable</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="n">X</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Response variable</span>
+
+<span class="c1"># Transforming the data to include polynomial terms</span>
+<span class="n">polynomial_features</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_poly</span> <span class="o">=</span> <span class="n">polynomial_features</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Polynomial Regression model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_poly</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_poly</span><span class="p">)</span>
+
+<span class="c1"># Plotting the results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polynomial Regression with Degree 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6f55edf7ce329cdf42b70262e2b2a609acd0d2fc73ce65b58b46be9f23033b5f.png" src="_images/6f55edf7ce329cdf42b70262e2b2a609acd0d2fc73ce65b58b46be9f23033b5f.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="neural-networks-goodfellow2016deep">
+<h2>Neural Networks <span id="id2">[]</span><a class="headerlink" href="#neural-networks-goodfellow2016deep" title="Permalink to this heading">#</a></h2>
+<section id="introduction-to-neural-networks">
+<h3>Introduction to Neural Networks<a class="headerlink" href="#introduction-to-neural-networks" title="Permalink to this heading">#</a></h3>
+<p>Neural Networks are a set of algorithms, modeled loosely after the human brain, designed to recognize patterns. They interpret sensory data through a kind of machine perception, labeling, or clustering raw input. The patterns they recognize are numerical, contained in vectors, into which all real-world data, be it images, sound, text, or time series, must be translated.</p>
+</section>
+<section id="why-neural-networks-for-regression-and-classification">
+<h3>Why Neural Networks for Regression and Classification?<a class="headerlink" href="#why-neural-networks-for-regression-and-classification" title="Permalink to this heading">#</a></h3>
+<p>Neural networks are particularly effective for:</p>
+<ul class="simple">
+<li><p><strong>Handling High Dimensionality</strong>: They can manage data with high dimensionality (like images) and extract patterns or features.</p></li>
+<li><p><strong>Flexibility</strong>: Neural networks can be applied to a wide range of tasks, including both regression and classification.</p></li>
+</ul>
+</section>
+<section id="key-components-of-neural-networks">
+<h3>Key Components of Neural Networks<a class="headerlink" href="#key-components-of-neural-networks" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Layers</strong>: Composed of neurons, layers are the fundamental units of neural networks. A fully connected network consists of input, hidden, and output layers.</p></li>
+<li><p><strong>Neurons</strong>: Each neuron in a layer is connected to all neurons in the previous and next layers, processing the input data and passing on its output.</p></li>
+<li><p><strong>Weights and Biases</strong>: These parameters are adjusted during training to minimize the network’s error in predicting the target variable.</p></li>
+<li><p><strong>Activation Functions</strong>: Functions like ReLU or Sigmoid introduce non-linearities, allowing the network to model complex relationships.</p></li>
+</ol>
+</section>
+<section id="understanding-fully-connected-neural-networks">
+<h3>Understanding Fully Connected Neural Networks<a class="headerlink" href="#understanding-fully-connected-neural-networks" title="Permalink to this heading">#</a></h3>
+<p>Fully connected neural networks consist of dense layers where each neuron in one layer is connected to all neurons in the next layer. The depth (number of layers) and width (number of neurons per layer) can be adjusted to increase the network’s capacity.</p>
+</section>
+<section id="advantages-of-neural-networks">
+<h3>Advantages of Neural Networks<a class="headerlink" href="#advantages-of-neural-networks" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Adaptability</strong>: They can model complex non-linear relationships.</p></li>
+<li><p><strong>Scalability</strong>: Effective for large datasets and high-dimensional data.</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Basic Code Implementation<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>Below is a basic example of implementing a neural network using TensorFlow and Keras. This example illustrates a simple network for regression or classification tasks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Sample data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># 10 feature inputs</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># Target variable for regression</span>
+
+<span class="c1"># Neural network model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,)),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Use model to predict on new data</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Example of model summary</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="gaussian-processes">
+<h1>Gaussian Processes<a class="headerlink" href="#gaussian-processes" title="Permalink to this heading">#</a></h1>
+<section id="mathematical-framework">
+<h2>Mathematical Framework<a class="headerlink" href="#mathematical-framework" title="Permalink to this heading">#</a></h2>
+<section id="basic-concepts">
+<h3>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading">#</a></h3>
+<p>A Gaussian Process (GP) is essentially an advanced form of a Gaussian (or normal) distribution, but instead of being over simple variables, it’s over functions. Imagine a GP as a method to predict or estimate a function based on known data points.</p>
+<p>In mathematical terms, a GP is defined for a set of function values, where these values follow a Gaussian distribution. Specifically, for any selection of points from a set <span class="math notranslate nohighlight">\(X\)</span>, the values that a function <span class="math notranslate nohighlight">\(f\)</span> takes at these points follow a joint Gaussian distribution.</p>
+<p>The key to understanding GPs lies in two main concepts:</p>
+<ol class="arabic simple">
+<li><p><strong>Mean Function</strong>: <span class="math notranslate nohighlight">\(m: X \rightarrow Y\)</span>. This function gives the average expected value of the function <span class="math notranslate nohighlight">\(f(x)\)</span> at each point <span class="math notranslate nohighlight">\(x\)</span> in the set <span class="math notranslate nohighlight">\(X\)</span>. It’s like predicting the average outcome based on the known data.</p></li>
+<li><p><strong>Kernel or Covariance Function</strong>: <span class="math notranslate nohighlight">\(k: X \times X \rightarrow Y\)</span>. This function tells us how much two points in the set <span class="math notranslate nohighlight">\(X\)</span> are related or how they influence each other. It’s a way of understanding the relationship or similarity between different points in our data.</p></li>
+</ol>
+<p>To apply GPs in a practical setting, we typically select several points in our input space <span class="math notranslate nohighlight">\(X\)</span>, calculate the mean and covariance at these points, and then use this information to make predictions. This process involves working with vectors and matrices derived from the mean and kernel functions to graphically represent the Gaussian Process.</p>
+<p><strong>Note</strong>: In mathematical notation, for a set of points <span class="math notranslate nohighlight">\( \mathbf{X}=x_1, \ldots, x_N \)</span>, the mean vector <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> and covariance matrix <span class="math notranslate nohighlight">\( \mathbf{K} \)</span> are constructed from these points using the mean and kernel functions. Each element of <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> and <span class="math notranslate nohighlight">\( \mathbf{K} \)</span> corresponds to the mean and covariance values calculated for these points.</p>
+</section>
+<section id="covariance-functions-kernels">
+<h3>Covariance Functions (Kernels)<a class="headerlink" href="#covariance-functions-kernels" title="Permalink to this heading">#</a></h3>
+<p>Covariance functions, or kernels, determine how a Gaussian Process (GP) generalizes from observed data. They are fundamental in defining the GP’s behavior.</p>
+<ul>
+<li><p><strong>Concept and Mathematical Representation</strong>:</p>
+<ul class="simple">
+<li><p>Kernels measure the similarity between points in input space. The function <span class="math notranslate nohighlight">\(k(x, x')\)</span> computes the covariance between the outputs corresponding to inputs <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>.</p></li>
+<li><p>For example, the Radial Basis Function (RBF) kernel is defined as <span class="math notranslate nohighlight">\(k(x, x') = \exp\left(-\frac{1}{2l^2} \| x - x' \|^2\right)\)</span>, where <span class="math notranslate nohighlight">\(l\)</span> is the length-scale parameter.</p></li>
+</ul>
+</li>
+<li><p><strong>Types of Kernels and Their Uses</strong>:</p>
+<ul class="simple">
+<li><p><strong>RBF Kernel</strong>: Suited for smooth functions. The length-scale <span class="math notranslate nohighlight">\(l\)</span> controls how rapidly the correlation decreases with distance.</p></li>
+<li><p><strong>Linear Kernel</strong>: <span class="math notranslate nohighlight">\(k(x, x') = x^T x'\)</span>, useful for linear relationships.</p></li>
+<li><p><strong>Periodic Kernels</strong>: Capture periodic behavior, expressed as <span class="math notranslate nohighlight">\(k(x, x') = \exp\left(-\frac{2\sin^2(\pi|x - x'|)}{l^2}\right)\)</span>.</p></li>
+</ul>
+<p>In our context, the <strong>RBF Kernel</strong> will be used in most cases. More practical examples are in future chapters.</p>
+</li>
+<li><p><strong>Hyperparameter Tuning</strong>:</p>
+<ul class="simple">
+<li><p>Hyperparameters like <span class="math notranslate nohighlight">\(l\)</span> in RBF or periodicity in periodic kernels crucially affect GP modeling. Their tuning, often through methods like maximum likelihood, adapts the GP to the specific data structure.</p></li>
+</ul>
+</li>
+<li><p><strong>Choosing the Right Kernel</strong>:</p>
+<ul class="simple">
+<li><p>Involves understanding data characteristics. RBF is a default choice for many, but specific data patterns might necessitate different or combined kernels.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mean-and-variance">
+<h3>Mean and Variance<a class="headerlink" href="#mean-and-variance" title="Permalink to this heading">#</a></h3>
+<p>The mean and variance functions in a Gaussian Process (GP) provide predictions and their uncertainties.</p>
+<ul class="simple">
+<li><p><strong>Mean Function - Mathematical Explanation</strong>:</p>
+<ul>
+<li><p>The mean function, often denoted as <span class="math notranslate nohighlight">\(m(x)\)</span>, gives the expected value of the function at each point. A common assumption is <span class="math notranslate nohighlight">\(m(x) = 0\)</span>, although non-zero means can incorporate prior trends.</p></li>
+</ul>
+</li>
+<li><p><strong>Variance Function - Quantifying Uncertainty</strong>:</p>
+<ul>
+<li><p>The variance, denoted as <span class="math notranslate nohighlight">\(\sigma^2(x)\)</span>, represents the uncertainty in predictions. It’s calculated as <span class="math notranslate nohighlight">\(\sigma^2(x) = k(x, x) - K(X, x)^T[K(X, X) + \sigma^2_nI]^{-1}K(X, x)\)</span>, where <span class="math notranslate nohighlight">\(K(X, x)\)</span> and <span class="math notranslate nohighlight">\(K(X, X)\)</span> are covariance matrices, and <span class="math notranslate nohighlight">\(\sigma^2_n\)</span> is the noise term.</p></li>
+</ul>
+</li>
+<li><p><strong>Practical Interpretation</strong>:</p>
+<ul>
+<li><p>High variance at a point suggests low confidence in predictions there, guiding decisions on where more data might be needed or caution in using the predictions.</p></li>
+</ul>
+</li>
+<li><p><strong>Mean and Variance in Predictions</strong>:</p>
+<ul>
+<li><p>Together, they provide a probabilistic forecast. The mean offers the best guess, while the variance indicates reliability. This duo is key in risk-sensitive applications.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="gaussian-process-a-logical-processing-chain">
+<h2>Gaussian Process - A Logical Processing Chain<a class="headerlink" href="#gaussian-process-a-logical-processing-chain" title="Permalink to this heading">#</a></h2>
+<p>Just like other machine learning algorithm, the logical processing chain for a Gaussian Process (GP) involves thoese key steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Defining the Problem</strong>:</p>
+<ul class="simple">
+<li><p>Start by identifying the problem to be solved using GP, such as regression, classification, or another task where predicting a continuous function is required.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Preparation</strong>:</p>
+<ul class="simple">
+<li><p>Organise the data into a suitable format. This includes input features and corresponding target values.</p></li>
+</ul>
+</li>
+<li><p><strong>Choosing a Kernel Function</strong>:</p>
+<ul class="simple">
+<li><p>Select an appropriate kernel (covariance function) for the GP. The choice depends on the nature of the data and the problem.</p></li>
+</ul>
+</li>
+<li><p><strong>Setting the Hyperparameters</strong>:</p>
+<ul class="simple">
+<li><p>Initialise hyperparameters for the chosen kernel. These can include parameters like length-scale in the RBF kernel or periodicity in a periodic kernel.</p></li>
+</ul>
+</li>
+<li><p><strong>Model Training</strong>:</p>
+<ul class="simple">
+<li><p>Train the GP model by optimizing the hyperparameters. This usually involves maximizing the likelihood of the observed data under the GP model.</p></li>
+</ul>
+</li>
+<li><p><strong>Prediction</strong>:</p>
+<ul class="simple">
+<li><p>Use the trained GP model to make predictions. This involves computing the mean and variance of the GP’s posterior distribution.</p></li>
+</ul>
+</li>
+<li><p><strong>Model Evaluation</strong>:</p>
+<ul class="simple">
+<li><p>Evaluate the model’s performance using suitable metrics. For regression, this could be RMSE or MAE; for classification, accuracy or AUC.</p></li>
+</ul>
+</li>
+<li><p><strong>Refinement</strong>:</p>
+<ul class="simple">
+<li><p>Based on the evaluation, refine the model by adjusting hyperparameters or kernel choice, and retrain if necessary.</p></li>
+</ul>
+</li>
+</ol>
+<p>This chain provides a comprehensive overview of the steps involved in applying Gaussian Processes to a problem, from initial setup to prediction and evaluation.</p>
+<section id="practical-examples">
+<h3>Practical Examples<a class="headerlink" href="#practical-examples" title="Permalink to this heading">#</a></h3>
+<p>You’ve now covered the essential concepts of Gaussian Processes. Next, let’s dive into a practical application by exploring a toy example of GP implementation in Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="kn">import</span> <span class="n">GaussianProcessRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.gaussian_process.kernels</span> <span class="kn">import</span> <span class="n">RBF</span><span class="p">,</span> <span class="n">ConstantKernel</span> <span class="k">as</span> <span class="n">C</span>
+
+<span class="c1"># Synthetic dataset</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Gaussian Process with RBF kernel</span>
+<span class="n">kernel</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">))</span> <span class="o">*</span> <span class="n">RBF</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e2</span><span class="p">))</span>
+<span class="n">gp</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span> <span class="n">n_restarts_optimizer</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Fit to data and predict using the model</span>
+<span class="n">gp</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">X_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_pred</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_pred</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;r.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observations&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_pred</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Prediction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">X_pred</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y_pred</span> <span class="o">-</span> <span class="mf">1.96</span><span class="o">*</span><span class="n">sigma</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">+</span> <span class="mf">1.96</span><span class="o">*</span><span class="n">sigma</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian Process Regression&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The processing chian in this script:</p>
+<ul class="simple">
+<li><p>A synthetic dataset is generated, consisting of points along a sine curve with added Gaussian noise.</p></li>
+<li><p>A Gaussian Process model with a Radial Basis Function (RBF) kernel is defined and fit to the data.</p></li>
+<li><p>The model is used to predict values over a range, and the standard deviation (<code class="docutils literal notranslate"><span class="pre">sigma</span></code>) of the predictions is calculated.</p></li>
+<li><p>The predictions, along with the 95% confidence intervals (calculated as 1.96 times the standard deviation), are plotted.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter1%3AUnsupervised_Learning_Methods.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Unsupervised Learning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="References1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">References</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Regression Techniques for Predictive Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression-draper1998applied">Polynomial Regression <span class="xref cite">draper1998applied</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-polynomial-regression">Introduction to Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-polynomial-regression">Why Polynomial Regression?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-polynomial-regression">Key Components of Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-polynomial-regression">Understanding Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-polynomial-regression">Advantages of Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-code-implementation">Basic Code Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks-goodfellow2016deep">Neural Networks <span class="xref cite">goodfellow2016deep</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-neural-networks">Introduction to Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-neural-networks-for-regression-and-classification">Why Neural Networks for Regression and Classification?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components-of-neural-networks">Key Components of Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-fully-connected-neural-networks">Understanding Fully Connected Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-neural-networks">Advantages of Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Basic Code Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-processes">Gaussian Processes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-framework">Mathematical Framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">Basic Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance-functions-kernels">Covariance Functions (Kernels)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-variance">Mean and Variance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-a-logical-processing-chain">Gaussian Process - A Logical Processing Chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-examples">Practical Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados/Weibin Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
