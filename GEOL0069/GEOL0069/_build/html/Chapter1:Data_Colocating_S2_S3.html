@@ -317,9 +317,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-read-in-functions-needed">Step 0: Read in Functions Needed</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-get-the-pairs-of-colocated-s2-s3">Step 1: Get the Pairs of Colocated S2/S3</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-download">Step 2: Download</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initiating-the-download-for-sentinel-2">Initiating the Download for Sentinel-2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-get-the-pairs-of-colocated-s2-s3">Step 1: Get the Pairs of Colocated S2/S3</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceeding-with-sentinel-3-olci-download">Proceeding with Sentinel-3 OLCI Download</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-colocated-altimetry-data-of-sentinel-3-olci">Downloading Colocated Altimetry Data of Sentinel-3 OLCI</a></li>
 </ul>
@@ -339,6 +337,7 @@ document.write(`
 <h1>Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data<a class="headerlink" href="#colocating-sentinel-3-olci-and-sentinal-2-optical-data" title="Permalink to this heading">#</a></h1>
 <p>In this section, we embark on a detailed exploration of colocating Sentinel-3 OLCI (Ocean and Land Colour Instrument) data with Sentinel-2 optical data. Colocation of data from these two satellite missions enables a powerful synergy, harnessing the high spatial resolution of Sentinel-2 and the comprehensive coverage and colocated altimeter data from Sentinel-3. This fusion of datasets provides a richer, more detailed perspective of Earth’s surface.</p>
 <p>In the following sections, we will guide you through the necessary steps to efficiently identify and align these datasets.</p>
+<p>Week 4 materials are available <a class="reference external" href="https://drive.google.com/drive/folders/1gNQ-DHs2kTprvKRXuKwbW_7yMsmD7-Hp?usp=sharing">here</a>.</p>
 <section id="step-0-read-in-functions-needed">
 <h2>Step 0: Read in Functions Needed<a class="headerlink" href="#step-0-read-in-functions-needed" title="Permalink to this heading">#</a></h2>
 <p>To streamline our data fetching and processing, we’ll first load the essential functions. These functions are designed to handle various tasks such as data retrieval, format conversion, and preliminary data processing. Ensure that you’ve imported all the required functions before proceeding to the next steps of the workflow. All functions have docstrings so please read them to get some ideas of what they do.</p>
@@ -395,58 +394,6 @@ document.write(`
         <span class="c1"># Record each pair of matched S3 and S2 images</span>
         <span class="k">for</span> <span class="n">s2_image_id</span> <span class="ow">in</span> <span class="n">matched_S2_image_ids</span><span class="p">:</span>
             <span class="n">matched_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s3_image_id</span><span class="p">,</span> <span class="n">s2_image_id</span><span class="p">))</span>
-
-    <span class="k">return</span> <span class="n">matched_pairs</span>
-
-
-<span class="k">def</span> <span class="nf">get_matched_S3_image_ids</span><span class="p">(</span><span class="n">s2_image</span><span class="p">,</span><span class="n">boundary_geometry</span><span class="p">):</span>
-        <span class="n">s2_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">s2_image</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
-        
-        <span class="c1"># Define a time window for S2 search (±3 hours from S3 image time)</span>
-        <span class="n">start_time</span> <span class="o">=</span> <span class="n">s2_time</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="n">end_time</span> <span class="o">=</span> <span class="n">s2_time</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-
-        <span class="c1"># Query for S2 images within the time window and spatial extent of S3</span>
-        <span class="n">S3_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S3/OLCI&#39;</span><span class="p">)</span> \
-        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span> \
-        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">boundary_geometry</span><span class="p">)</span>
-
-        <span class="c1"># Return the list of S2 image IDs</span>
-        <span class="k">return</span> <span class="n">S3_collection</span><span class="o">.</span><span class="n">aggregate_array</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-
-
-<span class="k">def</span> <span class="nf">find_matched_satellite_images_s2</span><span class="p">(</span><span class="n">S2_date_range</span><span class="p">,</span> <span class="n">S3_spatial_extent</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Function to find matched Sentinel-2 image IDs for each Sentinel-3 image in the given date range and spatial extent.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># Define variables for Sentinel-3 query</span>
-    <span class="n">S2_product</span> <span class="o">=</span> <span class="s1">&#39;COPERNICUS/S2&#39;</span>
-    
-    <span class="c1"># Create a rectangle from the S3_spatial_extent if boundary_geometry is not provided</span>
-    
-    <span class="n">min_lon</span><span class="p">,</span> <span class="n">min_lat</span><span class="p">,</span> <span class="n">max_lon</span><span class="p">,</span> <span class="n">max_lat</span> <span class="o">=</span> <span class="n">S3_spatial_extent</span>
-    <span class="n">boundary_geometry</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">([</span><span class="n">min_lon</span><span class="p">,</span> <span class="n">min_lat</span><span class="p">,</span> <span class="n">max_lon</span><span class="p">,</span> <span class="n">max_lat</span><span class="p">])</span>
-    
-    <span class="c1"># Query for Sentinel-2 data</span>
-    <span class="n">S2_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="n">S2_product</span><span class="p">)</span> \
-        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">S2_date_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">S2_date_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> \
-        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">boundary_geometry</span><span class="p">)</span>
-
-    <span class="c1"># Convert S3_collection to a list of image IDs</span>
-    <span class="n">S2_image_ids</span> <span class="o">=</span> <span class="n">S2_collection</span><span class="o">.</span><span class="n">aggregate_array</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-
-    <span class="c1"># List to store matched pairs</span>
-    <span class="n">matched_pairs</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="c1"># Loop through each S3 image ID and find matching S2 images</span>
-    <span class="k">for</span> <span class="n">s2_image_id</span> <span class="ow">in</span> <span class="n">S2_image_ids</span><span class="p">:</span>
-        <span class="n">s3_image</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">S2_collection</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">,</span> <span class="n">s2_image_id</span><span class="p">))</span><span class="o">.</span><span class="n">first</span><span class="p">())</span>
-        <span class="n">matched_S3_image_ids</span> <span class="o">=</span> <span class="n">get_matched_S3_image_ids</span><span class="p">(</span><span class="n">s3_image</span><span class="p">,</span><span class="n">boundary_geometry</span><span class="p">)</span>
-
-        <span class="c1"># Record each pair of matched S3 and S2 images</span>
-        <span class="k">for</span> <span class="n">s3_image_id</span> <span class="ow">in</span> <span class="n">matched_S3_image_ids</span><span class="p">:</span>
-            <span class="n">matched_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s2_image_id</span><span class="p">,</span> <span class="n">s3_image_id</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">matched_pairs</span>
 
@@ -712,6 +659,61 @@ document.write(`
         <span class="p">})</span>
 
     <span class="k">return</span> <span class="n">S3_image_details</span>
+
+<span class="k">def</span> <span class="nf">get_s2_images_in_arctic</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">max_cloud_percentage</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves Sentinel-2 images within the Arctic region for a specified date range and cloud coverage limit.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    start_date (str): The starting date for the image collection in &#39;YYYY-MM-DD&#39; format.</span>
+<span class="sd">    end_date (str): The ending date for the image collection in &#39;YYYY-MM-DD&#39; format.</span>
+<span class="sd">    area (ee.Geometry): The geographical area within which to filter the Sentinel-2 images.</span>
+<span class="sd">    max_cloud_percentage (float, optional): The maximum cloud coverage percentage for filtering images. </span>
+<span class="sd">                                            Defaults to 10 percent.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    ee.ImageCollection: A collection of Sentinel-2 images that fall within the specified date range,</span>
+<span class="sd">                        cloud coverage limit, and geographical area.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define the Arctic region bounding box</span>
+    <span class="n">arctic_region</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">([</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
+
+    <span class="c1"># Filter the Sentinel-2 collection</span>
+    <span class="n">s2_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">arctic_region</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="s1">&#39;CLOUDY_PIXEL_PERCENTAGE&#39;</span><span class="p">,</span> <span class="n">max_cloud_percentage</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">s2_collection</span>
+
+
+<span class="k">def</span> <span class="nf">find_colocated_s3_for_s2</span><span class="p">(</span><span class="n">s2_image</span><span class="p">,</span> <span class="n">buffer_distance</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">time_window_hours</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds Sentinel-3 images that are temporally and spatially colocated with a given Sentinel-2 image.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    s2_image (ee.Image): The Sentinel-2 image to use as a reference for finding colocated Sentinel-3 images.</span>
+<span class="sd">    buffer_distance (int, optional): The buffer distance in meters to apply to the footprint of the Sentinel-2 image.</span>
+<span class="sd">                                     Defaults to 10,000 meters.</span>
+<span class="sd">    time_window_hours (int, optional): The time window in hours to search for Sentinel-3 images before and after</span>
+<span class="sd">                                       the Sentinel-2 image&#39;s acquisition time. Defaults to 2 hours.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    ee.List: A list of Sentinel-3 images that are within the specified time window and overlapping</span>
+<span class="sd">             the buffered footprint of the provided Sentinel-2 image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Buffer the S2 footprint and define time window</span>
+    <span class="n">s2_geometry</span> <span class="o">=</span> <span class="n">s2_image</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">buffer_distance</span><span class="p">)</span>
+    <span class="n">s2_time</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">s2_image</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">))</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">s2_time</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="o">-</span><span class="n">time_window_hours</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">s2_time</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="n">time_window_hours</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Query for S3 images</span>
+    <span class="n">s3_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S3/OLCI&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">s2_geometry</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">s3_collection</span><span class="o">.</span><span class="n">toList</span><span class="p">(</span><span class="n">s3_collection</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -719,65 +721,102 @@ document.write(`
 </section>
 <section id="step-1-get-the-pairs-of-colocated-s2-s3">
 <h2>Step 1: Get the Pairs of Colocated S2/S3<a class="headerlink" href="#step-1-get-the-pairs-of-colocated-s2-s3" title="Permalink to this heading">#</a></h2>
-<p>Once you have set up your environment and are authenticated with Google Earth Engine, the next step is to extract the matched filenames that meet your specific criteria. This involves querying the Google Earth Engine datasets based on your area of interest, time frame, and any other relevant parameters. The code snippet below demonstrates how to perform this task effectively:</p>
+<p>Once you have set up your environment and are authenticated with Google Earth Engine, the next step is to extract the matched filenames that meet your specific criteria. This involves querying the Google Earth Engine datasets based on your area of interest, time frame, and any other relevant parameters. We will get a list of matched filenames but we only select one of them to downlaod. The code snippet below demonstrates how to perform this task effectively:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
-<span class="n">S2_date_range</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2018-06-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-06-02&#39;</span><span class="p">]</span>
-<span class="n">S2_spatial_extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">83</span><span class="p">]</span>  <span class="c1"># Arctic region coordinates</span>
-<span class="n">matched_pairs</span> <span class="o">=</span> <span class="n">find_matched_satellite_images_s2</span><span class="p">(</span><span class="n">S2_date_range</span><span class="p">,</span> <span class="n">S2_spatial_extent</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matched S2 and S3 Image Pairs:&quot;</span><span class="p">,</span> <span class="n">matched_pairs</span><span class="p">)</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2019-03-01&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2019-03-02&#39;</span>
+<span class="n">s2_collection</span> <span class="o">=</span> <span class="n">get_s2_images_in_arctic</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+
+<span class="c1"># Iterate over S2 images and find colocated S3 images</span>
+<span class="n">matched_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">s2_list</span> <span class="o">=</span> <span class="n">s2_collection</span><span class="o">.</span><span class="n">toList</span><span class="p">(</span><span class="n">s2_collection</span><span class="o">.</span><span class="n">size</span><span class="p">())</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">s2_info</span> <span class="ow">in</span> <span class="n">s2_list</span><span class="p">:</span>
+    <span class="n">s2_image</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">s2_info</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+    <span class="n">colocated_s3</span> <span class="o">=</span> <span class="n">find_colocated_s3_for_s2</span><span class="p">(</span><span class="n">s2_image</span><span class="p">)</span>
+    <span class="n">s3_info_list</span> <span class="o">=</span> <span class="n">colocated_s3</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">s3_info</span> <span class="ow">in</span> <span class="n">s3_info_list</span><span class="p">:</span>
+        <span class="n">matched_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s2_info</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">s3_info</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]))</span>
+
+<span class="c1"># Print or process the matched pairs</span>
+<span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">matched_pairs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;S2 Image:&quot;</span><span class="p">,</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;has colocated S3 Image:&quot;</span><span class="p">,</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCM has colocated S3 Image: COPERNICUS/S3/OLCI/S3A_20190301T222350_20190301T222650
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCM has colocated S3 Image: COPERNICUS/S3/OLCI/S3B_20190301T232521_20190301T232821
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCS has colocated S3 Image: COPERNICUS/S3/OLCI/S3A_20190301T222350_20190301T222650
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCS has colocated S3 Image: COPERNICUS/S3/OLCI/S3A_20190302T000449_20190302T000749
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCS has colocated S3 Image: COPERNICUS/S3/OLCI/S3B_20190301T232521_20190301T232821
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCT has colocated S3 Image: COPERNICUS/S3/OLCI/S3A_20190301T222350_20190301T222650
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCT has colocated S3 Image: COPERNICUS/S3/OLCI/S3A_20190302T000449_20190302T000749
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCT has colocated S3 Image: COPERNICUS/S3/OLCI/S3B_20190301T232521_20190301T232821
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCU has colocated S3 Image: COPERNICUS/S3/OLCI/S3A_20190301T222350_20190301T222650
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCU has colocated S3 Image: COPERNICUS/S3/OLCI/S3A_20190302T000449_20190302T000749
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCU has colocated S3 Image: COPERNICUS/S3/OLCI/S3B_20190301T232521_20190301T232821
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCV has colocated S3 Image: COPERNICUS/S3/OLCI/S3A_20190301T222350_20190301T222650
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T01WCV has colocated S3 Image: COPERNICUS/S3/OLCI/S3B_20190301T232521_20190301T232821
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T60WWD has colocated S3 Image: COPERNICUS/S3/OLCI/S3A_20190301T222350_20190301T222650
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T60WWD has colocated S3 Image: COPERNICUS/S3/OLCI/S3A_20190302T000449_20190302T000749
+S2 Image: COPERNICUS/S2/20190301T235611_20190301T235610_T60WWD has colocated S3 Image: COPERNICUS/S3/OLCI/S3B_20190301T232521_20190301T232821
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="step-2-download">
-<h2>Step 2: Download<a class="headerlink" href="#step-2-download" title="Permalink to this heading">#</a></h2>
-<p>Having successfully obtained the filenames for both Sentinel-2 and Sentinel-3 OLCI datasets, our next step is to translate these names into the Copernicus dataspace-compatible format, mirroring the procedure we employed in the previous session. For demonstration purposes, this section will focus on a practical example, involving the download of a single dataset from each, Sentinel-2 and Sentinel-3 OLCI, to illustrate the download process in a step-by-step manner.</p>
-<section id="initiating-the-download-for-sentinel-2">
-<h3>Initiating the Download for Sentinel-2<a class="headerlink" href="#initiating-the-download-for-sentinel-2" title="Permalink to this heading">#</a></h3>
-<p>We’ll begin with the Sentinel-2 dataset. Our first task is to convert the Sentinel-2 filename to the Copernicus format, setting the stage for the subsequent download. This conversion is a critical step, ensuring seamless integration and access to the Copernicus dataspace resources.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
 <span class="n">token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-<span class="n">access_token</span> <span class="o">=</span> <span class="n">token</span>  <span class="c1"># Replace with your actual access token</span>
-<span class="n">download_dir</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">access_token</span> <span class="o">=</span> <span class="n">token</span> 
+<span class="n">download_dir</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
-<span class="n">gee_filename</span> <span class="o">=</span> <span class="s1">&#39;20190621T234139_20190621T234142_T12XVR&#39;</span>
+<span class="n">gee_filename</span> <span class="o">=</span> <span class="s1">&#39;20190301T235611_20190301T235610_T01WCU&#39;</span>
 <span class="n">token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
 <span class="n">file_name</span><span class="p">,</span> <span class="n">product_id</span> <span class="o">=</span> <span class="n">process_image_pair</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
 <span class="n">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">download_dir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S2B_MSIL1C_20190621T234139_N0207_R073_T12XVR_20190621T234938.SAFE.zip
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S2A_MSIL1C_20190301T235611_N0207_R116_T01WCU_20190302T014622.SAFE
 </pre></div>
 </div>
 </div>
 </div>
-</section>
 <section id="proceeding-with-sentinel-3-olci-download">
 <h3>Proceeding with Sentinel-3 OLCI Download<a class="headerlink" href="#proceeding-with-sentinel-3-olci-download" title="Permalink to this heading">#</a></h3>
 <p>Moving forward, we turn our attention to downloading the Sentinel-3 OLCI data. The process mirrors the approach we took with Sentinel-2, maintaining consistency in our methodology. We’ll apply the same logic of filename conversion and follow the structured steps to retrieve the data from the Copernicus dataspace.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example GEE image ID</span>
-<span class="n">gee_image_id</span> <span class="o">=</span> <span class="s1">&#39;S3B_20180601T201324_20180601T201624&#39;</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">gee_image_id</span> <span class="o">=</span> <span class="s1">&#39;S3B_20190301T232521_20190301T232821&#39;</span>
 <span class="c1"># Parse the GEE filename to get the date and time</span>
 <span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span> <span class="o">=</span> <span class="n">parse_gee_filename_s3</span><span class="p">(</span><span class="n">gee_image_id</span><span class="p">)</span>
 
 <span class="c1"># Query the Copernicus Data Space for the corresponding Sentinel-3 OLCI data</span>
 <span class="n">s3_olci_data</span> <span class="o">=</span> <span class="n">query_sentinel3_olci_data</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
-<span class="n">download_dir</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="c1"># Replace with your desired download directory</span>
+<span class="n">download_dir</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1"># Replace with your desired download directory</span>
 <span class="n">product_id</span> <span class="o">=</span> <span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">file_name</span> <span class="o">=</span> <span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
 <span class="c1"># Download the single product</span>
 <span class="n">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">download_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://catalogue.dataspace.copernicus.eu/odata/v1/Products?$filter=contains(Name,&#39;S3B_OL_1_EFR&#39;) and ContentDate/Start ge 2019-03-01T23:25:20.000Z and ContentDate/Start le 2019-03-02T23:25:20.000Z&amp;$orderby=ContentDate/Start&amp;$top=1000
+S3B_OL_1_EFR____20190301T232521_20190301T232821_20190303T043409_0179_022_301_1800_LN1_O_NT_002.SEN3
 </pre></div>
 </div>
 </div>
@@ -973,14 +1012,13 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage</span>
-<span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
 <span class="n">token</span><span class="p">,</span> <span class="n">refresh_token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-<span class="n">olci_filename</span> <span class="o">=</span> <span class="s2">&quot;S3A_OL_1_EFR____20190307T011852_20190307T012152_20190308T054622_0179_042_131_1980_LN1_O_NT_002.SEN3&quot;</span> <span class="c1">## This is an example, which you should replace with the one you are interested in.</span>
+<span class="n">olci_filename</span> <span class="o">=</span> <span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1">## This is an example, which you should replace with the one you are interested in.</span>
 <span class="n">overlapped_df</span> <span class="o">=</span> <span class="n">get_overlapping_sar_file</span><span class="p">(</span><span class="n">olci_filename</span><span class="p">,</span> <span class="n">get_S3_SI_search_results_df</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
 <span class="n">product_id</span> <span class="o">=</span> <span class="n">overlapped_df</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">file_name</span> <span class="o">=</span> <span class="n">overlapped_df</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">download_dir</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">download_dir</span> <span class="o">=</span> <span class="s1">&#39;/Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/&#39;</span>
 <span class="n">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">download_dir</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1059,9 +1097,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-read-in-functions-needed">Step 0: Read in Functions Needed</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-get-the-pairs-of-colocated-s2-s3">Step 1: Get the Pairs of Colocated S2/S3</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-download">Step 2: Download</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initiating-the-download-for-sentinel-2">Initiating the Download for Sentinel-2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-get-the-pairs-of-colocated-s2-s3">Step 1: Get the Pairs of Colocated S2/S3</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceeding-with-sentinel-3-olci-download">Proceeding with Sentinel-3 OLCI Download</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-colocated-altimetry-data-of-sentinel-3-olci">Downloading Colocated Altimetry Data of Sentinel-3 OLCI</a></li>
 </ul>

@@ -399,7 +399,7 @@ You can then click on ‘Enable APIs and Services’ button, search for Google E
 <p>By completing these initial setup steps, you’re ensuring that your environment is ready and equipped with the tools needed for data fetching and analysis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Point</span>
 <span class="kn">import</span> <span class="nn">ee</span> 
 <span class="kn">import</span> <span class="nn">requests</span>
@@ -408,7 +408,16 @@ You can then click on ‘Enable APIs and Services’ button, search for Google E
 <span class="kn">import</span> <span class="nn">subprocess</span>
 
 <span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
-<span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="s1">&#39;project_id&#39;</span><span class="p">)</span>
+<span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><p>To authorize access needed by Earth Engine, open the following
+        URL in a web browser and follow the instructions:</p>
+        <p><a href=https://code.earthengine.google.com/client-auth?scopes=https%3A//www.googleapis.com/auth/earthengine%20https%3A//www.googleapis.com/auth/devstorage.full_control&request_id=XIGty2G_NORmED3UwWXNjvNNQKaWJpqau4VfUbjIgYM&tc=9tREPabK2SMp-iFajQjRt5tE9aEuZksnmAuppEQwK0M&cc=RjAR79v9MTLqm9qrgxwFjHSLIa8Y5ZLGl0owCFjn0yo>https://code.earthengine.google.com/client-auth?scopes=https%3A//www.googleapis.com/auth/earthengine%20https%3A//www.googleapis.com/auth/devstorage.full_control&request_id=XIGty2G_NORmED3UwWXNjvNNQKaWJpqau4VfUbjIgYM&tc=9tREPabK2SMp-iFajQjRt5tE9aEuZksnmAuppEQwK0M&cc=RjAR79v9MTLqm9qrgxwFjHSLIa8Y5ZLGl0owCFjn0yo</a></p>
+        <p>The authorization workflow will generate a code, which you should paste in the box below.</p>
+        </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully saved authorization token.
 </pre></div>
 </div>
 </div>
@@ -420,7 +429,7 @@ You can then click on ‘Enable APIs and Services’ button, search for Google E
 <p>To streamline our data fetching and processing, we’ll first load the essential functions. These functions are designed to handle various tasks such as data retrieval, format conversion, and preliminary data processing. Ensure that you’ve imported all the required functions before proceeding to the next steps of the workflow. All functions have docstrings so please read them to get some ideas of what they do.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse_gee_filename</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse_gee_filename</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parses the Google Earth Engine filename to extract satellite name, sensing date, and start time.</span>
 
@@ -602,7 +611,7 @@ You can then click on ‘Enable APIs and Services’ button, search for Google E
 <p>Once you have set up your environment and are authenticated with Google Earth Engine, the next step is to extract the filenames that meet your specific criteria. This involves querying the Google Earth Engine datasets based on your area of interest, time frame, and any other relevant parameters. The code snippet below demonstrates how to perform this task effectively:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">arctic_region_mask_line</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;region_mask_line.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arctic_region_mask_line</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;region_mask_line.txt&#39;</span><span class="p">)</span>
 <span class="c1"># Create a polygon object representing the Arctic Ocean boundary</span>
 <span class="n">boundary_polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">arctic_region_mask_line</span><span class="p">)</span>
 <span class="n">region_mask_line_tt</span> <span class="o">=</span> <span class="p">[(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span> <span class="k">for</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="ow">in</span> <span class="n">arctic_region_mask_line</span><span class="p">]</span>
@@ -611,7 +620,6 @@ You can then click on ‘Enable APIs and Services’ button, search for Google E
 <span class="n">spatial_extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>  <span class="c1"># Example coordinates</span>
 
 <span class="n">export_tasks</span> <span class="o">=</span> <span class="n">fetch_S3_images_by_area_and_date</span><span class="p">(</span><span class="n">date_range</span><span class="p">,</span> <span class="n">spatial_extent</span><span class="p">,</span> <span class="n">area_of_interest</span><span class="p">)</span>
-
 </pre></div>
 </div>
 </div>
@@ -622,22 +630,28 @@ You can then click on ‘Enable APIs and Services’ button, search for Google E
 <p>After retrieving the filenames from Google Earth Engine, the next crucial step is to convert these filenames into the format recognized by the Copernicus Dataspace. This conversion is essential for ensuring compatibility and enabling you to query and retrieve the corresponding datasets from Copernicus. Below is an example code snippet that demonstrates this conversion process. Note that you will need your username and password for the Copernicus Dataspace to authenticate and access the required data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example GEE image ID</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example GEE image ID</span>
 <span class="n">gee_image_id</span> <span class="o">=</span> <span class="s1">&#39;S3B_20180601T182924_20180601T183224&#39;</span>
 
 <span class="c1"># Parse the GEE filename to get the date and time</span>
 <span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span> <span class="o">=</span> <span class="n">parse_gee_filename</span><span class="p">(</span><span class="n">gee_image_id</span><span class="p">)</span>
 
 <span class="c1"># Get access token for Copernicus Data Space (ensure your credentials are correct)</span>
-<span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;ucfbwc0@ucl.ac.uk&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;Psos28633682Sosp~~~~&#39;</span>
 <span class="n">token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
 
 <span class="c1"># Query the Copernicus Data Space for the corresponding Sentinel-3 OLCI data</span>
 <span class="n">s3_olci_data</span> <span class="o">=</span> <span class="n">query_sentinel3_olci_data</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
 
 <span class="c1"># Print the results</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s3_olci_data</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://catalogue.dataspace.copernicus.eu/odata/v1/Products?$filter=contains(Name,&#39;S3B_OL_1_EFR&#39;) and ContentDate/Start ge 2018-06-01T18:29:23.000Z and ContentDate/Start le 2018-06-02T18:29:23.000Z&amp;$orderby=ContentDate/Start&amp;$top=1000
+S3B_OL_1_EFR____20180601T182924_20180601T183224_20200126T011400_0179_008_013_1260_MR1_R_NT_002.SEN3
 </pre></div>
 </div>
 </div>
@@ -655,7 +669,7 @@ You can then click on ‘Enable APIs and Services’ button, search for Google E
 <p>Once you have the correct filename in the Copernicus format, the final step is to download the data. This process involves authenticating with your Copernicus dataspace credentials and sending a request to download the specified file. Below is an example code snippet demonstrating how to perform the download. Ensure that your username and password are accurate and up-to-date to avoid any authentication issues.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 <span class="n">token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
 <span class="n">access_token</span> <span class="o">=</span> <span class="n">token</span>  <span class="c1"># Replace with your actual access token</span>
