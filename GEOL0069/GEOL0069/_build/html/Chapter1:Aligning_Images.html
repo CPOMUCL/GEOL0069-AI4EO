@@ -1,0 +1,773 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Aligning Sentinel-2 and Sentinel-3 OLCI Data &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter1:Aligning_Images';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="References" href="References1.html" />
+    <link rel="prev" title="Regression Techniques for Predictive Analysis" href="Chapter1%3ARegression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3ASea-ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AAI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3Arollout.html">Roll-out on a Full Image</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AData_Colocating_S2_S3.html">Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AUnsupervised_Learning_Methods.html">Unsupervised Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3ARegression.html">Regression Techniques for Predictive Analysis</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Aligning Sentinel-2 and Sentinel-3 OLCI Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Chapter1:Aligning_Images.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Aligning Sentinel-2 and Sentinel-3 OLCI Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-importing-sentinel-2-and-sentinel-3-olci-data">Step 0: Importing Sentinel-2 and Sentinel-3 OLCI Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-loading-processed-data">Step 1: Loading processed data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-overlap-optimisation">Step 2: Overlap optimisation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="aligning-sentinel-2-and-sentinel-3-olci-data">
+<h1>Aligning Sentinel-2 and Sentinel-3 OLCI Data<a class="headerlink" href="#aligning-sentinel-2-and-sentinel-3-olci-data" title="Permalink to this heading">#</a></h1>
+<p>In our previous session, we explored the method of retrieving colocated Sentinel-2 optical data alongside Sentinel-3 OLCI data. Building upon that foundation, this week’s focus shifts towards the detailed processing and precise alignment of these datasets. Our ultimate goal is to achieve pixel-level colocation between the datasets, enhancing the accuracy and utility of our analysis.</p>
+<section id="step-0-importing-sentinel-2-and-sentinel-3-olci-data">
+<h2>Step 0: Importing Sentinel-2 and Sentinel-3 OLCI Data<a class="headerlink" href="#step-0-importing-sentinel-2-and-sentinel-3-olci-data" title="Permalink to this heading">#</a></h2>
+<p>At this juncture, we reintroduce some previously utilised code with a pivotal objective: to import raw data and transform it into a format amenable to our analysis requirements. Given the extensive memory demands of this operation, we recommend a conceptual understanding of the process rather than direct execution. This step serves as a critical foundation, ensuring that subsequent analyses are built on a robust and standardised dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>! pip install rasterio
+! pip install netCDF4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">griddata</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">netCDF4</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1"># Define the path to the main folder where your data is stored.</span>
+<span class="c1"># You need to replace &#39;path/to/data&#39; with the actual path to your data folder.</span>
+<span class="n">main_folder_path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/Assignment_Material&#39;</span>
+<span class="c1"># main_folder_path = &#39;./&#39;</span>
+<span class="c1"># This part of the code is responsible for finding all directories in the main_folder that end with &#39;.SEN3&#39;.</span>
+<span class="c1"># &#39;.SEN3&#39; is the format of the folder containing specific satellite data files (in this case, OLCI data files).</span>
+<span class="n">directories</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;002.SEN3&#39;</span><span class="p">)]</span> <span class="c1">#load OLCI imagery</span>
+
+<span class="c1"># Loop over each directory (i.e., each set of data) found above.</span>
+<span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">directories</span><span class="p">:</span>
+    <span class="c1"># Construct the path to the OLCI data file within the directory.</span>
+    <span class="c1"># This path is used to access the data files.</span>
+    <span class="n">OLCI_file_p</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+
+    <span class="c1"># Print the path to the current data file being processed.</span>
+    <span class="c1"># This is helpful for tracking which file is being processed at any time.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing: </span><span class="si">{</span><span class="n">OLCI_file_p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Load the instrument data from a file named &#39;instrument_data.nc&#39; inside the directory.</span>
+    <span class="c1"># This file contains various data about the instrument that captured the satellite data.</span>
+    <span class="n">instrument_data</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/instrument_data.nc&#39;</span><span class="p">)</span>
+    <span class="n">solar_flux</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;solar_flux&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract the solar flux data.</span>
+    <span class="n">detector_index</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;detector_index&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract the detector index.</span>
+
+    <span class="c1"># Load tie geometries from a file named &#39;tie_geometries.nc&#39;.</span>
+    <span class="c1"># Tie geometries contain information about viewing angles, which are important for data analysis.</span>
+    <span class="n">tie_geometries</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/tie_geometries.nc&#39;</span><span class="p">)</span>
+    <span class="n">SZA</span> <span class="o">=</span> <span class="n">tie_geometries</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;SZA&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract the Solar Zenith Angle (SZA).</span>
+
+    <span class="c1"># Create a directory for saving the processed data using the original directory name.</span>
+    <span class="c1"># This directory will be used to store output files.</span>
+    <span class="n">save_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;path/to/save&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">save_directory</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">save_directory</span><span class="p">)</span>
+
+    <span class="c1"># This loop processes each radiance band in the OLCI data.</span>
+    <span class="c1"># OLCI instruments capture multiple bands, each representing different wavelengths.</span>
+    <span class="n">OLCI_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">Radiance</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">):</span>  <span class="c1"># There are 21 bands in OLCI data.</span>
+    <span class="c1"># for Radiance in [2,5,8,16]:  # selecting relevant bands</span>
+
+        <span class="n">Rstr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">Radiance</span>  <span class="c1"># Formatting the band number.</span>
+        <span class="n">solar_flux_band</span> <span class="o">=</span> <span class="n">solar_flux</span><span class="p">[</span><span class="n">Radiance</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Get the solar flux for the current band.</span>
+
+        <span class="c1"># Print information about the current band being processed.</span>
+        <span class="c1"># This includes the band number and its corresponding solar flux.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing Band: </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solar Flux for Band </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">solar_flux_band</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Load radiance values from the OLCI data file for the current band.</span>
+        <span class="n">OLCI_nc</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/Oa&#39;</span> <span class="o">+</span> <span class="n">Rstr</span> <span class="o">+</span> <span class="s1">&#39;_radiance.nc&#39;</span><span class="p">)</span>
+        <span class="n">radiance_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">OLCI_nc</span><span class="p">[</span><span class="s1">&#39;Oa&#39;</span> <span class="o">+</span> <span class="n">Rstr</span> <span class="o">+</span> <span class="s1">&#39;_radiance&#39;</span><span class="p">])</span>
+
+        <span class="c1"># Initialize an array to store angle data, which will be calculated based on SZA.</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">radiance_values</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">angle</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">angle</span><span class="p">[:,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">SZA</span><span class="p">[:,</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="mi">64</span><span class="p">)]</span>
+
+        <span class="c1"># Calculate the Top of Atmosphere Bidirectional Reflectance Factor (TOA BRF) for the current band.</span>
+        <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">radiance_values</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">solar_flux_band</span><span class="p">[</span><span class="n">detector_index</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">)))</span>
+
+        <span class="c1"># Add the calculated TOA BRF data to the OLCI_data list.</span>
+        <span class="n">OLCI_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">)</span>
+
+    <span class="n">reshaped_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">OLCI_data</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">OLCI_coord</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/geo_coordinates.nc&#39;</span><span class="p">)</span>
+    <span class="n">OLCI_lon</span><span class="o">=</span><span class="n">OLCI_coord</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+    <span class="n">OLCI_lat</span><span class="o">=</span><span class="n">OLCI_coord</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#This takes ~60 seconds and ~2Gb RAM</span>
+
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Paths to the band images</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1"># You need to specify the path</span>
+<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;S2A_MSIL1C_20190301T235611_N0207_R116_T01WCU_20190302T014622.SAFE/GRANULE/L1C_T01WCU_A019275_20190301T235610/IMG_DATA/&quot;</span>
+<span class="n">bands_paths</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;B4&#39;</span><span class="p">:</span> <span class="n">path</span> <span class="o">+</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B04.jp2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;B3&#39;</span><span class="p">:</span> <span class="n">path</span> <span class="o">+</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B03.jp2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;B2&#39;</span><span class="p">:</span> <span class="n">path</span> <span class="o">+</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B02.jp2&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Read and stack the band images</span>
+<span class="n">band_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">]:</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bands_paths</span><span class="p">[</span><span class="n">band</span><span class="p">])</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="n">band_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Stack bands and create a mask for valid data (non-zero values in all bands)</span>
+<span class="n">band_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">(</span><span class="n">band_data</span><span class="p">)</span>
+<span class="n">valid_data_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">band_stack</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Reshape for GMM, only including valid data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">band_stack</span><span class="p">[</span><span class="n">valid_data_mask</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">s2_filename</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;./S2A_MSIL1C_20190301T235611_N0207_R116_T01WCU_20190302T014622.SAFE/GRANULE/L1C_T01WCU_A019275_20190301T235610/IMG_DATA/T01WCU_20190301T235611_B04.jp2&#39;</span>
+
+<span class="c1"># Read the Sentinel-2 image and its geospatial information</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">s2_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="c1"># Read the raster data and the affine transformation</span>
+    <span class="n">s2_data</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">transform_matrix</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span>
+
+    <span class="c1"># Get the spatial reference system (CRS)</span>
+    <span class="n">srs</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span>
+
+<span class="c1"># Create grid of X,Y values</span>
+<span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">s2_data</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">x_s2</span><span class="p">,</span> <span class="n">y_s2</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">transform_matrix</span> <span class="o">*</span> <span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
+        <span class="n">x_s2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y_s2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Convert grid of X,Y values to latitude/longitude</span>
+<span class="n">in_proj</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">srs</span><span class="p">))</span>  <span class="c1"># Initialize projection from CRS</span>
+<span class="n">out_proj</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">proj</span><span class="o">=</span><span class="s1">&#39;latlong&#39;</span><span class="p">)</span>  <span class="c1"># Initialize projection for latitude/longitude</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-1-loading-processed-data">
+<h2>Step 1: Loading processed data<a class="headerlink" href="#step-1-loading-processed-data" title="Permalink to this heading">#</a></h2>
+<p>As mentioned, you don’t need to run the above cells. But you will need to load them from your Google Drive.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/Teaching_Michel/GEOL0069/StudentFolder/Week_4/&#39;</span> <span class="c1"># You need to specify the path</span>
+<span class="n">x_s2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;x_s2.npy&#39;</span><span class="p">)</span>
+<span class="n">y_s2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;y_s2.npy&#39;</span><span class="p">)</span>
+<span class="n">band_stack</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;band_stack.npy&#39;</span><span class="p">)</span>
+
+<span class="n">x_s3</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;x_s3.npy&#39;</span><span class="p">)</span>
+<span class="n">y_s3</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;y_s3.npy&#39;</span><span class="p">)</span>
+<span class="n">reshaped_array</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;reshaped_array.npy&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also verify if Sentinel-2 data is indeed within Sentinel-3 OLCI data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">s1</span><span class="o">=</span><span class="mi">100</span> <span class="c1">#subsampling rate for S2</span>
+<span class="n">s2</span><span class="o">=</span><span class="mi">100</span> <span class="c1">#subsampling rate for s3</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_s3</span><span class="p">[::</span><span class="n">s1</span><span class="p">,::</span><span class="n">s1</span><span class="p">],</span><span class="n">y_s3</span><span class="p">[::</span><span class="n">s1</span><span class="p">,::</span><span class="n">s1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x_s2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10980</span><span class="p">,</span><span class="mi">10980</span><span class="p">)[::</span><span class="n">s2</span><span class="p">,::</span><span class="n">s2</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_s2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10980</span><span class="p">,</span><span class="mi">10980</span><span class="p">)[::</span><span class="n">s2</span><span class="p">,::</span><span class="n">s2</span><span class="p">])</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">condition</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_s3</span> <span class="o">&gt;</span> <span class="mi">360000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x_s3</span> <span class="o">&lt;</span> <span class="mi">380000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_s3</span> <span class="o">&gt;</span> <span class="mi">7800000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_s3</span> <span class="o">&lt;</span> <span class="mi">7820000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_s3</span><span class="p">[</span><span class="n">condition</span><span class="p">],</span><span class="n">y_s3</span><span class="p">[</span><span class="n">condition</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">reshaped_array</span><span class="p">[</span><span class="n">condition</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">vmin</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;OLCI_zoom.png&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span>
+
+<span class="c1">#This takes 9 minutes (perhaps saving the figure takes the longest)</span>
+<span class="n">x_s2bis</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x_s2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10980</span><span class="p">,</span><span class="mi">10980</span><span class="p">)</span>
+<span class="n">y_s2bis</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_s2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10980</span><span class="p">,</span><span class="mi">10980</span><span class="p">)</span>
+<span class="n">condition</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_s2bis</span> <span class="o">&gt;</span> <span class="mi">360000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x_s2bis</span> <span class="o">&lt;</span> <span class="mi">380000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_s2bis</span> <span class="o">&gt;</span> <span class="mi">7800000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_s2bis</span> <span class="o">&lt;</span> <span class="mi">7820000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_s2bis</span><span class="p">[</span><span class="n">condition</span><span class="p">],</span><span class="n">y_s2bis</span><span class="p">[</span><span class="n">condition</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">band_stack</span><span class="p">[</span><span class="n">condition</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">10000</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;S2_zoom.png&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_s2_condition</span> <span class="o">=</span> <span class="n">x_s2bis</span><span class="p">[</span><span class="n">condition</span><span class="p">]</span>
+<span class="n">y_s2_condition</span> <span class="o">=</span> <span class="n">y_s2bis</span><span class="p">[</span><span class="n">condition</span><span class="p">]</span>
+<span class="n">band_stack_condition</span> <span class="o">=</span> <span class="n">band_stack</span><span class="p">[</span><span class="n">condition</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">10000</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-overlap-optimisation">
+<h2>Step 2: Overlap optimisation<a class="headerlink" href="#step-2-overlap-optimisation" title="Permalink to this heading">#</a></h2>
+<p>Now we optimize the overlap between Sentinel-2 image and Senitnel-3 image and better align them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">reshaped_array_rolled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">reshaped_array</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Roll x_s3_rolled array by -5 grids in the y-direction</span>
+<span class="n">reshaped_array_rolled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">reshaped_array_rolled</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Code that interpolates on a common grid before doing matcing of images in terms of colours and correlating to find offset</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">correlate2d</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">griddata</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">exposure</span>  <span class="c1"># Import exposure module from skimage</span>
+
+<span class="c1"># Scatter input values</span>
+<span class="n">condition</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_s3</span> <span class="o">&gt;</span> <span class="mi">360000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x_s3</span> <span class="o">&lt;</span> <span class="mi">380000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_s3</span> <span class="o">&gt;</span> <span class="mi">7800000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_s3</span> <span class="o">&lt;</span> <span class="mi">7820000</span><span class="p">)</span>
+<span class="n">x_s3_condition</span><span class="p">,</span> <span class="n">y_s3_condition</span> <span class="o">=</span> <span class="n">x_s3</span><span class="p">[</span><span class="n">condition</span><span class="p">],</span> <span class="n">y_s3</span><span class="p">[</span><span class="n">condition</span><span class="p">]</span>
+<span class="c1"># reshaped_array_condition = reshaped_array[condition, 0]</span>
+<span class="n">reshaped_array_condition</span> <span class="o">=</span> <span class="n">reshaped_array_rolled</span><span class="p">[</span><span class="n">condition</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1"># x_s2_condition, y_s2_condition, band_stack_condition = x_s2[condition], y_s2[condition], band_stack[condition]</span>
+
+<span class="c1"># Define grid coordinates</span>
+<span class="n">ngrid</span><span class="o">=</span><span class="mi">400</span> <span class="c1">#here it means grid is 20000/400=50m</span>
+<span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x_s3_condition</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x_s2_condition</span><span class="o">.</span><span class="n">min</span><span class="p">()),</span> <span class="nb">max</span><span class="p">(</span><span class="n">x_s3_condition</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">x_s2_condition</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="n">ngrid</span><span class="p">)</span>
+<span class="n">y_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">y_s3_condition</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_s2_condition</span><span class="o">.</span><span class="n">min</span><span class="p">()),</span> <span class="nb">max</span><span class="p">(</span><span class="n">y_s3_condition</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y_s2_condition</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="n">ngrid</span><span class="p">)</span>
+<span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">)</span>
+
+<span class="c1"># Interpolate scattered values onto grid</span>
+<span class="n">ss</span><span class="o">=</span><span class="mi">10</span> <span class="c1">#only use every 10th point of S2 images</span>
+<span class="n">z1_grid</span> <span class="o">=</span> <span class="n">griddata</span><span class="p">((</span><span class="n">x_s2_condition</span><span class="p">[::</span><span class="n">ss</span><span class="p">],</span> <span class="n">y_s2_condition</span><span class="p">[::</span><span class="n">ss</span><span class="p">]),</span> <span class="n">band_stack_condition</span><span class="p">[::</span><span class="n">ss</span><span class="p">],</span> <span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
+<span class="n">z2_grid</span> <span class="o">=</span> <span class="n">griddata</span><span class="p">((</span><span class="n">x_s3_condition</span><span class="p">,</span> <span class="n">y_s3_condition</span><span class="p">),</span> <span class="n">reshaped_array_condition</span><span class="p">,</span> <span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Perform histogram matching</span>
+<span class="n">matched_z2_grid</span> <span class="o">=</span> <span class="n">exposure</span><span class="o">.</span><span class="n">match_histograms</span><span class="p">(</span><span class="n">z2_grid</span><span class="p">,</span> <span class="n">z1_grid</span><span class="p">)</span>
+
+<span class="c1"># Find the translation that optimizes overlap using cross-correlation</span>
+<span class="n">z1_grid</span><span class="p">[</span><span class="n">z1_grid</span><span class="o">&gt;</span><span class="mf">0.75</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">z1_grid</span><span class="p">[</span><span class="n">z1_grid</span><span class="o">&lt;</span><span class="mf">0.75</span><span class="p">]</span><span class="o">=</span><span class="mf">0.7</span>
+<span class="n">z2_grid</span><span class="p">[</span><span class="n">z2_grid</span><span class="o">&gt;</span><span class="mf">0.75</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">z2_grid</span><span class="p">[</span><span class="n">z2_grid</span><span class="o">&lt;</span><span class="mf">0.75</span><span class="p">]</span><span class="o">=</span><span class="mf">0.7</span>
+<span class="n">matched_z2_grid</span><span class="p">[</span><span class="n">matched_z2_grid</span><span class="o">&gt;</span><span class="mf">0.75</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">matched_z2_grid</span><span class="p">[</span><span class="n">matched_z2_grid</span><span class="o">&lt;</span><span class="mf">0.75</span><span class="p">]</span><span class="o">=</span><span class="mf">0.7</span>
+
+<span class="c1">#Without the binary classification above I have found that the correlation doesn&#39;t work to find alignment</span>
+<span class="n">z1_grid_no_nan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">z1_grid</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">matched_z2_grid_no_nan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">matched_z2_grid</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">correlate2d</span><span class="p">(</span><span class="n">z1_grid_no_nan</span><span class="p">,</span> <span class="n">matched_z2_grid_no_nan</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="s1">&#39;wrap&#39;</span><span class="p">)</span>  <span class="c1"># Compute cross-correlation</span>
+<span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">corr</span><span class="p">),</span> <span class="n">corr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># Find the indices of the maximum correlation</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">matched_z2_grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>  <span class="c1"># Compute the x-offset</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">matched_z2_grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>  <span class="c1"># Compute the y-offset</span>
+<span class="n">matched_z2_grid_aligned</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">matched_z2_grid_no_nan</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">dx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal translation (dx, dy):&quot;</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">matched_z2_grid_aligned</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">z1_grid_no_nan</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;S2_binary_grid_50m.png&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">matched_z2_grid_aligned</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;S3_binary_matched_S2_grid_50m.png&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter1%3ARegression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Regression Techniques for Predictive Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="References1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">References</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-importing-sentinel-2-and-sentinel-3-olci-data">Step 0: Importing Sentinel-2 and Sentinel-3 OLCI Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-loading-processed-data">Step 1: Loading processed data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-overlap-optimisation">Step 2: Overlap optimisation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados/Weibin Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

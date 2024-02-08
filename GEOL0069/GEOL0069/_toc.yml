@@ -24,4 +24,5 @@ parts:
   - caption: Week 5
     chapters:
       - file: Chapter1:Regression
+      - file: Chapter1:Aligning_Images
       - file: References1
