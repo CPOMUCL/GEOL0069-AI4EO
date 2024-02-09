@@ -644,6 +644,24 @@ document.write(`
 </div>
 </div>
 </div>
+<p>The below code does colocation within grid:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">cKDTree</span>
+
+<span class="n">condition</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_s3</span> <span class="o">&gt;</span> <span class="mi">360000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x_s3</span> <span class="o">&lt;</span> <span class="mi">380000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_s3</span> <span class="o">&gt;</span> <span class="mi">7800000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_s3</span> <span class="o">&lt;</span> <span class="mi">7820000</span><span class="p">)</span>
+<span class="n">x_s3_condition</span><span class="p">,</span> <span class="n">y_s3_condition</span> <span class="o">=</span> <span class="n">x_s3</span><span class="p">[</span><span class="n">condition</span><span class="p">],</span> <span class="n">y_s3</span><span class="p">[</span><span class="n">condition</span><span class="p">]</span>
+
+<span class="c1"># Define a KD-tree using x_s2_condition and y_s2_condition</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">cKDTree</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_s2_condition</span><span class="p">,</span> <span class="n">y_s2_condition</span><span class="p">)))</span>
+
+<span class="c1"># Query the tree to find all points within x_s3_condition and y_s3_condition grids</span>
+<span class="n">max_radius</span><span class="o">=</span><span class="mi">1000</span>
+<span class="n">indices_within_grid</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_s3_condition</span><span class="p">[::</span><span class="mi">100</span><span class="p">],</span> <span class="n">y_s3_condition</span><span class="p">[::</span><span class="mi">100</span><span class="p">])),</span> <span class="n">k</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x_s2_condition</span><span class="p">),</span> <span class="n">p</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">distance_upper_bound</span><span class="o">=</span><span class="n">max_radius</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
