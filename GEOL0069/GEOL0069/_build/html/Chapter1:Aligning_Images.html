@@ -438,6 +438,8 @@ document.write(`
     <span class="n">OLCI_coord</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/geo_coordinates.nc&#39;</span><span class="p">)</span>
     <span class="n">OLCI_lon</span><span class="o">=</span><span class="n">OLCI_coord</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
     <span class="n">OLCI_lat</span><span class="o">=</span><span class="n">OLCI_coord</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+
+<span class="n">x_s3</span><span class="p">,</span> <span class="n">y_s3</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">out_proj</span><span class="p">,</span> <span class="n">in_proj</span><span class="p">,</span> <span class="n">OLCI_lon</span><span class="p">,</span> <span class="n">OLCI_lat</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
