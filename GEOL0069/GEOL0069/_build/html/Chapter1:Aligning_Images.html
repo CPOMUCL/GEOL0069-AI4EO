@@ -655,9 +655,20 @@ document.write(`
 <span class="c1"># Define a KD-tree using x_s2_condition and y_s2_condition</span>
 <span class="n">tree</span> <span class="o">=</span> <span class="n">cKDTree</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_s2_condition</span><span class="p">,</span> <span class="n">y_s2_condition</span><span class="p">)))</span>
 
-<span class="c1"># Query the tree to find all points within x_s3_condition and y_s3_condition grids</span>
+<span class="c1"># Query the tree to find all points within x_s3_condition and y_s3_condition grids (Choose one of the following 2 methods)</span>
+<span class="c1"># Option 1:</span>
+<span class="n">indices_within_grid</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">query_ball_point</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_s3_condition</span><span class="p">,</span> <span class="n">y_s3_condition</span><span class="p">)),</span> <span class="n">r</span><span class="o">=</span><span class="mf">300.0</span><span class="p">)</span>
+<span class="c1"># Option 2: Query for a square neighbourhood</span>
 <span class="n">max_radius</span><span class="o">=</span><span class="mi">1000</span>
 <span class="n">indices_within_grid</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_s3_condition</span><span class="p">[::</span><span class="mi">100</span><span class="p">],</span> <span class="n">y_s3_condition</span><span class="p">[::</span><span class="mi">100</span><span class="p">])),</span> <span class="n">k</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x_s2_condition</span><span class="p">),</span> <span class="n">p</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">distance_upper_bound</span><span class="o">=</span><span class="n">max_radius</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot one colocated S2 data for one S3 cell (Within a radius of 300m)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_s2_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">500</span><span class="p">]],</span><span class="n">y_s2_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">500</span><span class="p">]],</span><span class="n">c</span><span class="o">=</span><span class="n">band_stack_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">500</span><span class="p">]]</span><span class="o">/</span><span class="mi">10000</span><span class="p">)</span><span class="c1">#,vmin=0.7,vmax=1)</span>
 </pre></div>
 </div>
 </div>
