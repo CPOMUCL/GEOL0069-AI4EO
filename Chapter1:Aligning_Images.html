@@ -334,6 +334,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-importing-sentinel-2-and-sentinel-3-olci-data">Step 0: Importing Sentinel-2 and Sentinel-3 OLCI Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-loading-processed-data">Step 1: Loading processed data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-overlap-optimisation">Step 2: Overlap optimisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-finding-collocated-pixels">Step 3: Finding collocated pixels</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#option-1-using-kdtree">Option 1: Using KDTree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-kdtree-with-square-box-search">Using KDTree with square box search</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#option-2-using-rtree-and-polygon">Option 2: Using rtree and polygon</a></li>
 </ul>
             </nav>
         </div>
@@ -676,6 +682,329 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="step-3-finding-collocated-pixels">
+<h2>Step 3: Finding collocated pixels<a class="headerlink" href="#step-3-finding-collocated-pixels" title="Permalink to this heading">#</a></h2>
+<section id="option-1-using-kdtree">
+<h3>Option 1: Using KDTree<a class="headerlink" href="#option-1-using-kdtree" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scatter input values</span>
+<span class="c1"># condition = (x_s3 &gt; 360000) &amp; (x_s3 &lt; 380000) &amp; (y_s3 &gt; 7800000) &amp; (y_s3 &lt; 7820000)</span>
+<span class="c1"># x_s3_condition, y_s3_condition = x_s3[condition], y_s3[condition]</span>
+
+<span class="c1"># Define a KD-tree using x_s2_condition and y_s2_condition</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">cKDTree</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_s2_condition</span><span class="p">,</span> <span class="n">y_s2_condition</span><span class="p">)))</span>
+
+<span class="c1"># Query the tree to find all points within x_s3_condition and y_s3_condition grids</span>
+<span class="n">ss3</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">indices_within_grid</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">query_ball_point</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_s3_condition</span><span class="p">[::</span><span class="n">ss3</span><span class="p">],</span> <span class="n">y_s3_condition</span><span class="p">[::</span><span class="n">ss3</span><span class="p">])),</span> <span class="n">r</span><span class="o">=</span><span class="mf">300.0</span><span class="p">)</span>
+
+<span class="c1">#There are 2826 S2 pixels within 300 m radius of pixel 500 of S3</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">25</span><span class="p">])</span>
+
+<span class="c1">#Here are the indices of the S2 pixels within 300 m of pixel 500 of S3</span>
+<span class="n">x_s2_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">25</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#And here they are plotted</span>
+<span class="n">index_s3</span><span class="o">=</span><span class="mi">1200</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_s2_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="n">index_s3</span><span class="p">]],</span><span class="n">y_s2_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="n">index_s3</span><span class="p">]],</span><span class="n">c</span><span class="o">=</span><span class="n">band_stack_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="n">index_s3</span><span class="p">]])</span><span class="c1">#,vmin=0.,vmax=1)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">band_stack_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="n">index_s3</span><span class="p">]]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#And here they are plotted</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_s2_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">25</span><span class="p">]],</span><span class="n">y_s2_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">25</span><span class="p">]],</span><span class="n">c</span><span class="o">=</span><span class="n">band_stack_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">25</span><span class="p">]]</span><span class="o">/</span><span class="mi">10000</span><span class="p">)</span><span class="c1">#,vmin=0.7,vmax=1)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-kdtree-with-square-box-search">
+<h3>Using KDTree with square box search<a class="headerlink" href="#using-kdtree-with-square-box-search" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># condition = (x_s3 &gt; 360000) &amp; (x_s3 &lt; 380000) &amp; (y_s3 &gt; 7800000) &amp; (y_s3 &lt; 7820000)</span>
+<span class="c1"># x_s3_condition, y_s3_condition = x_s3[condition], y_s3[condition]</span>
+
+<span class="c1"># Define a KD-tree using x_s2_condition and y_s2_condition</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">cKDTree</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_s2_condition</span><span class="p">,</span> <span class="n">y_s2_condition</span><span class="p">)))</span>
+
+<span class="c1"># Query the tree to find all points within x_s3_condition and y_s3_condition grids</span>
+<span class="n">max_radius</span><span class="o">=</span><span class="mi">300</span>
+<span class="c1"># indices_within_grid = tree.query(list(zip(x_s3_condition[::100], y_s3_condition[::100])), k=len(x_s2_condition), p=40, distance_upper_bound=max_radius)[1]</span>
+<span class="n">indices_within_grid</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_s3_condition</span><span class="p">[::</span><span class="mi">100</span><span class="p">],</span> <span class="n">y_s3_condition</span><span class="p">[::</span><span class="mi">100</span><span class="p">])),</span> <span class="n">k</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">distance_upper_bound</span><span class="o">=</span><span class="n">max_radius</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#And here they are plotted</span>
+<span class="n">xtest</span><span class="o">=</span><span class="n">x_s2_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">25</span><span class="p">][</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">25</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">3996001</span><span class="p">]]</span>
+<span class="n">ytest</span><span class="o">=</span><span class="n">y_s2_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">25</span><span class="p">][</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">25</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">3996001</span><span class="p">]]</span>
+<span class="n">ztest</span><span class="o">=</span><span class="n">band_stack_condition</span><span class="p">[</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">25</span><span class="p">][</span><span class="n">indices_within_grid</span><span class="p">[</span><span class="mi">25</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">3996001</span><span class="p">]]</span><span class="o">/</span><span class="mi">10000</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytest</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">ztest</span><span class="p">)</span><span class="c1">#,vmin=0.7,vmax=1)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="option-2-using-rtree-and-polygon">
+<h2>Option 2: Using rtree and polygon<a class="headerlink" href="#option-2-using-rtree-and-polygon" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>! pip install rtree
+! pip install rasterio
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Point</span>
+<span class="kn">from</span> <span class="nn">rtree</span> <span class="kn">import</span> <span class="n">index</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">Proj</span><span class="p">,</span> <span class="n">transform</span>
+
+
+<span class="c1"># Create an R-tree spatial index</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">Index</span><span class="p">()</span>
+
+<span class="n">x_s3</span><span class="o">=</span><span class="n">x_s3</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">900</span><span class="p">:</span><span class="n">s1</span><span class="p">,</span><span class="mi">2600</span><span class="p">:</span><span class="mi">3310</span><span class="p">]</span>
+<span class="n">y_s3</span><span class="o">=</span><span class="n">y_s3</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">900</span><span class="p">:</span><span class="n">s1</span><span class="p">,</span><span class="mi">2600</span><span class="p">:</span><span class="mi">3310</span><span class="p">]</span>
+<span class="c1"># Insert bounding boxes of pixels into the R-tree index</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">pixel_x_min</span> <span class="o">=</span> <span class="n">x_s3</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">pixel_x_max</span> <span class="o">=</span> <span class="n">x_s3</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">pixel_y_min</span> <span class="o">=</span> <span class="n">y_s3</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">pixel_y_max</span> <span class="o">=</span> <span class="n">y_s3</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># Create a polygon for the current pixel</span>
+        <span class="n">pixel_polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="n">pixel_x_min</span><span class="p">,</span> <span class="n">pixel_y_min</span><span class="p">),</span> <span class="p">(</span><span class="n">pixel_x_max</span><span class="p">,</span> <span class="n">pixel_y_min</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="n">pixel_x_max</span><span class="p">,</span> <span class="n">pixel_y_max</span><span class="p">),</span> <span class="p">(</span><span class="n">pixel_x_min</span><span class="p">,</span> <span class="n">pixel_y_max</span><span class="p">)])</span>
+
+        <span class="c1"># Insert the polygon into the R-tree index</span>
+        <span class="n">idx</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">j</span><span class="p">,</span> <span class="n">pixel_polygon</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+
+<span class="c1"># Initialize a list to store indices of points within each pixel</span>
+<span class="n">indices_within_pixel</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Loop through each point in x_s2 and y_s2 and check if it&#39;s within any pixel polygon</span>
+<span class="n">ss2</span><span class="o">=</span><span class="mi">100</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_s2</span><span class="p">[::</span><span class="n">ss2</span><span class="p">],</span> <span class="n">y_s2</span><span class="p">[::</span><span class="n">ss2</span><span class="p">])):</span>
+    <span class="c1"># print(i)</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="c1"># Find the indices of polygons (pixels) that intersect with the point</span>
+    <span class="n">intersected_pixels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">idx</span><span class="o">.</span><span class="n">intersection</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
+
+    <span class="c1"># Check if the point is within any of the intersected pixels</span>
+    <span class="k">for</span> <span class="n">pixel_idx</span> <span class="ow">in</span> <span class="n">intersected_pixels</span><span class="p">:</span>
+        <span class="n">pixel_polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="n">x_s3</span><span class="p">[</span><span class="n">pixel_idx</span> <span class="o">//</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pixel_idx</span> <span class="o">%</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">y_s3</span><span class="p">[</span><span class="n">pixel_idx</span> <span class="o">//</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pixel_idx</span> <span class="o">%</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]),</span>
+                                 <span class="p">(</span><span class="n">x_s3</span><span class="p">[</span><span class="n">pixel_idx</span> <span class="o">//</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pixel_idx</span> <span class="o">%</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_s3</span><span class="p">[</span><span class="n">pixel_idx</span> <span class="o">//</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pixel_idx</span> <span class="o">%</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]),</span>
+                                 <span class="p">(</span><span class="n">x_s3</span><span class="p">[</span><span class="n">pixel_idx</span> <span class="o">//</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pixel_idx</span> <span class="o">%</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_s3</span><span class="p">[</span><span class="n">pixel_idx</span> <span class="o">//</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pixel_idx</span> <span class="o">%</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]),</span>
+                                 <span class="p">(</span><span class="n">x_s3</span><span class="p">[</span><span class="n">pixel_idx</span> <span class="o">//</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pixel_idx</span> <span class="o">%</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">y_s3</span><span class="p">[</span><span class="n">pixel_idx</span> <span class="o">//</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pixel_idx</span> <span class="o">%</span> <span class="n">x_s3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]])])</span>
+        <span class="k">if</span> <span class="n">point</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">pixel_polygon</span><span class="p">):</span>
+            <span class="n">indices_within_pixel</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pixel_idx</span><span class="p">)</span>
+
+<span class="c1"># Convert the list of indices to a numpy array</span>
+<span class="n">indices_within_pixel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">indices_within_pixel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># code to extract projection and coordinates (lon,lat,x,y) of S2 imagery</span>
+<span class="c1">#This takes ~60 seconds and ~2Gb RAM</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">Proj</span><span class="p">,</span> <span class="n">transform</span>
+
+<span class="c1"># Path to the Sentinel-2 JP2 image file</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/Teaching_Michel/GEOL0069/StudentFolder/Week_4/&#39;</span> <span class="c1"># You need to specify the path</span>
+<span class="n">s2_filename</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;./S2A_MSIL1C_20190301T235611_N0207_R116_T01WCU_20190302T014622.SAFE/GRANULE/L1C_T01WCU_A019275_20190301T235610/IMG_DATA/T01WCU_20190301T235611_B04.jp2&#39;</span>
+
+<span class="c1"># Read the Sentinel-2 image and its geospatial information</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">s2_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="c1"># Read the raster data and the affine transformation</span>
+    <span class="n">s2_data</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">transform_matrix</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span>
+
+    <span class="c1"># Get the spatial reference system (CRS)</span>
+    <span class="n">srs</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span>
+
+<span class="c1"># Convert grid of X,Y values to latitude/longitude</span>
+<span class="n">in_proj</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">srs</span><span class="p">))</span>  <span class="c1"># Initialize projection from CRS</span>
+<span class="n">out_proj</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">proj</span><span class="o">=</span><span class="s1">&#39;latlong&#39;</span><span class="p">)</span>  <span class="c1"># Initialize projection for latitude/longitude</span>
+<span class="n">x_s3</span><span class="p">,</span> <span class="n">y_s3</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">out_proj</span><span class="p">,</span> <span class="n">in_proj</span><span class="p">,</span> <span class="n">OLCI_lon</span><span class="p">,</span> <span class="n">OLCI_lat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Create grid of X,Y values</span>
+<span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">s2_data</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">x_s2</span><span class="p">,</span> <span class="n">y_s2</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">transform_matrix</span> <span class="o">*</span> <span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
+        <span class="n">x_s2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y_s2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Convert grid of X,Y values to latitude/longitude</span>
+<span class="n">in_proj</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">srs</span><span class="p">))</span>  <span class="c1"># Initialize projection from CRS</span>
+<span class="n">out_proj</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">proj</span><span class="o">=</span><span class="s1">&#39;latlong&#39;</span><span class="p">)</span>  <span class="c1"># Initialize projection for latitude/longitude</span>
+<span class="c1"># lon_s2, lat_s2 = transform(in_proj, out_proj, x_s2, y_s2)</span>
+<span class="c1"># x_s2, y_s2 = transform(out_proj, in_proj, lon_s2, lat_s2)</span>
+
+<span class="n">sar_dataset</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">sar_path</span><span class="p">)</span>
+<span class="n">dem_dataset</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">matched_filePath</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1">###############################################################################</span>
+<span class="c1"># Function calculate_metrics_within_sar_pixel</span>
+<span class="c1">###############################################################################</span>
+<span class="k">def</span> <span class="nf">calculate_metrics_within_sar_pixel</span><span class="p">(</span><span class="n">sar_dataset</span><span class="p">,</span> <span class="n">dem_dataset</span><span class="p">,</span><span class="n">lowerPercentileLeft</span><span class="p">,</span><span class="n">upperPercentileLeft</span><span class="p">,</span><span class="n">lowerPercentileRight</span><span class="p">,</span><span class="n">upperPercentileRight</span><span class="p">):</span>
+
+    <span class="c1"># Determine the overlap area</span>
+    <span class="n">sar_bounds</span> <span class="o">=</span> <span class="n">sar_dataset</span><span class="o">.</span><span class="n">bounds</span>
+    <span class="n">dem_bounds</span> <span class="o">=</span> <span class="n">dem_dataset</span><span class="o">.</span><span class="n">bounds</span>
+    <span class="n">overlap_bounds</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">sar_bounds</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">dem_bounds</span><span class="o">.</span><span class="n">left</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">sar_bounds</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">dem_bounds</span><span class="o">.</span><span class="n">bottom</span><span class="p">),</span>
+                      <span class="nb">min</span><span class="p">(</span><span class="n">sar_bounds</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">dem_bounds</span><span class="o">.</span><span class="n">right</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">sar_bounds</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">dem_bounds</span><span class="o">.</span><span class="n">top</span><span class="p">))</span>
+
+    <span class="n">sar_window</span> <span class="o">=</span> <span class="n">sar_dataset</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="o">*</span><span class="n">overlap_bounds</span><span class="p">)</span>
+    <span class="n">sar_window</span> <span class="o">=</span> <span class="n">sar_window</span><span class="o">.</span><span class="n">round_lengths</span><span class="p">(</span><span class="n">op</span><span class="o">=</span><span class="s1">&#39;ceil&#39;</span><span class="p">)</span>
+
+    <span class="c1"># List to store SAR pixel values and roughness values</span>
+    <span class="n">sar_metrics_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sar_window</span><span class="o">.</span><span class="n">row_off</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sar_window</span><span class="o">.</span><span class="n">row_off</span> <span class="o">+</span> <span class="n">sar_window</span><span class="o">.</span><span class="n">height</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sar_window</span><span class="o">.</span><span class="n">col_off</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sar_window</span><span class="o">.</span><span class="n">col_off</span> <span class="o">+</span> <span class="n">sar_window</span><span class="o">.</span><span class="n">width</span><span class="p">)):</span>
+            <span class="c1"># Read SAR pixel value</span>
+            <span class="n">sar_pixel_value</span> <span class="o">=</span> <span class="n">sar_dataset</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">rasterio</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">sar_pixel_value_clean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">if</span> <span class="p">(</span><span class="n">sar_pixel_value</span> <span class="o">==</span> <span class="n">SAR_MISSING_DATA_VALUE</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="k">else</span> <span class="n">sar_pixel_value</span>
+
+            <span class="c1"># Calculate the geographic boundary of the SAR pixel</span>
+            <span class="n">sar_pixel_bounds</span> <span class="o">=</span> <span class="n">sar_dataset</span><span class="o">.</span><span class="n">window_bounds</span><span class="p">(((</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
+            <span class="n">dem_window</span> <span class="o">=</span> <span class="n">dem_dataset</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="o">*</span><span class="n">sar_pixel_bounds</span><span class="p">)</span>
+            <span class="n">dem_data</span> <span class="o">=</span> <span class="n">dem_dataset</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">dem_window</span><span class="p">)</span>
+
+            <span class="c1"># Replace DEM missing data values with np.nan</span>
+            <span class="n">dem_data</span><span class="p">[</span><span class="n">dem_data</span> <span class="o">==</span> <span class="n">DEM_MISSING_DATA_VALUE</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+            <span class="c1"># Compute metrics if valid DEM data is present</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">dem_data</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+                <span class="n">rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">dem_data</span><span class="p">)))</span>
+
+                <span class="n">pLower_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanpercentile</span><span class="p">(</span><span class="n">dem_data</span><span class="p">,</span> <span class="n">lowerPercentileLeft</span><span class="p">)</span>
+                <span class="n">pUpper_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanpercentile</span><span class="p">(</span><span class="n">dem_data</span><span class="p">,</span> <span class="n">upperPercentileLeft</span><span class="p">)</span>
+                <span class="n">percentile_difference_left</span> <span class="o">=</span> <span class="n">pUpper_left</span> <span class="o">-</span> <span class="n">pLower_left</span>
+
+                <span class="n">pLower_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanpercentile</span><span class="p">(</span><span class="n">dem_data</span><span class="p">,</span> <span class="n">lowerPercentileRight</span><span class="p">)</span>
+                <span class="n">pUpper_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanpercentile</span><span class="p">(</span><span class="n">dem_data</span><span class="p">,</span> <span class="n">upperPercentileRight</span><span class="p">)</span>
+                <span class="n">percentile_difference_right</span> <span class="o">=</span> <span class="n">pUpper_right</span> <span class="o">-</span> <span class="n">pLower_right</span>
+
+                <span class="n">nPoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">dem_data</span><span class="p">))</span>
+
+                <span class="n">sar_pixel_value_clean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">if</span> <span class="p">(</span><span class="n">sar_pixel_value</span> <span class="o">==</span> <span class="n">SAR_MISSING_DATA_VALUE</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="k">else</span> <span class="n">sar_pixel_value</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                <span class="n">sar_metrics_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sar_pixel_value_clean</span><span class="p">,</span> <span class="n">rms</span><span class="p">,</span> <span class="n">percentile_difference_left</span><span class="p">,</span> <span class="n">percentile_difference_right</span><span class="p">,</span> <span class="n">nPoints</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">sar_metrics_list</span>
+    
+<span class="c1"># Calculate RMS values and get SAR pixel values</span>
+<span class="n">sar_metrics_list</span> <span class="o">=</span> <span class="n">calculate_metrics_within_sar_pixel</span><span class="p">(</span>
+    <span class="n">sar_dataset</span><span class="p">,</span> <span class="n">dem_dataset</span><span class="p">,</span>
+    <span class="n">lowerPercentileLeft</span><span class="p">,</span> <span class="n">upperPercentileLeft</span><span class="p">,</span>
+    <span class="n">lowerPercentileRight</span><span class="p">,</span> <span class="n">upperPercentileRight</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#This takes ~60 seconds and 5Gb RAM</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="c1"># import netCDF4</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1"># Define the path to the main folder where your data is stored.</span>
+<span class="c1"># You need to replace &#39;path/to/data&#39; with the actual path to your data folder.</span>
+<span class="n">main_folder_path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/Teaching_Michel/GEOL0069/StudentFolder/Week_4&#39;</span>
+<span class="c1"># main_folder_path = &#39;./&#39;</span>
+<span class="c1"># This part of the code is responsible for finding all directories in the main_folder that end with &#39;.SEN3&#39;.</span>
+<span class="c1"># &#39;.SEN3&#39; is the format of the folder containing specific satellite data files (in this case, OLCI data files).</span>
+<span class="n">directories</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;002.SEN3&#39;</span><span class="p">)]</span> <span class="c1">#load OLCI imagery</span>
+
+<span class="c1"># Loop over each directory (i.e., each set of data) found above.</span>
+<span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">directories</span><span class="p">:</span>
+    <span class="c1"># Construct the path to the OLCI data file within the directory.</span>
+    <span class="c1"># This path is used to access the data files.</span>
+    <span class="n">OLCI_file_p</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+
+    <span class="c1"># Print the path to the current data file being processed.</span>
+    <span class="c1"># This is helpful for tracking which file is being processed at any time.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing: </span><span class="si">{</span><span class="n">OLCI_file_p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># This loop processes each radiance band in the OLCI data.</span>
+    <span class="c1"># OLCI instruments capture multiple bands, each representing different wavelengths.</span>
+    <span class="n">OLCI_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># for Radiance in range(1, 22):  # There are 21 bands in OLCI data.</span>
+    <span class="k">for</span> <span class="n">Radiance</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">16</span><span class="p">]:</span>  <span class="c1"># selecting relevant bands</span>
+
+        <span class="n">Rstr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">Radiance</span>  <span class="c1"># Formatting the band number.</span>
+
+        <span class="c1"># Print information about the current band being processed.</span>
+        <span class="c1"># This includes the band number and its corresponding solar flux.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing Band: </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Load radiance values from the OLCI data file for the current band.</span>
+        <span class="c1"># OLCI_nc = netCDF4.Dataset(OLCI_file_p + &#39;/Oa&#39; + Rstr + &#39;_radiance.nc&#39;)</span>
+        <span class="n">s3_filename</span> <span class="o">=</span> <span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/Oa&#39;</span> <span class="o">+</span> <span class="n">Rstr</span> <span class="o">+</span> <span class="s1">&#39;_radiance.nc&#39;</span>
+
+        <span class="c1"># Read the Sentinel-2 image and its geospatial information</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">s3_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">src_s3</span><span class="p">:</span>
+            <span class="c1"># Read the raster data and the affine transformation</span>
+            <span class="n">s3_data</span> <span class="o">=</span> <span class="n">src_s3</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">transform_matrix_s3</span> <span class="o">=</span> <span class="n">src_s3</span><span class="o">.</span><span class="n">transform</span>
+
+            <span class="c1"># Get the spatial reference system (CRS)</span>
+            <span class="n">srs_s3</span> <span class="o">=</span> <span class="n">src_s3</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -748,6 +1077,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-importing-sentinel-2-and-sentinel-3-olci-data">Step 0: Importing Sentinel-2 and Sentinel-3 OLCI Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-loading-processed-data">Step 1: Loading processed data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-overlap-optimisation">Step 2: Overlap optimisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-finding-collocated-pixels">Step 3: Finding collocated pixels</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#option-1-using-kdtree">Option 1: Using KDTree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-kdtree-with-square-box-search">Using KDTree with square box search</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#option-2-using-rtree-and-polygon">Option 2: Using rtree and polygon</a></li>
 </ul>
   </nav></div>
 
