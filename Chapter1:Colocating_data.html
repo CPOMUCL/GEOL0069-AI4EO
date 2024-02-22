@@ -337,6 +337,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-s3-and-s2-images-sample-data">Step 1: Load S3 and S2 images sample data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-label-s2-pixels-see-week-4-on-unsupervised-classification">Step 2: Label S2 pixels (See week 4 on unsupervised classification)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-find-collocated-pixels-using-kdtree">Step 3: Find collocated pixels using KDTree</a></li>
 </ul>
             </nav>
@@ -388,8 +389,10 @@ document.write(`
 </div>
 </div>
 </div>
-<p>## Step 2: Label S2 pixels (See week 4 on unsupervised classification)
-For the code below, we use K-Means clustering to get the labels of Sentinel-2 image and we will use them to generate part of the training data.</p>
+</section>
+<section id="step-2-label-s2-pixels-see-week-4-on-unsupervised-classification">
+<h2>Step 2: Label S2 pixels (See week 4 on unsupervised classification)<a class="headerlink" href="#step-2-label-s2-pixels-see-week-4-on-unsupervised-classification" title="Permalink to this heading">#</a></h2>
+<p>For the code below, we use K-Means clustering to get the labels of Sentinel-2 image and we will use them to generate part of the training data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -555,6 +558,7 @@ For the code below, we use K-Means clustering to get the labels of Sentinel-2 im
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-s3-and-s2-images-sample-data">Step 1: Load S3 and S2 images sample data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-label-s2-pixels-see-week-4-on-unsupervised-classification">Step 2: Label S2 pixels (See week 4 on unsupervised classification)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-find-collocated-pixels-using-kdtree">Step 3: Find collocated pixels using KDTree</a></li>
 </ul>
   </nav></div>
