@@ -25,4 +25,9 @@ parts:
     chapters:
       - file: Chapter1:Regression
       - file: Chapter1:Aligning_Images
+  - caption: Week 6
+    chapters:
+      - file: Chapter1:Colocating_data
+      - file: Chapter1:Regression_Part2
       - file: References1
+
