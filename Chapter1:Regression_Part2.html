@@ -352,6 +352,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-performances">Comparison of Performances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rollout">Rollout</a></li>
 </ul>
             </nav>
         </div>
@@ -408,13 +409,13 @@ document.write(`
 <span class="n">polynomial_features</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">X_poly_train</span> <span class="o">=</span> <span class="n">polynomial_features</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_poly_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">model_poly</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model_poly</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_poly_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="n">X_poly_test</span> <span class="o">=</span> <span class="n">polynomial_features</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
-<span class="n">y_pred_poly</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_poly_test</span><span class="p">)</span>
-<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">y_pred_poly</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_poly_test</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Mean Squared Error (MSE) on the test set is: </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">sample_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -507,16 +508,16 @@ document.write(`
 
 <span class="n">gp</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">y_pred</span><span class="p">,</span> <span class="n">variance</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> 
+<span class="n">y_pred_gp</span><span class="p">,</span> <span class="n">variance</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">y_pred_gp</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> 
 <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 
-<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Mean Squared Error (MSE) on the test set is: </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">sample_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_test</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_pred_gp</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian Process Regression - Test Set Prediction&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;First Feature&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Target&#39;</span><span class="p">)</span>
@@ -555,6 +556,41 @@ document.write(`
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Target&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rollout">
+<h2>Rollout<a class="headerlink" href="#rollout" title="Permalink to this heading">#</a></h2>
+<p>Now we can test our model on another part of OLCI image. We will use polynomial regression as an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">path1</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/Week_6/reshaped_array_condition21_rollout.npy&#39;</span>
+<span class="n">path2</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/Week_6/x_s3_condition_rollout.npy&#39;</span>
+<span class="n">path3</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/Week_6/y_s3_rollout.npy&#39;</span>
+
+<span class="n">reshaped_array_condition21_rollout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path1</span><span class="p">)</span>
+<span class="n">x_s3_condition_rollout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path2</span><span class="p">)</span>
+<span class="n">y_s3_condition_rollout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_poly_test</span> <span class="o">=</span> <span class="n">polynomial_features</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">reshaped_array_condition21_rollout</span><span class="p">)</span>
+<span class="n">y_pred_poly</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_poly_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_s3_condition_rollout</span><span class="p">,</span><span class="n">y_s3_condition_rollout</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">y_pred_poly</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -643,6 +679,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-performances">Comparison of Performances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rollout">Rollout</a></li>
 </ul>
   </nav></div>
 
