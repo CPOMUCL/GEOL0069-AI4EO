@@ -30,4 +30,8 @@ parts:
       - file: Chapter1:Colocating_data
       - file: Chapter1:Regression_Part2
       - file: References1
+  - caption: Week 7
+    chapters:
+      - file: Chapter2_IntrotoGaussianProcesses
+
 

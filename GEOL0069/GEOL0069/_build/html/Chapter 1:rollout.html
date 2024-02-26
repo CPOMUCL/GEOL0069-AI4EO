@@ -172,7 +172,6 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Roll-out on a Full Image</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
 <ul class="nav bd-sidenav">
@@ -190,6 +189,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Chapter1%3AColocating_data.html">Colocate Sentinel-2 and Sentinel-3 Imagery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapter1%3ARegression_Part2.html">Application of Regression Techniques in Satellite Imagery Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter2_IntrotoGaussianProcesses.html">Introduction to Gaussian Processes</a></li>
 </ul>
 
     </div>
@@ -336,16 +339,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Roll-out on a Full Image</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#display-results">Display Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-results">Display Results</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rollout-on-a-small-region">Rollout on a Small Region</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rollout-on-a-small-region">Rollout on a Small Region</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -356,7 +357,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="roll-out-on-a-full-image">
+  <section class="tex2jax_ignore mathjax_ignore" id="roll-out-on-a-full-image">
 <h1>Roll-out on a Full Image<a class="headerlink" href="#roll-out-on-a-full-image" title="Permalink to this heading">#</a></h1>
 <p>📘 <strong>Interactive Version</strong>: For a hands-on experience with this chapter’s content, access the interactive notebook in <a class="reference external" href="https://drive.google.com/file/d/1ZPRyzfhLtQcsFJEWGtoayVFeI-8WR8oq/view?usp=sharing">Google Colab</a>.</p>
 <section id="introduction">
@@ -454,9 +455,8 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
 <section id="model-application">
-<h2>Model Application<a class="headerlink" href="#model-application" title="Permalink to this heading">#</a></h2>
+<h3>Model Application<a class="headerlink" href="#model-application" title="Permalink to this heading">#</a></h3>
 <p>In this phase, the trained model processes the entire image, generating outputs that classify the different regions into respective categories such as sea-ice and leads. Let’s say your saved model is called <code class="docutils literal notranslate"><span class="pre">model</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -471,7 +471,7 @@ document.write(`
 </div>
 </section>
 <section id="display-results">
-<h2>Display Results<a class="headerlink" href="#display-results" title="Permalink to this heading">#</a></h2>
+<h3>Display Results<a class="headerlink" href="#display-results" title="Permalink to this heading">#</a></h3>
 <p>Visual inspection plays a crucial role here. By juxtaposing the model-generated classified images against the original, we can discern the model’s aptitude in retaining the intrinsic spatial structures and patterns of the original image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -582,7 +582,7 @@ document.write(`
 </section>
 </section>
 <section id="rollout-on-a-small-region">
-<h1>Rollout on a Small Region<a class="headerlink" href="#rollout-on-a-small-region" title="Permalink to this heading">#</a></h1>
+<h2>Rollout on a Small Region<a class="headerlink" href="#rollout-on-a-small-region" title="Permalink to this heading">#</a></h2>
 <p>You can also try your model on a small sub-region of a full image. For example, we do the rollout on a region where we used IRIS to classify. The overall logic is the same.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -615,6 +615,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -684,16 +685,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Roll-out on a Full Image</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#display-results">Display Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-results">Display Results</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rollout-on-a-small-region">Rollout on a Small Region</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rollout-on-a-small-region">Rollout on a Small Region</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
