@@ -341,8 +341,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-and-definition">Overview and Definition</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-intuitive-examples">Some intuitive examples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-framework">Mathematical Framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-intuitive-examples-zhang2023dive">Some intuitive examples <span class="xref cite">zhang2023dive</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-framework-zhang2023dive-bishop2006pattern">Mathematical Framework <span class="xref cite">zhang2023dive,bishop2006pattern</span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">Basic Concepts</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance-functions-kernels">Covariance Functions (Kernels)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-variance">Mean and Variance</a></li>
@@ -366,8 +366,8 @@ document.write(`
 <h2>Overview and Definition<a class="headerlink" href="#overview-and-definition" title="Permalink to this heading">#</a></h2>
 <p>In week 7, we will dive into Gaussian Processes in a greater detail. From previous weeks, we know that machine learning often focuses on extracting numerous, complex parameters from data, like neural network weights, which can be hard to interpret. Gaussian processes differ by allowing us to directly consider the broad characteristics of potential functions fitting our data, such as their variability, periodicity, or other structural features. They enable the incorporation of these insights into our models by defining a Gaussian distribution over the functions that best match our observations. Essentially, a Gaussian Process is a collection of random variables, any finite number of which have a joint Gaussian distribution. This makes GPs a natural choice for modeling distributions over functions. They are particularly powerful for regression problems, where the goal is to predict continuous outcomes.</p>
 </section>
-<section id="some-intuitive-examples">
-<h2>Some intuitive examples<a class="headerlink" href="#some-intuitive-examples" title="Permalink to this heading">#</a></h2>
+<section id="some-intuitive-examples-zhang2023dive">
+<h2>Some intuitive examples <span id="id1">[<a class="reference internal" href="References1.html#id17" title="Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola. Dive into Deep Learning. Cambridge University Press, 2023. https://D2L.ai.">ZLLS23</a>]</span><a class="headerlink" href="#some-intuitive-examples-zhang2023dive" title="Permalink to this heading">#</a></h2>
 <p>In the given dataset, we have a series of regression targets, denoted as <span class="math notranslate nohighlight">\(y\)</span>, which are associated with their corresponding inputs, <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -531,8 +531,8 @@ document.write(`
 </div>
 <p>Now, you should get some ideas of how GP works roughly, from the prior to the posterior distributions over the functions.</p>
 </section>
-<section id="mathematical-framework">
-<h2>Mathematical Framework<a class="headerlink" href="#mathematical-framework" title="Permalink to this heading">#</a></h2>
+<section id="mathematical-framework-zhang2023dive-bishop2006pattern">
+<h2>Mathematical Framework <span id="id2">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>, <a class="reference internal" href="References1.html#id17" title="Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola. Dive into Deep Learning. Cambridge University Press, 2023. https://D2L.ai.">ZLLS23</a>]</span><a class="headerlink" href="#mathematical-framework-zhang2023dive-bishop2006pattern" title="Permalink to this heading">#</a></h2>
 <section id="basic-concepts">
 <h3>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading">#</a></h3>
 <p>A Gaussian Process (GP) is essentially an advanced form of a Gaussian (or normal) distribution, but instead of being over simple variables, it’s over functions. Imagine a GP as a method to predict or estimate a function based on known data points.</p>
@@ -648,7 +648,7 @@ document.write(`
 </li>
 </ol>
 <p>This chain provides a comprehensive overview of the steps involved in applying Gaussian Processes to a problem, from initial setup to prediction and evaluation.</p>
-<p>With a foundational understanding of Gaussian Processes (GP) established, we are now ready to delve deeper into the subject. Let’s now dive into details by following these 3 notebooks:</p>
+<p>With a foundational understanding of Gaussian Processes (GP) established, we are now ready to delve deeper into the subject. Let’s now dive into details by following these 3 notebooks <span id="id3">[<a class="reference internal" href="References1.html#id17" title="Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola. Dive into Deep Learning. Cambridge University Press, 2023. https://D2L.ai.">ZLLS23</a>]</span>:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/d2l-ai/d2l-pytorch-colab/blob/master/chapter_gaussian-processes/gp-intro.ipynb">Introduction to Gaussian Processes</a></p></li>
 <li><p><a class="reference external" href="https://colab.research.google.com/github/d2l-ai/d2l-pytorch-colab/blob/master/chapter_gaussian-processes/gp-priors.ipynb">Gaussian Process Priors</a></p></li>
@@ -716,8 +716,8 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-and-definition">Overview and Definition</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-intuitive-examples">Some intuitive examples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-framework">Mathematical Framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-intuitive-examples-zhang2023dive">Some intuitive examples <span class="xref cite">zhang2023dive</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-framework-zhang2023dive-bishop2006pattern">Mathematical Framework <span class="xref cite">zhang2023dive,bishop2006pattern</span></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">Basic Concepts</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance-functions-kernels">Covariance Functions (Kernels)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-variance">Mean and Variance</a></li>
