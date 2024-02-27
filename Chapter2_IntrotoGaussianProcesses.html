@@ -659,6 +659,56 @@ document.write(`
 <li><p><a class="reference external" href="https://colab.research.google.com/github/CPOMUCL/GPSat/blob/main/docs/notebooks/1d_local_expert_model_part_2.ipynb">GPSat: 1-D Local Expert Model Part-2</a></p></li>
 <li><p><a class="reference external" href="https://colab.research.google.com/github/CPOMUCL/GPSat/blob/main/docs/notebooks/inline_example.ipynb">GPSat: Inline Example</a></p></li>
 </ul>
+<p>Before running any of the GPSat notebook above, please run the following cells to install GPSat package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">google.colab</span>
+    <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># TODO: allow for mounting of gdrive</span>
+<span class="c1"># TODO: allow for checking out a branch</span>
+
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">import</span> <span class="nn">re</span>
+
+    <span class="c1"># change to working directory</span>
+    <span class="n">work_dir</span> <span class="o">=</span> <span class="s2">&quot;/content&quot;</span>
+    
+    <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">work_dir</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;workspace directory: </span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2"> does not exist&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">work_dir</span><span class="p">)</span>
+    
+    <span class="c1"># clone repository</span>
+    <span class="o">!</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/CPOMUCL/GPSat.git
+
+    <span class="n">repo_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">&quot;GPSat&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;changing directory to: </span><span class="si">{</span><span class="n">repo_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">repo_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
