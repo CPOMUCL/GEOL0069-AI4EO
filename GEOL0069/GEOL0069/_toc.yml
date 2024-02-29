@@ -33,5 +33,6 @@ parts:
   - caption: Week 7
     chapters:
       - file: Chapter2_IntrotoGaussianProcesses
+      - file: Chapter_2_Intro_to_GPSat
 
 
