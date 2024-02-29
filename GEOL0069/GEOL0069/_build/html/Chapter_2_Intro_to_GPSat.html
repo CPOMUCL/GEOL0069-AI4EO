@@ -449,10 +449,11 @@ if IN_COLAB:
 </div>
 </div>
 <p>Consider data generated from a simple cosine function</p>
-<p>\begin{align}
+<div class="math notranslate nohighlight">
+\[
 \tag{1}
 y = \cos(X) + \epsilon,
-\end{align}</p>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(X = (x_1, \ldots, x_N)\)</span> is a set of randomly generated points within the interval <span class="math notranslate nohighlight">\([-L, L]\)</span>, and <span class="math notranslate nohighlight">\(\epsilon\)</span> is a measurement error, which we take to be an i.i.d. zero-mean Gaussian noise with standard deviation <span class="math notranslate nohighlight">\(0.05\)</span>.</p>
 <p>Our goal is to use a Gaussian process model to filter out the noise <span class="math notranslate nohighlight">\(\epsilon\)</span> and recover the function <span class="math notranslate nohighlight">\(f(x) = \cos(x)\)</span> from the training data <span class="math notranslate nohighlight">\((X, y)\)</span>.</p>
 <div class="cell docutils container">
@@ -485,19 +486,22 @@ y = \cos(X) + \epsilon,
 <h2>Gaussian processes<a class="headerlink" href="#gaussian-processes" title="Permalink to this heading">#</a></h2>
 <p>Intuitively, a zero-mean Gaussian process (GP) can be understood as a Gaussian distribution on an <em>arbitrary collection of inputs</em>.</p>
 <p>More specifically, it is a random function <span class="math notranslate nohighlight">\(f : \mathbb{R} \rightarrow \mathbb{R}\)</span> such that for an arbitrary collection of inputs <span class="math notranslate nohighlight">\(X = (x_1, \ldots, x_N)\)</span>, the random variable <span class="math notranslate nohighlight">\(f(X)\)</span> is a multivariate Gaussian</p>
-<p>\begin{align*}
+<div class="math notranslate nohighlight">
+\[
 f(X) \sim \mathcal{N}(0, K_{XX}),
-\end{align*}</p>
+\]</div>
 <p>for some <span class="math notranslate nohighlight">\(N \times N\)</span> covariance matrix <span class="math notranslate nohighlight">\(K_{XX}\)</span>. Importantly, this covariance matrix can be computed using a <strong>kernel function</strong>  <span class="math notranslate nohighlight">\(k : \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}\)</span> as</p>
-<p>\begin{align*}
+<div class="math notranslate nohighlight">
+\[
 [K_{XX}]_{ij} = k(x_i, x_j), \quad \forall i,j = 1, \ldots, N,
-\end{align*}</p>
+\]</div>
 <p>and this completely characterises the zero-mean GP. i.e. the properties of a GP are completely determined by the kernel!</p>
 <p>Below, we set up a GP with the so-called radial basis function (RBF) kernel, given as</p>
-<p>\begin{align*}
+<div class="math notranslate nohighlight">
+\[
 \tag{RBF}
-k_{\text{RBF}}(x, x’) = \sigma^2 \exp\left(-\frac{|x-x’|^2}{2\ell^2}\right),
-\end{align*}</p>
+k_{\text{RBF}}(x, x') = \sigma^2 \exp\left(-\frac{|x-x'|^2}{2\ell^2}\right),
+\]</div>
 <p>using <code class="docutils literal notranslate"><span class="pre">sklearnGPRModel</span></code>, a GPSat GP regression model based on the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> GPR module.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -542,9 +546,10 @@ k_{\text{RBF}}(x, x’) = \sigma^2 \exp\left(-\frac{|x-x’|^2}{2\ell^2}\right),
 <p>In <code class="docutils literal notranslate"><span class="pre">param_names</span></code> above, we also saw a parameter <code class="docutils literal notranslate"><span class="pre">likelihood_variance</span></code>. This is not a hyperparameter of the GP kernel, but is instead a parameter of the so-called <em>likelihood</em>.</p>
 <p>In general, the likelihood describes the probability of an observation <span class="math notranslate nohighlight">\(y\)</span> given the ground truth field <span class="math notranslate nohighlight">\(f(X)\)</span>, i.e., the conditional distribution <span class="math notranslate nohighlight">\(p(y | f(X))\)</span>. In our case, since the observations are assumed to only differ from the ground truth by some measurement error, the likelihood is understood as modelling precisely this measurement error.</p>
 <p>From (1), we see that the likelihood is given by</p>
-<p>\begin{align*}
+<div class="math notranslate nohighlight">
+\[
 p(y | f(X)) \sim \mathcal{N}(f(X), \alpha^2 I),
-\end{align*}</p>
+\]</div>
 <p>with <span class="math notranslate nohighlight">\(\alpha = 0.05\)</span> and <span class="math notranslate nohighlight">\(f(x) = \cos(x)\)</span>. Here, the parameter <span class="math notranslate nohighlight">\(\alpha^2\)</span> is referred to as the <em>likelihood variance</em>.</p>
 <p>We can get the default value for the likelihood variance using the <code class="docutils literal notranslate"><span class="pre">get_*</span></code> method:</p>
 <div class="cell docutils container">
@@ -584,10 +589,11 @@ p(y | f(X)) \sim \mathcal{N}(f(X), \alpha^2 I),
 <h2>Prediction<a class="headerlink" href="#prediction" title="Permalink to this heading">#</a></h2>
 <p>From just these information, we can now infer what our ground truth function <span class="math notranslate nohighlight">\(f\)</span> should be, given the data pair <span class="math notranslate nohighlight">\((X, y)\)</span>.</p>
 <p>Mathematically this is achieved by the simple, yet powerful <strong>Bayes’ rule</strong> to update our belief on the function <span class="math notranslate nohighlight">\(f\)</span> given our data <span class="math notranslate nohighlight">\((X, y)\)</span>. Informally, this reads:</p>
-<p>\begin{align}
+<div class="math notranslate nohighlight">
+\[
 \tag{2}
-\underbrace{p(f ,|, X, y)}<em>{\text{posterior}} \propto \underbrace{p(y ,|, f(X))}</em>{\text{likelihood}} ,, \underbrace{p(f)}_{\text{prior}}.
-\end{align}</p>
+\underbrace{p(f \,|\, X, y)}_{\text{posterior}} \propto \underbrace{p(y \,|\, f(X))}_{\text{likelihood}} \,\, \underbrace{p(f)}_{\text{prior}}.
+\]</div>
 <p>In GP regression, one can understand the GP as modelling a prior distribution on the function <span class="math notranslate nohighlight">\(f\)</span>. Thus, the term <span class="math notranslate nohighlight">\(p(f)\)</span> corresponds to our GP model. The posterior distribution <span class="math notranslate nohighlight">\(p(f | X, y)\)</span> thus gives our prediction of the field <span class="math notranslate nohighlight">\(f\)</span> given the data.</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">GPSat</span></code> models, this is computed using the <code class="docutils literal notranslate"><span class="pre">predict()</span></code> method. This takes as inputs a set of <span class="math notranslate nohighlight">\(N_*\)</span> prediction points, which must be an array of size <span class="math notranslate nohighlight">\((N_*, D)\)</span>, where <span class="math notranslate nohighlight">\(D\)</span> is the input dimension (in our case, just 1).</p>
 <div class="cell docutils container">
@@ -628,10 +634,11 @@ p(y | f(X)) \sim \mathcal{N}(f(X), \alpha^2 I),
 <h2>Training<a class="headerlink" href="#training" title="Permalink to this heading">#</a></h2>
 <p>To further improve our predictions, we can think of finding a value for the hyperparameters <span class="math notranslate nohighlight">\(\Theta = (\sigma^2, \ell, \alpha^2)\)</span> that fit the data “better”. This is called the <em>training</em> process.</p>
 <p>To define what a “better” model means, we can compare them using a certain metric. A perferred such metric in Bayesian modelling is the so-called <em>marginal likelihood</em>, defined as:</p>
-<p>\begin{align}
+<div class="math notranslate nohighlight">
+\[
 \tag{3}
-p(y | \Theta)  = \int p(y | f(X), \Theta) ,p(f(X) | \Theta) ,df(X).
-\end{align}</p>
+p(y | \Theta)  = \int p(y | f(X), \Theta) \,p(f(X) | \Theta) \,df(X).
+\]</div>
 <p>Thus, we can find an optimal set of parameters by maximising (3) with respect to <span class="math notranslate nohighlight">\(\Theta\)</span>. Equivalently, we can also maximise their log-transformed counterpart, which is more typically used.</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">GPSat</span></code> models, we can compute the log-transformed version of the metric (3) by simply calling the <code class="docutils literal notranslate"><span class="pre">get_objective_function_value()</span></code> method.</p>
 <div class="cell docutils container">
@@ -805,10 +812,11 @@ p(y | \Theta)  = \int p(y | f(X), \Theta) ,p(f(X) | \Theta) ,df(X).
 <p>The main intended use case of <code class="docutils literal notranslate"><span class="pre">GPSat</span></code> is to model complex looking fields from a large set of data points, a situation commonly encountered in the geosciences, namely optimal interpolation (OI). The strategy that we adopted is quite simple: to model local chunks of data using different GPs and then gluing their predictions together.</p>
 <p>In this tutorial notebook, we will see how this method performs compared to a single “global” GP. We note that <code class="docutils literal notranslate"><span class="pre">GPSat</span></code> has an automated API to carry out this whole workflow, which we will see in the second part of this tutorial. However for the sake of understanding, we will hard-code this method here.</p>
 <p>First, we generate noisy data as follows:</p>
-<p>\begin{align}
+<div class="math notranslate nohighlight">
+\[
 \tag{1}
 y = \sin(1/X) + \epsilon, \quad \epsilon \sim \mathcal{N}(0, 0.05^2 I),
-\end{align}</p>
+\]</div>
 <p>in the region <span class="math notranslate nohighlight">\(X \in [0.1, 0.6]\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
