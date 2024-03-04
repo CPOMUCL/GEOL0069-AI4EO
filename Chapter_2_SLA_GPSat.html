@@ -1,0 +1,1190 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Interpolation of Sea Level Anomaly using GPSat &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter_2_SLA_GPSat';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Introduction to GPSat" href="Chapter_2_Intro_to_GPSat.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3ASea-ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AAI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3Arollout.html">Roll-out on a Full Image</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AData_Colocating_S2_S3.html">Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AUnsupervised_Learning_Methods.html">Unsupervised Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3ARegression.html">Regression Techniques for Predictive Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AAligning_Images.html">Aligning Sentinel-2 and Sentinel-3 OLCI Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AColocating_data.html">Colocate Sentinel-2 and Sentinel-3 Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3ARegression_Part2.html">Application of Regression Techniques in Satellite Imagery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter2_IntrotoGaussianProcesses.html">Introduction to Gaussian Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_Intro_to_GPSat.html">Introduction to GPSat</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 8</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Interpolation of Sea Level Anomaly using GPSat</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Chapter_2_SLA_GPSat.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Interpolation of Sea Level Anomaly using GPSat</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-data">Fetching data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-product-selection">Step 1: Product Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-defining-the-region-of-interest">Step 2: Defining the Region of Interest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-initiating-the-search">Step 3: Initiating the Search</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sla-interpolation">SLA Interpolation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="interpolation-of-sea-level-anomaly-using-gpsat">
+<h1>Interpolation of Sea Level Anomaly using GPSat<a class="headerlink" href="#interpolation-of-sea-level-anomaly-using-gpsat" title="Permalink to this heading">#</a></h1>
+<section id="fetching-data">
+<h2>Fetching data<a class="headerlink" href="#fetching-data" title="Permalink to this heading">#</a></h2>
+<p>In week 4, we’ve introduced the method to fetch different types of data from the Google Earth Engine and Copernicus Dataspace. The data we are going to use in this week’s content is teh altimetry data. Therefore, we will use Copernicus Dataspace API instead of Google Earth Engine. Let’s fetch this data and recall some of the procedures.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>cartopy
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtain an access token to the Copernicus Data Space Ecosystem.</span>
+<span class="sd">    Necessary for the download of hosted products.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span>  <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;curl --location --request POST &#39;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token&#39; </span><span class="se">\</span>
+<span class="s2">            --header &#39;Content-Type: application/x-www-form-urlencoded&#39; </span><span class="se">\</span>
+<span class="s2">            --data-urlencode &#39;grant_type=password&#39; </span><span class="se">\</span>
+<span class="s2">            --data-urlencode &#39;username=</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&#39; </span><span class="se">\</span>
+<span class="s2">            --data-urlencode &#39;password=</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">&#39; </span><span class="se">\</span>
+<span class="s2">            --data-urlencode &#39;client_id=cdse-public&#39;&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">access_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">access_dict</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">],</span> <span class="n">access_dict</span><span class="p">[</span><span class="s1">&#39;refresh_token&#39;</span><span class="p">]</span>
+
+<span class="c1">#=============================================================================================================================================================#</span>
+
+<span class="k">def</span> <span class="nf">get_new_access_token</span><span class="p">(</span><span class="n">refresh_token</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtain a new access token to the Copernicus Data Space Ecosystem using a previously provided refesh token.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span>  <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;curl --location --request POST &#39;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token&#39; </span><span class="se">\</span>
+<span class="s2">    --header &#39;Content-Type: application/x-www-form-urlencoded&#39; </span><span class="se">\</span>
+<span class="s2">    --data-urlencode &#39;grant_type=refresh_token&#39; </span><span class="se">\</span>
+<span class="s2">    --data-urlencode &#39;refresh_token=</span><span class="si">{</span><span class="n">refresh_token</span><span class="si">}</span><span class="s2">&#39; </span><span class="se">\</span>
+<span class="s2">    --data-urlencode &#39;client_id=cdse-public&#39;&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">access_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">access_dict</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">],</span> <span class="n">access_dict</span><span class="p">[</span><span class="s1">&#39;refresh_token&#39;</span><span class="p">]</span>
+
+<span class="c1">#=============================================================================================================================================================#</span>
+
+<span class="k">def</span> <span class="nf">get_S3_products_by_names</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtain a pandas dataframe of Sentinel products for a given list of product names.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">all_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://catalogue.dataspace.copernicus.eu/odata/v1/Products?$filter=&quot;</span>
+
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+        <span class="n">query_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">Name eq &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;&amp;$top=1000&quot;</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span>
+        <span class="n">json_response</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="s1">&#39;value&#39;</span> <span class="ow">in</span> <span class="n">json_response</span><span class="p">:</span>
+            <span class="n">all_results</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">json_response</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">all_results</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">results_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;Satellite&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span>
+        <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;SensingStart&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ContentDate&#39;</span><span class="p">][</span><span class="s1">&#39;Start&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span>
+        <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;SensingEnd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ContentDate&#39;</span><span class="p">][</span><span class="s1">&#39;End&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;SensingStart&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">results_df</span>
+
+<span class="k">def</span> <span class="nf">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">download_dir</span><span class="o">=</span><span class="s2">&quot;downloaded_products&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download a single product from the Copernicus Data Space.</span>
+
+<span class="sd">    :param product_id: The unique identifier for the product.</span>
+<span class="sd">    :param file_name: The name of the file to be downloaded.</span>
+<span class="sd">    :param access_token: The access token for authorization.</span>
+<span class="sd">    :param download_dir: The directory where the product will be saved.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Ensure the download directory exists</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Construct the download URL</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://zipper.dataspace.copernicus.eu/odata/v1/Products(</span><span class="si">{</span><span class="n">product_id</span><span class="si">}</span><span class="s2">)/$value&quot;</span>
+
+    <span class="c1"># Set up the session and headers</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="c1"># Perform the request</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Check if the request was successful</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="c1"># Define the path for the output file</span>
+        <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_dir</span><span class="p">,</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;.zip&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Stream the content to a file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloaded: </span><span class="si">{</span><span class="n">output_file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to download product </span><span class="si">{</span><span class="n">product_id</span><span class="si">}</span><span class="s2">. Status Code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cop_dspace_usrnm</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1"># amend with your copernicus dataspace username</span>
+<span class="n">cop_dspace_psswrd</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="c1"># amend with your copernicus dataspace password</span>
+<span class="n">token</span><span class="p">,</span> <span class="n">refresh_token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">cop_dspace_usrnm</span><span class="p">,</span> <span class="n">cop_dspace_psswrd</span><span class="p">)</span>
+<span class="n">product_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230101T185252_20230101T185651_20230101T203101_0239_094_027______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230101T121709_20230101T122349_20230101T135934_0400_094_023______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230102T182657_20230102T183045_20230102T200425_0228_094_041______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230102T115112_20230102T115751_20230102T132929_0399_094_037______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230105T121326_20230105T122007_20230105T134843_0401_094_080______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230105T184910_20230105T185308_20230105T202752_0238_094_084______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230106T182316_20230106T182702_20230106T200253_0226_094_098______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230109T120945_20230109T121625_20230109T135020_0400_094_137______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230103T122643_20230103T123314_20230103T140329_0391_074_294______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230104T183621_20230104T184014_20230104T201141_0233_074_312______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230107T122257_20230107T122931_20230107T135514_0394_074_351______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230107T185833_20230107T190234_20230107T203555_0240_074_355______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230108T183238_20230108T183630_20230108T200807_0232_074_369______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230108T115654_20230108T120333_20230108T133905_0399_074_365______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230111T185450_20230111T185850_20230111T202939_0240_075_027______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230111T121911_20230111T122547_20230111T135219_0396_075_023______MAR_O_NR_005.SEN3&quot;</span>
+<span class="p">]</span>
+
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">get_S3_products_by_names</span><span class="p">(</span><span class="n">product_names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     @odata.mediaContentType                                    Id  \
+1   application/octet-stream  df44f31a-61d2-5964-838b-816a54e39e43   
+0   application/octet-stream  ccd45b65-52f8-5761-a43a-5909c6b05cc4   
+3   application/octet-stream  eef92190-f150-5f99-b61d-6fe53bac377a   
+2   application/octet-stream  30e00559-06fb-57f4-9960-544f0f036439   
+8   application/octet-stream  68339973-c768-5475-a93f-20b271d53880   
+9   application/octet-stream  e7247cfb-ad7c-59ed-80cb-a86f7ca8a5f7   
+4   application/octet-stream  f9d13b5d-3ad2-5723-bd0e-2a9f3a685797   
+5   application/octet-stream  596577bf-a7eb-5ad3-974a-45e7819244c9   
+6   application/octet-stream  e7c0673a-7102-5025-ac1b-d989957274e0   
+10  application/octet-stream  d4cc75e3-d55e-5a77-bb26-35efe4f6f918   
+11  application/octet-stream  fc0101b5-a4a1-5a1c-9221-ef07a816ed1c   
+13  application/octet-stream  45b2e256-9995-5ac3-8070-bfcd00e8e026   
+12  application/octet-stream  65b1891a-60ca-5241-b5a8-96aa428b8838   
+7   application/octet-stream  46ba2140-f18a-52b3-b3e9-c1f913736c2f   
+15  application/octet-stream  985457af-568b-51a9-b457-c97c85e57e70   
+14  application/octet-stream  09864a89-0698-5ccb-a88d-4e63737db88c   
+
+                                                 Name  \
+1   S3A_SR_2_WAT____20230101T121709_20230101T12234...   
+0   S3A_SR_2_WAT____20230101T185252_20230101T18565...   
+3   S3A_SR_2_WAT____20230102T115112_20230102T11575...   
+2   S3A_SR_2_WAT____20230102T182657_20230102T18304...   
+8   S3B_SR_2_WAT____20230103T122643_20230103T12331...   
+9   S3B_SR_2_WAT____20230104T183621_20230104T18401...   
+4   S3A_SR_2_WAT____20230105T121326_20230105T12200...   
+5   S3A_SR_2_WAT____20230105T184910_20230105T18530...   
+6   S3A_SR_2_WAT____20230106T182316_20230106T18270...   
+10  S3B_SR_2_WAT____20230107T122257_20230107T12293...   
+11  S3B_SR_2_WAT____20230107T185833_20230107T19023...   
+13  S3B_SR_2_WAT____20230108T115654_20230108T12033...   
+12  S3B_SR_2_WAT____20230108T183238_20230108T18363...   
+7   S3A_SR_2_WAT____20230109T120945_20230109T12162...   
+15  S3B_SR_2_WAT____20230111T121911_20230111T12254...   
+14  S3B_SR_2_WAT____20230111T185450_20230111T18585...   
+
+                 ContentType  ContentLength                OriginDate  \
+1   application/octet-stream        7922688  2023-01-01T13:10:44.359Z   
+0   application/octet-stream        4774912  2023-01-01T19:37:55.360Z   
+3   application/octet-stream        8019968  2023-01-02T12:34:29.055Z   
+2   application/octet-stream        4599808  2023-01-02T19:14:19.371Z   
+8   application/octet-stream        7710720  2023-01-03T13:09:14.467Z   
+9   application/octet-stream        4670464  2023-01-04T19:18:01.274Z   
+4   application/octet-stream        8035328  2023-01-05T12:53:51.197Z   
+5   application/octet-stream        4884480  2023-01-05T19:37:56.972Z   
+6   application/octet-stream        4560896  2023-01-06T19:08:31.152Z   
+10  application/octet-stream        7824384  2023-01-07T13:04:24.612Z   
+11  application/octet-stream        4816896  2023-01-07T19:45:00.881Z   
+13  application/octet-stream        7982080  2023-01-08T12:46:40.169Z   
+12  application/octet-stream        4707328  2023-01-08T19:19:37.597Z   
+7   application/octet-stream        8046592  2023-01-09T13:01:56.521Z   
+15  application/octet-stream        7912448  2023-01-11T12:57:35.346Z   
+14  application/octet-stream        4832256  2023-01-11T19:40:16.383Z   
+
+             PublicationDate          ModificationDate  Online EvictionDate  \
+1   2023-01-01T14:10:50.503Z  2023-01-01T14:10:54.931Z    True                
+0   2023-01-01T20:38:06.184Z  2023-01-01T20:38:10.988Z    True                
+3   2023-01-02T13:34:38.661Z  2023-01-02T13:34:41.932Z    True                
+2   2023-01-02T20:14:24.803Z  2023-01-02T20:14:30.925Z    True                
+8   2023-01-03T14:09:24.190Z  2023-01-03T14:09:29.684Z    True                
+9   2023-01-04T20:18:08.757Z  2023-01-04T20:18:15.351Z    True                
+4   2023-01-05T13:53:58.125Z  2023-01-05T13:54:02.355Z    True                
+5   2023-01-05T20:38:02.201Z  2023-01-05T20:38:11.147Z    True                
+6   2023-01-06T20:08:36.296Z  2023-01-06T20:08:40.188Z    True                
+10  2023-01-07T14:04:31.948Z  2023-01-07T14:04:36.573Z    True                
+11  2023-01-07T20:45:06.195Z  2023-01-07T20:45:10.350Z    True                
+13  2023-01-08T13:46:46.625Z  2023-01-08T13:46:49.178Z    True                
+12  2023-01-08T20:20:53.552Z  2023-01-08T20:20:57.349Z    True                
+7   2023-01-09T14:02:06.200Z  2023-01-09T14:02:12.928Z    True                
+15  2023-01-11T13:57:42.880Z  2023-01-11T13:57:46.771Z    True                
+14  2023-01-11T20:40:25.478Z  2023-01-11T20:40:30.467Z    True                
+
+                                               S3Path Checksum  \
+1   /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/01/S3...     [{}]   
+0   /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/01/S3...     [{}]   
+3   /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/02/S3...     [{}]   
+2   /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/02/S3...     [{}]   
+8   /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/03/S3...     [{}]   
+9   /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/04/S3...     [{}]   
+4   /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/05/S3...     [{}]   
+5   /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/05/S3...     [{}]   
+6   /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/06/S3...     [{}]   
+10  /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/07/S3...     [{}]   
+11  /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/07/S3...     [{}]   
+13  /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/08/S3...     [{}]   
+12  /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/08/S3...     [{}]   
+7   /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/09/S3...     [{}]   
+15  /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/11/S3...     [{}]   
+14  /eodata/Sentinel-3/SRAL/SR_2_WAT/2023/01/11/S3...     [{}]   
+
+                                          ContentDate  \
+1   {&#39;Start&#39;: &#39;2023-01-01T12:17:08.865Z&#39;, &#39;End&#39;: &#39;...   
+0   {&#39;Start&#39;: &#39;2023-01-01T18:52:51.536Z&#39;, &#39;End&#39;: &#39;...   
+3   {&#39;Start&#39;: &#39;2023-01-02T11:51:12.251Z&#39;, &#39;End&#39;: &#39;...   
+2   {&#39;Start&#39;: &#39;2023-01-02T18:26:56.539Z&#39;, &#39;End&#39;: &#39;...   
+8   {&#39;Start&#39;: &#39;2023-01-03T12:26:42.717Z&#39;, &#39;End&#39;: &#39;...   
+9   {&#39;Start&#39;: &#39;2023-01-04T18:36:20.501Z&#39;, &#39;End&#39;: &#39;...   
+4   {&#39;Start&#39;: &#39;2023-01-05T12:13:26.389Z&#39;, &#39;End&#39;: &#39;...   
+5   {&#39;Start&#39;: &#39;2023-01-05T18:49:09.543Z&#39;, &#39;End&#39;: &#39;...   
+6   {&#39;Start&#39;: &#39;2023-01-06T18:23:15.502Z&#39;, &#39;End&#39;: &#39;...   
+10  {&#39;Start&#39;: &#39;2023-01-07T12:22:57.451Z&#39;, &#39;End&#39;: &#39;...   
+11  {&#39;Start&#39;: &#39;2023-01-07T18:58:32.537Z&#39;, &#39;End&#39;: &#39;...   
+13  {&#39;Start&#39;: &#39;2023-01-08T11:56:53.982Z&#39;, &#39;End&#39;: &#39;...   
+12  {&#39;Start&#39;: &#39;2023-01-08T18:32:37.549Z&#39;, &#39;End&#39;: &#39;...   
+7   {&#39;Start&#39;: &#39;2023-01-09T12:09:44.509Z&#39;, &#39;End&#39;: &#39;...   
+15  {&#39;Start&#39;: &#39;2023-01-11T12:19:10.707Z&#39;, &#39;End&#39;: &#39;...   
+14  {&#39;Start&#39;: &#39;2023-01-11T18:54:49.502Z&#39;, &#39;End&#39;: &#39;...   
+
+                                            Footprint  \
+1   geography&#39;SRID=4326;MULTIPOLYGON (((-180 -75.1...   
+0   geography&#39;SRID=4326;MULTIPOLYGON (((-180 -78.1...   
+3   geography&#39;SRID=4326;MULTIPOLYGON (((-180 -72.3...   
+2   geography&#39;SRID=4326;POLYGON ((-147.931 -67.383...   
+8   geography&#39;SRID=4326;MULTIPOLYGON (((-180 -75.8...   
+9   geography&#39;SRID=4326;POLYGON ((-149.878 -67.056...   
+4   geography&#39;SRID=4326;MULTIPOLYGON (((-180 -74.7...   
+5   geography&#39;SRID=4326;MULTIPOLYGON (((-180 -78.2...   
+6   geography&#39;SRID=4326;POLYGON ((-147.165 -67.527...   
+10  geography&#39;SRID=4326;MULTIPOLYGON (((-180 -75.5...   
+11  geography&#39;SRID=4326;MULTIPOLYGON (((-180 -77.8...   
+13  geography&#39;SRID=4326;MULTIPOLYGON (((-180 -73.0...   
+12  geography&#39;SRID=4326;POLYGON ((-149.091 -67.191...   
+7   geography&#39;SRID=4326;MULTIPOLYGON (((-180 -74.4...   
+15  geography&#39;SRID=4326;MULTIPOLYGON (((-180 -75.2...   
+14  geography&#39;SRID=4326;MULTIPOLYGON (((-180 -78.0...   
+
+                                         GeoFootprint Satellite  \
+1   {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3A   
+0   {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3A   
+3   {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3A   
+2   {&#39;type&#39;: &#39;Polygon&#39;, &#39;coordinates&#39;: [[[-147.931...       S3A   
+8   {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3B   
+9   {&#39;type&#39;: &#39;Polygon&#39;, &#39;coordinates&#39;: [[[-149.878...       S3B   
+4   {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3A   
+5   {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3A   
+6   {&#39;type&#39;: &#39;Polygon&#39;, &#39;coordinates&#39;: [[[-147.165...       S3A   
+10  {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3B   
+11  {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3B   
+13  {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3B   
+12  {&#39;type&#39;: &#39;Polygon&#39;, &#39;coordinates&#39;: [[[-149.091...       S3B   
+7   {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3A   
+15  {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3B   
+14  {&#39;type&#39;: &#39;MultiPolygon&#39;, &#39;coordinates&#39;: [[[[-1...       S3B   
+
+                       SensingStart                       SensingEnd  
+1  2023-01-01 12:17:08.865000+00:00 2023-01-01 12:23:49.472000+00:00  
+0  2023-01-01 18:52:51.536000+00:00 2023-01-01 18:56:50.577000+00:00  
+3  2023-01-02 11:51:12.251000+00:00 2023-01-02 11:57:51.493000+00:00  
+2  2023-01-02 18:26:56.539000+00:00 2023-01-02 18:30:44.985000+00:00  
+8  2023-01-03 12:26:42.717000+00:00 2023-01-03 12:33:14.487000+00:00  
+9  2023-01-04 18:36:20.501000+00:00 2023-01-04 18:40:14.345000+00:00  
+4  2023-01-05 12:13:26.389000+00:00 2023-01-05 12:20:07.474000+00:00  
+5  2023-01-05 18:49:09.543000+00:00 2023-01-05 18:53:07.973000+00:00  
+6  2023-01-06 18:23:15.502000+00:00 2023-01-06 18:27:01.878000+00:00  
+10 2023-01-07 12:22:57.451000+00:00 2023-01-07 12:29:31.488000+00:00  
+11 2023-01-07 18:58:32.537000+00:00 2023-01-07 19:02:33.531000+00:00  
+13 2023-01-08 11:56:53.982000+00:00 2023-01-08 12:03:33.469000+00:00  
+12 2023-01-08 18:32:37.549000+00:00 2023-01-08 18:36:29.917000+00:00  
+7  2023-01-09 12:09:44.509000+00:00 2023-01-09 12:16:25.473000+00:00  
+15 2023-01-11 12:19:10.707000+00:00 2023-01-11 12:25:47.495000+00:00  
+14 2023-01-11 18:54:49.502000+00:00 2023-01-11 18:58:49.769000+00:00  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we download all files altogether.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming download_single_product is a function that takes product_id, file_name, token, and download_dir as arguments</span>
+
+<span class="n">download_dir</span> <span class="o">=</span> <span class="s1">&#39;/Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/&#39;</span>
+
+<span class="c1"># Loop through each row in the DataFrame</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">product_id</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Call the download function for each product</span>
+    <span class="n">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">download_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3A_SR_2_WAT____20230101T121709_20230101T122349_20230101T135934_0400_094_023______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3A_SR_2_WAT____20230101T185252_20230101T185651_20230101T203101_0239_094_027______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3A_SR_2_WAT____20230102T115112_20230102T115751_20230102T132929_0399_094_037______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3A_SR_2_WAT____20230102T182657_20230102T183045_20230102T200425_0228_094_041______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____20230103T122643_20230103T123314_20230103T140329_0391_074_294______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____20230104T183621_20230104T184014_20230104T201141_0233_074_312______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3A_SR_2_WAT____20230105T121326_20230105T122007_20230105T134843_0401_094_080______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3A_SR_2_WAT____20230105T184910_20230105T185308_20230105T202752_0238_094_084______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3A_SR_2_WAT____20230106T182316_20230106T182702_20230106T200253_0226_094_098______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____20230107T122257_20230107T122931_20230107T135514_0394_074_351______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____20230107T185833_20230107T190234_20230107T203555_0240_074_355______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____20230108T115654_20230108T120333_20230108T133905_0399_074_365______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____20230108T183238_20230108T183630_20230108T200807_0232_074_369______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3A_SR_2_WAT____20230109T120945_20230109T121625_20230109T135020_0400_094_137______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____20230111T121911_20230111T122547_20230111T135219_0396_075_023______MAR_O_NR_005.SEN3.zip
+Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____20230111T185450_20230111T185850_20230111T202939_0240_075_027______MAR_O_NR_005.SEN3.zip
+</pre></div>
+</div>
+</div>
+</div>
+<p>By this stage, you should have all the Sentinel-3 files prepared for your analysis. If you need to locate additional files, the <a class="reference external" href="https://browser.dataspace.copernicus.eu/?zoom=5&amp;lat=50.16282&amp;lng=20.78613&amp;themeId=DEFAULT-THEME&amp;visualizationUrl=https%3A%2F%2Fsh.dataspace.copernicus.eu%2Fogc%2Fwms%2Fa91f72b5-f393-4320-bc0f-990129bd9e63&amp;datasetId=S2_L2A_CDAS&amp;demSource3D=%22MAPZEN%22&amp;cloudCoverage=30&amp;dateMode=SINGLE">Copernicus Data Space Browser</a> is an invaluable tool for pinpointing files in specific regions.</p>
+<section id="step-1-product-selection">
+<h3>Step 1: Product Selection<a class="headerlink" href="#step-1-product-selection" title="Permalink to this heading">#</a></h3>
+<p>Begin by choosing the desired data products. For our purposes, select the SENTINEL-3/SRAL/Level-2 WAT dataset.
+<img alt="Data Selection Interface" src="_images/image1.png" /></p>
+<p>You can also define the temporal scope of your search by setting the desired date range.
+<img alt="Date Range Selection" src="_images/image2.png" /></p>
+</section>
+<section id="step-2-defining-the-region-of-interest">
+<h3>Step 2: Defining the Region of Interest<a class="headerlink" href="#step-2-defining-the-region-of-interest" title="Permalink to this heading">#</a></h3>
+<p>Use the polygon tool to demarcate your area of interest on the map.
+<img alt="Region Drawing Tool" src="_images/image3.png" /></p>
+</section>
+<section id="step-3-initiating-the-search">
+<h3>Step 3: Initiating the Search<a class="headerlink" href="#step-3-initiating-the-search" title="Permalink to this heading">#</a></h3>
+<p>With the chosen products, defined time span, and spatial parameters set, the browser will retrieve a list of files that match your criteria.
+<img alt="Search Results Interface" src="_images/image4.png" />
+<img alt="File List Interface" src="_images/image5.png" /></p>
+</section>
+</section>
+<section id="sla-interpolation">
+<h2>SLA Interpolation<a class="headerlink" href="#sla-interpolation" title="Permalink to this heading">#</a></h2>
+<p>Now, the data is all set and we can proceed with the interpolation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/SLA_GPSat/&#39;</span>
+<span class="n">SAR_file</span><span class="o">=</span><span class="s1">&#39;S3A_SR_2_WAT____20230101T121709_20230101T122349_20230101T135934_0400_094_023______MAR_O_NR_005.SEN3&#39;</span>
+<span class="n">SAR_data</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">SAR_file</span><span class="o">+</span><span class="s1">&#39;/enhanced_measurement.nc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">netCDF4</span> <span class="k">as</span> <span class="nn">nc</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">Transformer</span>
+
+<span class="c1"># Define the transformation function</span>
+<span class="k">def</span> <span class="nf">WGS84toEASE2_Vectorized</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">return_vals</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">lon_0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lat_0</span><span class="o">=</span><span class="mi">90</span><span class="p">):</span>
+    <span class="n">EASE2</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;+proj=laea +lon_0=</span><span class="si">{</span><span class="n">lon_0</span><span class="si">}</span><span class="s2"> +lat_0=</span><span class="si">{</span><span class="n">lat_0</span><span class="si">}</span><span class="s2"> +x_0=0 +y_0=0 +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span>
+    <span class="n">WGS84</span> <span class="o">=</span> <span class="s2">&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;</span>
+    <span class="n">transformer</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">WGS84</span><span class="p">,</span> <span class="n">EASE2</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">return_vals</span> <span class="o">==</span> <span class="s1">&#39;both&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<span class="k">def</span> <span class="nf">EASE2toWGS84</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">return_vals</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">lon_0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lat_0</span><span class="o">=</span><span class="mi">90</span><span class="p">):</span>
+
+    <span class="n">valid_return_vals</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">return_vals</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">],</span> <span class="sa">f</span><span class="s2">&quot;return_val: </span><span class="si">{</span><span class="n">return_vals</span><span class="si">}</span><span class="s2"> is not in valid set: </span><span class="si">{</span><span class="n">valid_return_vals</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">EASE2</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;+proj=laea +lon_0=</span><span class="si">{</span><span class="n">lon_0</span><span class="si">}</span><span class="s2"> +lat_0=</span><span class="si">{</span><span class="n">lat_0</span><span class="si">}</span><span class="s2"> +x_0=0 +y_0=0 +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span>
+    <span class="n">WGS84</span> <span class="o">=</span> <span class="s2">&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;</span>
+    <span class="n">transformer</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">EASE2</span><span class="p">,</span> <span class="n">WGS84</span><span class="p">)</span>
+    <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">return_vals</span> <span class="o">==</span> <span class="s2">&quot;both&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span>
+    <span class="k">elif</span> <span class="n">return_vals</span> <span class="o">==</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lon</span>
+    <span class="k">elif</span> <span class="n">return_vals</span> <span class="o">==</span> <span class="s2">&quot;lat&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lat</span>
+
+<span class="k">def</span> <span class="nf">get_projection</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="c1"># projection</span>
+    <span class="k">if</span> <span class="n">projection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">NorthPolarStereo</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">projection</span><span class="p">,</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Projection</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">projection</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;north&quot;</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">):</span>
+            <span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">NorthPolarStereo</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;south&quot;</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">):</span>
+            <span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">SouthPolarStereo</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;projection provide as str: </span><span class="si">{</span><span class="n">projection</span><span class="si">}</span><span class="s2">, not implemented&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">projection</span>
+<span class="k">def</span> <span class="nf">plot_pcolormesh</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">plot_data</span><span class="p">,</span>
+                    <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">qvmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">qvmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;YlGnBu_r&#39;</span><span class="p">,</span>
+                    <span class="n">cbar_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">scatter</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">extent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">ocean_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">scatter_args</span><span class="p">):</span>
+
+    <span class="c1"># ax = axs[j]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeat</span><span class="o">.</span><span class="n">LAKES</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeat</span><span class="o">.</span><span class="n">LAND</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">))</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span> <span class="k">if</span> <span class="n">extent</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">extent</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>  <span class="c1"># lon_min,lon_max,lat_min,lat_max</span>
+
+    <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ocean_only</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">globe_mask</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ocean_only=</span><span class="si">{</span><span class="n">ocean_only</span><span class="si">}</span><span class="s2">, however globe_mask is missing, &quot;</span>
+                          <span class="sa">f</span><span class="s2">&quot;install with pip install global-land-mask&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">is_in_ocean</span> <span class="o">=</span> <span class="n">globe_mask</span><span class="o">.</span><span class="n">is_ocean</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+            <span class="c1"># copy, just to be safe</span>
+            <span class="n">plot_data</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">plot_data</span><span class="p">)</span>
+            <span class="n">plot_data</span><span class="p">[</span><span class="o">~</span><span class="n">is_in_ocean</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="k">if</span> <span class="n">qvmin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">vmin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;both qvmin and vmin are supplied, only using qvmin&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">qvmin</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">qvmin</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;qvmin: </span><span class="si">{</span><span class="n">qvmin</span><span class="si">}</span><span class="s2">, needs to be in [0,1]&quot;</span>
+        <span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanquantile</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">qvmin</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">qvmax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">vmax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;both qvmax and vmax are supplied, only using qvmax&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">qvmax</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">qvmax</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;qvmax: </span><span class="si">{</span><span class="n">qvmax</span><span class="si">}</span><span class="s2">, needs to be in [0,1]&quot;</span>
+        <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanquantile</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">qvmax</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">vmin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">vmax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">vmin</span> <span class="o">&lt;=</span> <span class="n">vmax</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;vmin: </span><span class="si">{</span><span class="n">vmin</span><span class="si">}</span><span class="s2"> &gt; vmax: </span><span class="si">{</span><span class="n">vmax</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">scatter</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">plot_data</span><span class="p">,</span>
+                          <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+                          <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+                          <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+                          <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                          <span class="n">shading</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span><span class="c1"># to remove DeprecationWarning</span>
+                          <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">non_nan</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">plot_data</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">lon</span><span class="p">[</span><span class="n">non_nan</span><span class="p">],</span>
+                       <span class="n">lat</span><span class="p">[</span><span class="n">non_nan</span><span class="p">],</span>
+                       <span class="n">c</span><span class="o">=</span><span class="n">plot_data</span><span class="p">[</span><span class="n">non_nan</span><span class="p">],</span>
+                       <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+                       <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+                       <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+                       <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                       <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="o">**</span><span class="n">scatter_args</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cbar_label</span><span class="p">:</span>
+            <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">cbar_label</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="c1"># Load the dataset</span>
+<span class="n">SAR_data</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">SAR_file</span> <span class="o">+</span> <span class="s1">&#39;/enhanced_measurement.nc&#39;</span><span class="p">)</span>
+
+<span class="c1"># Extract spatial and temporal information</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">lon_var_name</span><span class="p">][:]</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">lat_var_name</span><span class="p">][:]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">time_var_name</span><span class="p">][:]</span>
+<span class="n">base_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">datetimes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">base_time</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">time</span><span class="p">])</span>
+<span class="n">ssha</span> <span class="o">=</span> <span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">ssha_var_name</span><span class="p">][:]</span>
+
+<span class="c1"># Convert lon, lat to EASE-2 Grid</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">WGS84toEASE2_Vectorized</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+
+<span class="c1"># Create a DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="n">lon</span><span class="p">,</span>
+    <span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="n">lat</span><span class="p">,</span>
+    <span class="s1">&#39;datetime&#39;</span><span class="p">:</span> <span class="n">datetimes</span><span class="p">,</span>
+    <span class="s1">&#39;obs&#39;</span><span class="p">:</span> <span class="n">ssha</span>
+<span class="p">})</span>
+
+<span class="c1"># Convert datetime to float days since epoch</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;1970-01-01&quot;</span><span class="p">))</span> <span class="o">/</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s1">&#39;1D&#39;</span><span class="p">)</span>
+
+<span class="c1"># Apply the coordinate transformation to the DataFrame directly</span>
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="s2">&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;</span><span class="p">,</span> 
+                                   <span class="s2">&quot;+proj=laea +lon_0=0 +lat_0=90 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no_defs&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1"># Drop rows with NaN in &#39;obs&#39; column</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Now df has &#39;x&#39;, &#39;y&#39;, &#39;t&#39;, and filtered &#39;obs&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;obs&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                x             y             t    obs
+12  -2.559472e+06  1.241325e+07  19368.513461 -0.025
+13  -2.512782e+06  1.242231e+07  19368.513472 -0.014
+14  -2.466366e+06  1.243113e+07  19368.513484 -0.057
+15  -2.420224e+06  1.243972e+07  19368.513495 -0.056
+16  -2.374356e+06  1.244807e+07  19368.513507 -0.062
+..            ...           ...           ...    ...
+392  4.620373e+06  1.135370e+07  19368.517859  0.040
+393  4.626909e+06  1.134917e+07  19368.517870  0.104
+394  4.633419e+06  1.134465e+07  19368.517882  0.129
+395  4.639904e+06  1.134012e+07  19368.517894  0.174
+396  4.646364e+06  1.133560e+07  19368.517905  0.195
+
+[309 rows x 4 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>With a collection of 16 files, it’s essential to streamline the aforementioned process. Doing so will enable us to amalgamate the individual files into a comprehensive dataframe, forming an extensive dataset for thorough examination.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SEN3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230101T185252_20230101T185651_20230101T203101_0239_094_027______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230101T121709_20230101T122349_20230101T135934_0400_094_023______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230102T182657_20230102T183045_20230102T200425_0228_094_041______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230102T115112_20230102T115751_20230102T132929_0399_094_037______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230105T121326_20230105T122007_20230105T134843_0401_094_080______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230105T184910_20230105T185308_20230105T202752_0238_094_084______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230106T182316_20230106T182702_20230106T200253_0226_094_098______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3A_SR_2_WAT____20230109T120945_20230109T121625_20230109T135020_0400_094_137______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230103T122643_20230103T123314_20230103T140329_0391_074_294______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230104T183621_20230104T184014_20230104T201141_0233_074_312______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230107T122257_20230107T122931_20230107T135514_0394_074_351______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230107T185833_20230107T190234_20230107T203555_0240_074_355______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230108T183238_20230108T183630_20230108T200807_0232_074_369______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230108T115654_20230108T120333_20230108T133905_0399_074_365______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230111T185450_20230111T185850_20230111T202939_0240_075_027______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;S3B_SR_2_WAT____20230111T121911_20230111T122547_20230111T135219_0396_075_023______MAR_O_NR_005.SEN3&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">netCDF4</span> <span class="k">as</span> <span class="nn">nc</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">Transformer</span>
+
+<span class="c1"># Path to your data directory</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/SLA_GPSat/&#39;</span>
+
+<span class="c1"># Initialise an empty DataFrame to hold all data</span>
+<span class="n">all_data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">SAR_file</span> <span class="ow">in</span> <span class="n">SEN3_files</span><span class="p">:</span>
+    <span class="c1"># Construct the full path to the .nc file</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="n">SAR_file</span> <span class="o">+</span> <span class="s1">&#39;/enhanced_measurement.nc&#39;</span>
+    
+    <span class="c1"># Load the dataset</span>
+    <span class="n">SAR_data</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+
+    <span class="c1"># Extract spatial and temporal information</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lon_01&#39;</span><span class="p">][:]</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lat_01&#39;</span><span class="p">][:]</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time_01&#39;</span><span class="p">][:]</span>
+    <span class="n">ssha</span> <span class="o">=</span> <span class="n">SAR_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;ssha_01_ku&#39;</span><span class="p">][:]</span>  <span class="c1"># Assuming ssha_01_ku exists in all files</span>
+
+    <span class="c1"># Convert time to datetime objects</span>
+    <span class="n">base_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">datetimes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">base_time</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">time</span><span class="p">])</span>
+
+    <span class="c1"># Convert lon, lat to EASE-2 Grid</span>
+    <span class="n">transformer</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="s2">&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;</span><span class="p">,</span> 
+                                       <span class="s2">&quot;+proj=laea +lon_0=0 +lat_0=90 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no_defs&quot;</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+
+    <span class="c1"># Create a DataFrame for this file</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span>
+        <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">datetimes</span><span class="p">)</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;1970-01-01&quot;</span><span class="p">))</span> <span class="o">/</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s1">&#39;1D&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;obs&#39;</span><span class="p">:</span> <span class="n">ssha</span>
+    <span class="p">})</span>
+
+    <span class="c1"># Drop rows where &#39;obs&#39; is NaN</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Append to the all_data_df DataFrame</span>
+    <span class="n">all_data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">all_data_df</span><span class="p">,</span> <span class="n">df</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Now all_data_df contains concatenated data from all files</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">all_data_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 x             y             t    obs
+0    -5.559457e+06  1.116669e+07  19358.786713  0.024
+1    -5.548324e+06  1.117362e+07  19358.786725  0.004
+2    -5.537133e+06  1.118055e+07  19358.786736 -0.011
+3    -5.525884e+06  1.118750e+07  19358.786748 -0.011
+4    -5.514576e+06  1.119445e+07  19358.786759  0.004
+...            ...           ...           ...    ...
+3104  4.620373e+06  1.135370e+07  19368.517859  0.040
+3105  4.626909e+06  1.134917e+07  19368.517870  0.104
+3106  4.633419e+06  1.134465e+07  19368.517882  0.129
+3107  4.639904e+06  1.134012e+07  19368.517894  0.174
+3108  4.646364e+06  1.133560e+07  19368.517905  0.195
+
+[3109 rows x 4 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeat</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+
+<span class="n">all_data_df</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span> <span class="n">all_data_df</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">EASE2toWGS84</span><span class="p">(</span><span class="n">all_data_df</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">all_data_df</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">get_projection</span><span class="p">(</span><span class="s1">&#39;south&#39;</span><span class="p">))</span>
+
+<span class="n">plot_pcolormesh</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                <span class="n">lon</span><span class="o">=</span><span class="n">all_data_df</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span>
+                <span class="n">lat</span><span class="o">=</span><span class="n">all_data_df</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span>
+                <span class="n">plot_data</span><span class="o">=</span><span class="n">all_data_df</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">],</span>
+                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;example: binned obs&quot;</span><span class="p">,</span>
+                <span class="n">scatter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span>
+                <span class="c1"># extent=[-180, 180, -90, -60],</span>
+                <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="o">-</span><span class="mi">67</span><span class="p">],</span>
+                <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">171.5</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mi">77</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23afaa3d02be1740e1a7730b8972db05fa8608134260a135544213e6d3eb6307.png" src="_images/23afaa3d02be1740e1a7730b8972db05fa8608134260a135544213e6d3eb6307.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_2_Intro_to_GPSat.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to GPSat</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-data">Fetching data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-product-selection">Step 1: Product Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-defining-the-region-of-interest">Step 2: Defining the Region of Interest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-initiating-the-search">Step 3: Initiating the Search</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sla-interpolation">SLA Interpolation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados/Weibin Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
