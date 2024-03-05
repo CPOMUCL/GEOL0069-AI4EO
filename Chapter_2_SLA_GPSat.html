@@ -740,7 +740,7 @@ Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____202301
 <h3>Step 3: Initiating the Search<a class="headerlink" href="#step-3-initiating-the-search" title="Permalink to this heading">#</a></h3>
 <p>With the chosen products, defined time span, and spatial parameters set, the browser will retrieve a list of files that match your criteria.
 <img alt="Search Results Interface" src="_images/image4.png" />
-<img alt="File List Interface" src="_images/image5.png" /></p>
+<img alt="File List Interface" src="image5.png" /></p>
 </section>
 </section>
 <section id="sla-interpolation">
@@ -1035,6 +1035,18 @@ Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____202301
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">savepath</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="c1"># Assuming all_data_df is your DataFrame</span>
+<span class="n">all_data_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">savepath</span><span class="o">+</span><span class="s1">&#39;all_data.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeat</span>
 <span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
@@ -1064,6 +1076,281 @@ Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____202301
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/23afaa3d02be1740e1a7730b8972db05fa8608134260a135544213e6d3eb6307.png" src="_images/23afaa3d02be1740e1a7730b8972db05fa8608134260a135544213e6d3eb6307.png" />
+</div>
+</div>
+<p>Now we proceed with GPSat, with the same process we went through in week 7.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">google.colab</span>
+    <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># TODO: allow for mounting of gdrive</span>
+<span class="c1"># TODO: allow for checking out a branch</span>
+
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">import</span> <span class="nn">re</span>
+
+    <span class="c1"># change to working directory</span>
+    <span class="n">work_dir</span> <span class="o">=</span> <span class="s2">&quot;/content&quot;</span>
+
+    <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">work_dir</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;workspace directory: </span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2"> does not exist&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">work_dir</span><span class="p">)</span>
+
+    <span class="c1"># clone repository</span>
+    <span class="o">!</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/CPOMUCL/GPSat.git
+
+    <span class="n">repo_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">&quot;GPSat&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;changing directory to: </span><span class="si">{</span><span class="n">repo_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">repo_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">savepath</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="c1"># Load DataFrame from CSV file</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">savepath</span><span class="o">+</span><span class="s1">&#39;all_data.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">all_data_df</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># - spaced every 10km for some x,y range</span>
+<span class="n">xy_grid</span> <span class="o">=</span> <span class="n">grid_2d_flatten</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">2000000.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1800000.0</span><span class="p">],</span>
+                          <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="mf">12400000.0</span><span class="p">,</span> <span class="mf">12600000.0</span><span class="p">],</span>
+                          <span class="n">step_size</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+
+
+
+<span class="c1"># store in dataframe</span>
+<span class="n">eloc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">xy_grid</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
+
+<span class="c1"># add a time coordinate</span>
+<span class="n">eloc</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Local expert locations:&quot;</span><span class="p">)</span>
+<span class="n">eloc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot expert locations</span>
+<span class="n">eloc</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span> <span class="n">eloc</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">EASE2toWGS84_New</span><span class="p">(</span><span class="n">eloc</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">eloc</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">get_projection</span><span class="p">(</span><span class="s1">&#39;south&#39;</span><span class="p">))</span>
+
+<span class="n">plot_pcolormesh</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                <span class="n">lon</span><span class="o">=</span><span class="n">eloc</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span>
+                <span class="n">lat</span><span class="o">=</span><span class="n">eloc</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span>
+                <span class="n">plot_data</span><span class="o">=</span><span class="n">eloc</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span>
+                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;expert locations&quot;</span><span class="p">,</span>
+                <span class="n">scatter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">171.5</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mi">77</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># - spaced every 5km</span>
+
+<span class="n">xy_grid</span> <span class="o">=</span> <span class="n">grid_2d_flatten</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">2000000.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1800000.0</span><span class="p">],</span>
+                          <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="mf">12400000.0</span><span class="p">,</span> <span class="mf">12600000.0</span><span class="p">],</span>
+                          <span class="n">step_size</span><span class="o">=</span><span class="mi">5_000</span><span class="p">)</span>
+
+<span class="c1"># store in dataframe</span>
+<span class="c1"># NOTE: the missing &#39;t&#39; coordinate will be determine by the expert location</span>
+<span class="c1"># - alternatively the prediction location can be specified</span>
+<span class="n">ploc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">xy_grid</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
+
+<span class="c1"># Add lon-lat measurements</span>
+<span class="n">ploc</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span> <span class="n">ploc</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">EASE2toWGS84_New</span><span class="p">(</span><span class="n">ploc</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">ploc</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction locations:&quot;</span><span class="p">)</span>
+<span class="n">ploc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set training and inference radius</span>
+<span class="n">training_radius</span> <span class="o">=</span> <span class="mi">300_000</span>   <span class="c1"># 300km</span>
+<span class="n">inference_radius</span> <span class="o">=</span> <span class="mi">200_000</span>  <span class="c1"># 200km</span>
+
+<span class="c1"># Local expert locations config</span>
+<span class="n">local_expert</span> <span class="o">=</span> <span class="n">ExpertLocsConfig</span><span class="p">(</span><span class="n">source</span> <span class="o">=</span> <span class="n">eloc</span><span class="p">)</span>
+
+<span class="c1"># Model config</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ModelConfig</span><span class="p">(</span><span class="n">oi_model</span> <span class="o">=</span> <span class="s2">&quot;GPflowGPRModel&quot;</span><span class="p">,</span> <span class="c1"># Use GPflow GPR model</span>
+                    <span class="n">init_params</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="c1"># normalise xy coordinates by 50km</span>
+                        <span class="s2">&quot;coords_scale&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50_000</span><span class="p">,</span> <span class="mi">50_000</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+                        <span class="p">},</span>
+                    <span class="n">constraints</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="c1"># set bounds on the lengthscale hyperparameters</span>
+                        <span class="s2">&quot;lengthscales&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">&quot;low&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-08</span><span class="p">,</span> <span class="mf">1e-08</span><span class="p">,</span> <span class="mf">1e-08</span><span class="p">],</span>
+                            <span class="s2">&quot;high&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">600_000</span><span class="p">,</span> <span class="mi">600_000</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+                        <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">)</span>
+
+<span class="c1"># Data config</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">DataConfig</span><span class="p">(</span><span class="n">data_source</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+                  <span class="n">obs_col</span> <span class="o">=</span> <span class="s2">&quot;z&quot;</span><span class="p">,</span>
+                  <span class="n">coords_col</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">],</span>
+                  <span class="n">local_select</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="c1"># Select data within 300km and ± 4 days of the expert location</span>
+                    <span class="p">{</span><span class="s2">&quot;col&quot;</span><span class="p">:</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="s2">&quot;comp&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;=&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s2">&quot;col&quot;</span><span class="p">:</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="s2">&quot;comp&quot;</span><span class="p">:</span> <span class="s2">&quot;&gt;=&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">4</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s2">&quot;col&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="s2">&quot;comp&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="n">training_radius</span><span class="p">}</span>
+                  <span class="p">]</span>
+                <span class="p">)</span>
+
+<span class="c1"># Prediction locs config</span>
+<span class="n">pred_loc</span> <span class="o">=</span> <span class="n">PredictionLocsConfig</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;from_dataframe&quot;</span><span class="p">,</span>
+                                <span class="n">df</span> <span class="o">=</span> <span class="n">ploc</span><span class="p">,</span>
+                                <span class="n">max_dist</span> <span class="o">=</span> <span class="n">inference_radius</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">locexp</span> <span class="o">=</span> <span class="n">LocalExpertOI</span><span class="p">(</span><span class="n">expert_loc_config</span> <span class="o">=</span> <span class="n">local_expert</span><span class="p">,</span>
+                       <span class="n">data_config</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span>
+                       <span class="n">model_config</span> <span class="o">=</span> <span class="n">model</span><span class="p">,</span>
+                       <span class="n">pred_loc_config</span> <span class="o">=</span> <span class="n">pred_loc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># path to store results</span>
+<span class="n">store_path</span> <span class="o">=</span> <span class="n">get_parent_path</span><span class="p">(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="s2">&quot;inline_example.h5&quot;</span><span class="p">)</span>
+
+<span class="c1"># for the purposes of a simple example, if store_path exists: delete it</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">store_path</span><span class="p">):</span>
+    <span class="n">cprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;removing: </span><span class="si">{</span><span class="n">store_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">store_path</span><span class="p">)</span>
+
+<span class="c1"># run optimal interpolation</span>
+<span class="n">locexp</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">store_path</span><span class="o">=</span><span class="n">store_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract, store in dict</span>
+<span class="n">dfs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_results_from_h5file</span><span class="p">(</span><span class="n">store_path</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tables in results file: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">dfs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds_data</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;preds&quot;</span><span class="p">]</span>
+<span class="n">preds_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="c1"># multiple local experts may make predictions at the same prediction location (pred_loc).</span>
+<span class="c1"># - for each prediction at a given location, take we weighted combination</span>
+<span class="c1"># - weights being a function of the distance to each local expert that made a prediction at a given location.</span>
+
+<span class="n">plt_data</span> <span class="o">=</span> <span class="n">glue_local_predictions_2d</span><span class="p">(</span><span class="n">preds_df</span><span class="o">=</span><span class="n">preds_data</span><span class="p">,</span>
+                                     <span class="n">pred_loc_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pred_loc_x&quot;</span><span class="p">,</span> <span class="s2">&quot;pred_loc_y&quot;</span><span class="p">],</span>
+                                     <span class="n">xprt_loc_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">],</span>
+                                     <span class="n">vars_to_glue</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;f*&quot;</span><span class="p">,</span> <span class="s2">&quot;f*_var&quot;</span><span class="p">],</span>
+                                     <span class="n">inference_radius</span><span class="o">=</span><span class="n">inference_radius</span><span class="p">)</span>
+
+<span class="n">plt_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot prediction locations</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">get_projection</span><span class="p">(</span><span class="s1">&#39;south&#39;</span><span class="p">))</span>
+
+<span class="n">plot_pcolormesh</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                <span class="n">lon</span><span class="o">=</span><span class="n">ploc</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span>
+                <span class="n">lat</span><span class="o">=</span><span class="n">ploc</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span>
+                <span class="n">plot_data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ploc</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">),</span> <span class="c1">#np.arange(len(ploc)),</span>
+                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;prediction locations&quot;</span><span class="p">,</span>
+                <span class="n">scatter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="o">-</span><span class="mi">67</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">get_projection</span><span class="p">(</span><span class="s1">&#39;south&#39;</span><span class="p">))</span>
+
+<span class="n">plot_pcolormesh</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                <span class="n">lon</span><span class="o">=</span><span class="n">ploc</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span>
+                <span class="n">lat</span><span class="o">=</span><span class="n">ploc</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span>
+                <span class="n">plot_data</span><span class="o">=</span><span class="n">plt_data</span><span class="p">[</span><span class="s1">&#39;f*&#39;</span><span class="p">],</span> <span class="c1">#np.arange(len(ploc)),</span>
+                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;prediction locations&quot;</span><span class="p">,</span>
+                <span class="n">scatter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="o">-</span><span class="mi">67</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
 </div>
 </div>
 </section>
