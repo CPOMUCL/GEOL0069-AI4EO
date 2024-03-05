@@ -37,7 +37,7 @@ parts:
   - caption: Week 8
     chapters:
       - file: Chapter_2_SLA_GPSat
-      - file: Alongtrack_interpolation
+      - file: Chapter_2_GPSat_along_track
       
 
 
