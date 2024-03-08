@@ -36,8 +36,8 @@ parts:
       - file: Chapter_2_Intro_to_GPSat
   - caption: Week 8
     chapters:
-      - file: Chapter_2_SLA_GPSat
-      - file: Chapter_2_GPSat_along_track
+      - file: Chapter_2_SLA_GPSat_William
+      - file: Chapter_2_GPSat_along_track-2
       
 
 
