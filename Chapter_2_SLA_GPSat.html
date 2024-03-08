@@ -64,8 +64,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter_2_SLA_GPSat';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Along track interpolation with GPSat" href="Chapter_2_GPSat_along_track.html" />
-    <link rel="prev" title="Introduction to GPSat" href="Chapter_2_Intro_to_GPSat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,9 +198,9 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 8</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Interpolation of Sea Level Anomaly using GPSat</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Chapter_2_GPSat_along_track.html">Along track interpolation with GPSat</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_SLA_GPSat_William.html">Interpolation of Sea Level Anomaly using GPSat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_GPSat_along_track-2.html">Along track interpolation</a></li>
 
 
 
@@ -500,8 +498,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cop_dspace_usrnm</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1"># amend with your copernicus dataspace username</span>
-<span class="n">cop_dspace_psswrd</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="c1"># amend with your copernicus dataspace password</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cop_dspace_usrnm</span> <span class="o">=</span> <span class="s1">&#39;220211080002@hhu.edu.cn&#39;</span> <span class="c1"># amend with your copernicus dataspace username</span>
+<span class="n">cop_dspace_psswrd</span> <span class="o">=</span> <span class="s1">&#39;Dzq223496!:!:&#39;</span><span class="c1"># amend with your copernicus dataspace password</span>
 <span class="n">token</span><span class="p">,</span> <span class="n">refresh_token</span> <span class="o">=</span> <span class="n">get_access_token</span><span class="p">(</span><span class="n">cop_dspace_usrnm</span><span class="p">,</span> <span class="n">cop_dspace_psswrd</span><span class="p">)</span>
 <span class="n">product_names</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;S3A_SR_2_WAT____20230101T185252_20230101T185651_20230101T203101_0239_094_027______MAR_O_NR_005.SEN3&quot;</span><span class="p">,</span>
@@ -1414,24 +1412,6 @@ Downloaded: /Users/weibinchen/Desktop/UCL/PhD_Year_1/Data/S3B_SR_2_WAT____202301
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="Chapter_2_Intro_to_GPSat.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Introduction to GPSat</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="Chapter_2_GPSat_along_track.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Along track interpolation with GPSat</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>

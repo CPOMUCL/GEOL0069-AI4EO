@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Along track interpolation with GPSat &#8212; GEOL0069 Guide Book</title>
+    <title>Along track interpolation &#8212; GEOL0069 Guide Book</title>
   
   
   
@@ -61,9 +61,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter_2_GPSat_along_track';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter_2_GPSat_along_track-2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Interpolation of Sea Level Anomaly using GPSat" href="Chapter_2_SLA_GPSat_William.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -198,9 +199,9 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 8</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Chapter_2_SLA_GPSat_William.html">Interpolation of Sea Level Anomaly using GPSat</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Chapter_2_GPSat_along_track-2.html">Along track interpolation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Along track interpolation</a></li>
 
 
 
@@ -259,7 +260,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/Chapter_2_GPSat_along_track.ipynb" target="_blank"
+      <li><a href="_sources/Chapter_2_GPSat_along_track-2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -341,7 +342,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Along track interpolation with GPSat</h1>
+    <h1>Along track interpolation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -351,7 +352,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Along track interpolation with GPSat</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Along track interpolation</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#select-profile-for-interpolation">Select profile for interpolation</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-expert-locations-at-200-km">Generate expert locations at 200 km</a></li>
@@ -368,15 +369,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="along-track-interpolation-with-gpsat">
-<h1>Along track interpolation with GPSat<a class="headerlink" href="#along-track-interpolation-with-gpsat" title="Permalink to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cartopy
-</pre></div>
-</div>
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="along-track-interpolation">
+<h1>Along track interpolation<a class="headerlink" href="#along-track-interpolation" title="Permalink to this heading">#</a></h1>
+<p>! pip install cartopy</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -411,12 +406,13 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cloning into &#39;GPSat&#39;...
-remote: Enumerating objects: 2608, done.
-remote: Counting objects: 100% (270/270), done.
-remote: Compressing objects: 100% (123/123), done.
-remote: Total 2608 (delta 164), reused 240 (delta 143), pack-reused 2338
-Receiving objects: 100% (2608/2608), 56.65 MiB | 11.44 MiB/s, done.
-Resolving deltas: 100% (1776/1776), done.
+remote: Enumerating objects: 2667, done.
+remote: Counting objects: 100% (329/329), done.
+remote: Compressing objects: 100% (115/115), done.
+remote: Total 2667 (delta 212), reused 320 (delta 210), pack-reused 2338
+Receiving objects: 100% (2667/2667), 56.65 MiB | 21.18 MiB/s, done.
+Resolving deltas: 100% (1824/1824), done.
+Updating files: 100% (125/125), done.
 changing directory to: /content/GPSat
 </pre></div>
 </div>
@@ -436,23 +432,23 @@ Ignoring tensorflow: markers &#39;platform_system == &quot;Darwin&quot; and plat
 Ignoring tensorflow-macos: markers &#39;platform_system == &quot;Darwin&quot; and platform_machine == &quot;arm64&quot;&#39; don&#39;t match your environment
 Collecting setuptools&gt;=68.2.2 (from -r requirements.txt (line 1))
   Downloading setuptools-69.1.1-py3-none-any.whl (819 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">819.3/819.3 kB</span> <span class=" -Color -Color-Red">11.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">819.3/819.3 kB</span> <span class=" -Color -Color-Red">11.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: astropy&gt;=5.1.1 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 2)) (5.3.4)
 Requirement already satisfied: chardet&gt;=4.0.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 3)) (5.2.0)
 Requirement already satisfied: pandas==1.5.3 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 4)) (1.5.3)
 Collecting gpflow&gt;=2.9.0 (from -r requirements.txt (line 10))
   Downloading gpflow-2.9.1-py3-none-any.whl (380 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">380.6/380.6 kB</span> <span class=" -Color -Color-Red">27.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">380.6/380.6 kB</span> <span class=" -Color -Color-Red">16.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: tensorflow[and-cuda]&gt;=2.14.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 12)) (2.15.0)
 Collecting gpytorch==1.10 (from -r requirements.txt (line 19))
   Downloading gpytorch-1.10-py3-none-any.whl (255 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">255.2/255.2 kB</span> <span class=" -Color -Color-Red">24.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">255.2/255.2 kB</span> <span class=" -Color -Color-Red">16.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: matplotlib&gt;=3.6.2 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 20)) (3.7.1)
 Requirement already satisfied: scipy&gt;=1.9.3 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 21)) (1.11.4)
 Requirement already satisfied: tables&gt;=3.7.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 22)) (3.8.0)
 Collecting netCDF4==1.6.2 (from -r requirements.txt (line 23))
   Downloading netCDF4-1.6.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.1 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">5.1/5.1 MB</span> <span class=" -Color -Color-Red">67.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">5.1/5.1 MB</span> <span class=" -Color -Color-Red">29.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: xarray&gt;=2022.10.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 24)) (2023.7.0)
 Requirement already satisfied: gast&gt;=0.4.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 25)) (0.5.4)
 Requirement already satisfied: pyproj&gt;=3.4.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 26)) (3.6.1)
@@ -463,38 +459,38 @@ Requirement already satisfied: scikit-learn==1.2.2 in /usr/local/lib/python3.10/
 Requirement already satisfied: numba&gt;=0.56.4 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 30)) (0.58.1)
 Collecting numpy&lt;=1.23.5 (from -r requirements.txt (line 31))
   Downloading numpy-1.23.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.1 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">17.1/17.1 MB</span> <span class=" -Color -Color-Red">53.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">17.1/17.1 MB</span> <span class=" -Color -Color-Red">34.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: pytest&gt;=7.2.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 32)) (7.4.4)
 Collecting dataclasses-json==0.5.7 (from -r requirements.txt (line 33))
   Downloading dataclasses_json-0.5.7-py3-none-any.whl (25 kB)
 Collecting global-land-mask==1.0.0 (from -r requirements.txt (line 34))
   Downloading global_land_mask-1.0.0-py3-none-any.whl (1.8 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.8/1.8 MB</span> <span class=" -Color -Color-Red">71.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.8/1.8 MB</span> <span class=" -Color -Color-Red">56.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: cartopy==0.22.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 35)) (0.22.0)
 Requirement already satisfied: Sphinx&gt;=5.0.2 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 38)) (5.0.2)
 Collecting nbsphinx&gt;=0.9.3 (from -r requirements.txt (line 39))
   Downloading nbsphinx-0.9.3-py3-none-any.whl (31 kB)
 Collecting numpydoc&gt;=1.6.0 (from -r requirements.txt (line 40))
   Downloading numpydoc-1.6.0-py3-none-any.whl (61 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">61.7/61.7 kB</span> <span class=" -Color -Color-Red">7.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">61.7/61.7 kB</span> <span class=" -Color -Color-Red">8.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting sphinxemoji&gt;=0.2.0 (from -r requirements.txt (line 41))
   Downloading sphinxemoji-0.3.1-py3-none-any.whl (46 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">46.1/46.1 kB</span> <span class=" -Color -Color-Red">6.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">46.1/46.1 kB</span> <span class=" -Color -Color-Red">5.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting sphinx-rtd-theme&gt;=1.3.0 (from -r requirements.txt (line 42))
   Downloading sphinx_rtd_theme-2.0.0-py2.py3-none-any.whl (2.8 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2.8/2.8 MB</span> <span class=" -Color -Color-Red">69.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2.8/2.8 MB</span> <span class=" -Color -Color-Red">41.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.10/dist-packages (from pandas==1.5.3-&gt;-r requirements.txt (line 4)) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas==1.5.3-&gt;-r requirements.txt (line 4)) (2023.4)
 Collecting linear-operator&gt;=0.4.0 (from gpytorch==1.10-&gt;-r requirements.txt (line 19))
   Downloading linear_operator-0.5.2-py3-none-any.whl (175 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">175.6/175.6 kB</span> <span class=" -Color -Color-Red">13.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">175.6/175.6 kB</span> <span class=" -Color -Color-Red">20.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting cftime (from netCDF4==1.6.2-&gt;-r requirements.txt (line 23))
   Downloading cftime-1.6.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.3/1.3 MB</span> <span class=" -Color -Color-Red">61.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: notebook in /usr/local/lib/python3.10/dist-packages (from jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (6.5.5)
 Collecting qtconsole (from jupyter==1.0.0-&gt;-r requirements.txt (line 28))
   Downloading qtconsole-5.5.1-py3-none-any.whl (123 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">123.4/123.4 kB</span> <span class=" -Color -Color-Red">13.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">123.4/123.4 kB</span> <span class=" -Color -Color-Red">17.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: jupyter-console in /usr/local/lib/python3.10/dist-packages (from jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (6.1.0)
 Requirement already satisfied: nbconvert in /usr/local/lib/python3.10/dist-packages (from jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (6.5.4)
 Requirement already satisfied: ipykernel in /usr/local/lib/python3.10/dist-packages (from jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (5.5.6)
@@ -503,7 +499,7 @@ Requirement already satisfied: joblib&gt;=1.1.1 in /usr/local/lib/python3.10/dis
 Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from scikit-learn==1.2.2-&gt;-r requirements.txt (line 29)) (3.3.0)
 Collecting marshmallow&lt;4.0.0,&gt;=3.3.0 (from dataclasses-json==0.5.7-&gt;-r requirements.txt (line 33))
   Downloading marshmallow-3.21.1-py3-none-any.whl (49 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">49.4/49.4 kB</span> <span class=" -Color -Color-Red">5.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">49.4/49.4 kB</span> <span class=" -Color -Color-Red">6.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting marshmallow-enum&lt;2.0.0,&gt;=1.5.1 (from dataclasses-json==0.5.7-&gt;-r requirements.txt (line 33))
   Downloading marshmallow_enum-1.5.1-py2.py3-none-any.whl (4.2 kB)
 Collecting typing-inspect&gt;=0.4.0 (from dataclasses-json==0.5.7-&gt;-r requirements.txt (line 33))
@@ -515,7 +511,7 @@ Requirement already satisfied: pyerfa&gt;=2.0 in /usr/local/lib/python3.10/dist-
 Requirement already satisfied: PyYAML&gt;=3.13 in /usr/local/lib/python3.10/dist-packages (from astropy&gt;=5.1.1-&gt;-r requirements.txt (line 2)) (6.0.1)
 Collecting check-shapes&gt;=1.0.0 (from gpflow&gt;=2.9.0-&gt;-r requirements.txt (line 10))
   Downloading check_shapes-1.1.1-py3-none-any.whl (45 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.8/45.8 kB</span> <span class=" -Color -Color-Red">4.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.8/45.8 kB</span> <span class=" -Color -Color-Red">5.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting deprecated (from gpflow&gt;=2.9.0-&gt;-r requirements.txt (line 10))
   Downloading Deprecated-1.2.14-py2.py3-none-any.whl (9.6 kB)
 Requirement already satisfied: multipledispatch&gt;=0.6 in /usr/local/lib/python3.10/dist-packages (from gpflow&gt;=2.9.0-&gt;-r requirements.txt (line 10)) (1.0.0)
@@ -541,57 +537,57 @@ Requirement already satisfied: tensorflow-estimator&lt;2.16,&gt;=2.15.0 in /usr/
 Requirement already satisfied: keras&lt;2.16,&gt;=2.15.0 in /usr/local/lib/python3.10/dist-packages (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12)) (2.15.0)
 Collecting nvidia-cublas-cu12==12.2.5.6 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_cublas_cu12-12.2.5.6-py3-none-manylinux1_x86_64.whl (417.8 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">417.8/417.8 MB</span> <span class=" -Color -Color-Red">3.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">417.8/417.8 MB</span> <span class=" -Color -Color-Red">2.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting nvidia-cuda-cupti-cu12==12.2.142 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_cuda_cupti_cu12-12.2.142-py3-none-manylinux1_x86_64.whl (13.9 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">13.9/13.9 MB</span> <span class=" -Color -Color-Red">65.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">13.9/13.9 MB</span> <span class=" -Color -Color-Red">88.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting nvidia-cuda-nvcc-cu12==12.2.140 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_cuda_nvcc_cu12-12.2.140-py3-none-manylinux1_x86_64.whl (21.3 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">21.3/21.3 MB</span> <span class=" -Color -Color-Red">53.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">21.3/21.3 MB</span> <span class=" -Color -Color-Red">76.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting nvidia-cuda-nvrtc-cu12==12.2.140 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_cuda_nvrtc_cu12-12.2.140-py3-none-manylinux1_x86_64.whl (23.4 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.4/23.4 MB</span> <span class=" -Color -Color-Red">49.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">23.4/23.4 MB</span> <span class=" -Color -Color-Red">72.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting nvidia-cuda-runtime-cu12==12.2.140 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_cuda_runtime_cu12-12.2.140-py3-none-manylinux1_x86_64.whl (845 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">845.8/845.8 kB</span> <span class=" -Color -Color-Red">62.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">845.8/845.8 kB</span> <span class=" -Color -Color-Red">71.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting nvidia-cudnn-cu12==8.9.4.25 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_cudnn_cu12-8.9.4.25-py3-none-manylinux1_x86_64.whl (720.1 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">720.1/720.1 MB</span> <span class=" -Color -Color-Red">1.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">720.1/720.1 MB</span> <span class=" -Color -Color-Red">2.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting nvidia-cufft-cu12==11.0.8.103 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_cufft_cu12-11.0.8.103-py3-none-manylinux1_x86_64.whl (98.6 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">98.6/98.6 MB</span> <span class=" -Color -Color-Red">8.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">98.6/98.6 MB</span> <span class=" -Color -Color-Red">9.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting nvidia-curand-cu12==10.3.3.141 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_curand_cu12-10.3.3.141-py3-none-manylinux1_x86_64.whl (56.5 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">56.5/56.5 MB</span> <span class=" -Color -Color-Red">10.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">56.5/56.5 MB</span> <span class=" -Color -Color-Red">10.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting nvidia-cusolver-cu12==11.5.2.141 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_cusolver_cu12-11.5.2.141-py3-none-manylinux1_x86_64.whl (124.9 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">124.9/124.9 MB</span> <span class=" -Color -Color-Red">8.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">124.9/124.9 MB</span> <span class=" -Color -Color-Red">8.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting nvidia-cusparse-cu12==12.1.2.141 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_cusparse_cu12-12.1.2.141-py3-none-manylinux1_x86_64.whl (195.3 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">195.3/195.3 MB</span> <span class=" -Color -Color-Red">2.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">195.3/195.3 MB</span> <span class=" -Color -Color-Red">6.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting nvidia-nccl-cu12==2.16.5 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_nccl_cu12-2.16.5-py3-none-manylinux1_x86_64.whl (188.7 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">188.7/188.7 MB</span> <span class=" -Color -Color-Red">5.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">188.7/188.7 MB</span> <span class=" -Color -Color-Red">6.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting nvidia-nvjitlink-cu12==12.2.140 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading nvidia_nvjitlink_cu12-12.2.140-py3-none-manylinux1_x86_64.whl (20.2 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">20.2/20.2 MB</span> <span class=" -Color -Color-Red">57.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">20.2/20.2 MB</span> <span class=" -Color -Color-Red">84.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hCollecting tensorrt==8.6.1.post1 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading tensorrt-8.6.1.post1.tar.gz (18 kB)
   Preparing metadata (setup.py) ... ?25l?25hdone
 Collecting tensorrt-bindings==8.6.1 (from tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12))
   Downloading tensorrt_bindings-8.6.1-cp310-none-manylinux_2_17_x86_64.whl (979 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">979.4/979.4 kB</span> <span class=" -Color -Color-Red">60.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">979.4/979.4 kB</span> <span class=" -Color -Color-Red">65.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hINFO: pip is looking at multiple versions of tensorflow[and-cuda] to determine which version is compatible with other requirements. This could take a while.
 Collecting tensorflow[and-cuda]&gt;=2.14.0 (from -r requirements.txt (line 12))
   Downloading tensorflow-2.15.0.post1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (475.2 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">475.2/475.2 MB</span> <span class=" -Color -Color-Red">2.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">475.2/475.2 MB</span> <span class=" -Color -Color-Red">3.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: contourpy&gt;=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=3.6.2-&gt;-r requirements.txt (line 20)) (1.2.0)
 Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=3.6.2-&gt;-r requirements.txt (line 20)) (0.12.1)
 Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=3.6.2-&gt;-r requirements.txt (line 20)) (4.49.0)
 Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=3.6.2-&gt;-r requirements.txt (line 20)) (1.4.5)
 Requirement already satisfied: pillow&gt;=6.2.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=3.6.2-&gt;-r requirements.txt (line 20)) (9.4.0)
 Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=3.6.2-&gt;-r requirements.txt (line 20)) (3.1.1)
-Requirement already satisfied: cython&gt;=0.29.21 in /usr/local/lib/python3.10/dist-packages (from tables&gt;=3.7.0-&gt;-r requirements.txt (line 22)) (3.0.8)
+Requirement already satisfied: cython&gt;=0.29.21 in /usr/local/lib/python3.10/dist-packages (from tables&gt;=3.7.0-&gt;-r requirements.txt (line 22)) (3.0.9)
 Requirement already satisfied: numexpr&gt;=2.6.2 in /usr/local/lib/python3.10/dist-packages (from tables&gt;=3.7.0-&gt;-r requirements.txt (line 22)) (2.9.0)
 Requirement already satisfied: blosc2~=2.0.0 in /usr/local/lib/python3.10/dist-packages (from tables&gt;=3.7.0-&gt;-r requirements.txt (line 22)) (2.0.0)
 Requirement already satisfied: py-cpuinfo in /usr/local/lib/python3.10/dist-packages (from tables&gt;=3.7.0-&gt;-r requirements.txt (line 22)) (9.0.0)
@@ -619,19 +615,20 @@ Requirement already satisfied: traitlets&gt;=5 in /usr/local/lib/python3.10/dist
 Requirement already satisfied: nbformat in /usr/local/lib/python3.10/dist-packages (from nbsphinx&gt;=0.9.3-&gt;-r requirements.txt (line 39)) (5.9.2)
 Collecting sphinxcontrib-jquery&lt;5,&gt;=4 (from sphinx-rtd-theme&gt;=1.3.0-&gt;-r requirements.txt (line 42))
   Downloading sphinxcontrib_jquery-4.1-py2.py3-none-any.whl (121 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">121.1/121.1 kB</span> <span class=" -Color -Color-Red">11.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">121.1/121.1 kB</span> <span class=" -Color -Color-Red">15.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: wheel&lt;1.0,&gt;=0.23.0 in /usr/local/lib/python3.10/dist-packages (from astunparse&gt;=1.6.0-&gt;tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12)) (0.42.0)
-Requirement already satisfied: msgpack in /usr/local/lib/python3.10/dist-packages (from blosc2~=2.0.0-&gt;tables&gt;=3.7.0-&gt;-r requirements.txt (line 22)) (1.0.7)
+Requirement already satisfied: msgpack in /usr/local/lib/python3.10/dist-packages (from blosc2~=2.0.0-&gt;tables&gt;=3.7.0-&gt;-r requirements.txt (line 22)) (1.0.8)
 Collecting dropstackframe&gt;=0.1.0 (from check-shapes&gt;=1.0.0-&gt;gpflow&gt;=2.9.0-&gt;-r requirements.txt (line 10))
   Downloading dropstackframe-0.1.0-py3-none-any.whl (4.5 kB)
 Collecting lark&lt;2.0.0,&gt;=1.1.0 (from check-shapes&gt;=1.0.0-&gt;gpflow&gt;=2.9.0-&gt;-r requirements.txt (line 10))
   Downloading lark-1.1.9-py3-none-any.whl (111 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">111.7/111.7 kB</span> <span class=" -Color -Color-Red">12.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">111.7/111.7 kB</span> <span class=" -Color -Color-Red">15.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.10/dist-packages (from Jinja2&gt;=2.3-&gt;Sphinx&gt;=5.0.2-&gt;-r requirements.txt (line 38)) (2.1.5)
 Requirement already satisfied: torch&gt;=1.11 in /usr/local/lib/python3.10/dist-packages (from linear-operator&gt;=0.4.0-&gt;gpytorch==1.10-&gt;-r requirements.txt (line 19)) (2.1.0+cu121)
 Collecting jaxtyping&gt;=0.2.9 (from linear-operator&gt;=0.4.0-&gt;gpytorch==1.10-&gt;-r requirements.txt (line 19))
-  Downloading jaxtyping-0.2.25-py3-none-any.whl (39 kB)
-Collecting typeguard~=2.13.3 (from linear-operator&gt;=0.4.0-&gt;gpytorch==1.10-&gt;-r requirements.txt (line 19))
+  Downloading jaxtyping-0.2.28-py3-none-any.whl (40 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">40.7/40.7 kB</span> <span class=" -Color -Color-Red">5.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hCollecting typeguard~=2.13.3 (from linear-operator&gt;=0.4.0-&gt;gpytorch==1.10-&gt;-r requirements.txt (line 19))
   Downloading typeguard-2.13.3-py3-none-any.whl (17 kB)
 Requirement already satisfied: lxml in /usr/local/lib/python3.10/dist-packages (from nbconvert-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (4.9.4)
 Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.10/dist-packages (from nbconvert-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (4.12.3)
@@ -662,7 +659,7 @@ Collecting mypy-extensions&gt;=0.3.0 (from typing-inspect&gt;=0.4.0-&gt;dataclas
 Requirement already satisfied: ipython-genutils in /usr/local/lib/python3.10/dist-packages (from ipykernel-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (0.2.0)
 Requirement already satisfied: ipython&gt;=5.0.0 in /usr/local/lib/python3.10/dist-packages (from ipykernel-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (7.34.0)
 Requirement already satisfied: jupyter-client in /usr/local/lib/python3.10/dist-packages (from ipykernel-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (6.1.12)
-Requirement already satisfied: tornado&gt;=4.2 in /usr/local/lib/python3.10/dist-packages (from ipykernel-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (6.3.2)
+Requirement already satisfied: tornado&gt;=4.2 in /usr/local/lib/python3.10/dist-packages (from ipykernel-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (6.3.3)
 Requirement already satisfied: widgetsnbextension~=3.6.0 in /usr/local/lib/python3.10/dist-packages (from ipywidgets-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (3.6.6)
 Requirement already satisfied: jupyterlab-widgets&gt;=1.0.0 in /usr/local/lib/python3.10/dist-packages (from ipywidgets-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (3.0.10)
 Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from jupyter-console-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (3.0.43)
@@ -675,14 +672,14 @@ Requirement already satisfied: prometheus-client in /usr/local/lib/python3.10/di
 Requirement already satisfied: nbclassic&gt;=0.4.7 in /usr/local/lib/python3.10/dist-packages (from notebook-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (1.0.0)
 Collecting qtpy&gt;=2.4.0 (from qtconsole-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28))
   Downloading QtPy-2.4.1-py3-none-any.whl (93 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">93.5/93.5 kB</span> <span class=" -Color -Color-Red">8.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">93.5/93.5 kB</span> <span class=" -Color -Color-Red">13.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: cachetools&lt;6.0,&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard&lt;2.16,&gt;=2.15-&gt;tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12)) (5.3.3)
 Requirement already satisfied: pyasn1-modules&gt;=0.2.1 in /usr/local/lib/python3.10/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard&lt;2.16,&gt;=2.15-&gt;tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12)) (0.3.0)
 Requirement already satisfied: rsa&lt;5,&gt;=3.1.4 in /usr/local/lib/python3.10/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard&lt;2.16,&gt;=2.15-&gt;tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12)) (4.9)
 Requirement already satisfied: requests-oauthlib&gt;=0.7.0 in /usr/local/lib/python3.10/dist-packages (from google-auth-oauthlib&lt;2,&gt;=0.5-&gt;tensorboard&lt;2.16,&gt;=2.15-&gt;tensorflow[and-cuda]&gt;=2.14.0-&gt;-r requirements.txt (line 12)) (1.3.1)
 Collecting jedi&gt;=0.16 (from ipython&gt;=5.0.0-&gt;ipykernel-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28))
   Downloading jedi-0.19.1-py2.py3-none-any.whl (1.6 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.6/1.6 MB</span> <span class=" -Color -Color-Red">26.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.6/1.6 MB</span> <span class=" -Color -Color-Red">85.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: pickleshare in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=5.0.0-&gt;ipykernel-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (0.7.5)
 Requirement already satisfied: backcall in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=5.0.0-&gt;ipykernel-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (0.2.0)
 Requirement already satisfied: matplotlib-inline in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=5.0.0-&gt;ipykernel-&gt;jupyter==1.0.0-&gt;-r requirements.txt (line 28)) (0.1.6)
@@ -728,7 +725,7 @@ Installing collected packages: global-land-mask, typeguard, setuptools, qtpy, nv
       Successfully uninstalled tensorflow-2.15.0
 <span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
 <span class=" -Color -Color-Red">chex 0.1.85 requires numpy&gt;=1.24.1, but you have numpy 1.23.5 which is incompatible.</span>
-Successfully installed cftime-1.6.3 check-shapes-1.1.1 dataclasses-json-0.5.7 deprecated-1.2.14 dropstackframe-0.1.0 global-land-mask-1.0.0 gpflow-2.9.1 gpytorch-1.10 jaxtyping-0.2.25 jedi-0.19.1 jupyter-1.0.0 lark-1.1.9 linear-operator-0.5.2 marshmallow-3.21.1 marshmallow-enum-1.5.1 mypy-extensions-1.0.0 nbsphinx-0.9.3 netCDF4-1.6.2 numpy-1.23.5 numpydoc-1.6.0 nvidia-cublas-cu12-12.2.5.6 nvidia-cuda-cupti-cu12-12.2.142 nvidia-cuda-nvcc-cu12-12.2.140 nvidia-cuda-nvrtc-cu12-12.2.140 nvidia-cuda-runtime-cu12-12.2.140 nvidia-cudnn-cu12-8.9.4.25 nvidia-cufft-cu12-11.0.8.103 nvidia-curand-cu12-10.3.3.141 nvidia-cusolver-cu12-11.5.2.141 nvidia-cusparse-cu12-12.1.2.141 nvidia-nccl-cu12-2.16.5 nvidia-nvjitlink-cu12-12.2.140 qtconsole-5.5.1 qtpy-2.4.1 setuptools-69.1.1 sphinx-rtd-theme-2.0.0 sphinxcontrib-jquery-4.1 sphinxemoji-0.3.1 tensorflow-2.15.0.post1 typeguard-2.13.3 typing-inspect-0.9.0
+Successfully installed cftime-1.6.3 check-shapes-1.1.1 dataclasses-json-0.5.7 deprecated-1.2.14 dropstackframe-0.1.0 global-land-mask-1.0.0 gpflow-2.9.1 gpytorch-1.10 jaxtyping-0.2.28 jedi-0.19.1 jupyter-1.0.0 lark-1.1.9 linear-operator-0.5.2 marshmallow-3.21.1 marshmallow-enum-1.5.1 mypy-extensions-1.0.0 nbsphinx-0.9.3 netCDF4-1.6.2 numpy-1.23.5 numpydoc-1.6.0 nvidia-cublas-cu12-12.2.5.6 nvidia-cuda-cupti-cu12-12.2.142 nvidia-cuda-nvcc-cu12-12.2.140 nvidia-cuda-nvrtc-cu12-12.2.140 nvidia-cuda-runtime-cu12-12.2.140 nvidia-cudnn-cu12-8.9.4.25 nvidia-cufft-cu12-11.0.8.103 nvidia-curand-cu12-10.3.3.141 nvidia-cusolver-cu12-11.5.2.141 nvidia-cusparse-cu12-12.1.2.141 nvidia-nccl-cu12-2.16.5 nvidia-nvjitlink-cu12-12.2.140 qtconsole-5.5.1 qtpy-2.4.1 setuptools-69.1.1 sphinx-rtd-theme-2.0.0 sphinxcontrib-jquery-4.1 sphinxemoji-0.3.1 tensorflow-2.15.0.post1 typeguard-2.13.3 typing-inspect-0.9.0
 </pre></div>
 </div>
 </div>
@@ -806,7 +803,7 @@ Successfully installed GPSat-0.0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&quot;/content/drive&quot;, force_remount=True).
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
 </pre></div>
 </div>
 </div>
@@ -963,10 +960,461 @@ Successfully installed GPSat-0.0.0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-fe094165-40a5-4010-9644-ab6b6f1ffa0b" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x</th>
+      <th>y</th>
+      <th>t</th>
+      <th>lon</th>
+      <th>lat</th>
+      <th>date</th>
+      <th>elevation</th>
+      <th>interpSLA</th>
+      <th>class</th>
+      <th>SAT</th>
+      <th>track</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-3.056178e+06</td>
+      <td>-1.270463e+06</td>
+      <td>17907</td>
+      <td>-67.427184</td>
+      <td>60.000844</td>
+      <td>20190111</td>
+      <td>0.4397</td>
+      <td>NaN</td>
+      <td>lead</td>
+      <td>S3A</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-3.055943e+06</td>
+      <td>-1.270243e+06</td>
+      <td>17907</td>
+      <td>-67.429148</td>
+      <td>60.003653</td>
+      <td>20190111</td>
+      <td>0.4250</td>
+      <td>0.4207</td>
+      <td>lead</td>
+      <td>S3A</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-3.055707e+06</td>
+      <td>-1.270022e+06</td>
+      <td>17907</td>
+      <td>-67.431112</td>
+      <td>60.006463</td>
+      <td>20190111</td>
+      <td>0.4296</td>
+      <td>0.4201</td>
+      <td>lead</td>
+      <td>S3A</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-3.055472e+06</td>
+      <td>-1.269801e+06</td>
+      <td>17907</td>
+      <td>-67.433077</td>
+      <td>60.009272</td>
+      <td>20190111</td>
+      <td>0.4494</td>
+      <td>0.4195</td>
+      <td>lead</td>
+      <td>S3A</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-3.055236e+06</td>
+      <td>-1.269580e+06</td>
+      <td>17907</td>
+      <td>-67.435042</td>
+      <td>60.012081</td>
+      <td>20190111</td>
+      <td>0.4171</td>
+      <td>0.4190</td>
+      <td>lead</td>
+      <td>S3A</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2063569</th>
+      <td>-1.099325e+06</td>
+      <td>3.126184e+05</td>
+      <td>17915</td>
+      <td>-105.874325</td>
+      <td>79.752732</td>
+      <td>20190119</td>
+      <td>0.2087</td>
+      <td>-0.0866</td>
+      <td>floe</td>
+      <td>CS2</td>
+      <td>877</td>
+    </tr>
+    <tr>
+      <th>2063570</th>
+      <td>-1.099022e+06</td>
+      <td>3.125989e+05</td>
+      <td>17915</td>
+      <td>-105.877535</td>
+      <td>79.755398</td>
+      <td>20190119</td>
+      <td>-0.1044</td>
+      <td>NaN</td>
+      <td>lead</td>
+      <td>CS2</td>
+      <td>877</td>
+    </tr>
+    <tr>
+      <th>2063571</th>
+      <td>-1.098114e+06</td>
+      <td>3.125402e+05</td>
+      <td>17915</td>
+      <td>-105.887172</td>
+      <td>79.763397</td>
+      <td>20190119</td>
+      <td>0.2351</td>
+      <td>NaN</td>
+      <td>floe</td>
+      <td>CS2</td>
+      <td>877</td>
+    </tr>
+    <tr>
+      <th>2063572</th>
+      <td>-1.097811e+06</td>
+      <td>3.125207e+05</td>
+      <td>17915</td>
+      <td>-105.890387</td>
+      <td>79.766064</td>
+      <td>20190119</td>
+      <td>0.3295</td>
+      <td>NaN</td>
+      <td>floe</td>
+      <td>CS2</td>
+      <td>877</td>
+    </tr>
+    <tr>
+      <th>2063573</th>
+      <td>-1.097509e+06</td>
+      <td>3.125011e+05</td>
+      <td>17915</td>
+      <td>-105.893604</td>
+      <td>79.768730</td>
+      <td>20190119</td>
+      <td>0.3016</td>
+      <td>NaN</td>
+      <td>floe</td>
+      <td>CS2</td>
+      <td>877</td>
+    </tr>
+  </tbody>
+</table>
+<p>2063574 rows × 11 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-fe094165-40a5-4010-9644-ab6b6f1ffa0b')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-fe094165-40a5-4010-9644-ab6b6f1ffa0b button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-fe094165-40a5-4010-9644-ab6b6f1ffa0b');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-14310478-52f8-4f21-8d16-2be5bf83d53e">
+  <button class="colab-df-quickchart" onclick="quickchart('df-14310478-52f8-4f21-8d16-2be5bf83d53e')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-14310478-52f8-4f21-8d16-2be5bf83d53e button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">savepath</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/Teaching_Michel/GEOL0069/StudentFolder/Week_8/&#39;</span>
+
+<span class="c1"># Assuming all_data_df is your DataFrame</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">savepath</span><span class="o">+</span><span class="s1">&#39;df_GPOD.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># savepath = &#39;/Users/wg4031/Downloads/&#39;</span>
+<span class="n">savepath</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/Teaching_Michel/GEOL0069/StudentFolder/Week_8/&#39;</span>
+
+<span class="c1"># Load DataFrame from CSV file</span>
+<span class="c1"># df = pd.read_csv(savepath+&#39;all_data_01.csv&#39;)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">savepath</span><span class="o">+</span><span class="s1">&#39;df_GPOD.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="select-profile-for-interpolation">
 <h1>Select profile for interpolation<a class="headerlink" href="#select-profile-for-interpolation" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;track&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0            0
+1            0
+2            0
+3            0
+4            0
+          ... 
+2063569    877
+2063570    877
+2063571    877
+2063572    877
+2063573    877
+Name: track, Length: 2063574, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interptrack</span> <span class="o">=</span> <span class="mi">136</span> <span class="c1">#track on interp day 20190115</span>
@@ -986,7 +1434,7 @@ Successfully installed GPSat-0.0.0
 <div class="cell_output docutils container">
 <img alt="_images/99cb8a7196d8902feff99877d84a9059a2c5fa7e82547718d8555069c12a363c.png" src="_images/99cb8a7196d8902feff99877d84a9059a2c5fa7e82547718d8555069c12a363c.png" />
 <div class="output text_html">
-  <div id="df-6a3b3e3d-cf51-4947-bbe6-a6fb727f1b46" class="colab-df-container">
+  <div id="df-f1a2d1f9-48c1-4507-8d0d-b413b6dd6e38" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1180,7 +1628,7 @@ Successfully installed GPSat-0.0.0
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-6a3b3e3d-cf51-4947-bbe6-a6fb727f1b46')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-f1a2d1f9-48c1-4507-8d0d-b413b6dd6e38')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -1232,12 +1680,12 @@ Successfully installed GPSat-0.0.0
 
     <script>
       const buttonEl =
-        document.querySelector('#df-6a3b3e3d-cf51-4947-bbe6-a6fb727f1b46 button.colab-df-convert');
+        document.querySelector('#df-f1a2d1f9-48c1-4507-8d0d-b413b6dd6e38 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-6a3b3e3d-cf51-4947-bbe6-a6fb727f1b46');
+        const element = document.querySelector('#df-f1a2d1f9-48c1-4507-8d0d-b413b6dd6e38');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1257,8 +1705,8 @@ Successfully installed GPSat-0.0.0
   </div>
 
 
-<div id="df-d125737e-51b8-43e1-b862-79229aa29c9d">
-  <button class="colab-df-quickchart" onclick="quickchart('df-d125737e-51b8-43e1-b862-79229aa29c9d')"
+<div id="df-c5c172db-2fad-41b9-8878-d3167f8a131b">
+  <button class="colab-df-quickchart" onclick="quickchart('df-c5c172db-2fad-41b9-8878-d3167f8a131b')"
             title="Suggest charts"
             style="display:none;">
 
@@ -1377,7 +1825,7 @@ Successfully installed GPSat-0.0.0
     }
     (() => {
       let quickchartButtonEl =
-        document.querySelector('#df-d125737e-51b8-43e1-b862-79229aa29c9d button');
+        document.querySelector('#df-c5c172db-2fad-41b9-8878-d3167f8a131b button');
       quickchartButtonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
     })();
@@ -1394,7 +1842,7 @@ Successfully installed GPSat-0.0.0
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">leads</span><span class="p">,</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;elevation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">leads</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;leads&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">floes</span><span class="p">,</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;elevation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">floes</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;floes&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;interpSLA&#39;</span><span class="p">])),</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;interpSLA&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;linear interp SLA&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;interpSLA&#39;</span><span class="p">])),</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;interpSLA&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;linear interp SLA&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1402,7 +1850,7 @@ Successfully installed GPSat-0.0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5e14e2fdd62172d8cf2c5cce829022f9373cf947eb65c2f5de5080b0f38865a8.png" src="_images/5e14e2fdd62172d8cf2c5cce829022f9373cf947eb65c2f5de5080b0f38865a8.png" />
+<img alt="_images/5873b681bb94ea30e8c89a78c412c7f263642ccfe9b4fb6d0f5f4e225cf70262.png" src="_images/5873b681bb94ea30e8c89a78c412c7f263642ccfe9b4fb6d0f5f4e225cf70262.png" />
 </div>
 </div>
 </section>
@@ -1413,7 +1861,7 @@ Successfully installed GPSat-0.0.0
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#divide track into 200 km points for expert locations</span>
 <span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span><span class="n">df_val</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
 <span class="n">r_exp</span> <span class="o">=</span> <span class="n">GCdist</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span><span class="n">Xs</span><span class="p">)</span> <span class="c1">#compute distance matrix</span>
-<span class="n">exp_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">r_exp</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]),</span><span class="mf">200e3</span><span class="p">)</span>
+<span class="n">exp_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">r_exp</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]),</span><span class="mf">100e3</span><span class="p">)</span>
 <span class="n">locs</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="n">exp_grid</span><span class="p">:</span>
     <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">r_exp</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">-</span><span class="n">ix</span><span class="p">)</span>
@@ -1437,9 +1885,9 @@ Successfully installed GPSat-0.0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/de7aa0829863edb5d743d7fdc06a95d36f45f43e1612ff3f92341a873bf64268.png" src="_images/de7aa0829863edb5d743d7fdc06a95d36f45f43e1612ff3f92341a873bf64268.png" />
+<img alt="_images/c37c50ec9125010a4abf3174afa08b66c4ded9bdc7ceb4105bb50d6903c1310c.png" src="_images/c37c50ec9125010a4abf3174afa08b66c4ded9bdc7ceb4105bb50d6903c1310c.png" />
 <div class="output text_html">
-  <div id="df-91bc39c1-6445-47f3-ac64-8068369eac7a" class="colab-df-container">
+  <div id="df-c7b560df-02e2-427d-813e-b2d20ad480f4" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1487,6 +1935,20 @@ Successfully installed GPSat-0.0.0
       <td>136</td>
     </tr>
     <tr>
+      <th>293257</th>
+      <td>-9.704333e+05</td>
+      <td>1.807138e+05</td>
+      <td>17911</td>
+      <td>-100.548776</td>
+      <td>81.152823</td>
+      <td>20190115</td>
+      <td>NaN</td>
+      <td>-0.1112</td>
+      <td>floe</td>
+      <td>S3A</td>
+      <td>136</td>
+    </tr>
+    <tr>
       <th>293540</th>
       <td>-9.757493e+05</td>
       <td>2.814191e+05</td>
@@ -1496,6 +1958,20 @@ Successfully installed GPSat-0.0.0
       <td>20190115</td>
       <td>NaN</td>
       <td>-0.0741</td>
+      <td>floe</td>
+      <td>S3A</td>
+      <td>136</td>
+    </tr>
+    <tr>
+      <th>293787</th>
+      <td>-9.806846e+05</td>
+      <td>3.824547e+05</td>
+      <td>17911</td>
+      <td>-111.305158</td>
+      <td>80.564322</td>
+      <td>20190115</td>
+      <td>NaN</td>
+      <td>-0.1113</td>
       <td>floe</td>
       <td>S3A</td>
       <td>136</td>
@@ -1515,6 +1991,20 @@ Successfully installed GPSat-0.0.0
       <td>136</td>
     </tr>
     <tr>
+      <th>294244</th>
+      <td>-9.893178e+05</td>
+      <td>5.834831e+05</td>
+      <td>17911</td>
+      <td>-120.531395</td>
+      <td>79.701889</td>
+      <td>20190115</td>
+      <td>-0.1234</td>
+      <td>-0.0940</td>
+      <td>floe</td>
+      <td>S3A</td>
+      <td>136</td>
+    </tr>
+    <tr>
       <th>294488</th>
       <td>-9.930581e+05</td>
       <td>6.844599e+05</td>
@@ -1524,6 +2014,20 @@ Successfully installed GPSat-0.0.0
       <td>20190115</td>
       <td>0.1136</td>
       <td>-0.0422</td>
+      <td>floe</td>
+      <td>S3A</td>
+      <td>136</td>
+    </tr>
+    <tr>
+      <th>294743</th>
+      <td>-9.963981e+05</td>
+      <td>7.854005e+05</td>
+      <td>17911</td>
+      <td>-128.246582</td>
+      <td>78.620875</td>
+      <td>20190115</td>
+      <td>0.2212</td>
+      <td>-0.0261</td>
       <td>floe</td>
       <td>S3A</td>
       <td>136</td>
@@ -1543,6 +2047,20 @@ Successfully installed GPSat-0.0.0
       <td>136</td>
     </tr>
     <tr>
+      <th>295163</th>
+      <td>-1.001861e+06</td>
+      <td>9.864750e+05</td>
+      <td>17911</td>
+      <td>-134.556649</td>
+      <td>77.384464</td>
+      <td>20190115</td>
+      <td>0.1629</td>
+      <td>0.0107</td>
+      <td>floe</td>
+      <td>S3A</td>
+      <td>136</td>
+    </tr>
+    <tr>
       <th>295393</th>
       <td>-1.003995e+06</td>
       <td>1.086926e+06</td>
@@ -1552,6 +2070,20 @@ Successfully installed GPSat-0.0.0
       <td>20190115</td>
       <td>0.0876</td>
       <td>0.0494</td>
+      <td>lead</td>
+      <td>S3A</td>
+      <td>136</td>
+    </tr>
+    <tr>
+      <th>295555</th>
+      <td>-1.005711e+06</td>
+      <td>1.185979e+06</td>
+      <td>17911</td>
+      <td>-139.702054</td>
+      <td>76.040860</td>
+      <td>20190115</td>
+      <td>0.0749</td>
+      <td>0.0873</td>
       <td>lead</td>
       <td>S3A</td>
       <td>136</td>
@@ -1571,6 +2103,20 @@ Successfully installed GPSat-0.0.0
       <td>136</td>
     </tr>
     <tr>
+      <th>295951</th>
+      <td>-1.008017e+06</td>
+      <td>1.389163e+06</td>
+      <td>17911</td>
+      <td>-144.034273</td>
+      <td>74.583275</td>
+      <td>20190115</td>
+      <td>0.2134</td>
+      <td>0.1485</td>
+      <td>floe</td>
+      <td>S3A</td>
+      <td>136</td>
+    </tr>
+    <tr>
       <th>296159</th>
       <td>-1.008550e+06</td>
       <td>1.488628e+06</td>
@@ -1580,6 +2126,20 @@ Successfully installed GPSat-0.0.0
       <td>20190115</td>
       <td>0.0896</td>
       <td>0.1145</td>
+      <td>lead</td>
+      <td>S3A</td>
+      <td>136</td>
+    </tr>
+    <tr>
+      <th>296340</th>
+      <td>-1.008689e+06</td>
+      <td>1.588987e+06</td>
+      <td>17911</td>
+      <td>-147.592630</td>
+      <td>73.083192</td>
+      <td>20190115</td>
+      <td>0.0450</td>
+      <td>0.0691</td>
       <td>lead</td>
       <td>S3A</td>
       <td>136</td>
@@ -1598,125 +2158,13 @@ Successfully installed GPSat-0.0.0
       <td>S3A</td>
       <td>136</td>
     </tr>
-    <tr>
-      <th>296851</th>
-      <td>-1.006942e+06</td>
-      <td>1.869585e+06</td>
-      <td>17911</td>
-      <td>-151.693492</td>
-      <td>70.892831</td>
-      <td>20190115</td>
-      <td>-0.0907</td>
-      <td>NaN</td>
-      <td>floe</td>
-      <td>S3A</td>
-      <td>136</td>
-    </tr>
-    <tr>
-      <th>296851</th>
-      <td>-1.006942e+06</td>
-      <td>1.869585e+06</td>
-      <td>17911</td>
-      <td>-151.693492</td>
-      <td>70.892831</td>
-      <td>20190115</td>
-      <td>-0.0907</td>
-      <td>NaN</td>
-      <td>floe</td>
-      <td>S3A</td>
-      <td>136</td>
-    </tr>
-    <tr>
-      <th>296851</th>
-      <td>-1.006942e+06</td>
-      <td>1.869585e+06</td>
-      <td>17911</td>
-      <td>-151.693492</td>
-      <td>70.892831</td>
-      <td>20190115</td>
-      <td>-0.0907</td>
-      <td>NaN</td>
-      <td>floe</td>
-      <td>S3A</td>
-      <td>136</td>
-    </tr>
-    <tr>
-      <th>296851</th>
-      <td>-1.006942e+06</td>
-      <td>1.869585e+06</td>
-      <td>17911</td>
-      <td>-151.693492</td>
-      <td>70.892831</td>
-      <td>20190115</td>
-      <td>-0.0907</td>
-      <td>NaN</td>
-      <td>floe</td>
-      <td>S3A</td>
-      <td>136</td>
-    </tr>
-    <tr>
-      <th>296851</th>
-      <td>-1.006942e+06</td>
-      <td>1.869585e+06</td>
-      <td>17911</td>
-      <td>-151.693492</td>
-      <td>70.892831</td>
-      <td>20190115</td>
-      <td>-0.0907</td>
-      <td>NaN</td>
-      <td>floe</td>
-      <td>S3A</td>
-      <td>136</td>
-    </tr>
-    <tr>
-      <th>296851</th>
-      <td>-1.006942e+06</td>
-      <td>1.869585e+06</td>
-      <td>17911</td>
-      <td>-151.693492</td>
-      <td>70.892831</td>
-      <td>20190115</td>
-      <td>-0.0907</td>
-      <td>NaN</td>
-      <td>floe</td>
-      <td>S3A</td>
-      <td>136</td>
-    </tr>
-    <tr>
-      <th>296851</th>
-      <td>-1.006942e+06</td>
-      <td>1.869585e+06</td>
-      <td>17911</td>
-      <td>-151.693492</td>
-      <td>70.892831</td>
-      <td>20190115</td>
-      <td>-0.0907</td>
-      <td>NaN</td>
-      <td>floe</td>
-      <td>S3A</td>
-      <td>136</td>
-    </tr>
-    <tr>
-      <th>296851</th>
-      <td>-1.006942e+06</td>
-      <td>1.869585e+06</td>
-      <td>17911</td>
-      <td>-151.693492</td>
-      <td>70.892831</td>
-      <td>20190115</td>
-      <td>-0.0907</td>
-      <td>NaN</td>
-      <td>floe</td>
-      <td>S3A</td>
-      <td>136</td>
-    </tr>
   </tbody>
 </table>
 </div>
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-91bc39c1-6445-47f3-ac64-8068369eac7a')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-c7b560df-02e2-427d-813e-b2d20ad480f4')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -1768,12 +2216,12 @@ Successfully installed GPSat-0.0.0
 
     <script>
       const buttonEl =
-        document.querySelector('#df-91bc39c1-6445-47f3-ac64-8068369eac7a button.colab-df-convert');
+        document.querySelector('#df-c7b560df-02e2-427d-813e-b2d20ad480f4 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-91bc39c1-6445-47f3-ac64-8068369eac7a');
+        const element = document.querySelector('#df-c7b560df-02e2-427d-813e-b2d20ad480f4');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1793,8 +2241,8 @@ Successfully installed GPSat-0.0.0
   </div>
 
 
-<div id="df-9a59b879-8b72-4628-8553-c13f0c66b9e3">
-  <button class="colab-df-quickchart" onclick="quickchart('df-9a59b879-8b72-4628-8553-c13f0c66b9e3')"
+<div id="df-98db1c4a-6b95-4878-aa2e-4e5cdfbfeb13">
+  <button class="colab-df-quickchart" onclick="quickchart('df-98db1c4a-6b95-4878-aa2e-4e5cdfbfeb13')"
             title="Suggest charts"
             style="display:none;">
 
@@ -1913,7 +2361,7 @@ Successfully installed GPSat-0.0.0
     }
     (() => {
       let quickchartButtonEl =
-        document.querySelector('#df-9a59b879-8b72-4628-8553-c13f0c66b9e3 button');
+        document.querySelector('#df-98db1c4a-6b95-4878-aa2e-4e5cdfbfeb13 button');
       quickchartButtonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
     })();
@@ -2392,7 +2840,8 @@ Successfully installed GPSat-0.0.0
 
 <span class="c1">#SETUP SPARSE GP MODEL (PLAY WITH MINIBATCH AND INDUCING POINTS)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;oi_model&quot;</span><span class="p">:</span> <span class="s2">&quot;GPflowSVGPModel&quot;</span><span class="p">,</span>
+    <span class="c1"># &quot;oi_model&quot;: &quot;GPflowSVGPModel&quot;,</span>
+    <span class="s2">&quot;oi_model&quot;</span><span class="p">:</span> <span class="s2">&quot;GPflowGPRModel&quot;</span><span class="p">,</span>
     <span class="s2">&quot;init_params&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="c1"># scale (divide) coordinates</span>
         <span class="s2">&quot;coords_scale&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -2402,8 +2851,13 @@ Successfully installed GPSat-0.0.0
     <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="c1"># lengthscales - same order coord_col (see data)</span>
         <span class="s2">&quot;lengthscales&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;low&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-08</span><span class="p">,</span> <span class="mf">1e-08</span><span class="p">,</span> <span class="mf">1e-08</span><span class="p">],</span>
+            <span class="s2">&quot;low&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100_000</span><span class="p">,</span> <span class="mi">100_000</span><span class="p">,</span> <span class="mf">1e-08</span><span class="p">],</span>
+            <span class="c1"># &quot;low&quot;: [5_000, 5_000, 1e-08],</span>
             <span class="s2">&quot;high&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">200000</span><span class="p">,</span> <span class="mi">200000</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;likelihood_variance&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;low&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+                <span class="s2">&quot;high&quot;</span><span class="p">:</span> <span class="mi">10</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -2460,8 +2914,8 @@ Successfully installed GPSat-0.0.0
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;data_select&#39;: 0.000 seconds
-&#39;load&#39;: 0.002 seconds
-in json_serializable - key: &#39;data_source&#39; has value DataFrame/Series, but is too long: 514796 &gt;  100
+&#39;load&#39;: 0.001 seconds
+in json_serializable - key: &#39;data_source&#39; has value DataFrame/Series, but is too long: 933261 &gt;  100
 storing as str
 in json_serializable - key: &#39;df&#39; has value DataFrame/Series, but is too long: 3820 &gt;  100
 storing as str
@@ -2483,818 +2937,402 @@ current local expert:
 
         elevation  interpSLA class  SAT  track  
 293032    -0.0435        NaN  lead  S3A    136  
-&#39;data_select&#39;: 0.159 seconds
-&#39;load&#39;: 0.249 seconds
-&#39;local_data_select&#39;: 0.193 seconds
-number obs: 107
+&#39;data_select&#39;: 0.274 seconds
+&#39;load&#39;: 0.386 seconds
+&#39;local_data_select&#39;: 0.366 seconds
+number obs: 175
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.074 seconds
-&#39;get_parameters&#39;: 0.013 seconds
-&#39;set_lengthscales_constraints&#39;: 0.038 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 9.081 seconds
-&#39;get_parameters&#39;: 0.051 seconds
+&#39;__init__&#39;: 3.766 seconds
+&#39;get_parameters&#39;: 0.010 seconds
+&#39;set_lengthscales_constraints&#39;: 0.014 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.108 seconds
+&#39;optimise_parameters&#39;: 4.669 seconds
+&#39;get_parameters&#39;: 0.007 seconds
 parameters:
-lengthscales: array([15.98795184, 13.2354775 ,  3.63689206]) 
-kernel_variance: 0.08836966934413243
-likelihood_variance: 0.015691497894129165
-inducing_points: array([[-1.02412386e+02,  1.10975757e+01,  1.79090000e+04],
-       [-1.02421009e+02,  1.11298294e+01,  1.79090000e+04],
-       [-1.02429634e+02,  1.11620843e+01,  1.79090000e+04],
-       [-1.02438256e+02,  1.11943382e+01,  1.79090000e+04],
-       [-1.02472744e+02,  1.13233572e+01,  1.79090000e+04]]) (truncated) 
-inducing_mean: array([[-0.12856742],
-       [-0.03550996],
-       [-0.02971675],
-       [-0.02574503],
-       [-0.06661632]]) (truncated) 
-inducing_chol: array([[[ 1.24027056e-01,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-2.03724528e-01,  8.59067429e-01,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-1.58790182e-01, -2.52852209e-01,  8.68967745e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [ 4.92448482e-03, -4.03662106e-03, -3.13057137e-03, ...,
-          8.81630486e-01,  0.00000000e+00,  0.00000000e+00],
-        [ 8.13710213e-04, -1.85705558e-04,  3.44038241e-04, ...,
-         -1.76483533e-02,  9.98918352e-01,  0.00000000e+00],
-        [ 8.79252513e-04, -2.34987902e-04, -1.11683295e-03, ...,
-         -1.05442445e-02, -1.51062871e-03,  9.99240239e-01]]]) 
-&#39;predict&#39;: 0.257 seconds
-total run time : 12.02 seconds
+lengthscales: array([19.99999271, 10.        ,  0.88866497]) 
+kernel_variance: 0.0430536058303766
+likelihood_variance: 0.01477252407915098
+&#39;predict&#39;: 0.119 seconds
+total run time : 10.30 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
 2 / 17
+current local expert:
+                    x              y      t         lon        lat      date  \
+293257 -970433.346901  180713.832721  17911 -100.548776  81.152823  20190115   
+
+        elevation  interpSLA class  SAT  track  
+293257        NaN    -0.1112  floe  S3A    136  
+&#39;local_data_select&#39;: 0.430 seconds
+number obs: 402
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.060 seconds
+&#39;set_lengthscales_constraints&#39;: 0.020 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.036 seconds
+&#39;optimise_parameters&#39;: 0.945 seconds
+&#39;get_parameters&#39;: 0.005 seconds
+parameters:
+lengthscales: array([10.01001584, 10.00987674,  0.76385487]) 
+kernel_variance: 0.006890050305771766
+likelihood_variance: 0.017068883578775677
+&#39;predict&#39;: 0.076 seconds
+total run time : 2.17 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+3 / 17
 current local expert:
                     x              y      t         lon        lat      date  \
 293540 -975749.307733  281419.070989  17911 -106.088264  80.897666  20190115   
 
         elevation  interpSLA class  SAT  track  
 293540        NaN    -0.0741  floe  S3A    136  
-&#39;local_data_select&#39;: 0.281 seconds
-number obs: 301
+&#39;local_data_select&#39;: 0.297 seconds
+number obs: 456
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.115 seconds
-&#39;set_lengthscales_constraints&#39;: 0.021 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 24.870 seconds
-&#39;get_parameters&#39;: 0.029 seconds
+&#39;__init__&#39;: 0.040 seconds
+&#39;set_lengthscales_constraints&#39;: 0.013 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.024 seconds
+&#39;optimise_parameters&#39;: 0.861 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([15.35759936, 13.14123221,  3.68366141]) 
-kernel_variance: 0.10205761314533913
-likelihood_variance: 0.011469172135967431
-inducing_points: array([[  -91.50167201,    35.33621587, 17913.        ],
-       [  -98.7630547 ,    28.98077497, 17913.        ],
-       [  -92.80119835,    33.99945661, 17909.        ],
-       [  -95.76290931,    27.34068802, 17911.        ],
-       [  -92.62812681,    24.45392472, 17912.        ]]) (truncated) 
-inducing_mean: array([[-0.28046103],
-       [ 0.19271546],
-       [ 0.06593053],
-       [-0.35784147],
-       [-0.30183823]]) (truncated) 
-inducing_chol: array([[[ 9.82152030e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-8.61413650e-02,  1.45258498e-01,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-3.60022849e-02, -2.02686996e-02,  8.35244844e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [ 2.98519732e-04,  1.18018288e-04, -2.81756520e-04, ...,
-          1.00006119e+00,  0.00000000e+00,  0.00000000e+00],
-        [ 3.92585990e-03,  1.01457461e-03, -7.86913749e-04, ...,
-          5.97090218e-05,  9.99408886e-01,  0.00000000e+00],
-        [-1.31703000e-03,  1.36003066e-05,  7.10352664e-04, ...,
-          4.98356705e-06,  1.53064411e-05,  9.99511451e-01]]]) 
-&#39;predict&#39;: 0.296 seconds
-total run time : 28.17 seconds
+lengthscales: array([14.341449, 10.      ,  4.      ]) 
+kernel_variance: 0.02635603404748697
+likelihood_variance: 0.01210612297648422
+&#39;predict&#39;: 0.080 seconds
+total run time : 1.92 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
-3 / 17
+4 / 17
+current local expert:
+                    x              y      t         lon        lat      date  \
+293787 -980684.592115  382454.654078  17911 -111.305158  80.564322  20190115   
+
+        elevation  interpSLA class  SAT  track  
+293787        NaN    -0.1113  floe  S3A    136  
+&#39;local_data_select&#39;: 0.293 seconds
+number obs: 725
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.041 seconds
+&#39;set_lengthscales_constraints&#39;: 0.013 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.023 seconds
+&#39;optimise_parameters&#39;: 1.641 seconds
+&#39;get_parameters&#39;: 0.005 seconds
+parameters:
+lengthscales: array([10.        , 10.00007354,  1.69677076]) 
+kernel_variance: 0.02019478365640555
+likelihood_variance: 0.01
+&#39;predict&#39;: 0.099 seconds
+total run time : 2.69 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+5 / 17
 current local expert:
                     x              y      t         lon        lat      date  \
 294032 -985206.226433  483145.278338  17911 -116.123339  80.162816  20190115   
 
         elevation  interpSLA class  SAT  track  
 294032     0.2475    -0.0977  floe  S3A    136  
-&#39;local_data_select&#39;: 0.286 seconds
-number obs: 380
+&#39;local_data_select&#39;: 0.294 seconds
+number obs: 944
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.117 seconds
-&#39;set_lengthscales_constraints&#39;: 0.022 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 14.170 seconds
-&#39;get_parameters&#39;: 0.017 seconds
+&#39;__init__&#39;: 0.047 seconds
+&#39;set_lengthscales_constraints&#39;: 0.012 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.023 seconds
+&#39;optimise_parameters&#39;: 2.235 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([14.65709494, 15.78292213,  3.5960056 ]) 
-kernel_variance: 0.1350754903232385
-likelihood_variance: 0.009990161268981404
-inducing_points: array([[  -98.37234353,    44.91389827, 17911.        ],
-       [  -89.58256404,    46.99635092, 17912.        ],
-       [  -95.38373719,    54.74950615, 17910.        ],
-       [  -93.88300006,    42.84554651, 17912.        ],
-       [  -96.11644558,    47.30783364, 17911.        ]]) (truncated) 
-inducing_mean: array([[-0.20933516],
-       [-0.18044017],
-       [-0.09837152],
-       [-0.17702605],
-       [ 0.09900872]]) (truncated) 
-inducing_chol: array([[[ 6.47762508e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-5.37473430e-02,  1.24457957e-01,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-4.08211451e-02, -3.07022729e-02,  7.95241344e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-5.90442990e-04, -1.79038401e-04, -4.06259114e-04, ...,
-          9.99947143e-01,  0.00000000e+00,  0.00000000e+00],
-        [ 5.04776760e-03,  1.27266024e-03,  1.24618162e-03, ...,
-         -5.12081584e-06,  9.97694472e-01,  0.00000000e+00],
-        [ 5.66687015e-03,  5.36240203e-04,  2.25878944e-04, ...,
-         -5.69106548e-07,  1.88381915e-04,  9.99791186e-01]]]) 
-&#39;predict&#39;: 0.152 seconds
-total run time : 15.92 seconds
+lengthscales: array([10.00000363, 10.01043752,  1.60707399]) 
+kernel_variance: 0.013727496913800962
+likelihood_variance: 0.010658148132878858
+&#39;predict&#39;: 0.115 seconds
+total run time : 3.35 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
-4 / 17
+6 / 17
+current local expert:
+                    x              y      t         lon        lat      date  \
+294244 -989317.812886  583483.138854  17911 -120.531395  79.701889  20190115   
+
+        elevation  interpSLA class  SAT  track  
+294244    -0.1234     -0.094  floe  S3A    136  
+&#39;local_data_select&#39;: 0.327 seconds
+number obs: 702
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.040 seconds
+&#39;set_lengthscales_constraints&#39;: 0.012 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.030 seconds
+**********
+optimization failed!
+&#39;optimise_parameters&#39;: 4.813 seconds
+&#39;get_parameters&#39;: 0.006 seconds
+parameters:
+lengthscales: array([19.99999994, 17.58238501,  4.        ]) 
+kernel_variance: 0.0022200264722359512
+likelihood_variance: 0.01254682630824435
+&#39;predict&#39;: 0.087 seconds
+total run time : 5.89 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+7 / 17
 current local expert:
                     x              y      t         lon        lat      date  \
 294488 -993058.063068  684459.877912  17911 -124.576343  79.184512  20190115   
 
         elevation  interpSLA class  SAT  track  
 294488     0.1136    -0.0422  floe  S3A    136  
-&#39;local_data_select&#39;: 0.187 seconds
-number obs: 377
+&#39;local_data_select&#39;: 0.307 seconds
+number obs: 824
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.077 seconds
-&#39;set_lengthscales_constraints&#39;: 0.014 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 13.400 seconds
-&#39;get_parameters&#39;: 0.015 seconds
+&#39;__init__&#39;: 0.050 seconds
+&#39;set_lengthscales_constraints&#39;: 0.013 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.022 seconds
+&#39;optimise_parameters&#39;: 1.643 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([13.3114032 , 15.73880499,  3.76245344]) 
-kernel_variance: 0.1134859343106907
-likelihood_variance: 0.007435053235685835
-inducing_points: array([[  -89.9515056 ,    66.67146037, 17912.        ],
-       [  -91.00615929,    67.88312553, 17912.        ],
-       [  -92.38380716,    73.67241367, 17911.        ],
-       [ -104.72895739,    65.48868682, 17912.        ],
-       [  -91.89854408,    65.69649174, 17910.        ]]) (truncated) 
-inducing_mean: array([[-0.10133241],
-       [ 0.10565165],
-       [-0.0463315 ],
-       [-0.18398156],
-       [ 0.07708502]]) (truncated) 
-inducing_chol: array([[[ 8.13295393e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-1.89113070e-01,  3.99388217e-01,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [ 1.48605728e-02, -2.66287418e-01,  1.20798560e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-9.26118985e-04, -1.22894975e-03, -5.95913000e-04, ...,
-          9.99315721e-01,  0.00000000e+00,  0.00000000e+00],
-        [-7.51796479e-04,  2.33608141e-04, -1.75101080e-04, ...,
-         -6.90877486e-08,  1.00002043e+00,  0.00000000e+00],
-        [-4.17004145e-04,  1.58051232e-04, -3.57527999e-06, ...,
-          9.43393270e-07,  2.94644023e-07,  9.99846310e-01]]]) 
-&#39;predict&#39;: 0.153 seconds
-total run time : 15.04 seconds
+lengthscales: array([10.00000046, 10.00000393,  4.        ]) 
+kernel_variance: 0.0053004091404399226
+likelihood_variance: 0.010000000000000406
+&#39;predict&#39;: 0.097 seconds
+total run time : 2.72 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
-5 / 17
+8 / 17
+current local expert:
+                    x              y      t         lon        lat      date  \
+294743 -996398.060176  785400.509049  17911 -128.246582  78.620875  20190115   
+
+        elevation  interpSLA class  SAT  track  
+294743     0.2212    -0.0261  floe  S3A    136  
+&#39;local_data_select&#39;: 0.292 seconds
+number obs: 1088
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.039 seconds
+&#39;set_lengthscales_constraints&#39;: 0.014 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.023 seconds
+&#39;optimise_parameters&#39;: 3.141 seconds
+&#39;get_parameters&#39;: 0.021 seconds
+parameters:
+lengthscales: array([10.00000759, 10.00014288,  2.13480654]) 
+kernel_variance: 0.007392448187585952
+likelihood_variance: 0.01000000000009845
+&#39;predict&#39;: 0.339 seconds
+total run time : 5.30 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+9 / 17
 current local expert:
                     x              y      t         lon       lat      date  \
 294948 -999328.512971  885963.803449  17911 -131.558885  78.01957  20190115   
 
         elevation  interpSLA class  SAT  track  
 294948     0.1093    -0.0169  floe  S3A    136  
-&#39;local_data_select&#39;: 0.186 seconds
-number obs: 515
+&#39;local_data_select&#39;: 1.574 seconds
+number obs: 1052
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.077 seconds
-&#39;set_lengthscales_constraints&#39;: 0.013 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 15.424 seconds
-&#39;get_parameters&#39;: 0.018 seconds
+&#39;__init__&#39;: 0.202 seconds
+&#39;set_lengthscales_constraints&#39;: 0.051 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.125 seconds
+&#39;optimise_parameters&#39;: 6.389 seconds
+&#39;get_parameters&#39;: 0.013 seconds
 parameters:
-lengthscales: array([16.57540587, 16.07296864,  3.77196113]) 
-kernel_variance: 0.08643392509097932
-likelihood_variance: 0.004784987306064531
-inducing_points: array([[  -99.78157754,    83.23582447, 17911.        ],
-       [ -102.09145065,    96.69294964, 17909.        ],
-       [  -99.80830407,    85.99135303, 17910.        ],
-       [ -107.53380848,    87.00572986, 17912.        ],
-       [ -104.37031274,    95.00015694, 17913.        ]]) (truncated) 
-inducing_mean: array([[-0.05745146],
-       [ 0.25531673],
-       [ 0.4444065 ],
-       [-0.00505467],
-       [ 0.3649073 ]]) (truncated) 
-inducing_chol: array([[[ 7.52333130e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-4.16838098e-02,  4.95362624e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-1.54315187e-01, -3.56583224e-02,  1.64776361e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [ 8.87889091e-04, -4.07267942e-04,  6.04815455e-05, ...,
-          1.00001826e+00,  0.00000000e+00,  0.00000000e+00],
-        [ 2.07968831e-03,  9.68039357e-05, -2.65876596e-04, ...,
-         -1.49130742e-07,  1.00025290e+00,  0.00000000e+00],
-        [ 3.14742490e-03, -2.80219016e-03,  1.38621769e-03, ...,
-          3.70381183e-07, -5.02882219e-06,  9.98075039e-01]]]) 
-&#39;predict&#39;: 0.163 seconds
-total run time : 17.45 seconds
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-6 / 17
-current local expert:
-                   x             y      t         lon        lat      date  \
-295393 -1.003995e+06  1.086926e+06  17911 -137.271294  76.720423  20190115   
-
-        elevation  interpSLA class  SAT  track  
-295393     0.0876     0.0494  lead  S3A    136  
-&#39;local_data_select&#39;: 0.212 seconds
-number obs: 766
-setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.075 seconds
-&#39;set_lengthscales_constraints&#39;: 0.014 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 14.319 seconds
-&#39;get_parameters&#39;: 0.022 seconds
-parameters:
-lengthscales: array([15.85206325, 15.66655137,  3.40626539]) 
-kernel_variance: 0.15644136185661559
-likelihood_variance: 0.003075299206106606
-inducing_points: array([[ -103.25905957,   116.64958439, 17912.        ],
-       [  -98.82002863,   110.17063707, 17910.        ],
-       [ -104.67751312,   114.78384666, 17910.        ],
-       [  -96.98760092,   108.72365886, 17910.        ],
-       [ -100.57105463,   118.59793749, 17911.        ]]) (truncated) 
-inducing_mean: array([[ 0.27424633],
-       [ 0.18238281],
-       [-0.08511496],
-       [ 0.034118  ],
-       [-0.26333738]]) (truncated) 
-inducing_chol: array([[[ 2.96342066e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-2.43680158e-02,  3.61656375e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-2.14967144e-02, -2.85499595e-02,  4.31977070e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-1.97695322e-03, -3.60456723e-04,  1.88062450e-03, ...,
-          9.99586830e-01,  0.00000000e+00,  0.00000000e+00],
-        [ 3.71048238e-03, -1.20645612e-03,  1.86345241e-04, ...,
-          7.24066459e-06,  1.00003824e+00,  0.00000000e+00],
-        [-2.24984291e-02, -1.83312216e-03, -8.49651906e-04, ...,
-          1.70863373e-06, -3.38616143e-06,  9.97736620e-01]]]) 
-&#39;predict&#39;: 0.166 seconds
-total run time : 16.32 seconds
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-7 / 17
-current local expert:
-                   x             y      t         lon       lat      date  \
-295746 -1.007083e+06  1.288943e+06  17911 -141.998591  75.31194  20190115   
-
-        elevation  interpSLA class  SAT  track  
-295746     0.1013     0.1221  lead  S3A    136  
-&#39;local_data_select&#39;: 0.216 seconds
-number obs: 1058
-setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.070 seconds
-&#39;set_lengthscales_constraints&#39;: 0.015 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 14.760 seconds
-&#39;get_parameters&#39;: 0.032 seconds
-parameters:
-lengthscales: array([15.27545147, 11.90689541,  3.18574725]) 
-kernel_variance: 0.27467560568814986
-likelihood_variance: 0.003359227843266653
-inducing_points: array([[  -96.81469484,   134.23483761, 17910.        ],
-       [  -94.999828  ,   121.93704832, 17911.        ],
-       [  -99.73872827,   120.06443905, 17911.        ],
-       [  -94.81793565,   133.61126014, 17910.        ],
-       [ -100.68182888,   135.43736969, 17910.        ]]) (truncated) 
-inducing_mean: array([[ 0.34811877],
-       [ 0.11401577],
-       [ 0.19293133],
-       [-0.04031028],
-       [ 0.05561267]]) (truncated) 
-inducing_chol: array([[[ 1.58137140e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-8.49155024e-03,  2.86884977e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [ 1.28376356e-03, -4.52205302e-02,  3.86203484e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-2.94600854e-03,  3.56218096e-03,  2.38738918e-04, ...,
-          9.91281724e-01,  0.00000000e+00,  0.00000000e+00],
-        [ 2.87401176e-04, -4.11557122e-03,  6.98772781e-03, ...,
-         -4.96183139e-05,  9.98333687e-01,  0.00000000e+00],
-        [-1.38419323e-03,  1.00130864e-03,  3.19376913e-03, ...,
-         -1.45829337e-05, -3.96034331e-05,  9.97296492e-01]]]) 
-&#39;predict&#39;: 0.220 seconds
-total run time : 17.84 seconds
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-8 / 17
-current local expert:
-                   x             y      t        lon        lat      date  \
-296159 -1.008550e+06  1.488628e+06  17911 -145.88225  73.843791  20190115   
-
-        elevation  interpSLA class  SAT  track  
-296159     0.0896     0.1145  lead  S3A    136  
-&#39;local_data_select&#39;: 0.301 seconds
-number obs: 1017
-setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.079 seconds
-&#39;set_lengthscales_constraints&#39;: 0.017 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 13.337 seconds
-&#39;get_parameters&#39;: 0.015 seconds
-parameters:
-lengthscales: array([13.59734365, 11.15605284,  3.3810523 ]) 
-kernel_variance: 0.2710903293873421
-likelihood_variance: 0.005987208424258856
-inducing_points: array([[ -110.18703266,   150.29817688, 17911.        ],
-       [ -101.05667491,   153.21946834, 17909.        ],
-       [ -100.86580149,   153.13682244, 17911.        ],
-       [ -110.2151863 ,   150.35129149, 17911.        ],
-       [  -94.82362726,   150.51679768, 17909.        ]]) (truncated) 
-inducing_mean: array([[ 0.36150151],
-       [-0.03535072],
-       [-0.10961506],
-       [ 0.16262708],
-       [ 0.34006223]]) (truncated) 
-inducing_chol: array([[[ 3.85590917e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-2.27375969e-02,  3.27870182e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-2.01825704e-02, -2.49800909e-02,  5.12063516e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-1.21405610e-04, -9.28491792e-04,  1.76921426e-03, ...,
-          9.99747307e-01,  0.00000000e+00,  0.00000000e+00],
-        [-2.88674919e-03,  4.86410011e-04, -6.84294153e-03, ...,
-         -1.16010952e-04,  9.99488923e-01,  0.00000000e+00],
-        [-2.55686545e-03,  7.03300682e-03, -3.56943475e-03, ...,
-         -2.49475693e-05, -1.27692593e-05,  9.98082301e-01]]]) 
-&#39;predict&#39;: 0.151 seconds
-total run time : 16.13 seconds
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-9 / 17
-current local expert:
-                   x             y      t         lon        lat      date  \
-296522 -1.008427e+06  1.689237e+06  17911 -149.164002  72.310595  20190115   
-
-        elevation  interpSLA class  SAT  track  
-296522     0.0948     0.0349  floe  S3A    136  
-&#39;local_data_select&#39;: 0.209 seconds
-number obs: 299
-setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.085 seconds
-&#39;set_lengthscales_constraints&#39;: 0.016 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 15.410 seconds
-&#39;get_parameters&#39;: 0.016 seconds
-parameters:
-lengthscales: array([17.24334806, 14.45225939,  3.7628503 ]) 
-kernel_variance: 0.11177287544833547
-likelihood_variance: 0.0037439656175839824
-inducing_points: array([[ -106.91843313,   172.36821872, 17912.        ],
-       [ -101.54521779,   171.13285684, 17912.        ],
-       [  -96.74026826,   160.05157939, 17912.        ],
-       [ -100.85519767,   165.78181311, 17911.        ],
-       [  -98.04436238,   161.63559921, 17912.        ]]) (truncated) 
-inducing_mean: array([[ 0.16963338],
-       [-0.14001147],
-       [ 0.28743324],
-       [-0.21901357],
-       [ 0.39093388]]) (truncated) 
-inducing_chol: array([[[ 5.28731132e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-1.09257003e-01,  1.18524591e-01,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [ 2.09539990e-02, -5.40288253e-02,  4.99845321e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-1.75265533e-03, -2.37268982e-04, -1.84283513e-03, ...,
-          9.99767482e-01,  0.00000000e+00,  0.00000000e+00],
-        [-7.92265706e-04, -2.49713592e-04, -6.43592320e-04, ...,
-         -5.79447708e-06,  9.99979685e-01,  0.00000000e+00],
-        [-4.33883801e-04, -8.90736384e-03, -1.55060182e-05, ...,
-         -3.69900967e-06, -7.37443348e-07,  9.99724874e-01]]]) 
-&#39;predict&#39;: 0.149 seconds
-total run time : 16.97 seconds
+lengthscales: array([19.99988387, 20.        ,  1.04963929]) 
+kernel_variance: 0.002075142758629723
+likelihood_variance: 0.01
+&#39;predict&#39;: 0.233 seconds
+total run time : 9.51 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
 10 / 17
 current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
+                   x              y      t         lon        lat      date  \
+295163 -1.001861e+06  986475.006722  17911 -134.556649  77.384464  20190115   
 
         elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.207 seconds
-number obs: 47
+295163     0.1629     0.0107  floe  S3A    136  
+&#39;local_data_select&#39;: 0.473 seconds
+number obs: 1195
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.072 seconds
-&#39;set_lengthscales_constraints&#39;: 0.014 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 5.012 seconds
-&#39;get_parameters&#39;: 0.014 seconds
+&#39;__init__&#39;: 0.063 seconds
+&#39;set_lengthscales_constraints&#39;: 0.022 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.046 seconds
+&#39;optimise_parameters&#39;: 4.052 seconds
+&#39;get_parameters&#39;: 0.024 seconds
 parameters:
-lengthscales: array([19.61231679, 13.98192899,  0.97881577]) 
-kernel_variance: 0.08803698836173385
-likelihood_variance: 0.0017489647279577717
-inducing_points: array([[  -92.08848928,   189.0808614 , 17911.        ],
-       [ -100.78845789,   177.48371509, 17911.        ],
-       [ -100.78819183,   177.51674781, 17911.        ],
-       [ -100.78792553,   177.54978153, 17911.        ],
-       [ -100.78765881,   177.58281382, 17911.        ]]) (truncated) 
-inducing_mean: array([[-0.96688009],
-       [ 0.46914996],
-       [-0.11167867],
-       [-0.10228017],
-       [-0.0724756 ]]) (truncated) 
-inducing_chol: array([[[ 1.37069481e-01,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-8.03593276e-02,  5.32928045e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-3.53285771e-02, -2.62016477e-01,  8.24316717e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-2.41838967e-04, -3.02726020e-03,  1.13584301e-03, ...,
-          9.99797957e-01,  0.00000000e+00,  0.00000000e+00],
-        [ 1.98501481e-03, -1.61811331e-03,  7.62271256e-04, ...,
-         -6.65147573e-04,  9.99533024e-01,  0.00000000e+00],
-        [ 1.85207661e-03, -9.08069391e-04,  1.30843489e-03, ...,
-          7.26271126e-05, -2.12742292e-04,  9.99999605e-01]]]) 
-&#39;predict&#39;: 0.108 seconds
+lengthscales: array([10.00000012, 14.1004491 ,  3.99999999]) 
+kernel_variance: 0.009617917843922491
+likelihood_variance: 0.01000000000138903
+&#39;predict&#39;: 0.318 seconds
 SAVING RESULTS TO TABLES:
 run_details
 preds
 lengthscales
 kernel_variance
 likelihood_variance
-inducing_points
-inducing_mean
-inducing_chol
-total run time : 9.24 seconds
+total run time : 8.09 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
 11 / 17
 current local expert:
                    x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
+295393 -1.003995e+06  1.086926e+06  17911 -137.271294  76.720423  20190115   
 
         elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.264 seconds
-number obs: 47
+295393     0.0876     0.0494  lead  S3A    136  
+&#39;local_data_select&#39;: 0.612 seconds
+number obs: 1672
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.113 seconds
-&#39;set_lengthscales_constraints&#39;: 0.022 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 7.612 seconds
-&#39;get_parameters&#39;: 0.070 seconds
+&#39;__init__&#39;: 0.147 seconds
+&#39;set_lengthscales_constraints&#39;: 0.040 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.065 seconds
+&#39;optimise_parameters&#39;: 11.466 seconds
+&#39;get_parameters&#39;: 0.009 seconds
 parameters:
-lengthscales: array([19.63700832, 13.85669674,  1.35833185]) 
-kernel_variance: 0.08425268533106799
-likelihood_variance: 0.0016269645028821743
-inducing_points: array([[  -92.08848928,   189.0808614 , 17911.        ],
-       [ -100.78845789,   177.48371509, 17911.        ],
-       [ -100.78819183,   177.51674781, 17911.        ],
-       [ -100.78792553,   177.54978153, 17911.        ],
-       [ -100.78765881,   177.58281382, 17911.        ]]) (truncated) 
-inducing_mean: array([[-0.99199917],
-       [ 0.47446326],
-       [-0.11366873],
-       [-0.1050064 ],
-       [-0.07249111]]) (truncated) 
-inducing_chol: array([[[ 1.36003357e-01,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-8.15927642e-02,  5.39455284e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-3.51862297e-02, -2.59586235e-01,  8.25133765e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-1.62131293e-03,  9.60804435e-04, -5.05232368e-04, ...,
-          9.99187520e-01,  0.00000000e+00,  0.00000000e+00],
-        [-2.03723204e-03, -7.29270863e-04, -1.08534544e-03, ...,
-         -1.38645013e-04,  9.99870849e-01,  0.00000000e+00],
-        [-1.49654025e-03, -1.33593263e-03,  1.08043067e-04, ...,
-         -4.74525406e-04, -5.99868594e-04,  9.99885773e-01]]]) 
-&#39;predict&#39;: 0.392 seconds
-total run time : 10.20 seconds
+lengthscales: array([12.27667603, 10.        ,  3.67229893]) 
+kernel_variance: 0.01959755685357417
+likelihood_variance: 0.01
+&#39;predict&#39;: 0.182 seconds
+total run time : 13.14 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
 12 / 17
 current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
+                   x             y      t         lon       lat      date  \
+295555 -1.005711e+06  1.185979e+06  17911 -139.702054  76.04086  20190115   
 
         elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.395 seconds
-number obs: 47
+295555     0.0749     0.0873  lead  S3A    136  
+&#39;local_data_select&#39;: 0.305 seconds
+number obs: 2622
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.247 seconds
-&#39;set_lengthscales_constraints&#39;: 0.052 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 10.750 seconds
-&#39;get_parameters&#39;: 0.026 seconds
+&#39;__init__&#39;: 0.041 seconds
+&#39;set_lengthscales_constraints&#39;: 0.013 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.023 seconds
+&#39;optimise_parameters&#39;: 18.342 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([19.61485119, 13.95471269,  0.75129738]) 
-kernel_variance: 0.08491664782673805
-likelihood_variance: 0.0016855257246079266
-inducing_points: array([[  -92.08848928,   189.0808614 , 17911.        ],
-       [ -100.78845789,   177.48371509, 17911.        ],
-       [ -100.78819183,   177.51674781, 17911.        ],
-       [ -100.78792553,   177.54978153, 17911.        ],
-       [ -100.78765881,   177.58281382, 17911.        ]]) (truncated) 
-inducing_mean: array([[-0.9856865 ],
-       [ 0.47496407],
-       [-0.11723848],
-       [-0.11080714],
-       [-0.07635239]]) (truncated) 
-inducing_chol: array([[[ 1.37412868e-01,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-8.06829381e-02,  5.46016408e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-3.31152037e-02, -2.59741150e-01,  8.24710617e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [ 1.02392353e-04, -1.31459459e-03, -2.25808354e-04, ...,
-          9.97942678e-01,  0.00000000e+00,  0.00000000e+00],
-        [ 8.45862732e-04, -3.64850087e-04, -1.05171328e-04, ...,
-         -6.70198503e-04,  9.99014371e-01,  0.00000000e+00],
-        [ 1.59381025e-03, -2.56093395e-04, -1.61356714e-06, ...,
-         -1.45474414e-03, -1.21970478e-03,  9.99548213e-01]]]) 
-&#39;predict&#39;: 0.189 seconds
-total run time : 13.39 seconds
+lengthscales: array([19.99999949, 10.        ,  4.        ]) 
+kernel_variance: 0.024659743032565754
+likelihood_variance: 0.01
+&#39;predict&#39;: 0.314 seconds
+total run time : 19.72 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
 13 / 17
 current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
+                   x             y      t         lon       lat      date  \
+295746 -1.007083e+06  1.288943e+06  17911 -141.998591  75.31194  20190115   
 
         elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.192 seconds
-number obs: 47
+295746     0.1013     0.1221  lead  S3A    136  
+&#39;local_data_select&#39;: 0.303 seconds
+number obs: 2577
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.068 seconds
-&#39;set_lengthscales_constraints&#39;: 0.012 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 7.071 seconds
-&#39;get_parameters&#39;: 0.018 seconds
+&#39;__init__&#39;: 0.041 seconds
+&#39;set_lengthscales_constraints&#39;: 0.013 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.024 seconds
+&#39;optimise_parameters&#39;: 20.642 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([19.61691669, 13.89265093,  1.54343015]) 
-kernel_variance: 0.08502958830216105
-likelihood_variance: 0.001663290365748907
-inducing_points: array([[  -92.08848928,   189.0808614 , 17911.        ],
-       [ -100.78845789,   177.48371509, 17911.        ],
-       [ -100.78819183,   177.51674781, 17911.        ],
-       [ -100.78792553,   177.54978153, 17911.        ],
-       [ -100.78765881,   177.58281382, 17911.        ]]) (truncated) 
-inducing_mean: array([[-0.99600034],
-       [ 0.46552302],
-       [-0.11817288],
-       [-0.11050556],
-       [-0.07816195]]) (truncated) 
-inducing_chol: array([[[ 1.38657816e-01,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-8.47667032e-02,  5.44503155e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-3.59269602e-02, -2.60646470e-01,  8.23945453e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-2.55153454e-03, -3.23907033e-03, -1.20942941e-03, ...,
-          9.99244480e-01,  0.00000000e+00,  0.00000000e+00],
-        [-2.00048369e-03, -7.76928755e-05, -5.86469236e-04, ...,
-         -7.61829580e-04,  9.99961346e-01,  0.00000000e+00],
-        [-1.68052599e-03, -8.58673613e-04, -4.39437917e-04, ...,
-         -1.09931157e-03, -4.33908395e-04,  9.99907022e-01]]]) 
-&#39;predict&#39;: 0.110 seconds
-total run time : 8.42 seconds
+lengthscales: array([10.0170807 , 12.07547748,  4.        ]) 
+kernel_variance: 0.010214916585432453
+likelihood_variance: 0.01
+&#39;predict&#39;: 0.286 seconds
+total run time : 21.98 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
 14 / 17
 current local expert:
                    x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
+295951 -1.008017e+06  1.389163e+06  17911 -144.034273  74.583275  20190115   
 
         elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.198 seconds
-number obs: 47
+295951     0.2134     0.1485  floe  S3A    136  
+&#39;local_data_select&#39;: 0.300 seconds
+number obs: 2340
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.070 seconds
+&#39;__init__&#39;: 0.041 seconds
 &#39;set_lengthscales_constraints&#39;: 0.013 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 4.542 seconds
-&#39;get_parameters&#39;: 0.015 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.023 seconds
+&#39;optimise_parameters&#39;: 22.565 seconds
+&#39;get_parameters&#39;: 0.009 seconds
 parameters:
-lengthscales: array([19.59277999, 13.95102159,  1.02991678]) 
-kernel_variance: 0.08921562543312966
-likelihood_variance: 0.001825130776201332
-inducing_points: array([[  -92.08848928,   189.0808614 , 17911.        ],
-       [ -100.78845789,   177.48371509, 17911.        ],
-       [ -100.78819183,   177.51674781, 17911.        ],
-       [ -100.78792553,   177.54978153, 17911.        ],
-       [ -100.78765881,   177.58281382, 17911.        ]]) (truncated) 
-inducing_mean: array([[-0.96720858],
-       [ 0.46440531],
-       [-0.11294751],
-       [-0.1051999 ],
-       [-0.07334341]]) (truncated) 
-inducing_chol: array([[[ 1.33574819e-01,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-7.97689249e-02,  5.59607452e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-3.45888318e-02, -2.63732069e-01,  8.22616780e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [ 6.01781473e-04, -8.70147004e-04, -2.07042559e-04, ...,
-          9.99379371e-01,  0.00000000e+00,  0.00000000e+00],
-        [-2.70968614e-04, -3.93897136e-04, -3.87709285e-05, ...,
-         -7.93054405e-04,  9.99556110e-01,  0.00000000e+00],
-        [-4.53583007e-04, -7.79584951e-04,  7.72108040e-05, ...,
-         -9.50167590e-04, -6.48762892e-04,  9.99671030e-01]]]) 
-&#39;predict&#39;: 0.101 seconds
-total run time : 5.95 seconds
+lengthscales: array([10.00000009, 20.        ,  3.906177  ]) 
+kernel_variance: 0.016228411353574945
+likelihood_variance: 0.01
+&#39;predict&#39;: 0.309 seconds
+total run time : 23.97 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
 15 / 17
 current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
+                   x             y      t        lon        lat      date  \
+296159 -1.008550e+06  1.488628e+06  17911 -145.88225  73.843791  20190115   
 
         elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.243 seconds
-number obs: 47
+296159     0.0896     0.1145  lead  S3A    136  
+&#39;local_data_select&#39;: 0.303 seconds
+number obs: 2321
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.070 seconds
-&#39;set_lengthscales_constraints&#39;: 0.014 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 6.570 seconds
-&#39;get_parameters&#39;: 0.016 seconds
+&#39;__init__&#39;: 0.042 seconds
+&#39;set_lengthscales_constraints&#39;: 0.017 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.032 seconds
+**********
+optimization failed!
+&#39;optimise_parameters&#39;: 56.327 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([19.61505663, 13.93990838,  1.19453371]) 
-kernel_variance: 0.08681926151827159
-likelihood_variance: 0.0016968401126654352
-inducing_points: array([[  -92.08848928,   189.0808614 , 17911.        ],
-       [ -100.78845789,   177.48371509, 17911.        ],
-       [ -100.78819183,   177.51674781, 17911.        ],
-       [ -100.78792553,   177.54978153, 17911.        ],
-       [ -100.78765881,   177.58281382, 17911.        ]]) (truncated) 
-inducing_mean: array([[-0.98775412],
-       [ 0.46171915],
-       [-0.11709395],
-       [-0.10916615],
-       [-0.07807794]]) (truncated) 
-inducing_chol: array([[[ 1.37044867e-01,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-8.05578443e-02,  5.71169371e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-3.48767003e-02, -2.60722384e-01,  8.24163634e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-2.16338896e-03, -7.68581121e-04,  8.43424189e-04, ...,
-          9.98589557e-01,  0.00000000e+00,  0.00000000e+00],
-        [ 8.60611262e-04,  5.73899800e-04,  5.33352117e-04, ...,
-         -2.38992621e-03,  9.99047176e-01,  0.00000000e+00],
-        [ 6.02941050e-04,  1.21928670e-03, -6.75688835e-04, ...,
-         -1.22932017e-03, -4.64467171e-04,  9.99793021e-01]]]) 
-&#39;predict&#39;: 0.115 seconds
-total run time : 8.04 seconds
+lengthscales: array([20.        , 20.        ,  1.34604534]) 
+kernel_variance: 0.015474384698214673
+likelihood_variance: 0.01
+&#39;predict&#39;: 0.268 seconds
+total run time : 57.69 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
 16 / 17
 current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
+                   x             y      t        lon        lat      date  \
+296340 -1.008689e+06  1.588987e+06  17911 -147.59263  73.083192  20190115   
 
         elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.221 seconds
-number obs: 47
+296340      0.045     0.0691  lead  S3A    136  
+&#39;local_data_select&#39;: 0.294 seconds
+number obs: 1756
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.078 seconds
-&#39;set_lengthscales_constraints&#39;: 0.016 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 5.187 seconds
-&#39;get_parameters&#39;: 0.017 seconds
+&#39;__init__&#39;: 0.039 seconds
+&#39;set_lengthscales_constraints&#39;: 0.012 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.022 seconds
+&#39;optimise_parameters&#39;: 7.354 seconds
+&#39;get_parameters&#39;: 0.005 seconds
 parameters:
-lengthscales: array([19.62780282, 13.90784323,  0.87388209]) 
-kernel_variance: 0.08521409351933537
-likelihood_variance: 0.0016646924286637932
-inducing_points: array([[  -92.08848928,   189.0808614 , 17911.        ],
-       [ -100.78845789,   177.48371509, 17911.        ],
-       [ -100.78819183,   177.51674781, 17911.        ],
-       [ -100.78792553,   177.54978153, 17911.        ],
-       [ -100.78765881,   177.58281382, 17911.        ]]) (truncated) 
-inducing_mean: array([[-0.99556827],
-       [ 0.46779136],
-       [-0.11777709],
-       [-0.11049997],
-       [-0.07911613]]) (truncated) 
-inducing_chol: array([[[ 1.31878058e-01,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-7.84702394e-02,  5.43565911e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-3.43089648e-02, -2.61765187e-01,  8.25476344e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [ 1.76735672e-03, -8.46137439e-04,  8.14641852e-04, ...,
-          9.98141502e-01,  0.00000000e+00,  0.00000000e+00],
-        [-1.37477139e-03, -3.45567384e-03,  1.06473644e-03, ...,
-         -2.11660766e-03,  1.00000909e+00,  0.00000000e+00],
-        [-2.08163422e-03, -1.81495477e-04,  7.26781719e-05, ...,
-         -1.37239672e-03, -1.06556959e-03,  9.99957510e-01]]]) 
-&#39;predict&#39;: 0.108 seconds
-total run time : 6.58 seconds
+lengthscales: array([10.00005326, 10.00121324,  2.89993962]) 
+kernel_variance: 0.016769875268185207
+likelihood_variance: 0.01
+&#39;predict&#39;: 0.172 seconds
+total run time : 8.53 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
 17 / 17
 current local expert:
                    x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
+296522 -1.008427e+06  1.689237e+06  17911 -149.164002  72.310595  20190115   
 
         elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.232 seconds
-number obs: 47
+296522     0.0948     0.0349  floe  S3A    136  
+&#39;local_data_select&#39;: 0.295 seconds
+number obs: 862
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.071 seconds
-&#39;set_lengthscales_constraints&#39;: 0.012 seconds
-setting parameter inducing_points to be untrainable
-inducing_points is not detected as a hyperparameter. Skipping...
-objective did not improve stopping
-&#39;optimise_parameters&#39;: 6.381 seconds
-&#39;get_parameters&#39;: 0.020 seconds
+&#39;__init__&#39;: 0.049 seconds
+&#39;set_lengthscales_constraints&#39;: 0.014 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.023 seconds
+&#39;optimise_parameters&#39;: 1.873 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([19.64298388, 13.8517935 ,  0.95645948]) 
-kernel_variance: 0.08381024654780726
-likelihood_variance: 0.0016531663998790005
-inducing_points: array([[  -92.08848928,   189.0808614 , 17911.        ],
-       [ -100.78845789,   177.48371509, 17911.        ],
-       [ -100.78819183,   177.51674781, 17911.        ],
-       [ -100.78792553,   177.54978153, 17911.        ],
-       [ -100.78765881,   177.58281382, 17911.        ]]) (truncated) 
-inducing_mean: array([[-0.99258805],
-       [ 0.47752835],
-       [-0.11115417],
-       [-0.10310727],
-       [-0.07095203]]) (truncated) 
-inducing_chol: array([[[ 1.31970381e-01,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-8.04509585e-02,  5.45285320e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-3.47191430e-02, -2.59231866e-01,  8.26676361e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-2.17363980e-03,  2.43049852e-03, -9.49430326e-05, ...,
-          9.99267921e-01,  0.00000000e+00,  0.00000000e+00],
-        [-4.35659077e-04, -7.20514184e-04,  8.26626284e-04, ...,
-         -1.20301327e-03,  9.99601514e-01,  0.00000000e+00],
-        [-7.30631770e-04, -1.47692346e-03,  6.79671352e-04, ...,
-         -7.14058819e-04, -6.33489176e-04,  9.99800169e-01]]]) 
-&#39;predict&#39;: 0.120 seconds
-total run time : 7.85 seconds
+lengthscales: array([13.84233964, 10.00000027,  4.        ]) 
+kernel_variance: 0.010765855862057562
+likelihood_variance: 0.01
+&#39;predict&#39;: 0.099 seconds
+total run time : 2.95 seconds
 storing any remaining tables
 SAVING RESULTS TO TABLES:
 run_details
@@ -3302,37 +3340,28 @@ preds
 lengthscales
 kernel_variance
 likelihood_variance
-inducing_points
-inducing_mean
-inducing_chol
-&#39;run&#39;: 227.182 seconds
-found model_name: GPflowSVGPModel
+&#39;run&#39;: 200.787 seconds
+found model_name: GPflowGPRModel
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.087 seconds
+&#39;__init__&#39;: 0.041 seconds
 reading in results
-selecting only tables: [&#39;lengthscales&#39;, &#39;kernel_variance&#39;, &#39;likelihood_variance&#39;, &#39;inducing_points&#39;, &#39;inducing_mean&#39;, &#39;inducing_chol&#39;]
-&#39;data_select&#39;: 0.003 seconds
-&#39;load&#39;: 0.004 seconds
+selecting only tables: [&#39;lengthscales&#39;, &#39;kernel_variance&#39;, &#39;likelihood_variance&#39;]
+&#39;data_select&#39;: 0.001 seconds
+&#39;load&#39;: 0.001 seconds
 expert_locations data will not be merged on results data
 adding smoothed table: lengthscales_SMOOTHED
 adding smoothed table: kernel_variance_SMOOTHED
 adding smoothed table: likelihood_variance_SMOOTHED
-copying table: inducing_points to inducing_points_SMOOTHED
-copying table: inducing_mean to inducing_mean_SMOOTHED
-copying table: inducing_chol to inducing_chol_SMOOTHED
 writing (smoothed) hyper parameters to:
 /content/drive/MyDrive/Teaching_Michel/GEOL0069/StudentFolder/Week_8/GPSatSVGP_CS2S3_alongtrack_SLA_3D.h5
 table_suffix:_SMOOTHED
 <span class=" -Color -Color-Bold">writing: lengthscales_SMOOTHED to table</span>
 <span class=" -Color -Color-Bold">writing: kernel_variance_SMOOTHED to table</span>
 <span class=" -Color -Color-Bold">writing: likelihood_variance_SMOOTHED to table</span>
-<span class=" -Color -Color-Bold">writing: inducing_points_SMOOTHED to table</span>
-<span class=" -Color -Color-Bold">writing: inducing_mean_SMOOTHED to table</span>
-<span class=" -Color -Color-Bold">writing: inducing_chol_SMOOTHED to table</span>
-&#39;data_select&#39;: 0.001 seconds
-&#39;load&#39;: 0.002 seconds
-in json_serializable - key: &#39;data_source&#39; has value DataFrame/Series, but is too long: 514796 &gt;  100
+&#39;data_select&#39;: 0.000 seconds
+&#39;load&#39;: 0.001 seconds
+in json_serializable - key: &#39;data_source&#39; has value DataFrame/Series, but is too long: 933261 &gt;  100
 storing as str
 in json_serializable - key: &#39;df&#39; has value DataFrame/Series, but is too long: 3820 &gt;  100
 storing as str
@@ -3354,686 +3383,460 @@ current local expert:
 
         elevation  interpSLA class  SAT  track  
 293032    -0.0435        NaN  lead  S3A    136  
-&#39;data_select&#39;: 0.130 seconds
-&#39;load&#39;: 0.203 seconds
-&#39;local_data_select&#39;: 0.209 seconds
-number obs: 107
+&#39;data_select&#39;: 0.238 seconds
+&#39;load&#39;: 0.422 seconds
+&#39;local_data_select&#39;: 0.315 seconds
+number obs: 175
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.093 seconds
-&#39;get_parameters&#39;: 0.018 seconds
-&#39;_read_params_from_file&#39;: 0.440 seconds
-&#39;set_parameters&#39;: 0.048 seconds
-&#39;set_lengthscales_constraints&#39;: 0.018 seconds
+&#39;__init__&#39;: 0.044 seconds
+&#39;get_parameters&#39;: 0.008 seconds
+&#39;_read_params_from_file&#39;: 0.098 seconds
+&#39;set_parameters&#39;: 0.011 seconds
+&#39;set_lengthscales_constraints&#39;: 0.010 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.036 seconds
 *** not optimising parameters
-&#39;get_parameters&#39;: 0.017 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([12.        , 12.        ,  3.65073579]) 
-kernel_variance: 0.09332281178048715
-likelihood_variance: 0.013756764213039577
-inducing_points: array([[-1.02412386e+02,  1.10975757e+01,  1.79090000e+04],
-       [-1.02421009e+02,  1.11298294e+01,  1.79090000e+04],
-       [-1.02429634e+02,  1.11620843e+01,  1.79090000e+04],
-       [-1.02438256e+02,  1.11943382e+01,  1.79090000e+04],
-       [-1.02472744e+02,  1.13233572e+01,  1.79090000e+04]]) (truncated) 
-inducing_mean: array([[-0.12856742],
-       [-0.03550996],
-       [-0.02971675],
-       [-0.02574503],
-       [-0.06661632]]) (truncated) 
-inducing_chol: array([[[ 1.24027056e-01,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-2.03724528e-01,  8.59067429e-01,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-1.58790182e-01, -2.52852209e-01,  8.68967745e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [ 4.92448482e-03, -4.03662106e-03, -3.13057137e-03, ...,
-          8.81630486e-01,  0.00000000e+00,  0.00000000e+00],
-        [ 8.13710213e-04, -1.85705558e-04,  3.44038241e-04, ...,
-         -1.76483533e-02,  9.98918352e-01,  0.00000000e+00],
-        [ 8.79252513e-04, -2.34987902e-04, -1.11683295e-03, ...,
-         -1.05442445e-02, -1.51062871e-03,  9.99240239e-01]]]) 
-&#39;predict&#39;: 0.126 seconds
-total run time : 2.32 seconds
+lengthscales: array([11.10425991, 10.0315753 ,  1.65131413]) 
+kernel_variance: 0.02457404425398971
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.070 seconds
+total run time : 1.61 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
 2 / 17
+current local expert:
+                    x              y      t         lon        lat      date  \
+293257 -970433.346901  180713.832721  17911 -100.548776  81.152823  20190115   
+
+        elevation  interpSLA class  SAT  track  
+293257        NaN    -0.1112  floe  S3A    136  
+&#39;local_data_select&#39;: 0.299 seconds
+number obs: 402
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.041 seconds
+&#39;_read_params_from_file&#39;: 0.098 seconds
+&#39;set_parameters&#39;: 0.012 seconds
+&#39;set_lengthscales_constraints&#39;: 0.011 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.034 seconds
+*** not optimising parameters
+&#39;get_parameters&#39;: 0.006 seconds
+parameters:
+lengthscales: array([10.98284926, 10.07241214,  1.89263169]) 
+kernel_variance: 0.022018459268885522
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.099 seconds
+total run time : 1.23 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+3 / 17
 current local expert:
                     x              y      t         lon        lat      date  \
 293540 -975749.307733  281419.070989  17911 -106.088264  80.897666  20190115   
 
         elevation  interpSLA class  SAT  track  
 293540        NaN    -0.0741  floe  S3A    136  
-&#39;local_data_select&#39;: 0.291 seconds
-number obs: 301
+&#39;local_data_select&#39;: 0.358 seconds
+number obs: 456
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.173 seconds
-&#39;_read_params_from_file&#39;: 0.651 seconds
-&#39;set_parameters&#39;: 0.047 seconds
-&#39;set_lengthscales_constraints&#39;: 0.019 seconds
+&#39;__init__&#39;: 0.040 seconds
+&#39;_read_params_from_file&#39;: 0.096 seconds
+&#39;set_parameters&#39;: 0.011 seconds
+&#39;set_lengthscales_constraints&#39;: 0.010 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.032 seconds
 *** not optimising parameters
-&#39;get_parameters&#39;: 0.033 seconds
+&#39;get_parameters&#39;: 0.005 seconds
 parameters:
-lengthscales: array([12.        , 11.99999987,  3.65394195]) 
-kernel_variance: 0.09695577495192617
-likelihood_variance: 0.011918028768679291
-inducing_points: array([[  -91.50167201,    35.33621587, 17913.        ],
-       [  -98.7630547 ,    28.98077497, 17913.        ],
-       [  -92.80119835,    33.99945661, 17909.        ],
-       [  -95.76290931,    27.34068802, 17911.        ],
-       [  -92.62812681,    24.45392472, 17912.        ]]) (truncated) 
-inducing_mean: array([[-0.28046103],
-       [ 0.19271546],
-       [ 0.06593053],
-       [-0.35784147],
-       [-0.30183823]]) (truncated) 
-inducing_chol: array([[[ 9.82152030e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-8.61413650e-02,  1.45258498e-01,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-3.60022849e-02, -2.02686996e-02,  8.35244844e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [ 2.98519732e-04,  1.18018288e-04, -2.81756520e-04, ...,
-          1.00006119e+00,  0.00000000e+00,  0.00000000e+00],
-        [ 3.92585990e-03,  1.01457461e-03, -7.86913749e-04, ...,
-          5.97090218e-05,  9.99408886e-01,  0.00000000e+00],
-        [-1.31703000e-03,  1.36003066e-05,  7.10352664e-04, ...,
-          4.98356705e-06,  1.53064411e-05,  9.99511451e-01]]]) 
-&#39;predict&#39;: 0.235 seconds
-total run time : 3.67 seconds
+lengthscales: array([10.86660543, 10.15167515,  2.14329756]) 
+kernel_variance: 0.01927378158838059
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.106 seconds
+total run time : 1.25 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
-3 / 17
+4 / 17
+current local expert:
+                    x              y      t         lon        lat      date  \
+293787 -980684.592115  382454.654078  17911 -111.305158  80.564322  20190115   
+
+        elevation  interpSLA class  SAT  track  
+293787        NaN    -0.1113  floe  S3A    136  
+&#39;local_data_select&#39;: 0.435 seconds
+number obs: 725
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.075 seconds
+&#39;_read_params_from_file&#39;: 0.144 seconds
+&#39;set_parameters&#39;: 0.016 seconds
+&#39;set_lengthscales_constraints&#39;: 0.015 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.048 seconds
+*** not optimising parameters
+&#39;get_parameters&#39;: 0.008 seconds
+parameters:
+lengthscales: array([10.77204697, 10.27692744,  2.38901019]) 
+kernel_variance: 0.016196797561501046
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.173 seconds
+total run time : 1.70 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+5 / 17
 current local expert:
                     x              y      t         lon        lat      date  \
 294032 -985206.226433  483145.278338  17911 -116.123339  80.162816  20190115   
 
         elevation  interpSLA class  SAT  track  
 294032     0.2475    -0.0977  floe  S3A    136  
-&#39;local_data_select&#39;: 0.381 seconds
-number obs: 380
+&#39;local_data_select&#39;: 0.445 seconds
+number obs: 944
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.149 seconds
-&#39;_read_params_from_file&#39;: 0.501 seconds
-&#39;set_parameters&#39;: 0.034 seconds
-&#39;set_lengthscales_constraints&#39;: 0.013 seconds
+&#39;__init__&#39;: 0.062 seconds
+&#39;_read_params_from_file&#39;: 0.150 seconds
+&#39;set_parameters&#39;: 0.023 seconds
+&#39;set_lengthscales_constraints&#39;: 0.017 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.052 seconds
 *** not optimising parameters
-&#39;get_parameters&#39;: 0.023 seconds
+&#39;get_parameters&#39;: 0.008 seconds
 parameters:
-lengthscales: array([12.        , 11.99998773,  3.66839866]) 
-kernel_variance: 0.0986677062591498
-likelihood_variance: 0.009722066431079935
-inducing_points: array([[  -98.37234353,    44.91389827, 17911.        ],
-       [  -89.58256404,    46.99635092, 17912.        ],
-       [  -95.38373719,    54.74950615, 17910.        ],
-       [  -93.88300006,    42.84554651, 17912.        ],
-       [  -96.11644558,    47.30783364, 17911.        ]]) (truncated) 
-inducing_mean: array([[-0.20933516],
-       [-0.18044017],
-       [-0.09837152],
-       [-0.17702605],
-       [ 0.09900872]]) (truncated) 
-inducing_chol: array([[[ 6.47762508e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-5.37473430e-02,  1.24457957e-01,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-4.08211451e-02, -3.07022729e-02,  7.95241344e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-5.90442990e-04, -1.79038401e-04, -4.06259114e-04, ...,
-          9.99947143e-01,  0.00000000e+00,  0.00000000e+00],
-        [ 5.04776760e-03,  1.27266024e-03,  1.24618162e-03, ...,
-         -5.12081584e-06,  9.97694472e-01,  0.00000000e+00],
-        [ 5.66687015e-03,  5.36240203e-04,  2.25878944e-04, ...,
-         -5.69106548e-07,  1.88381915e-04,  9.99791186e-01]]]) 
-&#39;predict&#39;: 0.175 seconds
-total run time : 2.92 seconds
+lengthscales: array([10.71490588, 10.43185936,  2.60899021]) 
+kernel_variance: 0.012929908390136483
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.192 seconds
+total run time : 1.63 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
-4 / 17
+6 / 17
+current local expert:
+                    x              y      t         lon        lat      date  \
+294244 -989317.812886  583483.138854  17911 -120.531395  79.701889  20190115   
+
+        elevation  interpSLA class  SAT  track  
+294244    -0.1234     -0.094  floe  S3A    136  
+&#39;local_data_select&#39;: 0.314 seconds
+number obs: 702
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.040 seconds
+&#39;_read_params_from_file&#39;: 0.090 seconds
+&#39;set_parameters&#39;: 0.011 seconds
+&#39;set_lengthscales_constraints&#39;: 0.011 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.035 seconds
+*** not optimising parameters
+&#39;get_parameters&#39;: 0.006 seconds
+parameters:
+lengthscales: array([10.69836121, 10.58737127,  2.76543724]) 
+kernel_variance: 0.010025830169789774
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.134 seconds
+total run time : 1.24 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+7 / 17
 current local expert:
                     x              y      t         lon        lat      date  \
 294488 -993058.063068  684459.877912  17911 -124.576343  79.184512  20190115   
 
         elevation  interpSLA class  SAT  track  
 294488     0.1136    -0.0422  floe  S3A    136  
-&#39;local_data_select&#39;: 0.197 seconds
-number obs: 377
+&#39;local_data_select&#39;: 0.312 seconds
+number obs: 824
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.081 seconds
-&#39;_read_params_from_file&#39;: 1.227 seconds
-&#39;set_parameters&#39;: 0.030 seconds
-&#39;set_lengthscales_constraints&#39;: 0.014 seconds
+&#39;__init__&#39;: 0.042 seconds
+&#39;_read_params_from_file&#39;: 0.099 seconds
+&#39;set_parameters&#39;: 0.011 seconds
+&#39;set_lengthscales_constraints&#39;: 0.011 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.033 seconds
 *** not optimising parameters
-&#39;get_parameters&#39;: 0.018 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([12.        , 11.99950788,  3.6984735 ]) 
-kernel_variance: 0.09667031290143796
-likelihood_variance: 0.007410514423869112
-inducing_points: array([[  -89.9515056 ,    66.67146037, 17912.        ],
-       [  -91.00615929,    67.88312553, 17912.        ],
-       [  -92.38380716,    73.67241367, 17911.        ],
-       [ -104.72895739,    65.48868682, 17912.        ],
-       [  -91.89854408,    65.69649174, 17910.        ]]) (truncated) 
-inducing_mean: array([[-0.10133241],
-       [ 0.10565165],
-       [-0.0463315 ],
-       [-0.18398156],
-       [ 0.07708502]]) (truncated) 
-inducing_chol: array([[[ 8.13295393e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-1.89113070e-01,  3.99388217e-01,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [ 1.48605728e-02, -2.66287418e-01,  1.20798560e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-9.26118985e-04, -1.22894975e-03, -5.95913000e-04, ...,
-          9.99315721e-01,  0.00000000e+00,  0.00000000e+00],
-        [-7.51796479e-04,  2.33608141e-04, -1.75101080e-04, ...,
-         -6.90877486e-08,  1.00002043e+00,  0.00000000e+00],
-        [-4.17004145e-04,  1.58051232e-04, -3.57527999e-06, ...,
-          9.43393270e-07,  2.94644023e-07,  9.99846310e-01]]]) 
-&#39;predict&#39;: 0.157 seconds
-total run time : 2.99 seconds
+lengthscales: array([10.72323793, 10.73088981,  2.83293424]) 
+kernel_variance: 0.008195760162257988
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.155 seconds
+total run time : 1.30 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
-5 / 17
+8 / 17
+current local expert:
+                    x              y      t         lon        lat      date  \
+294743 -996398.060176  785400.509049  17911 -128.246582  78.620875  20190115   
+
+        elevation  interpSLA class  SAT  track  
+294743     0.2212    -0.0261  floe  S3A    136  
+&#39;local_data_select&#39;: 0.297 seconds
+number obs: 1088
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.041 seconds
+&#39;_read_params_from_file&#39;: 0.097 seconds
+&#39;set_parameters&#39;: 0.012 seconds
+&#39;set_lengthscales_constraints&#39;: 0.011 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.034 seconds
+*** not optimising parameters
+&#39;get_parameters&#39;: 0.006 seconds
+parameters:
+lengthscales: array([10.79652742, 10.86007136,  2.85895777]) 
+kernel_variance: 0.007939835096793777
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.173 seconds
+total run time : 1.29 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+9 / 17
 current local expert:
                     x              y      t         lon       lat      date  \
 294948 -999328.512971  885963.803449  17911 -131.558885  78.01957  20190115   
 
         elevation  interpSLA class  SAT  track  
 294948     0.1093    -0.0169  floe  S3A    136  
-&#39;local_data_select&#39;: 0.190 seconds
-number obs: 515
+&#39;local_data_select&#39;: 0.306 seconds
+number obs: 1052
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.072 seconds
-&#39;_read_params_from_file&#39;: 0.418 seconds
-&#39;set_parameters&#39;: 0.037 seconds
-&#39;set_lengthscales_constraints&#39;: 0.013 seconds
+&#39;__init__&#39;: 0.042 seconds
+&#39;_read_params_from_file&#39;: 0.390 seconds
+&#39;set_parameters&#39;: 0.012 seconds
+&#39;set_lengthscales_constraints&#39;: 0.011 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.035 seconds
 *** not optimising parameters
-&#39;get_parameters&#39;: 0.017 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([12.        , 11.99147617,  3.6387183 ]) 
-kernel_variance: 0.09454845104592141
-likelihood_variance: 0.005244224359099649
-inducing_points: array([[  -99.78157754,    83.23582447, 17911.        ],
-       [ -102.09145065,    96.69294964, 17909.        ],
-       [  -99.80830407,    85.99135303, 17910.        ],
-       [ -107.53380848,    87.00572986, 17912.        ],
-       [ -104.37031274,    95.00015694, 17913.        ]]) (truncated) 
-inducing_mean: array([[-0.05745146],
-       [ 0.25531673],
-       [ 0.4444065 ],
-       [-0.00505467],
-       [ 0.3649073 ]]) (truncated) 
-inducing_chol: array([[[ 7.52333130e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-4.16838098e-02,  4.95362624e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-1.54315187e-01, -3.56583224e-02,  1.64776361e-01, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [ 8.87889091e-04, -4.07267942e-04,  6.04815455e-05, ...,
-          1.00001826e+00,  0.00000000e+00,  0.00000000e+00],
-        [ 2.07968831e-03,  9.68039357e-05, -2.65876596e-04, ...,
-         -1.49130742e-07,  1.00025290e+00,  0.00000000e+00],
-        [ 3.14742490e-03, -2.80219016e-03,  1.38621769e-03, ...,
-          3.70381183e-07, -5.02882219e-06,  9.98075039e-01]]]) 
-&#39;predict&#39;: 0.165 seconds
-total run time : 2.53 seconds
+lengthscales: array([10.91074465, 10.95712194,  2.9475113 ]) 
+kernel_variance: 0.009224605956842784
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.154 seconds
+total run time : 1.58 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
-6 / 17
+10 / 17
+current local expert:
+                   x              y      t         lon        lat      date  \
+295163 -1.001861e+06  986475.006722  17911 -134.556649  77.384464  20190115   
+
+        elevation  interpSLA class  SAT  track  
+295163     0.1629     0.0107  floe  S3A    136  
+&#39;local_data_select&#39;: 0.302 seconds
+number obs: 1195
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.041 seconds
+&#39;_read_params_from_file&#39;: 0.087 seconds
+&#39;set_parameters&#39;: 0.011 seconds
+&#39;set_lengthscales_constraints&#39;: 0.010 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.037 seconds
+*** not optimising parameters
+&#39;get_parameters&#39;: 0.006 seconds
+parameters:
+lengthscales: array([11.02365545, 11.00532398,  3.14200627]) 
+kernel_variance: 0.011485285263791889
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.132 seconds
+SAVING RESULTS TO TABLES:
+run_details
+preds
+total run time : 1.65 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+11 / 17
 current local expert:
                    x             y      t         lon        lat      date  \
 295393 -1.003995e+06  1.086926e+06  17911 -137.271294  76.720423  20190115   
 
         elevation  interpSLA class  SAT  track  
 295393     0.0876     0.0494  lead  S3A    136  
-&#39;local_data_select&#39;: 0.192 seconds
-number obs: 766
+&#39;local_data_select&#39;: 0.310 seconds
+number obs: 1672
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.084 seconds
-&#39;_read_params_from_file&#39;: 0.420 seconds
-&#39;set_parameters&#39;: 0.033 seconds
-&#39;set_lengthscales_constraints&#39;: 0.014 seconds
+&#39;__init__&#39;: 0.039 seconds
+&#39;_read_params_from_file&#39;: 0.102 seconds
+&#39;set_parameters&#39;: 0.011 seconds
+&#39;set_lengthscales_constraints&#39;: 0.010 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.042 seconds
 *** not optimising parameters
-&#39;get_parameters&#39;: 0.019 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([12.        , 11.93257549,  3.45799615]) 
-kernel_variance: 0.09669603217109785
-likelihood_variance: 0.003973883846280423
-inducing_points: array([[ -103.25905957,   116.64958439, 17912.        ],
-       [  -98.82002863,   110.17063707, 17910.        ],
-       [ -104.67751312,   114.78384666, 17910.        ],
-       [  -96.98760092,   108.72365886, 17910.        ],
-       [ -100.57105463,   118.59793749, 17911.        ]]) (truncated) 
-inducing_mean: array([[ 0.27424633],
-       [ 0.18238281],
-       [-0.08511496],
-       [ 0.034118  ],
-       [-0.26333738]]) (truncated) 
-inducing_chol: array([[[ 2.96342066e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-2.43680158e-02,  3.61656375e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-2.14967144e-02, -2.85499595e-02,  4.31977070e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-1.97695322e-03, -3.60456723e-04,  1.88062450e-03, ...,
-          9.99586830e-01,  0.00000000e+00,  0.00000000e+00],
-        [ 3.71048238e-03, -1.20645612e-03,  1.86345241e-04, ...,
-          7.24066459e-06,  1.00003824e+00,  0.00000000e+00],
-        [-2.24984291e-02, -1.83312216e-03, -8.49651906e-04, ...,
-          1.70863373e-06, -3.38616143e-06,  9.97736620e-01]]]) 
-&#39;predict&#39;: 0.195 seconds
-total run time : 3.47 seconds
+lengthscales: array([11.07534968, 11.03535667,  3.36459818]) 
+kernel_variance: 0.01378717291162561
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.273 seconds
+total run time : 1.45 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
-7 / 17
+12 / 17
+current local expert:
+                   x             y      t         lon       lat      date  \
+295555 -1.005711e+06  1.185979e+06  17911 -139.702054  76.04086  20190115   
+
+        elevation  interpSLA class  SAT  track  
+295555     0.0749     0.0873  lead  S3A    136  
+&#39;local_data_select&#39;: 0.302 seconds
+number obs: 2622
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.041 seconds
+&#39;_read_params_from_file&#39;: 0.101 seconds
+&#39;set_parameters&#39;: 0.012 seconds
+&#39;set_lengthscales_constraints&#39;: 0.011 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.033 seconds
+*** not optimising parameters
+&#39;get_parameters&#39;: 0.006 seconds
+parameters:
+lengthscales: array([11.0408923 , 11.09981867,  3.48742589]) 
+kernel_variance: 0.015287868896029028
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.332 seconds
+total run time : 1.65 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+13 / 17
 current local expert:
                    x             y      t         lon       lat      date  \
 295746 -1.007083e+06  1.288943e+06  17911 -141.998591  75.31194  20190115   
 
         elevation  interpSLA class  SAT  track  
 295746     0.1013     0.1221  lead  S3A    136  
-&#39;local_data_select&#39;: 0.272 seconds
-number obs: 1058
+&#39;local_data_select&#39;: 0.436 seconds
+number obs: 2577
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.106 seconds
-&#39;_read_params_from_file&#39;: 0.626 seconds
-&#39;set_parameters&#39;: 0.048 seconds
-&#39;set_lengthscales_constraints&#39;: 0.017 seconds
+&#39;__init__&#39;: 0.058 seconds
+&#39;_read_params_from_file&#39;: 0.135 seconds
+&#39;set_parameters&#39;: 0.025 seconds
+&#39;set_lengthscales_constraints&#39;: 0.014 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.050 seconds
 *** not optimising parameters
-&#39;get_parameters&#39;: 0.017 seconds
+&#39;get_parameters&#39;: 0.008 seconds
 parameters:
-lengthscales: array([12.        , 11.76727024,  3.24860104]) 
-kernel_variance: 0.0986758700054086
-likelihood_variance: 0.0039402976719501125
-inducing_points: array([[  -96.81469484,   134.23483761, 17910.        ],
-       [  -94.999828  ,   121.93704832, 17911.        ],
-       [  -99.73872827,   120.06443905, 17911.        ],
-       [  -94.81793565,   133.61126014, 17910.        ],
-       [ -100.68182888,   135.43736969, 17910.        ]]) (truncated) 
-inducing_mean: array([[ 0.34811877],
-       [ 0.11401577],
-       [ 0.19293133],
-       [-0.04031028],
-       [ 0.05561267]]) (truncated) 
-inducing_chol: array([[[ 1.58137140e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-8.49155024e-03,  2.86884977e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [ 1.28376356e-03, -4.52205302e-02,  3.86203484e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-2.94600854e-03,  3.56218096e-03,  2.38738918e-04, ...,
-          9.91281724e-01,  0.00000000e+00,  0.00000000e+00],
-        [ 2.87401176e-04, -4.11557122e-03,  6.98772781e-03, ...,
-         -4.96183139e-05,  9.98333687e-01,  0.00000000e+00],
-        [-1.38419323e-03,  1.00130864e-03,  3.19376913e-03, ...,
-         -1.45829337e-05, -3.96034331e-05,  9.97296492e-01]]]) 
-&#39;predict&#39;: 0.186 seconds
-total run time : 4.97 seconds
+lengthscales: array([10.95764066, 11.19338889,  3.44924858]) 
+kernel_variance: 0.01580213689690553
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.294 seconds
+total run time : 1.86 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
-8 / 17
+14 / 17
+current local expert:
+                   x             y      t         lon        lat      date  \
+295951 -1.008017e+06  1.389163e+06  17911 -144.034273  74.583275  20190115   
+
+        elevation  interpSLA class  SAT  track  
+295951     0.2134     0.1485  floe  S3A    136  
+&#39;local_data_select&#39;: 0.405 seconds
+number obs: 2340
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.046 seconds
+&#39;_read_params_from_file&#39;: 0.104 seconds
+&#39;set_parameters&#39;: 0.017 seconds
+&#39;set_lengthscales_constraints&#39;: 0.011 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.043 seconds
+*** not optimising parameters
+&#39;get_parameters&#39;: 0.006 seconds
+parameters:
+lengthscales: array([10.90592498, 11.22510796,  3.30092029]) 
+kernel_variance: 0.015625780192371465
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.273 seconds
+total run time : 1.58 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+15 / 17
 current local expert:
                    x             y      t        lon        lat      date  \
 296159 -1.008550e+06  1.488628e+06  17911 -145.88225  73.843791  20190115   
 
         elevation  interpSLA class  SAT  track  
 296159     0.0896     0.1145  lead  S3A    136  
-&#39;local_data_select&#39;: 0.199 seconds
-number obs: 1017
+&#39;local_data_select&#39;: 0.324 seconds
+number obs: 2321
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.077 seconds
-&#39;_read_params_from_file&#39;: 0.406 seconds
-&#39;set_parameters&#39;: 0.034 seconds
+&#39;__init__&#39;: 0.040 seconds
+&#39;_read_params_from_file&#39;: 0.100 seconds
+&#39;set_parameters&#39;: 0.012 seconds
 &#39;set_lengthscales_constraints&#39;: 0.011 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.033 seconds
 *** not optimising parameters
-&#39;get_parameters&#39;: 0.015 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([12.        , 11.7539582 ,  2.59614956]) 
-kernel_variance: 0.09494170906766776
-likelihood_variance: 0.003542345426970218
-inducing_points: array([[ -110.18703266,   150.29817688, 17911.        ],
-       [ -101.05667491,   153.21946834, 17909.        ],
-       [ -100.86580149,   153.13682244, 17911.        ],
-       [ -110.2151863 ,   150.35129149, 17911.        ],
-       [  -94.82362726,   150.51679768, 17909.        ]]) (truncated) 
-inducing_mean: array([[ 0.36150151],
-       [-0.03535072],
-       [-0.10961506],
-       [ 0.16262708],
-       [ 0.34006223]]) (truncated) 
-inducing_chol: array([[[ 3.85590917e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-2.27375969e-02,  3.27870182e-02,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-2.01825704e-02, -2.49800909e-02,  5.12063516e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-1.21405610e-04, -9.28491792e-04,  1.76921426e-03, ...,
-          9.99747307e-01,  0.00000000e+00,  0.00000000e+00],
-        [-2.88674919e-03,  4.86410011e-04, -6.84294153e-03, ...,
-         -1.16010952e-04,  9.99488923e-01,  0.00000000e+00],
-        [-2.55686545e-03,  7.03300682e-03, -3.56943475e-03, ...,
-         -2.49475693e-05, -1.27692593e-05,  9.98082301e-01]]]) 
-&#39;predict&#39;: 0.157 seconds
-total run time : 2.77 seconds
+lengthscales: array([10.92397489, 11.135057  ,  3.1558388 ]) 
+kernel_variance: 0.015212203297566746
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.263 seconds
+total run time : 1.45 seconds
 <span class=" -Color -Color-Bold">--------------------------------------------------</span>
-9 / 17
+16 / 17
+current local expert:
+                   x             y      t        lon        lat      date  \
+296340 -1.008689e+06  1.588987e+06  17911 -147.59263  73.083192  20190115   
+
+        elevation  interpSLA class  SAT  track  
+296340      0.045     0.0691  lead  S3A    136  
+&#39;local_data_select&#39;: 0.293 seconds
+number obs: 1756
+<span class=" -Color -Color-Bold">found GPU</span>
+setting lengthscales to: [1. 1. 1.]
+&#39;__init__&#39;: 0.040 seconds
+&#39;_read_params_from_file&#39;: 0.100 seconds
+&#39;set_parameters&#39;: 0.012 seconds
+&#39;set_lengthscales_constraints&#39;: 0.011 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.034 seconds
+*** not optimising parameters
+&#39;get_parameters&#39;: 0.006 seconds
+parameters:
+lengthscales: array([11.00071816, 10.94098671,  3.09393932]) 
+kernel_variance: 0.014748783059548076
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.175 seconds
+total run time : 1.32 seconds
+<span class=" -Color -Color-Bold">--------------------------------------------------</span>
+17 / 17
 current local expert:
                    x             y      t         lon        lat      date  \
 296522 -1.008427e+06  1.689237e+06  17911 -149.164002  72.310595  20190115   
 
         elevation  interpSLA class  SAT  track  
 296522     0.0948     0.0349  floe  S3A    136  
-&#39;local_data_select&#39;: 0.194 seconds
-number obs: 299
+&#39;local_data_select&#39;: 0.330 seconds
+number obs: 862
+<span class=" -Color -Color-Bold">found GPU</span>
 setting lengthscales to: [1. 1. 1.]
-&#39;__init__&#39;: 0.080 seconds
-&#39;_read_params_from_file&#39;: 0.392 seconds
-&#39;set_parameters&#39;: 0.034 seconds
-&#39;set_lengthscales_constraints&#39;: 0.012 seconds
+&#39;__init__&#39;: 0.041 seconds
+&#39;_read_params_from_file&#39;: 0.097 seconds
+&#39;set_parameters&#39;: 0.015 seconds
+&#39;set_lengthscales_constraints&#39;: 0.011 seconds
+&#39;set_likelihood_variance_constraints&#39;: 0.042 seconds
 *** not optimising parameters
-&#39;get_parameters&#39;: 0.016 seconds
+&#39;get_parameters&#39;: 0.006 seconds
 parameters:
-lengthscales: array([12.        , 11.92612534,  1.70380461]) 
-kernel_variance: 0.08939582887256238
-likelihood_variance: 0.0023855631551618307
-inducing_points: array([[ -106.91843313,   172.36821872, 17912.        ],
-       [ -101.54521779,   171.13285684, 17912.        ],
-       [  -96.74026826,   160.05157939, 17912.        ],
-       [ -100.85519767,   165.78181311, 17911.        ],
-       [  -98.04436238,   161.63559921, 17912.        ]]) (truncated) 
-inducing_mean: array([[ 0.16963338],
-       [-0.14001147],
-       [ 0.28743324],
-       [-0.21901357],
-       [ 0.39093388]]) (truncated) 
-inducing_chol: array([[[ 5.28731132e-02,  0.00000000e+00,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [-1.09257003e-01,  1.18524591e-01,  0.00000000e+00, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        [ 2.09539990e-02, -5.40288253e-02,  4.99845321e-02, ...,
-          0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
-        ...,
-        [-1.75265533e-03, -2.37268982e-04, -1.84283513e-03, ...,
-          9.99767482e-01,  0.00000000e+00,  0.00000000e+00],
-        [-7.92265706e-04, -2.49713592e-04, -6.43592320e-04, ...,
-         -5.79447708e-06,  9.99979685e-01,  0.00000000e+00],
-        [-4.33883801e-04, -8.90736384e-03, -1.55060182e-05, ...,
-         -3.69900967e-06, -7.37443348e-07,  9.99724874e-01]]]) 
-&#39;predict&#39;: 0.154 seconds
-total run time : 2.16 seconds
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-10 / 17
-current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
-
-        elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.195 seconds
-number obs: 47
-setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.071 seconds
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: lengthscales
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: kernel_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: likelihood_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_points
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_mean
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_chol
-&#39;_read_params_from_file&#39;: 0.352 seconds
-there was an issue loading params, skipping this local expert
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-11 / 17
-current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
-
-        elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.203 seconds
-number obs: 47
-setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.085 seconds
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: lengthscales
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: kernel_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: likelihood_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_points
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_mean
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_chol
-&#39;_read_params_from_file&#39;: 0.419 seconds
-there was an issue loading params, skipping this local expert
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-12 / 17
-current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
-
-        elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.202 seconds
-number obs: 47
-setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.070 seconds
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: lengthscales
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: kernel_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: likelihood_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_points
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_mean
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_chol
-&#39;_read_params_from_file&#39;: 0.375 seconds
-there was an issue loading params, skipping this local expert
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-13 / 17
-current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
-
-        elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.200 seconds
-number obs: 47
-setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.069 seconds
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: lengthscales
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: kernel_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: likelihood_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_points
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_mean
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_chol
-&#39;_read_params_from_file&#39;: 0.443 seconds
-there was an issue loading params, skipping this local expert
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-14 / 17
-current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
-
-        elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.286 seconds
-number obs: 47
-setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.098 seconds
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: lengthscales
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: kernel_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: likelihood_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_points
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_mean
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_chol
-&#39;_read_params_from_file&#39;: 0.511 seconds
-there was an issue loading params, skipping this local expert
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-15 / 17
-current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
-
-        elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.289 seconds
-number obs: 47
-setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.114 seconds
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: lengthscales
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: kernel_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: likelihood_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_points
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_mean
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_chol
-&#39;_read_params_from_file&#39;: 0.526 seconds
-there was an issue loading params, skipping this local expert
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-16 / 17
-current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
-
-        elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.288 seconds
-number obs: 47
-setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.102 seconds
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: lengthscales
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: kernel_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: likelihood_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_points
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_mean
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_chol
-&#39;_read_params_from_file&#39;: 0.510 seconds
-there was an issue loading params, skipping this local expert
-<span class=" -Color -Color-Bold">--------------------------------------------------</span>
-17 / 17
-current local expert:
-                   x             y      t         lon        lat      date  \
-296851 -1.006942e+06  1.869585e+06  17911 -151.693492  70.892831  20190115   
-
-        elevation  interpSLA class  SAT  track  
-296851    -0.0907        NaN  floe  S3A    136  
-&#39;local_data_select&#39;: 0.274 seconds
-number obs: 47
-setting lengthscales to: [1. 1. 1.]
-setting inducing points to data points...
-&#39;__init__&#39;: 0.117 seconds
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: lengthscales
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: kernel_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: likelihood_variance
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_points
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_mean
-when reading in parameters some exception occurred
- &lt;class &#39;ValueError&#39;&gt; cannot convert a DataFrame with a non-unique MultiIndex into xarray 
-skipping param_name: inducing_chol
-&#39;_read_params_from_file&#39;: 0.503 seconds
-there was an issue loading params, skipping this local expert
+lengthscales: array([11.10554477, 10.7110218 ,  3.13041508]) 
+kernel_variance: 0.014269560692386676
+likelihood_variance: 0.01999999999999999
+&#39;predict&#39;: 0.118 seconds
+total run time : 1.31 seconds
 storing any remaining tables
 SAVING RESULTS TO TABLES:
 run_details
 preds
-&#39;run&#39;: 35.103 seconds
-Done!
+&#39;run&#39;: 25.453 seconds
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-15-00747b791557&gt;</span> in <span class="ni">&lt;cell line: 112&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span> 
+<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="n">store_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">store</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">113</span>     <span class="n">store</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;inducing_mean&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span>     <span class="n">store</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;inducing_mean_SMOOTHED&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span>     <span class="n">store</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;inducing_chol&#39;</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/pandas/io/pytables.py</span> in <span class="ni">remove</span><span class="nt">(self, key, where, start, stop)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1161</span>         <span class="n">where</span> <span class="o">=</span> <span class="n">_ensure_term</span><span class="p">(</span><span class="n">where</span><span class="p">,</span> <span class="n">scope_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1162</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1163</span>             <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_storer</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1164</span>         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1165</span>             <span class="c1"># the key is not a valid store, re-raising KeyError</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/pandas/io/pytables.py</span> in <span class="ni">get_storer</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1516</span>         <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1517</span>         <span class="k">if</span> <span class="n">group</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1518</span>             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No object named </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> in the file&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1519</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1520</span>         <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_storer</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: &#39;No object named inducing_mean in the file&#39;
 </pre></div>
 </div>
 </div>
@@ -4074,7 +3877,7 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-c5d5ac1a-02c4-48d5-9448-93c2817ffe31" class="colab-df-container">
+  <div id="df-9c0630b2-10da-4cca-bcec-e3c214b7493f" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -4121,9 +3924,9 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
       <td>80013.622113</td>
       <td>17911.0</td>
       <td>0</td>
-      <td>-0.118564</td>
-      <td>0.003361</td>
-      <td>0.017118</td>
+      <td>-0.119196</td>
+      <td>0.003131</td>
+      <td>0.023131</td>
       <td>0</td>
       <td>-964721.476545</td>
       <td>80013.622113</td>
@@ -4143,9 +3946,9 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
       <td>80013.622113</td>
       <td>17911.0</td>
       <td>1</td>
-      <td>-0.114594</td>
-      <td>0.002914</td>
-      <td>0.016671</td>
+      <td>-0.132373</td>
+      <td>0.002399</td>
+      <td>0.022399</td>
       <td>0</td>
       <td>-965733.180581</td>
       <td>97352.081316</td>
@@ -4165,9 +3968,9 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
       <td>80013.622113</td>
       <td>17911.0</td>
       <td>2</td>
-      <td>-0.114421</td>
-      <td>0.002916</td>
-      <td>0.016673</td>
+      <td>-0.133488</td>
+      <td>0.002370</td>
+      <td>0.022370</td>
       <td>0</td>
       <td>-965810.511997</td>
       <td>98685.757156</td>
@@ -4187,9 +3990,9 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
       <td>80013.622113</td>
       <td>17911.0</td>
       <td>3</td>
-      <td>-0.114324</td>
-      <td>0.002919</td>
-      <td>0.016675</td>
+      <td>-0.134043</td>
+      <td>0.002357</td>
+      <td>0.022357</td>
       <td>0</td>
       <td>-965849.158887</td>
       <td>99352.629960</td>
@@ -4209,9 +4012,9 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
       <td>80013.622113</td>
       <td>17911.0</td>
       <td>4</td>
-      <td>-0.114274</td>
-      <td>0.002920</td>
-      <td>0.016677</td>
+      <td>-0.134320</td>
+      <td>0.002351</td>
+      <td>0.022351</td>
       <td>0</td>
       <td>-965868.475571</td>
       <td>99686.068297</td>
@@ -4231,7 +4034,7 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-c5d5ac1a-02c4-48d5-9448-93c2817ffe31')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-9c0630b2-10da-4cca-bcec-e3c214b7493f')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -4283,12 +4086,12 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
 
     <script>
       const buttonEl =
-        document.querySelector('#df-c5d5ac1a-02c4-48d5-9448-93c2817ffe31 button.colab-df-convert');
+        document.querySelector('#df-9c0630b2-10da-4cca-bcec-e3c214b7493f button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-c5d5ac1a-02c4-48d5-9448-93c2817ffe31');
+        const element = document.querySelector('#df-9c0630b2-10da-4cca-bcec-e3c214b7493f');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -4308,8 +4111,8 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
   </div>
 
 
-<div id="df-1bb31675-552c-4e27-bcde-5b63be6b67d0">
-  <button class="colab-df-quickchart" onclick="quickchart('df-1bb31675-552c-4e27-bcde-5b63be6b67d0')"
+<div id="df-8bde8a50-dca9-4996-845f-890e5a6b8b31">
+  <button class="colab-df-quickchart" onclick="quickchart('df-8bde8a50-dca9-4996-845f-890e5a6b8b31')"
             title="Suggest charts"
             style="display:none;">
 
@@ -4428,7 +4231,7 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
     }
     (() => {
       let quickchartButtonEl =
-        document.querySelector('#df-1bb31675-552c-4e27-bcde-5b63be6b67d0 button');
+        document.querySelector('#df-8bde8a50-dca9-4996-845f-890e5a6b8b31 button');
       quickchartButtonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
     })();
@@ -4445,7 +4248,7 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(31016,)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(13984,)
 </pre></div>
 </div>
 </div>
@@ -4466,12 +4269,12 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distance</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distance_expert</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(31016,)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(13984,)
 </pre></div>
 </div>
 </div>
@@ -4508,7 +4311,9 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glued_preds</span> <span class="o">=</span> <span class="n">glue_local_predictions_1d</span><span class="p">(</span><span class="n">preds_df</span> <span class="o">=</span> <span class="n">preds_data</span><span class="p">,</span>                  <span class="c1"># The dataframe where results are stored</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inference_radius</span> <span class="o">=</span> <span class="mi">200_000</span>  <span class="c1"># 200km</span>
+
+<span class="n">glued_preds</span> <span class="o">=</span> <span class="n">glue_local_predictions_1d</span><span class="p">(</span><span class="n">preds_df</span> <span class="o">=</span> <span class="n">preds_data</span><span class="p">,</span>                  <span class="c1"># The dataframe where results are stored</span>
                                         <span class="n">pred_loc_col</span> <span class="o">=</span> <span class="s1">&#39;pred_locs&#39;</span><span class="p">,</span>             <span class="c1"># The column in dataframe corresponding to the prediction locations</span>
                                         <span class="n">xprt_loc_col</span> <span class="o">=</span> <span class="s1">&#39;xprt_locs&#39;</span><span class="p">,</span>             <span class="c1"># The column in dataframe corresponding to the local expert locations</span>
                                         <span class="n">vars_to_glue</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;f*&quot;</span><span class="p">,</span> <span class="s2">&quot;f*_var&quot;</span><span class="p">],</span>          <span class="c1"># The columns in dataframe corresponding to the predictions</span>
@@ -4525,7 +4330,7 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-057ac4d1-2996-497b-b83d-15a87f498886" class="colab-df-container">
+  <div id="df-d16bd93b-718b-47b0-aa20-f335763dd0f1" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -4553,32 +4358,32 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
     <tr>
       <th>0</th>
       <td>0.000000e+00</td>
-      <td>-0.109493</td>
-      <td>0.003018</td>
+      <td>-0.114224</td>
+      <td>0.003273</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1.736795e+04</td>
-      <td>-0.102791</td>
-      <td>0.003529</td>
+      <td>-0.126856</td>
+      <td>0.002586</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1.870387e+04</td>
-      <td>-0.102444</td>
-      <td>0.003560</td>
+      <td>-0.127944</td>
+      <td>0.002556</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1.937186e+04</td>
-      <td>-0.102257</td>
-      <td>0.003578</td>
+      <td>-0.128480</td>
+      <td>0.002543</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1.970586e+04</td>
-      <td>-0.102160</td>
-      <td>0.003587</td>
+      <td>-0.128746</td>
+      <td>0.002537</td>
     </tr>
     <tr>
       <th>...</th>
@@ -4589,32 +4394,32 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
     <tr>
       <th>3815</th>
       <td>1.787431e+06</td>
-      <td>-0.376842</td>
-      <td>0.003664</td>
+      <td>-0.051931</td>
+      <td>0.009066</td>
     </tr>
     <tr>
       <th>3816</th>
       <td>1.789080e+06</td>
-      <td>-0.378593</td>
-      <td>0.004089</td>
+      <td>-0.051383</td>
+      <td>0.009216</td>
     </tr>
     <tr>
       <th>3817</th>
       <td>1.789410e+06</td>
-      <td>-0.378913</td>
-      <td>0.004176</td>
+      <td>-0.051273</td>
+      <td>0.009245</td>
     </tr>
     <tr>
       <th>3818</th>
       <td>1.789740e+06</td>
-      <td>-0.379224</td>
-      <td>0.004265</td>
+      <td>-0.051162</td>
+      <td>0.009275</td>
     </tr>
     <tr>
       <th>3819</th>
       <td>1.790069e+06</td>
-      <td>-0.379526</td>
-      <td>0.004353</td>
+      <td>-0.051051</td>
+      <td>0.009304</td>
     </tr>
   </tbody>
 </table>
@@ -4623,7 +4428,7 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-057ac4d1-2996-497b-b83d-15a87f498886')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d16bd93b-718b-47b0-aa20-f335763dd0f1')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -4675,12 +4480,12 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
 
     <script>
       const buttonEl =
-        document.querySelector('#df-057ac4d1-2996-497b-b83d-15a87f498886 button.colab-df-convert');
+        document.querySelector('#df-d16bd93b-718b-47b0-aa20-f335763dd0f1 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-057ac4d1-2996-497b-b83d-15a87f498886');
+        const element = document.querySelector('#df-d16bd93b-718b-47b0-aa20-f335763dd0f1');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -4700,8 +4505,8 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
   </div>
 
 
-<div id="df-ab2c7e27-0c83-4fe1-af5c-27de63782ab7">
-  <button class="colab-df-quickchart" onclick="quickchart('df-ab2c7e27-0c83-4fe1-af5c-27de63782ab7')"
+<div id="df-a9868153-9cf4-4851-b3dc-76a4164bc70f">
+  <button class="colab-df-quickchart" onclick="quickchart('df-a9868153-9cf4-4851-b3dc-76a4164bc70f')"
             title="Suggest charts"
             style="display:none;">
 
@@ -4820,7 +4625,7 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
     }
     (() => {
       let quickchartButtonEl =
-        document.querySelector('#df-ab2c7e27-0c83-4fe1-af5c-27de63782ab7 button');
+        document.querySelector('#df-a9868153-9cf4-4851-b3dc-76a4164bc70f button');
       quickchartButtonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
     })();
@@ -4832,7 +4637,7 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_data</span><span class="p">[</span><span class="s1">&#39;f*&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glued_preds</span><span class="p">[</span><span class="s1">&#39;f*&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -4882,7 +4687,7 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4fe042c71e1bd1d38263105acb55d4d11be1b40f8f80e51406346dc353c981bb.png" src="_images/4fe042c71e1bd1d38263105acb55d4d11be1b40f8f80e51406346dc353c981bb.png" />
+<img alt="_images/3e7349ecd6ff552b77f810480491c444f0a961571cc99afbec14ed7b5b493cdc.png" src="_images/3e7349ecd6ff552b77f810480491c444f0a961571cc99afbec14ed7b5b493cdc.png" />
 </div>
 </div>
 </section>
@@ -4918,6 +4723,15 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_2_SLA_GPSat_William.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Interpolation of Sea Level Anomaly using GPSat</p>
+      </div>
+    </a>
 </div></div>
   
 </div>
@@ -4936,7 +4750,7 @@ table: &#39;oi_config_SMOOTHED&#39; does not have all coords_col: [&#39;x&#39;, 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Along track interpolation with GPSat</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Along track interpolation</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#select-profile-for-interpolation">Select profile for interpolation</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-expert-locations-at-200-km">Generate expert locations at 200 km</a></li>
