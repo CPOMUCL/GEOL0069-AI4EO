@@ -1,0 +1,882 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Explainable AI &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ExplainableAI';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Along track interpolation" href="Chapter_2_GPSat_along_track-2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3ASea-ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AAI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3Arollout.html">Roll-out on a Full Image</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AData_Colocating_S2_S3.html">Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AUnsupervised_Learning_Methods.html">Unsupervised Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3ARegression.html">Regression Techniques for Predictive Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AAligning_Images.html">Aligning Sentinel-2 and Sentinel-3 OLCI Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AColocating_data.html">Colocate Sentinel-2 and Sentinel-3 Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3ARegression_Part2.html">Application of Regression Techniques in Satellite Imagery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter2_IntrotoGaussianProcesses.html">Introduction to Gaussian Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_Intro_to_GPSat.html">Introduction to GPSat</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_SLA_GPSat_William.html">Interpolation of Sea Level Anomaly using GPSat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_GPSat_along_track-2.html">Along track interpolation</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 9</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Explainable AI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ExplainableAI.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Explainable AI</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-it-important">Why is it important?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancing-trust-and-confidence">Enhancing Trust and Confidence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-model-performance-and-reliability">Improving Model Performance and Reliability</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-feature-importance">Understanding Feature Importance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-concept-of-feature-importance">The Concept of Feature Importance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intrinsic-vs-post-hoc-interpretability">Intrinsic vs. Post Hoc Interpretability</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-for-model-understanding-and-optimization">Importance for Model Understanding and Optimization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-for-specific-interpretability-methods">Preparing for Specific Interpretability Methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-feature-importance-in-random-forest">Understanding Feature Importance in Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-random-forest-compute-feature-importance">How Does Random Forest Compute Feature Importance?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-feature-importance">Interpreting Feature Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-application-analyzing-band-importance-in-multi-band-images">Practical Application: Analyzing Band Importance in Multi-band Images</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cnns-convolutional-neural-networks-and-sensitivity-analysis">CNNs (Convolutional Neural Networks) and Sensitivity Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-sensitivity-analysis-in-cnns">Understanding Sensitivity Analysis in CNNs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-foundation-of-sensitivity-analysis">Mathematical Foundation of Sensitivity Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-sensitivity-analysis-steps">Implementing Sensitivity Analysis: Steps</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effectiveness-of-this-approach">Effectiveness of This Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-important-bands-in-reflectance-vs-radiance-data">Comparing Important Bands in Reflectance vs. Radiance Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-datasets">Preparing the Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-radiance-data">For Radiance Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-reflectance-data">For Reflectance Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="explainable-ai">
+<h1>Explainable AI<a class="headerlink" href="#explainable-ai" title="Permalink to this heading">#</a></h1>
+<p>In week 9, we will focus a littile more on how to interpret some of the models we’ve covered. EXplainable AI is a major purpose of an AI algorithm because we are always tring to understand what it’s doing and not using them as a blackbox.</p>
+<section id="why-is-it-important">
+<h2>Why is it important?<a class="headerlink" href="#why-is-it-important" title="Permalink to this heading">#</a></h2>
+<p>Explainable AI (XAI) or interpretable AI is crucial for the following reasons.</p>
+<section id="enhancing-trust-and-confidence">
+<h3>Enhancing Trust and Confidence<a class="headerlink" href="#enhancing-trust-and-confidence" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Transparency</strong>: When users and stakeholders can understand how a model makes its decisions, it builds trust in the technology. This is especially important in critical applications where the stakes are high. If we want to deploy a model to detect lead for a full month, we would like to know how it actually accomplish what it has done as much as possible, that may provide more insights into what what other problems the model is able to deal with.</p></li>
+<li><p><strong>Accountability</strong>: Explainability facilitates accountability by making it possible to trace the decision-making process. This is essential for identifying and correcting biases, providing more insights into some scientific reasons why the models work and how we implement it further.</p></li>
+</ul>
+</section>
+<section id="improving-model-performance-and-reliability">
+<h3>Improving Model Performance and Reliability<a class="headerlink" href="#improving-model-performance-and-reliability" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Debugging and Improvement</strong>: Interpretability also helps developers and data scientists identify errors or biases in models. Understanding why a model makes certain decisions allows for targeted improvements, leading to more accurate and robust systems.</p></li>
+<li><p><strong>Feature Importance</strong>: By understanding which features contribute most to the model’s predictions, researchers can focus on collecting and processing the most relevant data, potentially reducing costs and increasing model efficiency.</p></li>
+</ul>
+<p>In this week, we will be focusing on feature importance, getting to know what part of the data contributes to the model inference the most.</p>
+</section>
+</section>
+<section id="understanding-feature-importance">
+<h2>Understanding Feature Importance<a class="headerlink" href="#understanding-feature-importance" title="Permalink to this heading">#</a></h2>
+<p>Before diving into specific interpretability methods like feature importance in Random Forest and sensitivity analysis in Convolutional Neural Networks (CNNs), it’s crucial to establish a foundational understanding of feature importance within the broader context of interpretable machine learning. This prerequisite knowledge will set the stage for a deeper exploration of how different models provide insights into the significance of input features.</p>
+<section id="the-concept-of-feature-importance">
+<h3>The Concept of Feature Importance<a class="headerlink" href="#the-concept-of-feature-importance" title="Permalink to this heading">#</a></h3>
+<p>Feature importance is a technique used to identify which input features have the most influence on a model’s predictions. This concept is pivotal in both developing and interpreting machine learning models, as it helps us understand the data’s underlying structure and the model’s decision-making process.</p>
+<section id="intrinsic-vs-post-hoc-interpretability">
+<h4>Intrinsic vs. Post Hoc Interpretability<a class="headerlink" href="#intrinsic-vs-post-hoc-interpretability" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Intrinsic Interpretability</strong>: Some models, like decision trees in a Random Forest, naturally offer insights into feature importance due to their transparent structure. Here, the importance is derived directly from the model itself, without the need for additional analysis tools.</p></li>
+<li><p><strong>Post Hoc Interpretability</strong>: For more complex models, such as CNNs, post hoc methods like sensitivity analysis are employed to interpret the model’s behavior. These techniques analyze the model’s output in response to changes in input features, shedding light on feature importance even when the model’s internal workings are not directly interpretable.</p></li>
+</ul>
+</section>
+</section>
+<section id="importance-for-model-understanding-and-optimization">
+<h3>Importance for Model Understanding and Optimization<a class="headerlink" href="#importance-for-model-understanding-and-optimization" title="Permalink to this heading">#</a></h3>
+<p>Understanding feature importance is not merely academic; it has practical applications in model optimization, data collection strategies, and ultimately, in making models more transparent and trustworthy.</p>
+<ul class="simple">
+<li><p><strong>Random Forest</strong>: By examining feature importance, we can understand which criteria the ensemble of trees uses to make decisions, guiding us in model refinement and data preprocessing.</p></li>
+<li><p><strong>CNN Sensitivity Analysis</strong>: Sensitivity analysis reveals how changes in input image pixels (or bands in multi-band images) affect the model’s confidence in its predictions. This insight can direct attention to the most relevant parts of the data, informing feature engineering and network architecture adjustments.</p></li>
+</ul>
+</section>
+<section id="preparing-for-specific-interpretability-methods">
+<h3>Preparing for Specific Interpretability Methods<a class="headerlink" href="#preparing-for-specific-interpretability-methods" title="Permalink to this heading">#</a></h3>
+<p>As we approach the topics of feature importance in Random Forest and sensitivity analysis in CNNs, it’s essential to appreciate the versatility and applicability of feature importance across different model types. Whether through the intrinsic interpretability of simpler models or the post hoc analysis of complex networks, understanding which features significantly impact model predictions is a key step towards achieving transparency, fairness, and effectiveness in machine learning applications.</p>
+</section>
+</section>
+<section id="random-forest">
+<h2>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this heading">#</a></h2>
+<p>In random forest, we can determine the importance of each band in the classification process. Random forest, like many other tree-based models (decision trees, etc), has the capability to compute feature (in our cases, it may be the spectral bands of the imagery data) importance that gives us an indication of how useful each band is  for making the classification decision.</p>
+</section>
+<section id="understanding-feature-importance-in-random-forest">
+<h2>Understanding Feature Importance in Random Forest<a class="headerlink" href="#understanding-feature-importance-in-random-forest" title="Permalink to this heading">#</a></h2>
+<p>Random Forest is a powerful ensemble learning method that operates by constructing a multitude of decision trees during training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. A key strength of Random Forest is its ability to handle high-dimensional data and its provision of intuitive metrics for understanding which features contribute most to the predictive accuracy of the model.</p>
+<section id="how-does-random-forest-compute-feature-importance">
+<h3>How Does Random Forest Compute Feature Importance?<a class="headerlink" href="#how-does-random-forest-compute-feature-importance" title="Permalink to this heading">#</a></h3>
+<p>The concept of feature importance in Random Forest emerges naturally from how the trees are constructed. Each tree in the forest makes decisions by splitting nodes based on the value of one or more features. The decision to split at each node is made according to a criterion that measures the “improvement” a given split brings to the purity of the node (e.g., Gini impurity for classification tasks).</p>
+<p>Feature importance in Random Forest is calculated based on how much each feature contributes to this improvement across all trees in the forest. In essence, the more a feature decreases the impurity of the tree, the more important that feature is considered to be. This is quantified in a metric often referred to as “Gini importance” or “mean decrease in impurity” (MDI).</p>
+</section>
+<section id="interpreting-feature-importance">
+<h3>Interpreting Feature Importance<a class="headerlink" href="#interpreting-feature-importance" title="Permalink to this heading">#</a></h3>
+<p>After training a Random Forest model, each feature is assigned an importance score, which can be normalized to sum up to one. These scores provide a ranked list of features according to their importance:</p>
+<ul class="simple">
+<li><p><strong>High Importance:</strong> Features that frequently contribute to improving node purity across many trees. Such features are critical for the model’s predictions and often represent key variables that define the classification or regression problem.</p></li>
+<li><p><strong>Low Importance:</strong> Features that contribute little to node purity. These features have minimal impact on the model’s decision-making process and could potentially be removed without significant loss of model accuracy.</p></li>
+</ul>
+</section>
+<section id="practical-application-analyzing-band-importance-in-multi-band-images">
+<h3>Practical Application: Analyzing Band Importance in Multi-band Images<a class="headerlink" href="#practical-application-analyzing-band-importance-in-multi-band-images" title="Permalink to this heading">#</a></h3>
+<p>In the context of multi-band image classification, feature importance can be leveraged to identify which spectral bands are most valuable for discriminating between classes. This insight is invaluable for tasks like satellite image analysis, where understanding which bands (e.g., visible, infrared) are most informative can guide data collection and preprocessing strategies.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1"># Assuming X_train is your training data with shape [n_samples, n_bands, height, width]</span>
+<span class="c1"># and y_train are your labels</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># Your existing code to reshape and train</span>
+<span class="n">X_reshaped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># Reshape your data</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_reshaped</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>  <span class="c1"># Fit the model</span>
+
+<span class="c1"># clf is your trained RandomForestClassifier</span>
+<span class="n">feature_importances</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span>
+
+<span class="c1"># Calculate the importance of each band</span>
+<span class="c1"># Since each band now contributes 3*3=9 features, we&#39;ll sum the importances of every 9 features</span>
+<span class="n">n_pixels_per_band</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="n">n_bands</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="n">band_importances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_bands</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bands</span><span class="p">):</span>
+    <span class="n">band_importances</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">feature_importances</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">n_pixels_per_band</span><span class="p">:(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n_pixels_per_band</span><span class="p">])</span>
+
+<span class="c1"># Visualize the importance of each band</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_bands</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">band_importances</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Band Number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Importance Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Importance of Each Band for Classification&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_bands</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cnns-convolutional-neural-networks-and-sensitivity-analysis">
+<h2>CNNs (Convolutional Neural Networks) and Sensitivity Analysis<a class="headerlink" href="#cnns-convolutional-neural-networks-and-sensitivity-analysis" title="Permalink to this heading">#</a></h2>
+<p>Convolutional Neural Networks (CNNs) are pivotal in the field of image processing and classification, leveraging spatial hierarchies of features. A pressing question in utilizing CNNs revolves around identifying the most influential parts of the input data (e.g., specific bands in a multi-band image) on the model’s predictions. Sensitivity analysis emerges as a key technique for revealing the importance of input features in the model’s decision-making process. Despite the complexity of CNNs, sensitivity analysis provides a feasible approach for interpretation.</p>
+<section id="understanding-sensitivity-analysis-in-cnns">
+<h3>Understanding Sensitivity Analysis in CNNs<a class="headerlink" href="#understanding-sensitivity-analysis-in-cnns" title="Permalink to this heading">#</a></h3>
+<p>Sensitivity analysis quantifies the effect of minor changes in the input image on the output predictions. This process involves calculating the gradient of the output with respect to the input, exploring the question: “How does a small alteration in each input pixel (or band) modify the predicted class scores?”</p>
+</section>
+<section id="mathematical-foundation-of-sensitivity-analysis">
+<h3>Mathematical Foundation of Sensitivity Analysis<a class="headerlink" href="#mathematical-foundation-of-sensitivity-analysis" title="Permalink to this heading">#</a></h3>
+<p>For a CNN model function <span class="math notranslate nohighlight">\(f(x)\)</span> mapping an input image <span class="math notranslate nohighlight">\(x\)</span> to output predictions, the sensitivity of the output relative to an input pixel (or band) is mathematically denoted by the partial derivative <span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x_i}\)</span>, where <span class="math notranslate nohighlight">\(x_i\)</span> signifies the specific pixel or band.</p>
+<section id="implementing-sensitivity-analysis-steps">
+<h4>Implementing Sensitivity Analysis: Steps<a class="headerlink" href="#implementing-sensitivity-analysis-steps" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Image and Prediction Class Selection</strong>: For an input image <span class="math notranslate nohighlight">\(x\)</span> and a target class <span class="math notranslate nohighlight">\(c\)</span> (typically the class with the highest model prediction score), the objective is to determine how sensitive the prediction is to variations in <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p><strong>Gradient Computation</strong>:
+Utilize TensorFlow’s <code class="docutils literal notranslate"><span class="pre">GradientTape</span></code> to compute the gradient of the class score <span class="math notranslate nohighlight">\(f_c(x)\)</span> concerning the input image <span class="math notranslate nohighlight">\(x\)</span>, denoted as <span class="math notranslate nohighlight">\(\nabla_x f_c(x)\)</span>. This gradient vector comprises the partial derivatives <span class="math notranslate nohighlight">\(\frac{\partial f_c}{\partial x_i}\)</span> for each pixel or band <span class="math notranslate nohighlight">\(x_i\)</span>, indicating the impact of minor changes in <span class="math notranslate nohighlight">\(x_i\)</span> on the score <span class="math notranslate nohighlight">\(f_c(x)\)</span>.</p></li>
+<li><p><strong>Gradient Magnitude Analysis</strong>:
+The magnitude of these gradients, <span class="math notranslate nohighlight">\(|\nabla_x f_c(x)|\)</span>, illustrates the sensitivity of the prediction to each segment of the input image. Areas with higher magnitudes suggest greater sensitivity, implying those input features significantly influence the model’s decision-making process.</p></li>
+</ol>
+</section>
+</section>
+<section id="effectiveness-of-this-approach">
+<h3>Effectiveness of This Approach<a class="headerlink" href="#effectiveness-of-this-approach" title="Permalink to this heading">#</a></h3>
+<p>The efficacy of sensitivity analysis is rooted in its calculus foundation, specifically the derivative concept. By calculating the change in the output prediction for a certain class due to infinitesimal variations in input features, we achieve a direct measure of each feature’s influence on the model’s decision.</p>
+<ul class="simple">
+<li><p><strong>Intuitive Interpretation</strong>: Identifying features with high sensitivity indicates they possess crucial information for the classification task. For instance, specific spectral bands might be vital for distinguishing particular objects or patterns in satellite imagery.</p></li>
+<li><p><strong>Visualization and Insights</strong>: Visualizing prediction sensitivity across different bands offers an intuitive view of feature importance, informing model architecture optimization and data collection strategies by prioritizing the most informative features.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h3>
+<p>Sensitivity analysis enables partial elucidation of CNNs’ complex operations, providing insights into the significance of input features, including spectral bands in multi-band images. This methodology not only enhances our understanding of deep learning models but also guides practical decisions in model development and data strategy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span><span class="p">,</span> <span class="n">models</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Define the CNN model</span>
+<span class="k">def</span> <span class="nf">create_model</span><span class="p">(</span><span class="n">input_shape</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)</span>  <span class="c1"># Assuming 10 classes</span>
+    <span class="p">])</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="c1"># Compile and train the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>  <span class="c1"># Input shape (height, width, bands)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;sparse_categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+
+<span class="c1"># Fit the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Sensitivity analysis for band importance</span>
+<span class="k">def</span> <span class="nf">sensitivity_analysis</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">input_image</span><span class="p">,</span> <span class="n">class_idx</span><span class="p">):</span>
+    <span class="n">input_image_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>  <span class="c1"># Convert to TensorFlow tensor</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+        <span class="n">tape</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">input_image_tensor</span><span class="p">)</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_image_tensor</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">class_output</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[:,</span> <span class="n">class_idx</span><span class="p">]</span>
+
+    <span class="c1"># Get the gradients of the selected output with respect to the input</span>
+    <span class="n">gradients</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">class_output</span><span class="p">,</span> <span class="n">input_image_tensor</span><span class="p">)</span>
+
+    <span class="c1"># Sum the absolute gradients across the spatial dimensions (height and width) to get a measure of sensitivity for each band</span>
+    <span class="n">band_sensitivity</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">gradients</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">band_sensitivity</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="c1"># Perform sensitivity analysis on a sample image</span>
+<span class="n">sample_image</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Use the first image in X_test as a sample</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample_image</span><span class="p">)</span>
+<span class="n">class_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Class of interest</span>
+
+<span class="c1"># Calculate sensitivity for each band</span>
+<span class="n">band_sensitivity</span> <span class="o">=</span> <span class="n">sensitivity_analysis</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sample_image</span><span class="p">,</span> <span class="n">class_idx</span><span class="p">)</span>
+
+<span class="c1"># Visualize band sensitivity</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span> <span class="n">band_sensitivity</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Band Number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sensitivity Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sensitivity of Prediction to Each Band&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="comparing-important-bands-in-reflectance-vs-radiance-data">
+<h2>Comparing Important Bands in Reflectance vs. Radiance Data<a class="headerlink" href="#comparing-important-bands-in-reflectance-vs-radiance-data" title="Permalink to this heading">#</a></h2>
+<p>Understanding the influence of data preprocessing on feature importance is crucial in remote sensing and machine learning applications. Specifically, it’s insightful to investigate whether the preprocessing steps that convert data into radiance or reflectance values affect which bands are deemed important by the model.</p>
+<section id="objective">
+<h3>Objective<a class="headerlink" href="#objective" title="Permalink to this heading">#</a></h3>
+<p>The objective of this exercise is to determine if the preprocessing transformation of data into radiance or reflectance impacts the importance assigned to different spectral bands by a machine learning model.</p>
+</section>
+<section id="preparing-the-datasets">
+<h3>Preparing the Datasets<a class="headerlink" href="#preparing-the-datasets" title="Permalink to this heading">#</a></h3>
+<p>Before comparing band importance, ensure you have prepared datasets in both radiance and reflectance. Use the dataset <code class="docutils literal notranslate"><span class="pre">image_2.npy</span></code> as an example (Related notebook: Week 2 Sea ice and lead classification):</p>
+<section id="for-radiance-data">
+<h4>For Radiance Data<a class="headerlink" href="#for-radiance-data" title="Permalink to this heading">#</a></h4>
+<p>If you directly use <code class="docutils literal notranslate"><span class="pre">image_2.npy</span></code> to create the training and testing dataset, you will obtain data in radiance form, which can be used as is for the analysis.</p>
+</section>
+<section id="for-reflectance-data">
+<h4>For Reflectance Data<a class="headerlink" href="#for-reflectance-data" title="Permalink to this heading">#</a></h4>
+<p>To convert the chunk data into reflectance, apply the following transformation before creating the training and testing datasets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">netCDF4</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1"># Define the path to the main folder where your data is stored.</span>
+<span class="c1"># You need to replace &#39;path/to/data&#39; with the actual path to your data folder.</span>
+<span class="n">main_folder_path</span> <span class="o">=</span> <span class="s1">&#39;path/to/data&#39;</span> 
+
+<span class="c1"># This part of the code is responsible for finding all directories in the main_folder that end with &#39;.SEN3&#39;.</span>
+<span class="c1"># &#39;.SEN3&#39; is the format of the folder containing specific satellite data files (in this case, OLCI data files).</span>
+<span class="n">directories</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.SEN3&#39;</span><span class="p">)]</span>
+
+<span class="c1"># Loop over each directory (i.e., each set of data) found above.</span>
+<span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">directories</span><span class="p">:</span>
+    <span class="c1"># Construct the path to the OLCI data file within the directory.</span>
+    <span class="c1"># This path is used to access the data files.</span>
+    <span class="n">OLCI_file_p</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+    
+    <span class="c1"># Print the path to the current data file being processed.</span>
+    <span class="c1"># This is helpful for tracking which file is being processed at any time.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing: </span><span class="si">{</span><span class="n">OLCI_file_p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Load the instrument data from a file named &#39;instrument_data.nc&#39; inside the directory.</span>
+    <span class="c1"># This file contains various data about the instrument that captured the satellite data.</span>
+    <span class="n">instrument_data</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/instrument_data.nc&#39;</span><span class="p">)</span>
+    <span class="n">solar_flux</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;solar_flux&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract the solar flux data.</span>
+    <span class="n">detector_index</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;detector_index&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract the detector index.</span>
+
+    <span class="c1"># Load tie geometries from a file named &#39;tie_geometries.nc&#39;.</span>
+    <span class="c1"># Tie geometries contain information about viewing angles, which are important for data analysis.</span>
+    <span class="n">tie_geometries</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/tie_geometries.nc&#39;</span><span class="p">)</span>
+    <span class="n">SZA</span> <span class="o">=</span> <span class="n">tie_geometries</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;SZA&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract the Solar Zenith Angle (SZA).</span>
+
+    <span class="c1"># Create a directory for saving the processed data using the original directory name.</span>
+    <span class="c1"># This directory will be used to store output files.</span>
+    <span class="n">save_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;path/to/save&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">save_directory</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">save_directory</span><span class="p">)</span>
+
+    <span class="c1"># This loop processes each radiance band in the OLCI data.</span>
+    <span class="c1"># OLCI instruments capture multiple bands, each representing different wavelengths.</span>
+    <span class="n">OLCI_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">Radiance</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">):</span>  <span class="c1"># There are 21 bands in OLCI data.</span>
+        
+        <span class="n">Rstr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">Radiance</span>  <span class="c1"># Formatting the band number.</span>
+        <span class="n">solar_flux_band</span> <span class="o">=</span> <span class="n">solar_flux</span><span class="p">[</span><span class="n">Radiance</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Get the solar flux for the current band.</span>
+
+        <span class="c1"># Print information about the current band being processed.</span>
+        <span class="c1"># This includes the band number and its corresponding solar flux.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing Band: </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solar Flux for Band </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">solar_flux_band</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Load radiance values from the OLCI data file for the current band.</span>
+        <span class="n">OLCI_nc</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span> <span class="o">+</span> <span class="s1">&#39;/Oa&#39;</span> <span class="o">+</span> <span class="n">Rstr</span> <span class="o">+</span> <span class="s1">&#39;_radiance.nc&#39;</span><span class="p">)</span>
+        <span class="n">radiance_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">OLCI_nc</span><span class="p">[</span><span class="s1">&#39;Oa&#39;</span> <span class="o">+</span> <span class="n">Rstr</span> <span class="o">+</span> <span class="s1">&#39;_radiance&#39;</span><span class="p">])</span>
+
+        <span class="c1"># Initialize an array to store angle data, which will be calculated based on SZA.</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">radiance_values</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">angle</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">angle</span><span class="p">[:,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">SZA</span><span class="p">[:,</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="mi">64</span><span class="p">)]</span>
+
+        <span class="c1"># Calculate the Top of Atmosphere Bidirectional Reflectance Factor (TOA BRF) for the current band.</span>
+        <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">radiance_values</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">solar_flux_band</span><span class="p">[</span><span class="n">detector_index</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">)))</span>
+
+        <span class="c1"># Add the calculated TOA BRF data to the OLCI_data list.</span>
+        <span class="n">OLCI_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">)</span>
+
+        <span class="c1"># Print the range of reflectance values for the current band.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reflectance Values Range for Band </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">)</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Reshape the OLCI_data array for further analysis or visualization.</span>
+    <span class="n">reshaped_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">OLCI_data</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reshaped array shape:&quot;</span><span class="p">,</span> <span class="n">reshaped_array</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="c1"># Split the reshaped array into smaller chunks along the second dimension.</span>
+    <span class="c1"># This can be useful for handling large datasets more efficiently.</span>
+    <span class="n">split_arrays</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">reshaped_array</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Save each chunk of data separately.</span>
+    <span class="c1"># This is helpful for processing or analyzing smaller portions of data at a time.</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">arr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">split_arrays</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chunk </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> shape:&quot;</span><span class="p">,</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_directory</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;chunk_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_band_</span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2">.npy&quot;</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">arr</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved Chunk </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> for Band </span><span class="si">{</span><span class="n">Rstr</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_2_GPSat_along_track-2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Along track interpolation</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-it-important">Why is it important?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancing-trust-and-confidence">Enhancing Trust and Confidence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-model-performance-and-reliability">Improving Model Performance and Reliability</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-feature-importance">Understanding Feature Importance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-concept-of-feature-importance">The Concept of Feature Importance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intrinsic-vs-post-hoc-interpretability">Intrinsic vs. Post Hoc Interpretability</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-for-model-understanding-and-optimization">Importance for Model Understanding and Optimization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-for-specific-interpretability-methods">Preparing for Specific Interpretability Methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-feature-importance-in-random-forest">Understanding Feature Importance in Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-random-forest-compute-feature-importance">How Does Random Forest Compute Feature Importance?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-feature-importance">Interpreting Feature Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-application-analyzing-band-importance-in-multi-band-images">Practical Application: Analyzing Band Importance in Multi-band Images</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cnns-convolutional-neural-networks-and-sensitivity-analysis">CNNs (Convolutional Neural Networks) and Sensitivity Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-sensitivity-analysis-in-cnns">Understanding Sensitivity Analysis in CNNs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-foundation-of-sensitivity-analysis">Mathematical Foundation of Sensitivity Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-sensitivity-analysis-steps">Implementing Sensitivity Analysis: Steps</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effectiveness-of-this-approach">Effectiveness of This Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-important-bands-in-reflectance-vs-radiance-data">Comparing Important Bands in Reflectance vs. Radiance Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-datasets">Preparing the Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-radiance-data">For Radiance Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-reflectance-data">For Reflectance Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados/Weibin Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
