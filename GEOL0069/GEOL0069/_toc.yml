@@ -38,6 +38,10 @@ parts:
     chapters:
       - file: Chapter_2_SLA_GPSat_William
       - file: Chapter_2_GPSat_along_track-2
+  - caption: Week 9
+    chapters:
+      - file: ExplainableAI
+      - file: ExplainableAI_Part2
       
 
 
