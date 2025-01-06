@@ -42,6 +42,7 @@ parts:
     chapters:
       - file: ExplainableAI
       - file: ExplainableAI_Part2
+      - file: ExplainableAI_Part2
       
 
 
