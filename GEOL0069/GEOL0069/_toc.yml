@@ -8,40 +8,40 @@ parts:
     chapters:
       - file: Chapter 1:Preparation
       - file: Chapter 1:IRIS
-  # - caption: Week 2
-  #   chapters:
-  #     - file: Chapter 1:ML
-  #     - file: Chapter 1:Sea-ice_and_Lead_Classification
-  #     - file: Chapter 1:AI_Algorithms
-  # - caption: Week 3
-  #   chapters:
-  #     - file: Chapter 1:Fetching_Data
-  #     - file: Chapter 1:rollout
-  # - caption: Week 4
-  #   chapters:
-  #     - file: Chapter1:Data_Colocating_S2_S3
-  #     - file: Chapter1:Unsupervised_Learning_Methods
-  # - caption: Week 5
-  #   chapters:
-  #     - file: Chapter1:Regression
-  #     - file: Chapter1:Aligning_Images
-  # - caption: Week 6
-  #   chapters:
-  #     - file: Chapter1:Colocating_data
-  #     - file: Chapter1:Regression_Part2
-  #     - file: References1
-  # - caption: Week 7
-  #   chapters:
-  #     - file: Chapter2_IntrotoGaussianProcesses
-  #     - file: Chapter_2_Intro_to_GPSat
-  # - caption: Week 8
-  #   chapters:
-  #     - file: Chapter_2_SLA_GPSat_William
-  #     - file: Chapter_2_GPSat_along_track-2
-  # - caption: Week 9
-  #   chapters:
-  #     - file: ExplainableAI
-  #     - file: ExplainableAI_Part2
+  - caption: Week 2
+    chapters:
+      - file: Chapter 1:ML
+      - file: Chapter 1:Sea-ice_and_Lead_Classification
+      - file: Chapter 1:AI_Algorithms
+  - caption: Week 3
+    chapters:
+      - file: Chapter 1:Fetching_Data
+      - file: Chapter 1:rollout
+  - caption: Week 4
+    chapters:
+      - file: Chapter1:Data_Colocating_S2_S3
+      - file: Chapter1:Unsupervised_Learning_Methods
+  - caption: Week 5
+    chapters:
+      - file: Chapter1:Regression
+      - file: Chapter1:Aligning_Images
+  - caption: Week 6
+    chapters:
+      - file: Chapter1:Colocating_data
+      - file: Chapter1:Regression_Part2
+      - file: References1
+  - caption: Week 7
+    chapters:
+      - file: Chapter2_IntrotoGaussianProcesses
+      - file: Chapter_2_Intro_to_GPSat
+  - caption: Week 8
+    chapters:
+      - file: Chapter_2_SLA_GPSat_William
+      - file: Chapter_2_GPSat_along_track-2
+  - caption: Week 9
+    chapters:
+      - file: ExplainableAI
+      - file: ExplainableAI_Part2
       
 
 
