@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter1:Regression_Part2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -386,7 +388,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="application-of-regression-techniques-in-satellite-imagery-analysis">
+  <section class="tex2jax_ignore mathjax_ignore" id="application-of-regression-techniques-in-satellite-imagery-analysis">
 <h1>Application of Regression Techniques in Satellite Imagery Analysis<a class="headerlink" href="#application-of-regression-techniques-in-satellite-imagery-analysis" title="Permalink to this heading">#</a></h1>
 <p>In Week 5, we delved into an array of regression techniques, including polynomial regression, neural networks, and Gaussian processes, each offering unique perspectives and methodologies for modeling complex relationships within data. This week, we pivot our focus towards the practical application of these regression techniques to a challenging yet highly relevant problem in the field of satellite imagery analysis: predicting sea-ice concentration and the fraction of leads/melt ponds. Our dataset comprises 21 spectral bands from satellite imagery, each spanning over 5000 data points, which we aim to regress onto scalar values that may represent sea-ice concentration and lead/melt pond fractions across the same 5000 observations depending on what we want. In the previous notebook, we prepared such a dataset for us to apply the regression techniques.</p>
 <section id="data-preprocessing">
@@ -419,7 +421,7 @@ document.write(`
 <h2>Polynomial Regression <span id="id1">[<a class="reference internal" href="References1.html#id13" title="Norman R Draper and Harry Smith. Applied regression analysis. Volume 326. John Wiley &amp; Sons, 1998.">DS98</a>]</span><a class="headerlink" href="#polynomial-regression-draper1998applied" title="Permalink to this heading">#</a></h2>
 <section id="recall-polynomial-regression">
 <h3>Recall Polynomial Regression<a class="headerlink" href="#recall-polynomial-regression" title="Permalink to this heading">#</a></h3>
-<p>Polynomial regression is a form of regression analysis in which the relationship between the independent variable $x$ and the dependent variable $y$ is modeled as an $n$ th degree polynomial. Polynomial regression fits a nonlinear relationship between the value of $x$ and the corresponding conditional mean of $y$, denoted $E(y |x)$. Below code shows how we can apply it on our data.</p>
+<p>Polynomial regression is a form of regression analysis in which the relationship between the independent variable <span class="math notranslate nohighlight">\(x\)</span> and the dependent variable <span class="math notranslate nohighlight">\(y\)</span> is modeled as an <span class="math notranslate nohighlight">\(n\)</span> th degree polynomial. Polynomial regression fits a nonlinear relationship between the value of <span class="math notranslate nohighlight">\(x\)</span> and the corresponding conditional mean of <span class="math notranslate nohighlight">\(y\)</span>, denoted <span class="math notranslate nohighlight">\(E(y |x)\)</span>. Below code shows how we can apply it on our data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>

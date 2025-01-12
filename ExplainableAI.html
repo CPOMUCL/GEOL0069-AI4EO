@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ExplainableAI';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -411,7 +413,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="explainable-ai">
+  <section class="tex2jax_ignore mathjax_ignore" id="explainable-ai">
 <h1>Explainable AI<a class="headerlink" href="#explainable-ai" title="Permalink to this heading">#</a></h1>
 <p>Week 9 materials can be accessed <a class="reference external" href="https://drive.google.com/drive/folders/1V87Oz-Bc1j8I39RBR8U5UcAZu-VrjYxS?usp=sharing">here</a>.</p>
 <p>In week 9, we will focus a little more on how to interpret some of the models we’ve covered. EXplainable AI is a major purpose of an AI algorithm because we are always tring to understand what it’s doing and not using them as a blackbox.</p>
@@ -522,15 +524,15 @@ document.write(`
 </section>
 <section id="mathematical-foundation-of-sensitivity-analysis">
 <h3>Mathematical Foundation of Sensitivity Analysis<a class="headerlink" href="#mathematical-foundation-of-sensitivity-analysis" title="Permalink to this heading">#</a></h3>
-<p>For a CNN model function $f(x)$ mapping an input image $x$ to output predictions, the sensitivity of the output relative to an input pixel (or band) is mathematically denoted by the partial derivative $\frac{\partial f}{\partial x_i}$, where $x_i$ signifies the specific pixel or band.</p>
+<p>For a CNN model function <span class="math notranslate nohighlight">\(f(x)\)</span> mapping an input image <span class="math notranslate nohighlight">\(x\)</span> to output predictions, the sensitivity of the output relative to an input pixel (or band) is mathematically denoted by the partial derivative <span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x_i}\)</span>, where <span class="math notranslate nohighlight">\(x_i\)</span> signifies the specific pixel or band.</p>
 <section id="implementing-sensitivity-analysis-steps">
 <h4>Implementing Sensitivity Analysis: Steps<a class="headerlink" href="#implementing-sensitivity-analysis-steps" title="Permalink to this heading">#</a></h4>
 <ol class="arabic simple">
-<li><p><strong>Image and Prediction Class Selection</strong>: For an input image $x$ and a target class $c$ (typically the class with the highest model prediction score), the objective is to determine how sensitive the prediction is to variations in $x$.</p></li>
+<li><p><strong>Image and Prediction Class Selection</strong>: For an input image <span class="math notranslate nohighlight">\(x\)</span> and a target class <span class="math notranslate nohighlight">\(c\)</span> (typically the class with the highest model prediction score), the objective is to determine how sensitive the prediction is to variations in <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
 <li><p><strong>Gradient Computation</strong>:
-Utilize TensorFlow’s <code class="docutils literal notranslate"><span class="pre">GradientTape</span></code> to compute the gradient of the class score $f_c(x)$ concerning the input image $x$, denoted as $\nabla_x f_c(x)$. This gradient vector comprises the partial derivatives $\frac{\partial f_c}{\partial x_i}$ for each pixel or band $x_i$, indicating the impact of minor changes in $x_i$ on the score $f_c(x)$.</p></li>
+Utilize TensorFlow’s <code class="docutils literal notranslate"><span class="pre">GradientTape</span></code> to compute the gradient of the class score <span class="math notranslate nohighlight">\(f_c(x)\)</span> concerning the input image <span class="math notranslate nohighlight">\(x\)</span>, denoted as <span class="math notranslate nohighlight">\(\nabla_x f_c(x)\)</span>. This gradient vector comprises the partial derivatives <span class="math notranslate nohighlight">\(\frac{\partial f_c}{\partial x_i}\)</span> for each pixel or band <span class="math notranslate nohighlight">\(x_i\)</span>, indicating the impact of minor changes in <span class="math notranslate nohighlight">\(x_i\)</span> on the score <span class="math notranslate nohighlight">\(f_c(x)\)</span>.</p></li>
 <li><p><strong>Gradient Magnitude Analysis</strong>:
-The magnitude of these gradients, $|\nabla_x f_c(x)|$, illustrates the sensitivity of the prediction to each segment of the input image. Areas with higher magnitudes suggest greater sensitivity, implying those input features significantly influence the model’s decision-making process.</p></li>
+The magnitude of these gradients, <span class="math notranslate nohighlight">\(|\nabla_x f_c(x)|\)</span>, illustrates the sensitivity of the prediction to each segment of the input image. Areas with higher magnitudes suggest greater sensitivity, implying those input features significantly influence the model’s decision-making process.</p></li>
 </ol>
 </section>
 </section>

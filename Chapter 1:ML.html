@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter 1:ML';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -406,7 +408,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="introduction-to-ai-machine-learning">
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-ai-machine-learning">
 <h1>Introduction to AI/Machine Learning<a class="headerlink" href="#introduction-to-ai-machine-learning" title="Permalink to this heading">#</a></h1>
 <p><strong>Week 2 Materials</strong>: Week 2 materials are available here on <a class="reference external" href="https://drive.google.com/drive/folders/1rgsnT0wN8EYIl4DpaEmSDAO1A9XVfCal?usp=share_link">Google Drive</a></p>
 <p>📘 <strong>Interactive Version</strong>: For a hands-on experience with this chapter’s content, access the interactive notebook in <a class="reference external" href="https://drive.google.com/file/d/15IuvDQCdv0cruXEU-dxyf-YbWK89mKQx/view?usp=sharing">Google Colab</a>.</p>
@@ -431,7 +433,7 @@ document.write(`
 </section>
 </section>
 </section>
-<section id="core-concepts">
+<section class="tex2jax_ignore mathjax_ignore" id="core-concepts">
 <h1>Core concepts<a class="headerlink" href="#core-concepts" title="Permalink to this heading">#</a></h1>
 <section id="types-of-machine-learning-witten2002data-bishop2006pattern">
 <h2>Types of Machine Learning <span id="id2">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">WF02</a>]</span><a class="headerlink" href="#types-of-machine-learning-witten2002data-bishop2006pattern" title="Permalink to this heading">#</a></h2>
@@ -546,7 +548,7 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
 <section id="underfitting-the-problem-of-oversimplification">
 <h3>Underfitting: The Problem of Oversimplification<a class="headerlink" href="#underfitting-the-problem-of-oversimplification" title="Permalink to this heading">#</a></h3>
 <p>Underfitting occurs when a model is too simple to capture the complexity and variability in the data, resulting in a model that performs poorly even on the training data. It’s unable to make accurate predictions or decisions because it hasn’t learned enough. For example, a linear regression model trying to capture a complex, non-linear relationship in data would typically underfit, much like trying to fit a straight line through a wildly curving dataset.</p>
-<p>The following code illustrates different degrees of a polynomial regression will result in different fitting situations (underfitting and overfitting). Polynomial regression is an extension of linear regression where the relationship between the independent variable $x$ and the dependent variable $y$ is modeled as an $n^{th}$ degree polynomial. It provides a way to fit a nonlinear model to the data by adding powers of the input variable as new features, allowing for a more flexible fit that can capture the curvature in the data.</p>
+<p>The following code illustrates different degrees of a polynomial regression will result in different fitting situations (underfitting and overfitting). Polynomial regression is an extension of linear regression where the relationship between the independent variable <span class="math notranslate nohighlight">\(x\)</span> and the dependent variable <span class="math notranslate nohighlight">\(y\)</span> is modeled as an <span class="math notranslate nohighlight">\(n^{th}\)</span> degree polynomial. It provides a way to fit a nonlinear model to the data by adding powers of the input variable as new features, allowing for a more flexible fit that can capture the curvature in the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>

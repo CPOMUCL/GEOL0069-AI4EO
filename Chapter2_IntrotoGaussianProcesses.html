@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter2_IntrotoGaussianProcesses';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -380,7 +382,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="introduction-to-gaussian-processes">
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-gaussian-processes">
 <h1>Introduction to Gaussian Processes<a class="headerlink" href="#introduction-to-gaussian-processes" title="Permalink to this heading">#</a></h1>
 <section id="overview-and-definition">
 <h2>Overview and Definition<a class="headerlink" href="#overview-and-definition" title="Permalink to this heading">#</a></h2>
@@ -389,7 +391,7 @@ document.write(`
 </section>
 <section id="some-intuitive-examples-zhang2023dive">
 <h2>Some intuitive examples <span id="id1">[<a class="reference internal" href="References1.html#id17" title="Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola. Dive into Deep Learning. Cambridge University Press, 2023. https://D2L.ai.">ZLLS23</a>]</span><a class="headerlink" href="#some-intuitive-examples-zhang2023dive" title="Permalink to this heading">#</a></h2>
-<p>In the given dataset, we have a series of regression targets, denoted as $y$, which are associated with their corresponding inputs, $x$.</p>
+<p>In the given dataset, we have a series of regression targets, denoted as <span class="math notranslate nohighlight">\(y\)</span>, which are associated with their corresponding inputs, <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -509,7 +511,7 @@ document.write(`
 <script type="application/vnd.jupyter.widget-view+json">{"model_id": "05756d6ba8e64a1ab35e235a39848820", "version_major": 2, "version_minor": 0}</script><img alt="_images/9255744b86e8422cfa2847a12cd52492de21faa94d8819204f2584b16b26ee7a.png" src="_images/9255744b86e8422cfa2847a12cd52492de21faa94d8819204f2584b16b26ee7a.png" />
 </div>
 </div>
-<p>The plot below illustrates the epistemic uncertainty in our predictions, showing where there’s more potential variability in the underlying true function. This type of uncertainty decreases as we gather more data. The shaded area represents a 95% credible interval around the mean prediction, calculated as twice the posterior standard deviation, indicating where the true function values likely fall for any input $x$.</p>
+<p>The plot below illustrates the epistemic uncertainty in our predictions, showing where there’s more potential variability in the underlying true function. This type of uncertainty decreases as we gather more data. The shaded area represents a 95% credible interval around the mean prediction, calculated as twice the posterior standard deviation, indicating where the true function values likely fall for any input <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predicting on a dense set of points to get smooth sample functions</span>
@@ -557,14 +559,14 @@ document.write(`
 <section id="basic-concepts">
 <h3>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading">#</a></h3>
 <p>A Gaussian Process (GP) is essentially an advanced form of a Gaussian (or normal) distribution, but instead of being over simple variables, it’s over functions. Imagine a GP as a method to predict or estimate a function based on known data points.</p>
-<p>In mathematical terms, a GP is defined for a set of function values, where these values follow a Gaussian distribution. Specifically, for any selection of points from a set $X$, the values that a function $f$ takes at these points follow a joint Gaussian distribution.</p>
+<p>In mathematical terms, a GP is defined for a set of function values, where these values follow a Gaussian distribution. Specifically, for any selection of points from a set <span class="math notranslate nohighlight">\(X\)</span>, the values that a function <span class="math notranslate nohighlight">\(f\)</span> takes at these points follow a joint Gaussian distribution.</p>
 <p>The key to understanding GPs lies in two main concepts:</p>
 <ol class="arabic simple">
-<li><p><strong>Mean Function</strong>: $m: X \rightarrow Y$. This function gives the average expected value of the function $f(x)$ at each point $x$ in the set $X$. It’s like predicting the average outcome based on the known data.</p></li>
-<li><p><strong>Kernel or Covariance Function</strong>: $k: X \times X \rightarrow Y$. This function tells us how much two points in the set $X$ are related or how they influence each other. It’s a way of understanding the relationship or similarity between different points in our data.</p></li>
+<li><p><strong>Mean Function</strong>: <span class="math notranslate nohighlight">\(m: X \rightarrow Y\)</span>. This function gives the average expected value of the function <span class="math notranslate nohighlight">\(f(x)\)</span> at each point <span class="math notranslate nohighlight">\(x\)</span> in the set <span class="math notranslate nohighlight">\(X\)</span>. It’s like predicting the average outcome based on the known data.</p></li>
+<li><p><strong>Kernel or Covariance Function</strong>: <span class="math notranslate nohighlight">\(k: X \times X \rightarrow Y\)</span>. This function tells us how much two points in the set <span class="math notranslate nohighlight">\(X\)</span> are related or how they influence each other. It’s a way of understanding the relationship or similarity between different points in our data.</p></li>
 </ol>
-<p>To apply GPs in a practical setting, we typically select several points in our input space $X$, calculate the mean and covariance at these points, and then use this information to make predictions. This process involves working with vectors and matrices derived from the mean and kernel functions to graphically represent the Gaussian Process.</p>
-<p><strong>Note</strong>: In mathematical notation, for a set of points $ \mathbf{X}=x_1, \ldots, x_N $, the mean vector $ \mathbf{m} $ and covariance matrix $ \mathbf{K} $ are constructed from these points using the mean and kernel functions. Each element of $ \mathbf{m} $ and $ \mathbf{K} $ corresponds to the mean and covariance values calculated for these points.</p>
+<p>To apply GPs in a practical setting, we typically select several points in our input space <span class="math notranslate nohighlight">\(X\)</span>, calculate the mean and covariance at these points, and then use this information to make predictions. This process involves working with vectors and matrices derived from the mean and kernel functions to graphically represent the Gaussian Process.</p>
+<p><strong>Note</strong>: In mathematical notation, for a set of points <span class="math notranslate nohighlight">\( \mathbf{X}=x_1, \ldots, x_N \)</span>, the mean vector <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> and covariance matrix <span class="math notranslate nohighlight">\( \mathbf{K} \)</span> are constructed from these points using the mean and kernel functions. Each element of <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> and <span class="math notranslate nohighlight">\( \mathbf{K} \)</span> corresponds to the mean and covariance values calculated for these points.</p>
 </section>
 <section id="covariance-functions-kernels">
 <h3>Covariance Functions (Kernels)<a class="headerlink" href="#covariance-functions-kernels" title="Permalink to this heading">#</a></h3>
@@ -572,21 +574,21 @@ document.write(`
 <ul>
 <li><p><strong>Concept and Mathematical Representation</strong>:</p>
 <ul class="simple">
-<li><p>Kernels measure the similarity between points in input space. The function $k(x, x’)$ computes the covariance between the outputs corresponding to inputs $x$ and $x’$.</p></li>
-<li><p>For example, the Radial Basis Function (RBF) kernel is defined as $k(x, x’) = \exp\left(-\frac{1}{2l^2} | x - x’ |^2\right)$, where $l$ is the length-scale parameter.</p></li>
+<li><p>Kernels measure the similarity between points in input space. The function <span class="math notranslate nohighlight">\(k(x, x')\)</span> computes the covariance between the outputs corresponding to inputs <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x'\)</span>.</p></li>
+<li><p>For example, the Radial Basis Function (RBF) kernel is defined as <span class="math notranslate nohighlight">\(k(x, x') = \exp\left(-\frac{1}{2l^2} \| x - x' \|^2\right)\)</span>, where <span class="math notranslate nohighlight">\(l\)</span> is the length-scale parameter.</p></li>
 </ul>
 </li>
 <li><p><strong>Types of Kernels and Their Uses</strong>:</p>
 <ul class="simple">
-<li><p><strong>RBF Kernel</strong>: Suited for smooth functions. The length-scale $l$ controls how rapidly the correlation decreases with distance.</p></li>
-<li><p><strong>Linear Kernel</strong>: $k(x, x’) = x^T x’$, useful for linear relationships.</p></li>
-<li><p><strong>Periodic Kernels</strong>: Capture periodic behavior, expressed as $k(x, x’) = \exp\left(-\frac{2\sin^2(\pi|x - x’|)}{l^2}\right)$.</p></li>
+<li><p><strong>RBF Kernel</strong>: Suited for smooth functions. The length-scale <span class="math notranslate nohighlight">\(l\)</span> controls how rapidly the correlation decreases with distance.</p></li>
+<li><p><strong>Linear Kernel</strong>: <span class="math notranslate nohighlight">\(k(x, x') = x^T x'\)</span>, useful for linear relationships.</p></li>
+<li><p><strong>Periodic Kernels</strong>: Capture periodic behavior, expressed as <span class="math notranslate nohighlight">\(k(x, x') = \exp\left(-\frac{2\sin^2(\pi|x - x'|)}{l^2}\right)\)</span>.</p></li>
 </ul>
 <p>In our context, the <strong>RBF Kernel</strong> will be used in most cases. More practical examples are in future chapters.</p>
 </li>
 <li><p><strong>Hyperparameter Tuning</strong>:</p>
 <ul class="simple">
-<li><p>Hyperparameters like $l$ in RBF or periodicity in periodic kernels crucially affect GP modeling. Their tuning, often through methods like maximum likelihood, adapts the GP to the specific data structure.</p></li>
+<li><p>Hyperparameters like <span class="math notranslate nohighlight">\(l\)</span> in RBF or periodicity in periodic kernels crucially affect GP modeling. Their tuning, often through methods like maximum likelihood, adapts the GP to the specific data structure.</p></li>
 </ul>
 </li>
 <li><p><strong>Choosing the Right Kernel</strong>:</p>
@@ -602,12 +604,12 @@ document.write(`
 <ul class="simple">
 <li><p><strong>Mean Function - Mathematical Explanation</strong>:</p>
 <ul>
-<li><p>The mean function, often denoted as $m(x)$, gives the expected value of the function at each point. A common assumption is $m(x) = 0$, although non-zero means can incorporate prior trends.</p></li>
+<li><p>The mean function, often denoted as <span class="math notranslate nohighlight">\(m(x)\)</span>, gives the expected value of the function at each point. A common assumption is <span class="math notranslate nohighlight">\(m(x) = 0\)</span>, although non-zero means can incorporate prior trends.</p></li>
 </ul>
 </li>
 <li><p><strong>Variance Function - Quantifying Uncertainty</strong>:</p>
 <ul>
-<li><p>The variance, denoted as $\sigma^2(x)$, represents the uncertainty in predictions. It’s calculated as $\sigma^2(x) = k(x, x) - K(X, x)^T[K(X, X) + \sigma^2_nI]^{-1}K(X, x)$, where $K(X, x)$ and $K(X, X)$ are covariance matrices, and $\sigma^2_n$ is the noise term.</p></li>
+<li><p>The variance, denoted as <span class="math notranslate nohighlight">\(\sigma^2(x)\)</span>, represents the uncertainty in predictions. It’s calculated as <span class="math notranslate nohighlight">\(\sigma^2(x) = k(x, x) - K(X, x)^T[K(X, X) + \sigma^2_nI]^{-1}K(X, x)\)</span>, where <span class="math notranslate nohighlight">\(K(X, x)\)</span> and <span class="math notranslate nohighlight">\(K(X, X)\)</span> are covariance matrices, and <span class="math notranslate nohighlight">\(\sigma^2_n\)</span> is the noise term.</p></li>
 </ul>
 </li>
 <li><p><strong>Practical Interpretation</strong>:</p>

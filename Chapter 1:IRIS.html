@@ -384,7 +384,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="introduction-to-intelligently-reinforced-image-segmentation-iris">
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-intelligently-reinforced-image-segmentation-iris">
 <h1>Introduction to Intelligently Reinforced Image Segmentation (IRIS)<a class="headerlink" href="#introduction-to-intelligently-reinforced-image-segmentation-iris" title="Permalink to this heading">#</a></h1>
 <p>Throughout this project, we have extensively utilised IRIS, a user-friendly, web-based Flask application developed by ESA-PhiLab, with special thanks to Alistair Francis whose guidance has been instrumental. IRIS has been indispensable in our workflow, particularly in the efficient generation of ground-truth training data for our machine learning tasks. Its intuitive ‘click &amp; train’ functionality has greatly simplified the process of creating accurate masks for Earth observation datasets, enhancing our capabilities in dataset creation. You can access the original repo at <a class="github reference external" href="https://github.com/ESA-PhiLab/iris">ESA-PhiLab/iris</a>.</p>
 <section id="installation-why-docker">
@@ -434,11 +434,8 @@ document.write(`
 <section id="visualising-the-geo-location-of-the-dataset">
 <h3>Visualising the Geo-Location of the Dataset<a class="headerlink" href="#visualising-the-geo-location-of-the-dataset" title="Permalink to this heading">#</a></h3>
 <p>A visualisation of the dataset’s geographical location is shown below. You can interact with the map (e.g., zoom in/out, pan) to explore the area of interest.</p>
-<div style="width: 100%; height: 600px;">
-    <iframe src="_static/map_visualization_class1_S3.html" width="100%" height="100%" frameborder="0"></iframe>
-</div>
-<p>This map is generated using the cell below:</p>
-<div class="cell docutils container">
+<iframe src="_static/map_visualization_class1_S3.html" width="100%" height="600px" frameborder="0"></iframe>
+This map is generated using the cell below:<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">folium</span>
 <span class="kn">import</span> <span class="nn">json</span>

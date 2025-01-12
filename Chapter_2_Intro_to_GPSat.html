@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter_2_Intro_to_GPSat';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -400,7 +402,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="introduction-to-gpsat">
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-gpsat">
 <h1>Introduction to GPSat<a class="headerlink" href="#introduction-to-gpsat" title="Permalink to this heading">#</a></h1>
 <p>The original documentation of GPSat can be accessed <a class="reference external" href="https://cpomucl.github.io/GPSat/">here</a>.
 In the previous session, we’ve looked at some basics in Gaussian Processes. As discussed, we will dive into GPSat in this session. Let’s now begin with some recap about the GP basics and get familar with the GPsat Model API to get get/set parameters.</p>
@@ -465,12 +467,13 @@ if IN_COLAB:
 </div>
 </div>
 <p>Consider data generated from a simple cosine function</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \tag{1}
 y = \cos(X) + \epsilon,
-$$</p>
-<p>where $X = (x_1, \ldots, x_N)$ is a set of randomly generated points within the interval $[-L, L]$, and $\epsilon$ is a measurement error, which we take to be an i.i.d. zero-mean Gaussian noise with standard deviation $0.05$.</p>
-<p>Our goal is to use a Gaussian process model to filter out the noise $\epsilon$ and recover the function $f(x) = \cos(x)$ from the training data $(X, y)$.</p>
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(X = (x_1, \ldots, x_N)\)</span> is a set of randomly generated points within the interval <span class="math notranslate nohighlight">\([-L, L]\)</span>, and <span class="math notranslate nohighlight">\(\epsilon\)</span> is a measurement error, which we take to be an i.i.d. zero-mean Gaussian noise with standard deviation <span class="math notranslate nohighlight">\(0.05\)</span>.</p>
+<p>Our goal is to use a Gaussian process model to filter out the noise <span class="math notranslate nohighlight">\(\epsilon\)</span> and recover the function <span class="math notranslate nohighlight">\(f(x) = \cos(x)\)</span> from the training data <span class="math notranslate nohighlight">\((X, y)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed</span>
@@ -500,20 +503,23 @@ $$</p>
 <section id="gaussian-processes">
 <h2>Gaussian processes<a class="headerlink" href="#gaussian-processes" title="Permalink to this heading">#</a></h2>
 <p>Intuitively, a zero-mean Gaussian process (GP) can be understood as a Gaussian distribution on an <em>arbitrary collection of inputs</em>.</p>
-<p>More specifically, it is a random function $f : \mathbb{R} \rightarrow \mathbb{R}$ such that for an arbitrary collection of inputs $X = (x_1, \ldots, x_N)$, the random variable $f(X)$ is a multivariate Gaussian</p>
-<p>$$
+<p>More specifically, it is a random function <span class="math notranslate nohighlight">\(f : \mathbb{R} \rightarrow \mathbb{R}\)</span> such that for an arbitrary collection of inputs <span class="math notranslate nohighlight">\(X = (x_1, \ldots, x_N)\)</span>, the random variable <span class="math notranslate nohighlight">\(f(X)\)</span> is a multivariate Gaussian</p>
+<div class="math notranslate nohighlight">
+\[
 f(X) \sim \mathcal{N}(0, K_{XX}),
-$$</p>
-<p>for some $N \times N$ covariance matrix $K_{XX}$. Importantly, this covariance matrix can be computed using a <strong>kernel function</strong>  $k : \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}$ as</p>
-<p>$$
+\]</div>
+<p>for some <span class="math notranslate nohighlight">\(N \times N\)</span> covariance matrix <span class="math notranslate nohighlight">\(K_{XX}\)</span>. Importantly, this covariance matrix can be computed using a <strong>kernel function</strong>  <span class="math notranslate nohighlight">\(k : \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
 [K_{XX}]_{ij} = k(x_i, x_j), \quad \forall i,j = 1, \ldots, N,
-$$</p>
+\]</div>
 <p>and this completely characterises the zero-mean GP. i.e. the properties of a GP are completely determined by the kernel!</p>
 <p>Below, we set up a GP with the so-called radial basis function (RBF) kernel, given as</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \tag{RBF}
-k_{\text{RBF}}(x, x’) = \sigma^2 \exp\left(-\frac{|x-x’|^2}{2\ell^2}\right),
-$$</p>
+k_{\text{RBF}}(x, x') = \sigma^2 \exp\left(-\frac{|x-x'|^2}{2\ell^2}\right),
+\]</div>
 <p>using <code class="docutils literal notranslate"><span class="pre">sklearnGPRModel</span></code>, a GPSat GP regression model based on the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> GPR module.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -522,7 +528,7 @@ $$</p>
 </div>
 </div>
 </div>
-<p>In the expression for the kernel (RBF) above, we see that it is controlled by two parameters $\sigma^2$ and $\ell$, which are referred to as the <em>kernel variance</em> and the <em>lengthscale</em> hyperparameters respectively (in machine learning lingo, we refer to parameters that define the models as <em>hyperparameters</em>).</p>
+<p>In the expression for the kernel (RBF) above, we see that it is controlled by two parameters <span class="math notranslate nohighlight">\(\sigma^2\)</span> and <span class="math notranslate nohighlight">\(\ell\)</span>, which are referred to as the <em>kernel variance</em> and the <em>lengthscale</em> hyperparameters respectively (in machine learning lingo, we refer to parameters that define the models as <em>hyperparameters</em>).</p>
 <p>Every <code class="docutils literal notranslate"><span class="pre">GPSat</span></code> model comes equipped with a getter/setter method for all (hyper)-parameters in the model. A list of all parameters is stored in the <code class="docutils literal notranslate"><span class="pre">param_names</span></code> property.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -556,12 +562,13 @@ $$</p>
 <section id="the-likelihood">
 <h2>The likelihood<a class="headerlink" href="#the-likelihood" title="Permalink to this heading">#</a></h2>
 <p>In <code class="docutils literal notranslate"><span class="pre">param_names</span></code> above, we also saw a parameter <code class="docutils literal notranslate"><span class="pre">likelihood_variance</span></code>. This is not a hyperparameter of the GP kernel, but is instead a parameter of the so-called <em>likelihood</em>.</p>
-<p>In general, the likelihood describes the probability of an observation $y$ given the ground truth field $f(X)$, i.e., the conditional distribution $p(y | f(X))$. In our case, since the observations are assumed to only differ from the ground truth by some measurement error, the likelihood is understood as modelling precisely this measurement error.</p>
+<p>In general, the likelihood describes the probability of an observation <span class="math notranslate nohighlight">\(y\)</span> given the ground truth field <span class="math notranslate nohighlight">\(f(X)\)</span>, i.e., the conditional distribution <span class="math notranslate nohighlight">\(p(y | f(X))\)</span>. In our case, since the observations are assumed to only differ from the ground truth by some measurement error, the likelihood is understood as modelling precisely this measurement error.</p>
 <p>From (1), we see that the likelihood is given by</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 p(y | f(X)) \sim \mathcal{N}(f(X), \alpha^2 I),
-$$</p>
-<p>with $\alpha = 0.05$ and $f(x) = \cos(x)$. Here, the parameter $\alpha^2$ is referred to as the <em>likelihood variance</em>.</p>
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\alpha = 0.05\)</span> and <span class="math notranslate nohighlight">\(f(x) = \cos(x)\)</span>. Here, the parameter <span class="math notranslate nohighlight">\(\alpha^2\)</span> is referred to as the <em>likelihood variance</em>.</p>
 <p>We can get the default value for the likelihood variance using the <code class="docutils literal notranslate"><span class="pre">get_*</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -598,14 +605,15 @@ $$</p>
 </section>
 <section id="prediction">
 <h2>Prediction<a class="headerlink" href="#prediction" title="Permalink to this heading">#</a></h2>
-<p>From just these information, we can now infer what our ground truth function $f$ should be, given the data pair $(X, y)$.</p>
-<p>Mathematically this is achieved by the simple, yet powerful <strong>Bayes’ rule</strong> to update our belief on the function $f$ given our data $(X, y)$. Informally, this reads:</p>
-<p>$$
+<p>From just these information, we can now infer what our ground truth function <span class="math notranslate nohighlight">\(f\)</span> should be, given the data pair <span class="math notranslate nohighlight">\((X, y)\)</span>.</p>
+<p>Mathematically this is achieved by the simple, yet powerful <strong>Bayes’ rule</strong> to update our belief on the function <span class="math notranslate nohighlight">\(f\)</span> given our data <span class="math notranslate nohighlight">\((X, y)\)</span>. Informally, this reads:</p>
+<div class="math notranslate nohighlight">
+\[
 \tag{2}
-\underbrace{p(f ,|, X, y)}<em>{\text{posterior}} \propto \underbrace{p(y ,|, f(X))}</em>{\text{likelihood}} ,, \underbrace{p(f)}_{\text{prior}}.
-$$</p>
-<p>In GP regression, one can understand the GP as modelling a prior distribution on the function $f$. Thus, the term $p(f)$ corresponds to our GP model. The posterior distribution $p(f | X, y)$ thus gives our prediction of the field $f$ given the data.</p>
-<p>In <code class="docutils literal notranslate"><span class="pre">GPSat</span></code> models, this is computed using the <code class="docutils literal notranslate"><span class="pre">predict()</span></code> method. This takes as inputs a set of $N_<em>$ prediction points, which must be an array of size $(N_</em>, D)$, where $D$ is the input dimension (in our case, just 1).</p>
+\underbrace{p(f \,|\, X, y)}_{\text{posterior}} \propto \underbrace{p(y \,|\, f(X))}_{\text{likelihood}} \,\, \underbrace{p(f)}_{\text{prior}}.
+\]</div>
+<p>In GP regression, one can understand the GP as modelling a prior distribution on the function <span class="math notranslate nohighlight">\(f\)</span>. Thus, the term <span class="math notranslate nohighlight">\(p(f)\)</span> corresponds to our GP model. The posterior distribution <span class="math notranslate nohighlight">\(p(f | X, y)\)</span> thus gives our prediction of the field <span class="math notranslate nohighlight">\(f\)</span> given the data.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">GPSat</span></code> models, this is computed using the <code class="docutils literal notranslate"><span class="pre">predict()</span></code> method. This takes as inputs a set of <span class="math notranslate nohighlight">\(N_*\)</span> prediction points, which must be an array of size <span class="math notranslate nohighlight">\((N_*, D)\)</span>, where <span class="math notranslate nohighlight">\(D\)</span> is the input dimension (in our case, just 1).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make predictions on a uniform grid</span>
@@ -628,8 +636,8 @@ $$</p>
 </div>
 <p>In the plot above, we have plotted the prediction in blue, where the shaded region indicates a 90% credible interval, where we believe the ground truth lies.</p>
 <p>To assess the quality of this prediction, we can look at two metrics:</p>
-<p>(1) the mean squared error $\frac{1}{N_<em>} \sum_{n=1}^{N^</em>} (f_{truth}(x_n’) - f_{mean}(x_n’))^2$ between the predictive mean and the ground truth, and</p>
-<p>(2) the mean log-likelihood $\frac{1}{N_<em>} \sum_{n=1}^{N^</em>} \log \mathcal{N}(f_{truth}(x_n’) ,|, f_{mean}(x_n’), f_{std}(x_n’)^2)$ of the ground truth given the predictive mean and standard deviation.</p>
+<p>(1) the mean squared error <span class="math notranslate nohighlight">\(\frac{1}{N_*} \sum_{n=1}^{N^*} (f_{truth}(x_n') - f_{mean}(x_n'))^2\)</span> between the predictive mean and the ground truth, and</p>
+<p>(2) the mean log-likelihood <span class="math notranslate nohighlight">\(\frac{1}{N_*} \sum_{n=1}^{N^*} \log \mathcal{N}(f_{truth}(x_n') \,|\, f_{mean}(x_n'), f_{std}(x_n')^2)\)</span> of the ground truth given the predictive mean and standard deviation.</p>
 <p>The former only assess the quality of the mean, however the latter also assess the quality of the predictive uncertainty. For the log-likelihood loss, a higher value indicates better performance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -642,13 +650,14 @@ $$</p>
 </section>
 <section id="training">
 <h2>Training<a class="headerlink" href="#training" title="Permalink to this heading">#</a></h2>
-<p>To further improve our predictions, we can think of finding a value for the hyperparameters $\Theta = (\sigma^2, \ell, \alpha^2)$ that fit the data “better”. This is called the <em>training</em> process.</p>
+<p>To further improve our predictions, we can think of finding a value for the hyperparameters <span class="math notranslate nohighlight">\(\Theta = (\sigma^2, \ell, \alpha^2)\)</span> that fit the data “better”. This is called the <em>training</em> process.</p>
 <p>To define what a “better” model means, we can compare them using a certain metric. A perferred such metric in Bayesian modelling is the so-called <em>marginal likelihood</em>, defined as:</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \tag{3}
-p(y | \Theta)  = \int p(y | f(X), \Theta) ,p(f(X) | \Theta) ,df(X).
-$$</p>
-<p>Thus, we can find an optimal set of parameters by maximising (3) with respect to $\Theta$. Equivalently, we can also maximise their log-transformed counterpart, which is more typically used.</p>
+p(y | \Theta)  = \int p(y | f(X), \Theta) \,p(f(X) | \Theta) \,df(X).
+\]</div>
+<p>Thus, we can find an optimal set of parameters by maximising (3) with respect to <span class="math notranslate nohighlight">\(\Theta\)</span>. Equivalently, we can also maximise their log-transformed counterpart, which is more typically used.</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">GPSat</span></code> models, we can compute the log-transformed version of the metric (3) by simply calling the <code class="docutils literal notranslate"><span class="pre">get_objective_function_value()</span></code> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -711,7 +720,7 @@ $$</p>
 </div>
 </section>
 </section>
-<section id="using-gpus-to-accelerate-training-and-inference">
+<section class="tex2jax_ignore mathjax_ignore" id="using-gpus-to-accelerate-training-and-inference">
 <h1>Using GPUs to accelerate training and inference<a class="headerlink" href="#using-gpus-to-accelerate-training-and-inference" title="Permalink to this heading">#</a></h1>
 <p>Now, with some basics knowledge in Gaussian Processes, we will see the advantages of using GPUs to do training and inference on GP.</p>
 <div class="cell docutils container">
@@ -816,16 +825,17 @@ $$</p>
 </div>
 </div>
 </section>
-<section id="gpsat-modelling-with-local-gp-experts-a-1-d-case-study-part-1">
+<section class="tex2jax_ignore mathjax_ignore" id="gpsat-modelling-with-local-gp-experts-a-1-d-case-study-part-1">
 <h1>GPSat modelling with local GP experts: A 1-D case study (Part 1)<a class="headerlink" href="#gpsat-modelling-with-local-gp-experts-a-1-d-case-study-part-1" title="Permalink to this heading">#</a></h1>
 <p>The main intended use case of <code class="docutils literal notranslate"><span class="pre">GPSat</span></code> is to model complex looking fields from a large set of data points, a situation commonly encountered in the geosciences, namely optimal interpolation (OI). The strategy that we adopted is quite simple: to model local chunks of data using different GPs and then gluing their predictions together.</p>
 <p>In this tutorial notebook, we will see how this method performs compared to a single “global” GP. We note that <code class="docutils literal notranslate"><span class="pre">GPSat</span></code> has an automated API to carry out this whole workflow, which we will see in the second part of this tutorial. However for the sake of understanding, we will hard-code this method here.</p>
 <p>First, we generate noisy data as follows:</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \tag{1}
 y = \sin(1/X) + \epsilon, \quad \epsilon \sim \mathcal{N}(0, 0.05^2 I),
-$$</p>
-<p>in the region $X \in [0.1, 0.6]$.</p>
+\]</div>
+<p>in the region <span class="math notranslate nohighlight">\(X \in [0.1, 0.6]\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed</span>
@@ -899,7 +909,7 @@ $$</p>
 </div>
 <section id="local-gp-experts">
 <h2>Local GP experts<a class="headerlink" href="#local-gp-experts" title="Permalink to this heading">#</a></h2>
-<p>Next, let us consider a natural idea to solve this issue by fitting different GPs (called <em>local experts</em>) on different regions of the domain. For simplicity, we will use two GP experts: one to model the data for smaller values of $X$ and another to model the data for larger values of $X$.</p>
+<p>Next, let us consider a natural idea to solve this issue by fitting different GPs (called <em>local experts</em>) on different regions of the domain. For simplicity, we will use two GP experts: one to model the data for smaller values of <span class="math notranslate nohighlight">\(X\)</span> and another to model the data for larger values of <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <p>We assign the following data to the two GPs (call it GP1 and GP2):</p>
 <ul class="simple">
 <li><p>GP1 gets assigned data points within the interval [0.1, 0.4] and makes predictions in the same region.</p></li>
@@ -1052,7 +1062,7 @@ $$</p>
 </div>
 </section>
 </section>
-<section id="gpsat-modelling-with-local-gp-experts-a-1-d-case-study-part-2">
+<section class="tex2jax_ignore mathjax_ignore" id="gpsat-modelling-with-local-gp-experts-a-1-d-case-study-part-2">
 <h1>GPSat modelling with local GP experts: A 1-D case study (Part 2)<a class="headerlink" href="#gpsat-modelling-with-local-gp-experts-a-1-d-case-study-part-2" title="Permalink to this heading">#</a></h1>
 <p>In the previous part of the tutorial, we implemented a local GP expert model to fit on non-stationary data. Here, we will do the same except using <code class="docutils literal notranslate"><span class="pre">GPSat</span></code>’s <code class="docutils literal notranslate"><span class="pre">LocalExpertOI</span></code> class, which automates some of the procedures involved making experiments less cumbersome.</p>
 <div class="cell docutils container">
@@ -1443,7 +1453,7 @@ $$</p>
 <p><strong>Note:</strong> In <code class="docutils literal notranslate"><span class="pre">GPSat</span></code>, we have not yet considered learning the optimal distribution of expert locations and the corresponding inference/training radii that best fit the data. We typically assume the expert locations to be distributed on an even grid and use the same inference/training at every expert locations. However it might be interesting in the future to consider the learning of such hyperparameters to further improve performance.</p>
 </section>
 </section>
-<section id="d-interpolation-of-abc-satellite-data">
+<section class="tex2jax_ignore mathjax_ignore" id="d-interpolation-of-abc-satellite-data">
 <h1>2D interpolation of ABC satellite data<a class="headerlink" href="#d-interpolation-of-abc-satellite-data" title="Permalink to this heading">#</a></h1>
 <p>Now, we look at a more practical example to generate gridded predictions of the sea-ice freeboard from satellite data using <code class="docutils literal notranslate"><span class="pre">GPSat</span></code>. For the satellite data, we use a sample of the Sentinel 3A and 3B data as well as CryoSat-2 data (referred to as A, B and C respectively).</p>
 <div class="cell docutils container">
