@@ -262,6 +262,53 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FChapter 1:ML.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -424,7 +471,7 @@ document.write(`
 <h2>Understanding the Machine Learning Processing Chain<a class="headerlink" href="#understanding-the-machine-learning-processing-chain" title="Permalink to this heading">#</a></h2>
 <section id="the-lifecycle-of-a-machine-learning-project">
 <h3>The Lifecycle of a Machine Learning Project<a class="headerlink" href="#the-lifecycle-of-a-machine-learning-project" title="Permalink to this heading">#</a></h3>
-<p><span id="id1">[<a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">WF02</a>]</span>
+<p><span id="id1">[<a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">Witten and Frank, 2002</a>]</span>
 Machine Learning projects typically follow a structured process, often referred to as the ML processing chain. This chain comprises several key stages, each crucial for the success of the project. Understanding this workflow is essential for anyone delving into the field of ML, especially in applications like Earth observation.</p>
 <ol class="arabic simple">
 <li><p><strong>Problem definition</strong>: Before any data is collected or models are built, it’s essential to clearly define the problem you’re trying to solve with ML. This includes understanding the objectives, constraints, and the potential impact of the solution. For example, the major problem we will be discussing is discrimination of sea-ice and lead.</p></li>
@@ -443,7 +490,7 @@ Machine Learning projects typically follow a structured process, often referred 
 <section id="types-of-machine-learning">
 <h2>Types of Machine Learning<a class="headerlink" href="#types-of-machine-learning" title="Permalink to this heading">#</a></h2>
 <section id="witten2002data-bishop2006pattern">
-<h3><span id="id2">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">WF02</a>]</span><a class="headerlink" href="#witten2002data-bishop2006pattern" title="Permalink to this heading">#</a></h3>
+<h3><span id="id2">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">Bishop and Nasrabadi, 2006</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">Witten and Frank, 2002</a>]</span><a class="headerlink" href="#witten2002data-bishop2006pattern" title="Permalink to this heading">#</a></h3>
 <p>Before delving into specific concepts, it’s essential to distinguish between the two primary variations of AI and ML algorithms.</p>
 </section>
 </section>
@@ -550,7 +597,7 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
 <section id="overfitting-and-underfitting-in-machine-learning">
 <h2>Overfitting and Underfitting in Machine Learning<a class="headerlink" href="#overfitting-and-underfitting-in-machine-learning" title="Permalink to this heading">#</a></h2>
 <section id="id4">
-<h3><span id="id3">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">WF02</a>]</span><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><span id="id3">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">Bishop and Nasrabadi, 2006</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">Witten and Frank, 2002</a>]</span><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 </section>
 <section id="overfitting-the-peril-of-learning-too-much">
 <h3>Overfitting: The Peril of Learning Too Much<a class="headerlink" href="#overfitting-the-peril-of-learning-too-much" title="Permalink to this heading">#</a></h3>

@@ -258,6 +258,53 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FChapter 1:AI_Algorithms.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -436,7 +483,7 @@ The main task focus on this chapter will be classification because we are doing 
 <h2>Convolutional Neural Networks (CNN)<a class="headerlink" href="#convolutional-neural-networks-cnn" title="Permalink to this heading">#</a></h2>
 <section id="introduction-to-cnns">
 <h3>Introduction to CNNs<a class="headerlink" href="#introduction-to-cnns" title="Permalink to this heading">#</a></h3>
-<p>Convolutional Neural Networks, commonly known as CNNs, are a class of deep neural networks specially designed to process data with grid-like topology, such as images <span id="id1">[<a class="reference internal" href="References1.html#id2" title="Ian Goodfellow, Yoshua Bengio, and Aaron Courville. Deep Learning. MIT Press, 2016. http://www.deeplearningbook.org.">GBC16a</a>, <a class="reference internal" href="References1.html#id3" title="Yann LeCun, Yoshua Bengio, and Geoffrey Hinton. Deep learning. Nature, 521(7553):436–444, May 2015. doi:10.1038/nature14539.">LBH15</a>]</span>. Originating from the visual cortex’s biological processes, CNNs are revolutionising the way we understand and interpret visual data.</p>
+<p>Convolutional Neural Networks, commonly known as CNNs, are a class of deep neural networks specially designed to process data with grid-like topology, such as images <span id="id1">[<a class="reference internal" href="References1.html#id2" title="Ian Goodfellow, Yoshua Bengio, and Aaron Courville. Deep Learning. MIT Press, 2016. http://www.deeplearningbook.org.">Goodfellow <em>et al.</em>, 2016</a>, <a class="reference internal" href="References1.html#id3" title="Yann LeCun, Yoshua Bengio, and Geoffrey Hinton. Deep learning. Nature, 521(7553):436–444, May 2015. doi:10.1038/nature14539.">LeCun <em>et al.</em>, 2015</a>]</span>. Originating from the visual cortex’s biological processes, CNNs are revolutionising the way we understand and interpret visual data.</p>
 </section>
 <section id="why-cnn-for-image-data">
 <h3>Why CNN for Image Data?<a class="headerlink" href="#why-cnn-for-image-data" title="Permalink to this heading">#</a></h3>
@@ -450,7 +497,7 @@ The main task focus on this chapter will be classification because we are doing 
 <section id="key-components-of-cnn">
 <h3>Key Components of CNN<a class="headerlink" href="#key-components-of-cnn" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p><strong>Convolutional Layer</strong> <span id="id2">[<a class="reference internal" href="References1.html#id3" title="Yann LeCun, Yoshua Bengio, and Geoffrey Hinton. Deep learning. Nature, 521(7553):436–444, May 2015. doi:10.1038/nature14539.">LBH15</a>]</span>: This is the core building block of a CNN. It slides a filter (smaller in size than the input data) over the input data (like an image) to produce a feature map or convolved feature. The primary purpose of a convolution is to extract features from the input data.</p></li>
+<li><p><strong>Convolutional Layer</strong> <span id="id2">[<a class="reference internal" href="References1.html#id3" title="Yann LeCun, Yoshua Bengio, and Geoffrey Hinton. Deep learning. Nature, 521(7553):436–444, May 2015. doi:10.1038/nature14539.">LeCun <em>et al.</em>, 2015</a>]</span>: This is the core building block of a CNN. It slides a filter (smaller in size than the input data) over the input data (like an image) to produce a feature map or convolved feature. The primary purpose of a convolution is to extract features from the input data.</p></li>
 <li><p><strong>Pooling Layer</strong>: Pooling layers are used to reduce the dimensions of the feature maps, thereby reducing the number of parameters and computation in the network. The most common type of pooling is max pooling.</p></li>
 <li><p><strong>Fully Connected Layer</strong>: After several convolutional and pooling layers, the final classification is done using one or more fully connected layers. Neurons in a fully connected layer have connections to all activations in the previous layer, as seen in regular neural networks.</p></li>
 <li><p><strong>Activation Functions</strong>: Non-linearity is introduced into the CNN using activation functions. The Rectified Linear Unit (ReLU) is the most commonly used activation function in CNNs.</p></li>
@@ -463,7 +510,7 @@ The main task focus on this chapter will be classification because we are doing 
 <section id="advantages-of-cnns">
 <h3>Advantages of CNNs<a class="headerlink" href="#advantages-of-cnns" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Parameter Sharing</strong>: A feature detector (filter) that’s useful in one part of the image can be useful in another part of the image <span id="id3">[<a class="reference internal" href="References1.html#id7" title="Alex Krizhevsky, Ilya Sutskever, and Geoffrey E Hinton. Imagenet classification with deep convolutional neural networks. Advances in neural information processing systems, 2012.">KSH12</a>]</span>.</p></li>
+<li><p><strong>Parameter Sharing</strong>: A feature detector (filter) that’s useful in one part of the image can be useful in another part of the image <span id="id3">[<a class="reference internal" href="References1.html#id7" title="Alex Krizhevsky, Ilya Sutskever, and Geoffrey E Hinton. Imagenet classification with deep convolutional neural networks. Advances in neural information processing systems, 2012.">Krizhevsky <em>et al.</em>, 2012</a>]</span>.</p></li>
 <li><p><strong>Sparsity of Connections</strong>: In each layer, each output value depends only on a small number of input values, making the computation more efficient.</p></li>
 </ul>
 </section>
@@ -500,21 +547,21 @@ The main task focus on this chapter will be classification because we are doing 
 </section>
 <section id="random-forests">
 <h2>Random Forests<a class="headerlink" href="#random-forests" title="Permalink to this heading">#</a></h2>
-<p>Random Forest is a notable and significant part of machine learning and is commonly used for classification. It can also be used for regression, but its application in classification is more prevalent. Decision Trees are the core components of a Random Forest, so let’s delve into the concepts of Decision Trees <span id="id4">[<a class="reference internal" href="References1.html#id10" title="Leo Breiman. Random forests. Machine learning, 45(1):5–32, 2001.">Bre01</a>, <a class="reference internal" href="References1.html#id18" title="J. Ross Quinlan. Induction of decision trees. Machine learning, 1(1):81–106, 1986.">Qui86</a>]</span>.</p>
+<p>Random Forest is a notable and significant part of machine learning and is commonly used for classification. It can also be used for regression, but its application in classification is more prevalent. Decision Trees are the core components of a Random Forest, so let’s delve into the concepts of Decision Trees <span id="id4">[<a class="reference internal" href="References1.html#id10" title="Leo Breiman. Random forests. Machine learning, 45(1):5–32, 2001.">Breiman, 2001</a>, <a class="reference internal" href="References1.html#id18" title="J. Ross Quinlan. Induction of decision trees. Machine learning, 1(1):81–106, 1986.">Quinlan, 1986</a>]</span>.</p>
 <section id="theoretical-foundations">
 <h3>Theoretical Foundations<a class="headerlink" href="#theoretical-foundations" title="Permalink to this heading">#</a></h3>
 </section>
 <section id="ensemble-learning">
 <h3>1. <strong>Ensemble Learning</strong><a class="headerlink" href="#ensemble-learning" title="Permalink to this heading">#</a></h3>
-<p>Ensemble methods employ multiple learning algorithms to achieve better predictive performance than any individual learning algorithm alone <span id="id5">[<a class="reference internal" href="References1.html#id16" title="Thomas G Dietterich. Ensemble methods in machine learning. In Multiple classifier systems, 1–15. Springer, 2000.">Die00</a>]</span>. The primary principle behind ensemble models is that several weak learners come together to form a strong learner.</p>
+<p>Ensemble methods employ multiple learning algorithms to achieve better predictive performance than any individual learning algorithm alone <span id="id5">[<a class="reference internal" href="References1.html#id16" title="Thomas G Dietterich. Ensemble methods in machine learning. In Multiple classifier systems, 1–15. Springer, 2000.">Dietterich, 2000</a>]</span>. The primary principle behind ensemble models is that several weak learners come together to form a strong learner.</p>
 </section>
 <section id="decision-trees">
 <h3>2. <strong>Decision Trees</strong><a class="headerlink" href="#decision-trees" title="Permalink to this heading">#</a></h3>
-<p>Decision trees are central to a Random Forest. They split data into subsets based on feature values, recursively producing a decision tree <span id="id6">[<a class="reference internal" href="References1.html#id18" title="J. Ross Quinlan. Induction of decision trees. Machine learning, 1(1):81–106, 1986.">Qui86</a>]</span>.</p>
+<p>Decision trees are central to a Random Forest. They split data into subsets based on feature values, recursively producing a decision tree <span id="id6">[<a class="reference internal" href="References1.html#id18" title="J. Ross Quinlan. Induction of decision trees. Machine learning, 1(1):81–106, 1986.">Quinlan, 1986</a>]</span>.</p>
 </section>
 <section id="bootstrap-aggregating-bagging">
 <h3>3. <strong>Bootstrap Aggregating (Bagging)</strong><a class="headerlink" href="#bootstrap-aggregating-bagging" title="Permalink to this heading">#</a></h3>
-<p>Random Forests leverage bagging, where multiple dataset subsets are created by drawing samples with replacement. A separate decision tree is built for each of these samples <span id="id7">[<a class="reference internal" href="References1.html#id19" title="Leo Breiman. Bagging predictors. Machine learning, 24(2):123–140, 1996.">Bre96</a>]</span>.</p>
+<p>Random Forests leverage bagging, where multiple dataset subsets are created by drawing samples with replacement. A separate decision tree is built for each of these samples <span id="id7">[<a class="reference internal" href="References1.html#id19" title="Leo Breiman. Bagging predictors. Machine learning, 24(2):123–140, 1996.">Breiman, 1996</a>]</span>.</p>
 </section>
 <section id="feature-randomness">
 <h3>4. <strong>Feature Randomness</strong><a class="headerlink" href="#feature-randomness" title="Permalink to this heading">#</a></h3>
@@ -560,19 +607,19 @@ The main task focus on this chapter will be classification because we are doing 
 </section>
 <section id="tokenisation-of-images">
 <h3>1. <strong>Tokenisation of Images</strong><a class="headerlink" href="#tokenisation-of-images" title="Permalink to this heading">#</a></h3>
-<p>Instead of processing images using convolutions, ViTs divide the image into fixed-size patches, linearly embed them, and then process the resulting sequence of vectors (or tokens) using a transformer.<span id="id9">[<a class="reference internal" href="References1.html#id8" title="Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, and others. An image is worth 16x16 words: transformers for image recognition at scale. arXiv preprint arXiv:2010.11929, 2020.">DBK+20</a>]</span></p>
+<p>Instead of processing images using convolutions, ViTs divide the image into fixed-size patches, linearly embed them, and then process the resulting sequence of vectors (or tokens) using a transformer.<span id="id9">[<a class="reference internal" href="References1.html#id8" title="Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, and others. An image is worth 16x16 words: transformers for image recognition at scale. arXiv preprint arXiv:2010.11929, 2020.">Dosovitskiy <em>et al.</em>, 2020</a>]</span></p>
 </section>
 <section id="position-embeddings">
 <h3>2. <strong>Position Embeddings</strong><a class="headerlink" href="#position-embeddings" title="Permalink to this heading">#</a></h3>
-<p>Since the original transformer doesn’t have a notion of the relative positions of tokens, positional embeddings are added to the patch embeddings to retain the positional information.<span id="id10">[<a class="reference internal" href="References1.html#id8" title="Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, and others. An image is worth 16x16 words: transformers for image recognition at scale. arXiv preprint arXiv:2010.11929, 2020.">DBK+20</a>]</span></p>
+<p>Since the original transformer doesn’t have a notion of the relative positions of tokens, positional embeddings are added to the patch embeddings to retain the positional information.<span id="id10">[<a class="reference internal" href="References1.html#id8" title="Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, and others. An image is worth 16x16 words: transformers for image recognition at scale. arXiv preprint arXiv:2010.11929, 2020.">Dosovitskiy <em>et al.</em>, 2020</a>]</span></p>
 </section>
 <section id="transformer-architecture">
 <h3>3. <strong>Transformer Architecture</strong><a class="headerlink" href="#transformer-architecture" title="Permalink to this heading">#</a></h3>
-<p>The core of ViT is the transformer architecture, which consists of multiple layers of multi-head self-attention mechanisms and feed-forward neural networks.<span id="id11">[<a class="reference internal" href="References1.html#id8" title="Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, and others. An image is worth 16x16 words: transformers for image recognition at scale. arXiv preprint arXiv:2010.11929, 2020.">DBK+20</a>]</span></p>
+<p>The core of ViT is the transformer architecture, which consists of multiple layers of multi-head self-attention mechanisms and feed-forward neural networks.<span id="id11">[<a class="reference internal" href="References1.html#id8" title="Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, and others. An image is worth 16x16 words: transformers for image recognition at scale. arXiv preprint arXiv:2010.11929, 2020.">Dosovitskiy <em>et al.</em>, 2020</a>]</span></p>
 </section>
 <section id="classification-head">
 <h3>4. <strong>Classification Head</strong><a class="headerlink" href="#classification-head" title="Permalink to this heading">#</a></h3>
-<p>After processing through the transformer layers, the embedding of the first token (often referred to as the ‘CLS’ token) is used to classify the image.<span id="id12">[<a class="reference internal" href="References1.html#id8" title="Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, and others. An image is worth 16x16 words: transformers for image recognition at scale. arXiv preprint arXiv:2010.11929, 2020.">DBK+20</a>]</span></p>
+<p>After processing through the transformer layers, the embedding of the first token (often referred to as the ‘CLS’ token) is used to classify the image.<span id="id12">[<a class="reference internal" href="References1.html#id8" title="Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, and others. An image is worth 16x16 words: transformers for image recognition at scale. arXiv preprint arXiv:2010.11929, 2020.">Dosovitskiy <em>et al.</em>, 2020</a>]</span></p>
 </section>
 <section id="advantages-of-vit">
 <h3>Advantages of ViT<a class="headerlink" href="#advantages-of-vit" title="Permalink to this heading">#</a></h3>
@@ -861,11 +908,11 @@ The main task focus on this chapter will be classification because we are doing 
 </ul>
 </section>
 <section id="what-is-cross-validation-bishop2006pattern">
-<h3>What is Cross-Validation? <span id="id13">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>]</span><a class="headerlink" href="#what-is-cross-validation-bishop2006pattern" title="Permalink to this heading">#</a></h3>
+<h3>What is Cross-Validation? <span id="id13">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">Bishop and Nasrabadi, 2006</a>]</span><a class="headerlink" href="#what-is-cross-validation-bishop2006pattern" title="Permalink to this heading">#</a></h3>
 <p>Cross-validation is a technique to evaluate the performance of a model by splitting the dataset into a training set and a validation set multiple times. The most common method is k-fold cross-validation.</p>
 </section>
 <section id="k-fold-cross-validation-bishop2006pattern">
-<h3>K-Fold Cross-Validation <span id="id14">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>]</span><a class="headerlink" href="#k-fold-cross-validation-bishop2006pattern" title="Permalink to this heading">#</a></h3>
+<h3>K-Fold Cross-Validation <span id="id14">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">Bishop and Nasrabadi, 2006</a>]</span><a class="headerlink" href="#k-fold-cross-validation-bishop2006pattern" title="Permalink to this heading">#</a></h3>
 <p>In k-fold cross-validation, the training data is randomly partitioned into k equal-sized subsets. Of the k subsets, a single subset is retained as validation data, and the remaining k-1 subsets are used as training data. The cross-validation process is repeated k times, with each of the k subsets used exactly once as validation data. The k results can then be averaged to produce a single estimation.</p>
 <p>The following code is a example of K-Fold CV for Random Forest model:</p>
 <div class="cell docutils container">

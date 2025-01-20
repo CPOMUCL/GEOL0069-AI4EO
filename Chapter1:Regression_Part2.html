@@ -262,6 +262,53 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FChapter1:Regression_Part2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -418,7 +465,7 @@ document.write(`
 </div>
 </section>
 <section id="polynomial-regression-draper1998applied">
-<h2>Polynomial Regression <span id="id1">[<a class="reference internal" href="References1.html#id13" title="Norman R Draper and Harry Smith. Applied regression analysis. Volume 326. John Wiley &amp; Sons, 1998.">DS98</a>]</span><a class="headerlink" href="#polynomial-regression-draper1998applied" title="Permalink to this heading">#</a></h2>
+<h2>Polynomial Regression <span id="id1">[<a class="reference internal" href="References1.html#id13" title="Norman R Draper and Harry Smith. Applied regression analysis. Volume 326. John Wiley &amp; Sons, 1998.">Draper and Smith, 1998</a>]</span><a class="headerlink" href="#polynomial-regression-draper1998applied" title="Permalink to this heading">#</a></h2>
 <section id="recall-polynomial-regression">
 <h3>Recall Polynomial Regression<a class="headerlink" href="#recall-polynomial-regression" title="Permalink to this heading">#</a></h3>
 <p>Polynomial regression is a form of regression analysis in which the relationship between the independent variable <span class="math notranslate nohighlight">\(x\)</span> and the dependent variable <span class="math notranslate nohighlight">\(y\)</span> is modeled as an <span class="math notranslate nohighlight">\(n\)</span> th degree polynomial. Polynomial regression fits a nonlinear relationship between the value of <span class="math notranslate nohighlight">\(x\)</span> and the corresponding conditional mean of <span class="math notranslate nohighlight">\(y\)</span>, denoted <span class="math notranslate nohighlight">\(E(y |x)\)</span>. Below code shows how we can apply it on our data.</p>
@@ -457,7 +504,7 @@ document.write(`
 </section>
 </section>
 <section id="neural-networks-goodfellow2016deep">
-<h2>Neural Networks <span id="id2">[<a class="reference internal" href="References1.html#id11" title="Ian Goodfellow, Yoshua Bengio, and Aaron Courville. Deep learning. MIT press, 2016.">GBC16b</a>]</span><a class="headerlink" href="#neural-networks-goodfellow2016deep" title="Permalink to this heading">#</a></h2>
+<h2>Neural Networks <span id="id2">[<a class="reference internal" href="References1.html#id11" title="Ian Goodfellow, Yoshua Bengio, and Aaron Courville. Deep learning. MIT press, 2016.">Goodfellow <em>et al.</em>, 2016</a>]</span><a class="headerlink" href="#neural-networks-goodfellow2016deep" title="Permalink to this heading">#</a></h2>
 <section id="recall-important-components-of-neural-networks">
 <h3>Recall Important Components of Neural Networks<a class="headerlink" href="#recall-important-components-of-neural-networks" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
@@ -509,7 +556,7 @@ document.write(`
 </section>
 </section>
 <section id="gaussian-processes-bishop2006pattern">
-<h2>Gaussian Processes  <span id="id3">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>]</span><a class="headerlink" href="#gaussian-processes-bishop2006pattern" title="Permalink to this heading">#</a></h2>
+<h2>Gaussian Processes  <span id="id3">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">Bishop and Nasrabadi, 2006</a>]</span><a class="headerlink" href="#gaussian-processes-bishop2006pattern" title="Permalink to this heading">#</a></h2>
 <section id="recall-gaussian-processes">
 <h3>Recall Gaussian Processes<a class="headerlink" href="#recall-gaussian-processes" title="Permalink to this heading">#</a></h3>
 <p>A Gaussian Process (GP) is essentially an advanced form of a Gaussian (or normal) distribution, but instead of being over simple variables, it’s over functions. Imagine a GP as a method to predict or estimate a function based on known data points. Note that we are using sparse GP here as the data we have here is somethat high-dimensional (21 bands).</p>
