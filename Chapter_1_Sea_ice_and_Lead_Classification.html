@@ -61,9 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter 1:Sea-ice_and_Lead_Classification';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter_1_Sea_ice_and_Lead_Classification';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="AI/Machine Learning Implementation" href="Chapter_1_AI_Algorithms.html" />
+    <link rel="prev" title="Introduction to AI/Machine Learning" href="Chapter%201%3AML.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -160,10 +162,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Chapter_1_Sea_ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sea-ice and Lead Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Chapter_1_AI_Algorithms.html">AI/Machine Learning Implementation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
@@ -266,7 +268,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/Chapter 1:Sea-ice_and_Lead_Classification.ipynb" target="_blank"
+      <li><a href="_sources/Chapter_1_Sea_ice_and_Lead_Classification.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -388,6 +390,7 @@ document.write(`
 <section id="definition-and-importance">
 <h3>Definition and Importance<a class="headerlink" href="#definition-and-importance" title="Permalink to this heading">#</a></h3>
 <p>Sea ice leads are narrow, linear fractures or openings in sea ice that form when the ice is broken by the movement of ocean waters or by the stress induced by wind and temperature changes. These leads can vary in size, ranging from a few meters to several kilometers in width, and can extend for hundreds of kilometers. They play a crucial role in the polar climate system and are vital for marine navigation and ecosystem dynamics.</p>
+<p>(Here we may put some images of sea-ice/leads)</p>
 <p>Sea ice leads are important for several reasons:</p>
 <ul class="simple">
 <li><p><strong>Heat Exchange:</strong> They act as a gateway for the exchange of heat, moisture, and momentum between the ocean and the atmosphere, influencing weather and climate patterns.</p></li>
@@ -405,6 +408,27 @@ document.write(`
 <p>At the moment, you don’t need to run the following code block because we will provide the numpy arrays of the image that you can use for extracting data from IRIS. But make sure you understand them as it may be useful for your exercise.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install netCDF4
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting netCDF4
+  Downloading netCDF4-1.6.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">5.5/5.5 MB</span> <span class=" -Color -Color-Red">58.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hCollecting cftime (from netCDF4)
+  Downloading cftime-1.6.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.3/1.3 MB</span> <span class=" -Color -Color-Red">73.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: certifi in /usr/local/lib/python3.10/dist-packages (from netCDF4) (2024.2.2)
+Requirement already satisfied: numpy in /usr/local/lib/python3.10/dist-packages (from netCDF4) (1.25.2)
+Installing collected packages: cftime, netCDF4
+Successfully installed cftime-1.6.3 netCDF4-1.6.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">netCDF4</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -412,7 +436,7 @@ document.write(`
 
 <span class="c1"># Define the path to the main folder where your data is stored.</span>
 <span class="c1"># You need to replace &#39;path/to/data&#39; with the actual path to your data folder.</span>
-<span class="n">main_folder_path</span> <span class="o">=</span> <span class="s1">&#39;path/to/data&#39;</span> 
+<span class="n">main_folder_path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/Week 3&#39;</span>
 
 <span class="c1"># This part of the code is responsible for finding all directories in the main_folder that end with &#39;.SEN3&#39;.</span>
 <span class="c1"># &#39;.SEN3&#39; is the format of the folder containing specific satellite data files (in this case, OLCI data files).</span>
@@ -422,8 +446,8 @@ document.write(`
 <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">directories</span><span class="p">:</span>
     <span class="c1"># Construct the path to the OLCI data file within the directory.</span>
     <span class="c1"># This path is used to access the data files.</span>
-    <span class="n">OLCI_file_p</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
-    
+    <span class="n">OLCI_file_p</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+
     <span class="c1"># Print the path to the current data file being processed.</span>
     <span class="c1"># This is helpful for tracking which file is being processed at any time.</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing: </span><span class="si">{</span><span class="n">OLCI_file_p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -441,7 +465,7 @@ document.write(`
 
     <span class="c1"># Create a directory for saving the processed data using the original directory name.</span>
     <span class="c1"># This directory will be used to store output files.</span>
-    <span class="n">save_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;path/to/save&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+    <span class="n">save_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/Week 3&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">save_directory</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">save_directory</span><span class="p">)</span>
 
@@ -449,7 +473,7 @@ document.write(`
     <span class="c1"># OLCI instruments capture multiple bands, each representing different wavelengths.</span>
     <span class="n">OLCI_data</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">Radiance</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">):</span>  <span class="c1"># There are 21 bands in OLCI data.</span>
-        
+
         <span class="n">Rstr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">Radiance</span>  <span class="c1"># Formatting the band number.</span>
         <span class="n">solar_flux_band</span> <span class="o">=</span> <span class="n">solar_flux</span><span class="p">[</span><span class="n">Radiance</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Get the solar flux for the current band.</span>
 
@@ -494,6 +518,85 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Processing: /content/drive/MyDrive/GEOL0069/Week 3/S3A_OL_1_EFR____20180307T054004_20180307T054119_20180308T091959_0075_028_319_1620_LN1_O_NT_002.SEN3
+Processing Band: 01
+Solar Flux for Band 01: [1544.2267 1544.1896 1544.1527 ... 1537.7228 1537.6968 1537.6708]
+Reflectance Values Range for Band 01: 0.41084423661231995, 1640.9383544921875
+Processing Band: 02
+Solar Flux for Band 02: [1736.7196 1736.7112 1736.7029 ... 1733.3411 1733.3334 1733.3256]
+Reflectance Values Range for Band 02: 0.3883616328239441, 1455.7120361328125
+Processing Band: 03
+Solar Flux for Band 03: [1927.833  1927.7999 1927.7668 ... 1916.0372 1916.0155 1915.9938]
+Reflectance Values Range for Band 03: 0.32780033349990845, 1316.926513671875
+Processing Band: 04
+Solar Flux for Band 04: [1971.3087 1971.2881 1971.2675 ... 1963.3698 1963.359  1963.3484]
+Reflectance Values Range for Band 04: 0.251146137714386, 1285.1630859375
+Processing Band: 05
+Solar Flux for Band 05: [1944.2913 1944.3116 1944.3319 ... 1951.6395 1951.6514 1951.6633]
+Reflectance Values Range for Band 05: 0.2172631472349167, 1292.857666015625
+Processing Band: 06
+Solar Flux for Band 06: [1821.8096 1821.818  1821.8264 ... 1826.0354 1826.0421 1826.0488]
+Reflectance Values Range for Band 06: 0.15005509555339813, 1381.7938232421875
+Processing Band: 07
+Solar Flux for Band 07: [1674.2252 1674.2257 1674.2262 ... 1675.1635 1675.1654 1675.1672]
+Reflectance Values Range for Band 07: 0.11158787459135056, 1506.2513427734375
+Processing Band: 08
+Solar Flux for Band 08: [1553.1333 1553.1364 1553.1393 ... 1554.3136 1554.3158 1554.3179]
+Reflectance Values Range for Band 08: 0.10762631148099899, 1623.363525390625
+Processing Band: 09
+Solar Flux for Band 09: [1516.426  1516.4303 1516.4344 ... 1518.5398 1518.544  1518.5483]
+Reflectance Values Range for Band 09: 0.1055600717663765, 1661.60205078125
+Processing Band: 10
+Solar Flux for Band 10: [1490.1593 1490.1633 1490.1672 ... 1492.155  1492.1592 1492.1635]
+Reflectance Values Range for Band 10: 0.10367687791585922, 1690.98291015625
+Processing Band: 11
+Solar Flux for Band 11: [1422.6501 1422.6566 1422.6631 ... 1425.7877 1425.794  1425.8002]
+Reflectance Values Range for Band 11: 0.09548962116241455, 1769.6890869140625
+Processing Band: 12
+Solar Flux for Band 12: [1286.0969 1286.0969 1286.0968 ... 1285.9958 1285.9956 1285.9954]
+Reflectance Values Range for Band 12: 0.08563060313463211, 1962.0777587890625
+Processing Band: 13
+Solar Flux for Band 13: [1266.1855 1266.1841 1266.1825 ... 1267.1041 1267.1069 1267.1097]
+Reflectance Values Range for Band 13: 0.013173525221645832, 1991.321533203125
+Processing Band: 14
+Solar Flux for Band 14: [1255.0392 1255.0465 1255.0538 ... 1259.472  1259.4817 1259.4913]
+Reflectance Values Range for Band 14: 0.033918071538209915, 2003.3665771484375
+Processing Band: 15
+Solar Flux for Band 15: [1250.4901 1250.4894 1250.4886 ... 1248.3044 1248.299  1248.2935]
+Reflectance Values Range for Band 15: 0.07240995764732361, 2021.3380126953125
+Processing Band: 16
+Solar Flux for Band 16: [1190.107  1190.1107 1190.1144 ... 1192.3016 1192.3068 1192.3116]
+Reflectance Values Range for Band 16: 0.0767943263053894, 2116.24462890625
+Processing Band: 17
+Solar Flux for Band 17: [974.80475 974.8051  974.8054  ... 974.5828  974.5818  974.58075]
+Reflectance Values Range for Band 17: 0.05488292872905731, 2589.0341796875
+Processing Band: 18
+Solar Flux for Band 18: [944.4993  944.50037 944.50134 ... 945.5233  945.5259  945.5284 ]
+Reflectance Values Range for Band 18: 0.047104962170124054, 2668.585205078125
+Processing Band: 19
+Solar Flux for Band 19: [909.57367 909.5737  909.5738  ... 909.67554 909.676   909.6766 ]
+Reflectance Values Range for Band 19: 0.029829399660229683, 2773.75830078125
+Processing Band: 20
+Solar Flux for Band 20: [838.5204  838.5215  838.5225  ... 839.4573  839.45917 839.4611 ]
+Reflectance Values Range for Band 20: 0.0017991369822993875, 3005.764892578125
+Processing Band: 21
+Solar Flux for Band 21: [710.0732  710.0737  710.0742  ... 711.08307 711.0854  711.08777]
+Reflectance Values Range for Band 21: 0.0295613631606102, 3548.398681640625
+Reshaped array shape: (1716, 4865, 21)
+Chunk 1 shape: (1716, 973, 21)
+Saved Chunk 1 for Band 21 to /content/drive/MyDrive/GEOL0069/Week 3/chunk_1_band_21.npy
+Chunk 2 shape: (1716, 973, 21)
+Saved Chunk 2 for Band 21 to /content/drive/MyDrive/GEOL0069/Week 3/chunk_2_band_21.npy
+Chunk 3 shape: (1716, 973, 21)
+Saved Chunk 3 for Band 21 to /content/drive/MyDrive/GEOL0069/Week 3/chunk_3_band_21.npy
+Chunk 4 shape: (1716, 973, 21)
+Saved Chunk 4 for Band 21 to /content/drive/MyDrive/GEOL0069/Week 3/chunk_4_band_21.npy
+Chunk 5 shape: (1716, 973, 21)
+Saved Chunk 5 for Band 21 to /content/drive/MyDrive/GEOL0069/Week 3/chunk_5_band_21.npy
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="note">
@@ -516,11 +619,32 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting netCDF4
+  Downloading netCDF4-1.7.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+Collecting cftime (from netCDF4)
+  Downloading cftime-1.6.4.post1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.7 kB)
+Requirement already satisfied: certifi in /usr/local/lib/python3.11/dist-packages (from netCDF4) (2024.12.14)
+Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages (from netCDF4) (1.26.4)
+Downloading netCDF4-1.7.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (9.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">9.3/9.3 MB</span> <span class=" -Color -Color-Red">78.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading cftime-1.6.4.post1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.4/1.4 MB</span> <span class=" -Color -Color-Red">75.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hInstalling collected packages: cftime, netCDF4
+Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
 </pre></div>
 </div>
 </div>
@@ -562,6 +686,18 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1716, 973, 21)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now also read in the mask file</span>
 <span class="n">mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_Sea-ice_and_Lead_Classification/mask1.png&#39;</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_UNCHANGED</span><span class="p">)</span>
 
@@ -587,7 +723,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4d81e01cf9f65bd028a273c7e065a59cc9a3b0d22c41610536acbd0d712663d9.png" src="_images/4d81e01cf9f65bd028a273c7e065a59cc9a3b0d22c41610536acbd0d712663d9.png" />
+<img alt="_images/53401a2cc0912c6bcff9d4c288a69a1944080b041ed4f13fceb17774b6db95c5.png" src="_images/53401a2cc0912c6bcff9d4c288a69a1944080b041ed4f13fceb17774b6db95c5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -600,7 +736,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/88634bf9cf3e80417ce9dd3b8171c96798d83ff237740fb32919a032e1ed35ee.png" src="_images/88634bf9cf3e80417ce9dd3b8171c96798d83ff237740fb32919a032e1ed35ee.png" />
+<img alt="_images/9c63a9d42188ae4285c88ba89c5fe292b6605a320117d2914ebb8c409744adea.png" src="_images/9c63a9d42188ae4285c88ba89c5fe292b6605a320117d2914ebb8c409744adea.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -618,7 +754,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Because we are not just using one pixel as a data instance, instead we use also the pixels around that pixel, so one instance would have shape (3,3,21).</p>
+<p>:Because we are not just using one pixel as a data instance, instead we use also the pixels around that pixel, so one instance would have shape (3,3,21).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># roi is your data with shape (300, 200, 21)</span>
@@ -678,20 +814,20 @@ document.write(`
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initially, we examine the quantity of each class present in the dataset</span>
 <span class="n">unique</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">unique</span><span class="p">,</span> <span class="n">counts</span><span class="p">)))</span>
-<span class="c1"># Identifying the class with the smaller count to balance the number in each class, for example, let it be 9396</span>
-<span class="n">num_class</span> <span class="o">=</span> <span class="mi">9396</span> <span class="c1"># Adjust it to the amount you get</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: 49608, 1: 9396}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: 49108, 1: 9896}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract indices of both classes</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Identifying the class with the smaller count to balance the number in each class, for example, let it be 9396</span>
+<span class="n">num_class</span> <span class="o">=</span> <span class="mi">9896</span> <span class="c1"># Adjust it to the amount you get</span>
+<span class="c1"># Extract indices of both classes</span>
 <span class="n">indices_class_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">indices_class_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -718,7 +854,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: 8440, 1: 8472}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: 8912, 1: 8900}
 </pre></div>
 </div>
 </div>
@@ -726,10 +862,23 @@ document.write(`
 <p>Up until here, we have our data for training and testing ready. You save them using the following code for analysis in the next section.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;X_train_balanced.npy&#39;</span><span class="p">),</span> <span class="n">X_train_balanced</span><span class="p">)</span>
-<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;X_test_balanced.npy&#39;</span><span class="p">),</span> <span class="n">X_test_balanced</span><span class="p">)</span>
-<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;y_train_balanced.npy&#39;</span><span class="p">),</span> <span class="n">y_train_balanced</span><span class="p">)</span>
-<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;y_test_balanced.npy&#39;</span><span class="p">),</span> <span class="n">y_test_balanced</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy in /usr/local/lib/python3.10/dist-packages (1.23.5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span> <span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_AI_Algorithms/X_train_balanced.npy&#39;</span><span class="p">,</span><span class="n">X_train_balanced</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span> <span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_AI_Algorithms/X_test_balanced.npy&#39;</span><span class="p">,</span><span class="n">X_test_balanced</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span> <span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_AI_Algorithms/y_train_balanced.npy&#39;</span><span class="p">,</span><span class="n">y_train_balanced</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span> <span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_AI_Algorithms/y_test_balanced.npy&#39;</span><span class="p">,</span><span class="n">y_test_balanced</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -768,6 +917,24 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter%201%3AML.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to AI/Machine Learning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter_1_AI_Algorithms.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">AI/Machine Learning Implementation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
