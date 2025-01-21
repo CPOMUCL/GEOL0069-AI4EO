@@ -1,0 +1,42 @@
+/* _static/custom.css */
+
+/* Style for the entire references section */
+div.references {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style for each reference entry */
+div.references p {
+    margin-bottom: 1.5em;
+    padding-left: 2.5em;
+    text-indent: -2.5em;
+    line-height: 1.5;
+}
+
+/* Style for reference keys like [BN06] */
+div.references p strong {
+    font-weight: bold;
+    color: #333;
+    margin-right: 0.5em;
+}
+
+/* Style for journal/book titles */
+div.references em {
+    font-style: italic;
+}
+
+/* Style for the References heading */
+div.references h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid #eee;
+}
+
+/* Additional spacing for multi-author papers */
+div.references p span.authors {
+    display: inline;
+}

@@ -62,9 +62,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter 1:AI_Algorithms';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter_1_AI_Algorithms';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Fetching" href="Chapter%201%3AFetching_Data.html" />
+    <link rel="prev" title="Sea-ice and Lead Classification" href="Chapter_1_Sea_ice_and_Lead_Classification.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -161,11 +163,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Chapter_1_Sea_ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Chapter_1_AI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">AI/Machine Learning Implementation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
 <ul class="nav bd-sidenav">
@@ -284,7 +286,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FChapter 1:AI_Algorithms.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FChapter_1_AI_Algorithms.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -314,7 +316,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/Chapter 1:AI_Algorithms.ipynb" target="_blank"
+      <li><a href="_sources/Chapter_1_AI_Algorithms.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -462,7 +464,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ai-machine-learning-implementation">
 <h1>AI/Machine Learning Implementation<a class="headerlink" href="#ai-machine-learning-implementation" title="Permalink to this heading">#</a></h1>
-<p>📘 <strong>Interactive Version</strong>: For a hands-on experience with this chapter’s content, access the interactive notebook in <a class="reference external" href="https://drive.google.com/file/d/1OsVukpWf2-oUD0sr7xOI1UZ0cJVt8lvE/view?usp=sharing">Google Colab</a>.</p>
+<p>📘 <strong>Interactive Version</strong>: For a hands-on experience with this chapter’s content, access the interactive notebook in <a class="reference external" href="https://drive.google.com/file/d/15PZPu8HNLsc3JylevPAUhljWhc309rfh/view?usp=sharing">Google Colab</a>.</p>
 <p>In this section, we delve into the practical application of prominent AI and machine learning algorithms using the datasets curated in the preceding chapters. While an exhaustive theoretical comprehension isn’t mandatory, a foundational grasp of the underlying principles and confidence in their basic implementation will be advantageous.
 The main task focus on this chapter will be classification because we are doing surface discrimination . We will come across regression in future chapters.</p>
 <section id="loading-the-data">
@@ -470,7 +472,28 @@ The main task focus on this chapter will be classification because we are doing 
 <p>From the previous notebook, you should have your training and testing data ready from this code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">save_path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_AI_Algorithms/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;X_train_balanced.npy&#39;</span><span class="p">))</span>
 <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;X_test_balanced.npy&#39;</span><span class="p">))</span>
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;y_train_balanced.npy&#39;</span><span class="p">))</span>
@@ -539,7 +562,39 @@ The main task focus on this chapter will be classification because we are doing 
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
               <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;sparse_categorical_crossentropy&#39;</span><span class="p">,</span>
               <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/dist-packages/keras/src/layers/convolutional/base_conv.py:107: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/10
+<span class=" -Color -Color-Bold">501/501</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 3ms/step - accuracy: 0.5559 - loss: 2.9276 - val_accuracy: 0.5903 - val_loss: 0.7663
+Epoch 2/10
+<span class=" -Color -Color-Bold">501/501</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 4ms/step - accuracy: 0.6224 - loss: 0.6680 - val_accuracy: 0.6229 - val_loss: 0.6545
+Epoch 3/10
+<span class=" -Color -Color-Bold">501/501</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 4ms/step - accuracy: 0.6325 - loss: 0.6538 - val_accuracy: 0.4989 - val_loss: 0.6995
+Epoch 4/10
+<span class=" -Color -Color-Bold">501/501</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 4ms/step - accuracy: 0.6702 - loss: 0.5943 - val_accuracy: 0.6476 - val_loss: 0.5719
+Epoch 5/10
+<span class=" -Color -Color-Bold">501/501</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 5ms/step - accuracy: 0.6856 - loss: 0.5695 - val_accuracy: 0.7604 - val_loss: 0.4956
+Epoch 6/10
+<span class=" -Color -Color-Bold">501/501</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 5ms/step - accuracy: 0.7096 - loss: 0.5473 - val_accuracy: 0.7935 - val_loss: 0.4949
+Epoch 7/10
+<span class=" -Color -Color-Bold">501/501</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 3ms/step - accuracy: 0.7167 - loss: 0.5331 - val_accuracy: 0.6235 - val_loss: 0.5956
+Epoch 8/10
+<span class=" -Color -Color-Bold">501/501</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 3ms/step - accuracy: 0.6986 - loss: 0.5562 - val_accuracy: 0.7637 - val_loss: 0.4657
+Epoch 9/10
+<span class=" -Color -Color-Bold">501/501</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 3ms/step - accuracy: 0.7329 - loss: 0.5321 - val_accuracy: 0.7722 - val_loss: 0.5041
+Epoch 10/10
+<span class=" -Color -Color-Bold">501/501</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 4ms/step - accuracy: 0.7026 - loss: 0.5517 - val_accuracy: 0.7632 - val_loss: 0.4525
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.src.callbacks.history.History at 0x783d001d5890&gt;
 </pre></div>
 </div>
 </div>
@@ -642,20 +697,11 @@ The main task focus on this chapter will be classification because we are doing 
 <p>The implmentation of Vision Transformer is much more complicated than CNN and Random Forest as there is no built-in functions or layers in the library. However, the following code uses some existing functions like Muliti-head attention to build the transformer block. You don’t need to know the exactly and detailed structure of ViT as it is not required in this course. Please follow the code below for example of implementation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install this additional Tensorflow package for ViT</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">tensorflow</span><span class="o">-</span><span class="n">addons</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages needed</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
-<span class="kn">import</span> <span class="nn">tensorflow_addons</span> <span class="k">as</span> <span class="nn">tfa</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span><span class="n">confusion_matrix</span><span class="p">,</span><span class="n">classification_report</span>
 </pre></div>
@@ -751,8 +797,9 @@ The main task focus on this chapter will be classification because we are doing 
 <span class="c1">#=========================================================================================================</span>
 <span class="c1">#=========================================================================================================</span>
 <span class="k">def</span> <span class="nf">run_experiment</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tfa</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">AdamW</span><span class="p">(</span>
-        <span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="n">weight_decay</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span>
+        <span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">,</span>
+        <span class="n">weight_decay</span><span class="o">=</span><span class="n">weight_decay</span>
     <span class="p">)</span>
 
     <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
@@ -764,7 +811,8 @@ The main task focus on this chapter will be classification because we are doing 
         <span class="p">],</span>
     <span class="p">)</span>
 
-    <span class="n">checkpoint_filepath</span> <span class="o">=</span> <span class="s2">&quot;/tmp/checkpoint&quot;</span>
+    <span class="c1"># Update the filepath to include `.weights.h5`</span>
+    <span class="n">checkpoint_filepath</span> <span class="o">=</span> <span class="s2">&quot;/tmp/checkpoint.weights.h5&quot;</span>
     <span class="n">checkpoint_callback</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">ModelCheckpoint</span><span class="p">(</span>
         <span class="n">checkpoint_filepath</span><span class="p">,</span>
         <span class="n">monitor</span><span class="o">=</span><span class="s2">&quot;val_accuracy&quot;</span><span class="p">,</span>
@@ -781,6 +829,7 @@ The main task focus on this chapter will be classification because we are doing 
         <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">checkpoint_callback</span><span class="p">],</span>
     <span class="p">)</span>
 
+    <span class="c1"># Load the best weights</span>
     <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">checkpoint_filepath</span><span class="p">)</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">top_5_accuracy</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test accuracy: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
@@ -800,17 +849,17 @@ The main task focus on this chapter will be classification because we are doing 
 <span class="n">weight_decay</span> <span class="o">=</span> <span class="mf">0.0001</span>
 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">256</span>
 <span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">image_size</span> <span class="o">=</span> <span class="mi">72</span>  
-<span class="n">patch_size</span> <span class="o">=</span> <span class="mi">6</span>  
+<span class="n">image_size</span> <span class="o">=</span> <span class="mi">72</span>
+<span class="n">patch_size</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="n">num_patches</span> <span class="o">=</span> <span class="p">(</span><span class="n">image_size</span> <span class="o">//</span> <span class="n">patch_size</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
 <span class="n">projection_dim</span> <span class="o">=</span> <span class="mi">64</span>
 <span class="n">num_heads</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">transformer_units</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">projection_dim</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
     <span class="n">projection_dim</span><span class="p">,</span>
-<span class="p">]</span> 
+<span class="p">]</span>
 <span class="n">transformer_layers</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">mlp_head_units</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>  
+<span class="n">mlp_head_units</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -830,7 +879,7 @@ The main task focus on this chapter will be classification because we are doing 
     <span class="p">],</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;more_data&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">more_data</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+<span class="n">more_data</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -840,6 +889,53 @@ The main task focus on this chapter will be classification because we are doing 
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here vit is your trained model after the training</span>
 <span class="n">vit</span> <span class="o">=</span> <span class="n">create_vit_classifier</span><span class="p">()</span>
 <span class="n">history</span> <span class="o">=</span> <span class="n">run_experiment</span><span class="p">(</span><span class="n">vit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">82s</span> 84ms/step - accuracy: 0.8420 - loss: 1.6579 - top-5-accuracy: 1.0000 - val_accuracy: 0.9366 - val_loss: 0.1545 - val_top-5-accuracy: 1.0000
+Epoch 2/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">75s</span> 84ms/step - accuracy: 0.9345 - loss: 0.1784 - top-5-accuracy: 1.0000 - val_accuracy: 0.9456 - val_loss: 0.1205 - val_top-5-accuracy: 1.0000
+Epoch 3/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">80s</span> 80ms/step - accuracy: 0.9411 - loss: 0.1591 - top-5-accuracy: 1.0000 - val_accuracy: 0.9343 - val_loss: 0.1515 - val_top-5-accuracy: 1.0000
+Epoch 4/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">82s</span> 81ms/step - accuracy: 0.9450 - loss: 0.1499 - top-5-accuracy: 1.0000 - val_accuracy: 0.9405 - val_loss: 0.1422 - val_top-5-accuracy: 1.0000
+Epoch 5/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">83s</span> 83ms/step - accuracy: 0.9491 - loss: 0.1448 - top-5-accuracy: 1.0000 - val_accuracy: 0.9579 - val_loss: 0.1049 - val_top-5-accuracy: 1.0000
+Epoch 6/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">45s</span> 83ms/step - accuracy: 0.9453 - loss: 0.1469 - top-5-accuracy: 1.0000 - val_accuracy: 0.9680 - val_loss: 0.0823 - val_top-5-accuracy: 1.0000
+Epoch 7/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">81s</span> 81ms/step - accuracy: 0.9475 - loss: 0.1428 - top-5-accuracy: 1.0000 - val_accuracy: 0.9641 - val_loss: 0.0890 - val_top-5-accuracy: 1.0000
+Epoch 8/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">44s</span> 81ms/step - accuracy: 0.9519 - loss: 0.1407 - top-5-accuracy: 1.0000 - val_accuracy: 0.9646 - val_loss: 0.0939 - val_top-5-accuracy: 1.0000
+Epoch 9/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">82s</span> 82ms/step - accuracy: 0.9519 - loss: 0.1328 - top-5-accuracy: 1.0000 - val_accuracy: 0.9338 - val_loss: 0.1731 - val_top-5-accuracy: 1.0000
+Epoch 10/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">82s</span> 82ms/step - accuracy: 0.9541 - loss: 0.1218 - top-5-accuracy: 1.0000 - val_accuracy: 0.9613 - val_loss: 0.1090 - val_top-5-accuracy: 1.0000
+Epoch 11/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">81s</span> 81ms/step - accuracy: 0.9577 - loss: 0.1130 - top-5-accuracy: 1.0000 - val_accuracy: 0.9602 - val_loss: 0.1067 - val_top-5-accuracy: 1.0000
+Epoch 12/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">83s</span> 82ms/step - accuracy: 0.9554 - loss: 0.1236 - top-5-accuracy: 1.0000 - val_accuracy: 0.9209 - val_loss: 0.3253 - val_top-5-accuracy: 1.0000
+Epoch 13/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">82s</span> 82ms/step - accuracy: 0.9480 - loss: 0.1413 - top-5-accuracy: 1.0000 - val_accuracy: 0.9663 - val_loss: 0.0904 - val_top-5-accuracy: 1.0000
+Epoch 14/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">43s</span> 81ms/step - accuracy: 0.9589 - loss: 0.1157 - top-5-accuracy: 1.0000 - val_accuracy: 0.9675 - val_loss: 0.0918 - val_top-5-accuracy: 1.0000
+Epoch 15/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">82s</span> 81ms/step - accuracy: 0.9649 - loss: 0.1002 - top-5-accuracy: 1.0000 - val_accuracy: 0.9680 - val_loss: 0.0852 - val_top-5-accuracy: 1.0000
+Epoch 16/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">82s</span> 82ms/step - accuracy: 0.9617 - loss: 0.1060 - top-5-accuracy: 1.0000 - val_accuracy: 0.9624 - val_loss: 0.0965 - val_top-5-accuracy: 1.0000
+Epoch 17/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">81s</span> 81ms/step - accuracy: 0.9634 - loss: 0.1083 - top-5-accuracy: 1.0000 - val_accuracy: 0.9540 - val_loss: 0.1070 - val_top-5-accuracy: 1.0000
+Epoch 18/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">82s</span> 81ms/step - accuracy: 0.9644 - loss: 0.1004 - top-5-accuracy: 1.0000 - val_accuracy: 0.9523 - val_loss: 0.1692 - val_top-5-accuracy: 1.0000
+Epoch 19/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">84s</span> 84ms/step - accuracy: 0.9641 - loss: 0.1066 - top-5-accuracy: 1.0000 - val_accuracy: 0.9697 - val_loss: 0.0965 - val_top-5-accuracy: 1.0000
+Epoch 20/20
+<span class=" -Color -Color-Bold">535/535</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">82s</span> 84ms/step - accuracy: 0.9686 - loss: 0.0877 - top-5-accuracy: 1.0000 - val_accuracy: 0.9742 - val_loss: 0.0732 - val_top-5-accuracy: 1.0000
+<span class=" -Color -Color-Bold">62/62</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 19ms/step - accuracy: 0.9700 - loss: 0.0719 - top-5-accuracy: 1.0000
+Test accuracy: 96.82%
+Test top 5 accuracy: 100.0%
 </pre></div>
 </div>
 </div>
@@ -996,6 +1092,24 @@ The main task focus on this chapter will be classification because we are doing 
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_1_Sea_ice_and_Lead_Classification.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Sea-ice and Lead Classification</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter%201%3AFetching_Data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Fetching</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>

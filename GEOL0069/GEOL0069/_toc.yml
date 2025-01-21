@@ -11,8 +11,8 @@ parts:
   - caption: Week 2
     chapters:
       - file: Chapter 1:ML
-      - file: Chapter 1:Sea-ice_and_Lead_Classification
-      - file: Chapter 1:AI_Algorithms
+      - file: Chapter_1_Sea_ice_and_Lead_Classification
+      - file: Chapter_1_AI_Algorithms
   - caption: Week 3
     chapters:
       - file: Chapter 1:Fetching_Data

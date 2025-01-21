@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -66,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter 1:ML';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Sea-ice and Lead Classification" href="Chapter%201%3ASea-ice_and_Lead_Classification.html" />
+    <link rel="next" title="Sea-ice and Lead Classification" href="Chapter_1_Sea_ice_and_Lead_Classification.html" />
     <link rel="prev" title="Introduction to Intelligently Reinforced Image Segmentation (IRIS)" href="Chapter%201%3AIRIS.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -167,8 +168,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to AI/Machine Learning</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3ASea-ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AAI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_Sea_ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_AI_Algorithms.html">AI/Machine Learning Implementation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
 <ul class="nav bd-sidenav">
@@ -257,6 +258,53 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FChapter 1:ML.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
 
 
 
@@ -365,13 +413,16 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to AI/Machine Learning</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#artificial-intelligence-and-machine-learning-what-are-they">Artificial Intelligence and Machine Learning. What are they?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-machine-learning-processing-chain">Understanding the Machine Learning Processing Chain</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lifecycle-of-a-machine-learning-project-witten2002data">The Lifecycle of a Machine Learning Project <span class="xref cite">witten2002data</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lifecycle-of-a-machine-learning-project">The Lifecycle of a Machine Learning Project</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts">Core concepts</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning-witten2002data-bishop2006pattern">Types of Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#witten2002data-bishop2006pattern"><span class="xref cite">witten2002data,bishop2006pattern</span></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-or-classification">Regression or Classification</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression">Regression</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
@@ -380,7 +431,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern">Overfitting and Underfitting in Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting-in-machine-learning">Overfitting and Underfitting in Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span class="xref cite">witten2002data,bishop2006pattern</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-the-peril-of-learning-too-much">Overfitting: The Peril of Learning Too Much</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-the-problem-of-oversimplification">Underfitting: The Problem of Oversimplification</a></li>
 </ul>
@@ -410,17 +462,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-ai-machine-learning">
 <h1>Introduction to AI/Machine Learning<a class="headerlink" href="#introduction-to-ai-machine-learning" title="Permalink to this heading">#</a></h1>
-<p><strong>Week 2 Materials</strong>: Week 2 materials are available here on <a class="reference external" href="https://drive.google.com/drive/folders/1rgsnT0wN8EYIl4DpaEmSDAO1A9XVfCal?usp=share_link">Google Drive</a></p>
-<p>📘 <strong>Interactive Version</strong>: For a hands-on experience with this chapter’s content, access the interactive notebook in <a class="reference external" href="https://drive.google.com/file/d/15IuvDQCdv0cruXEU-dxyf-YbWK89mKQx/view?usp=sharing">Google Colab</a>.</p>
+<p><strong>Week 2 Materials</strong>: Week 2 materials are available here on <a class="reference external" href="https://drive.google.com/drive/folders/15fGV2CKS5TMQb97yIfMYJTN4Fa6RwIME?usp=share_link">Google Drive</a></p>
+<p>📘 <strong>Interactive Version</strong>: For a hands-on experience with this chapter’s content, access the interactive notebook in <a class="reference external" href="https://drive.google.com/file/d/1j6DHNJ3bMeS4DEEO89tr8Au6x0v9vg8l/view?usp=sharing">Google Colab</a>.</p>
 <section id="artificial-intelligence-and-machine-learning-what-are-they">
 <h2>Artificial Intelligence and Machine Learning. What are they?<a class="headerlink" href="#artificial-intelligence-and-machine-learning-what-are-they" title="Permalink to this heading">#</a></h2>
 <p>Artificial Intelligence, or AI, is a field of computer science that focuses on creating machines capable of intelligent behaviour. Machine Learning, a vital subset of AI, has evolved significantly since its conceptualization. Coined by Arthur Samuel in 1959, ML was initially described as the field in which computers have the ability to learn without being explicitly programmed. Over the years, this field has grown exponentially, propelled by advancements in computational power and data availability. Today’s ML algorithms can analyze complex datasets, recognize patterns, and make predictions with remarkable accuracy. These capabilities have made ML an indispensable tool in numerous fields, including Earth observation, where it helps in analysing satellite imagery and climate data.</p>
 </section>
 <section id="understanding-the-machine-learning-processing-chain">
 <h2>Understanding the Machine Learning Processing Chain<a class="headerlink" href="#understanding-the-machine-learning-processing-chain" title="Permalink to this heading">#</a></h2>
-<section id="the-lifecycle-of-a-machine-learning-project-witten2002data">
-<h3>The Lifecycle of a Machine Learning Project <span id="id1">[<a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">WF02</a>]</span><a class="headerlink" href="#the-lifecycle-of-a-machine-learning-project-witten2002data" title="Permalink to this heading">#</a></h3>
-<p>Machine Learning projects typically follow a structured process, often referred to as the ML processing chain. This chain comprises several key stages, each crucial for the success of the project. Understanding this workflow is essential for anyone delving into the field of ML, especially in applications like Earth observation.</p>
+<section id="the-lifecycle-of-a-machine-learning-project">
+<h3>The Lifecycle of a Machine Learning Project<a class="headerlink" href="#the-lifecycle-of-a-machine-learning-project" title="Permalink to this heading">#</a></h3>
+<p><span id="id1">[<a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">Witten and Frank, 2002</a>]</span>
+Machine Learning projects typically follow a structured process, often referred to as the ML processing chain. This chain comprises several key stages, each crucial for the success of the project. Understanding this workflow is essential for anyone delving into the field of ML, especially in applications like Earth observation.</p>
 <ol class="arabic simple">
 <li><p><strong>Problem definition</strong>: Before any data is collected or models are built, it’s essential to clearly define the problem you’re trying to solve with ML. This includes understanding the objectives, constraints, and the potential impact of the solution. For example, the major problem we will be discussing is discrimination of sea-ice and lead.</p></li>
 <li><p><strong>Data Collection</strong>: Data is the cornerstone of any ML project. This stage involves gathering the necessary data relevant to the problem. The quality, quantity, and variety of data can significantly influence the model’s performance. Collecting a dataset of satellite images like OLCI, will be the general process of collecting data. However, the raw data we will use are mostly publicly availbel online for downloading.</p></li>
@@ -435,9 +488,12 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="core-concepts">
 <h1>Core concepts<a class="headerlink" href="#core-concepts" title="Permalink to this heading">#</a></h1>
-<section id="types-of-machine-learning-witten2002data-bishop2006pattern">
-<h2>Types of Machine Learning <span id="id2">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">WF02</a>]</span><a class="headerlink" href="#types-of-machine-learning-witten2002data-bishop2006pattern" title="Permalink to this heading">#</a></h2>
+<section id="types-of-machine-learning">
+<h2>Types of Machine Learning<a class="headerlink" href="#types-of-machine-learning" title="Permalink to this heading">#</a></h2>
+<section id="witten2002data-bishop2006pattern">
+<h3><span id="id2">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">Bishop and Nasrabadi, 2006</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">Witten and Frank, 2002</a>]</span><a class="headerlink" href="#witten2002data-bishop2006pattern" title="Permalink to this heading">#</a></h3>
 <p>Before delving into specific concepts, it’s essential to distinguish between the two primary variations of AI and ML algorithms.</p>
+</section>
 </section>
 <section id="regression-or-classification">
 <h2>Regression or Classification<a class="headerlink" href="#regression-or-classification" title="Permalink to this heading">#</a></h2>
@@ -539,8 +595,11 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
 </div>
 </section>
 </section>
-<section id="overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern">
-<h2>Overfitting and Underfitting in Machine Learning <span id="id3">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">BN06</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">WF02</a>]</span><a class="headerlink" href="#overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern" title="Permalink to this heading">#</a></h2>
+<section id="overfitting-and-underfitting-in-machine-learning">
+<h2>Overfitting and Underfitting in Machine Learning<a class="headerlink" href="#overfitting-and-underfitting-in-machine-learning" title="Permalink to this heading">#</a></h2>
+<section id="id4">
+<h3><span id="id3">[<a class="reference internal" href="References1.html#id4" title="Christopher M Bishop and Nasser M Nasrabadi. Pattern recognition and machine learning. Volume 4. Springer, 2006.">Bishop and Nasrabadi, 2006</a>, <a class="reference internal" href="References1.html#id5" title="Ian H Witten and Eibe Frank. Data mining: practical machine learning tools and techniques with java implementations. Acm Sigmod Record, 31(1):76–77, 2002.">Witten and Frank, 2002</a>]</span><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+</section>
 <section id="overfitting-the-peril-of-learning-too-much">
 <h3>Overfitting: The Peril of Learning Too Much<a class="headerlink" href="#overfitting-the-peril-of-learning-too-much" title="Permalink to this heading">#</a></h3>
 <p>Overfitting is akin to a student who memorizes facts but fails to understand the underlying principles. In machine learning, this happens when a model learns the training data too thoroughly - capturing noise and anomalies as if they were significant patterns. The model thus becomes excellent at predicting or fitting the training data but fails to perform well on any new data, losing its ability to generalize. Imagine a model trained to recognize cats in photos, but it focuses too much on irrelevant details like the photo’s background. It performs well with the training images but poorly with new images of cats in different settings.</p>
@@ -654,7 +713,7 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
       </div>
     </a>
     <a class="right-next"
-       href="Chapter%201%3ASea-ice_and_Lead_Classification.html"
+       href="Chapter_1_Sea_ice_and_Lead_Classification.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -683,13 +742,16 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to AI/Machine Learning</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#artificial-intelligence-and-machine-learning-what-are-they">Artificial Intelligence and Machine Learning. What are they?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-machine-learning-processing-chain">Understanding the Machine Learning Processing Chain</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lifecycle-of-a-machine-learning-project-witten2002data">The Lifecycle of a Machine Learning Project <span class="xref cite">witten2002data</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lifecycle-of-a-machine-learning-project">The Lifecycle of a Machine Learning Project</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts">Core concepts</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning-witten2002data-bishop2006pattern">Types of Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#witten2002data-bishop2006pattern"><span class="xref cite">witten2002data,bishop2006pattern</span></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-or-classification">Regression or Classification</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression">Regression</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
@@ -698,7 +760,8 @@ Below shows an example of supervised learning: Simple Linear Regression</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting-in-machine-learning-witten2002data-bishop2006pattern">Overfitting and Underfitting in Machine Learning <span class="xref cite">witten2002data,bishop2006pattern</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting-in-machine-learning">Overfitting and Underfitting in Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><span class="xref cite">witten2002data,bishop2006pattern</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-the-peril-of-learning-too-much">Overfitting: The Peril of Learning Too Much</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-the-problem-of-oversimplification">Underfitting: The Problem of Oversimplification</a></li>
 </ul>
