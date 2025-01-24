@@ -704,6 +704,7 @@ Epoch 10/10
 <span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span><span class="n">confusion_matrix</span><span class="p">,</span><span class="n">classification_report</span>
+<span class="kn">from</span> <span class="nn">keras.saving</span> <span class="kn">import</span> <span class="n">register_keras_serializable</span>
 </pre></div>
 </div>
 </div>
@@ -715,43 +716,59 @@ Epoch 10/10
 <span class="c1">#=========================================================================================================</span>
 
 <span class="k">def</span> <span class="nf">mlp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hidden_units</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">units</span> <span class="ow">in</span> <span class="n">hidden_units</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">gelu</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x</span>
+   <span class="k">for</span> <span class="n">units</span> <span class="ow">in</span> <span class="n">hidden_units</span><span class="p">:</span>
+       <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">gelu</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+       <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">x</span>
+
+<span class="nd">@register_keras_serializable</span><span class="p">()</span>
 <span class="k">class</span> <span class="nc">Patches</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patch_size</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Patches</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">patch_size</span> <span class="o">=</span> <span class="n">patch_size</span>
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patch_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+       <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">patch_size</span> <span class="o">=</span> <span class="n">patch_size</span>
 
-    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">images</span><span class="p">):</span>
-        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">images</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">patches</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">extract_patches</span><span class="p">(</span>
-            <span class="n">images</span><span class="o">=</span><span class="n">images</span><span class="p">,</span>
-            <span class="n">sizes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-            <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-            <span class="n">rates</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-            <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;VALID&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">patch_dims</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">patches</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">patches</span><span class="p">,</span> <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">patch_dims</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">patches</span>
-<span class="c1">#=========================================================================================================</span>
-<span class="c1">#=========================================================================================================</span>
-<span class="c1">#=========================================================================================================</span>
+   <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">images</span><span class="p">):</span>
+       <span class="n">batch_size</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">images</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+       <span class="n">patches</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">extract_patches</span><span class="p">(</span>
+           <span class="n">images</span><span class="o">=</span><span class="n">images</span><span class="p">,</span>
+           <span class="n">sizes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+           <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+           <span class="n">rates</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+           <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;VALID&quot;</span><span class="p">,</span>
+       <span class="p">)</span>
+       <span class="n">patch_dims</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+       <span class="n">patches</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">patches</span><span class="p">,</span> <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">patch_dims</span><span class="p">])</span>
+       <span class="k">return</span> <span class="n">patches</span>
+
+   <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+       <span class="n">config</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+       <span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;patch_size&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_size</span><span class="p">})</span>
+       <span class="k">return</span> <span class="n">config</span>
+
+<span class="nd">@register_keras_serializable</span><span class="p">()</span>
 <span class="k">class</span> <span class="nc">PatchEncoder</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_patches</span><span class="p">,</span> <span class="n">projection_dim</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">PatchEncoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">num_patches</span> <span class="o">=</span> <span class="n">num_patches</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">projection</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="n">projection_dim</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">position_embedding</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span>
-            <span class="n">input_dim</span><span class="o">=</span><span class="n">num_patches</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="n">projection_dim</span>
-        <span class="p">)</span>
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_patches</span><span class="p">,</span> <span class="n">projection_dim</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+       <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">num_patches</span> <span class="o">=</span> <span class="n">num_patches</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">projection_dim</span> <span class="o">=</span> <span class="n">projection_dim</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">projection</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="n">projection_dim</span><span class="p">)</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">position_embedding</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span>
+           <span class="n">input_dim</span><span class="o">=</span><span class="n">num_patches</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="n">projection_dim</span>
+       <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patch</span><span class="p">):</span>
-        <span class="n">positions</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_patches</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">encoded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">position_embedding</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">encoded</span>
+   <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patch</span><span class="p">):</span>
+       <span class="n">positions</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_patches</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+       <span class="n">encoded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">position_embedding</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+       <span class="k">return</span> <span class="n">encoded</span>
+
+   <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+       <span class="n">config</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+       <span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+           <span class="s2">&quot;num_patches&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_patches</span><span class="p">,</span>
+           <span class="s2">&quot;projection_dim&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection_dim</span>
+       <span class="p">})</span>
+       <span class="k">return</span> <span class="n">config</span>
+
 
 <span class="c1">#=========================================================================================================</span>
 <span class="c1">#=========================================================================================================</span>
@@ -824,7 +841,7 @@ Epoch 10/10
         <span class="n">x</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span>
         <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
         <span class="n">batch_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-        <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
         <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">checkpoint_callback</span><span class="p">],</span>
     <span class="p">)</span>
@@ -943,7 +960,7 @@ Test top 5 accuracy: 100.0%
 <p>After training the model, you can save the model:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vit</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vit</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2324/Week_2/model.keras&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -951,7 +968,11 @@ Test top 5 accuracy: 100.0%
 <p>You can always load the model via this line of code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">loaded_vit</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2324/Week_2/model.keras&#39;</span><span class="p">,</span> 
+                      <span class="n">custom_objects</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Patches&#39;</span><span class="p">:</span> <span class="n">Patches</span><span class="p">,</span> 
+                                    <span class="s1">&#39;PatchEncoder&#39;</span><span class="p">:</span> <span class="n">PatchEncoder</span><span class="p">,</span>
+                                    <span class="s1">&#39;more_data&#39;</span><span class="p">:</span> <span class="n">more_data</span><span class="p">,</span>
+                                    <span class="s1">&#39;mlp&#39;</span><span class="p">:</span> <span class="n">mlp</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
