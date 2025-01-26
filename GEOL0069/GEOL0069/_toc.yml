@@ -15,7 +15,7 @@ parts:
       - file: Chapter_1_AI_Algorithms
   - caption: Week 3
     chapters:
-      - file: Chapter 1:Fetching_Data
+      - file: Chapter 1:Fetching_Data_updated
       - file: Chapter 1:rollout
   - caption: Week 4
     chapters:
