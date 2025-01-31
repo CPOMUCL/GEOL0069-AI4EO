@@ -906,8 +906,9 @@ Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages 
 <p>You can also try your model on a small sub-region of a full image. For example, we do the rollout on a region where we used IRIS to classify. The overall logic is the same.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The images are in numpy array format</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;chunk_3_band_21.npy&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># The images are in numpy array format</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 3/chunk_3_band_21.npy&#39;</span><span class="p">)</span>
 
 <span class="c1"># Extracting the mask_area values from the JSON</span>
 <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
@@ -927,10 +928,23 @@ Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages 
 
 <span class="c1"># Convert the list of patches to a numpy array</span>
 <span class="n">x_test_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">patches</span><span class="p">)</span>
-
+<span class="n">model1</span> <span class="o">=</span> <span class="n">cnn_model</span> <span class="c1"># select your model for example cnn</span>
 <span class="n">y_pred</span><span class="o">=</span><span class="n">model1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test_all</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">250</span><span class="p">)</span>
 <span class="n">y_pred1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">map1</span><span class="o">=</span><span class="n">y_pred1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Pathches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Pathches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">map1</span><span class="o">=</span><span class="n">y_pred1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">298</span><span class="p">,</span> <span class="mi">198</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alter the view setting</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="c1"># Show the map</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
