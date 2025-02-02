@@ -62,9 +62,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter_1_rollout';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter_1_rollout_3';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data" href="Chapter1%3AData_Colocating_S2_S3.html" />
+    <link rel="prev" title="Data Fetching" href="Chapter%201%3AFetching_Data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -168,9 +170,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Chapter_1_AI_Algorithms.html">AI/Machine Learning Implementation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Chapter_1_rollout_3.html">Roll-out on a Full Image</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Roll-out on a Full Image</a></li>
 
 
 
@@ -289,7 +291,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FChapter_1_rollout.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FChapter_1_rollout_3.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -319,7 +321,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/Chapter_1_rollout.ipynb" target="_blank"
+      <li><a href="_sources/Chapter_1_rollout_3.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -419,12 +421,12 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-cnn">Load in CNN</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-vit">Load in ViT</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#make-prediction-with-cnn-or-vit">Make prediction with CNN or ViT</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#display-results">Display Results</a></li>
-</ul>
-</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-random-forest">Load in Random Forest</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rollout-on-a-small-region">Rollout on a Small Region</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rollout-on-a-full-region">Rollout on a full region</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-can-make-prediction-on-full-image-using-the-code-below-for-cnn-and-vit-model">You can make prediction on full image using the code below (for CNN and ViT model)</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -439,7 +441,7 @@ document.write(`
                   
   <section id="roll-out-on-a-full-image">
 <h1>Roll-out on a Full Image<a class="headerlink" href="#roll-out-on-a-full-image" title="Permalink to this heading">#</a></h1>
-<p>📘 <strong>Interactive Version</strong>: For a hands-on experience with this chapter’s content, access the interactive notebook in <a class="reference external" href="https://drive.google.com/file/d/1ZPRyzfhLtQcsFJEWGtoayVFeI-8WR8oq/view?usp=sharing">Google Colab</a>.</p>
+<p>📘 <strong>Interactive Version</strong>: For a hands-on experience with this chapter’s content, access the interactive notebook in <a class="reference external" href="https://drive.google.com/file/d/1cARKeNoHdfwK7nh_LrM0YCyHXQHae96h/view?usp=sharing">Google Colab</a>.</p>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Applying machine learning models to entire, full-sized images—especially in the realm of image processing—presents a distinct set of challenges and opportunities. Such a “roll-out” doesn’t just involve stretching a model’s capabilities across larger pixel dimensions; it tests the model’s capacity to consistently and correctly generate outputs, be it segmentation or classification maps, across varying regions of an image.</p>
@@ -457,7 +459,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&quot;/content/drive&quot;, force_remount=True).
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
 </pre></div>
 </div>
 </div>
@@ -469,126 +471,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: netCDF4 in /usr/local/lib/python3.11/dist-packages (1.7.2)
-Requirement already satisfied: cftime in /usr/local/lib/python3.11/dist-packages (from netCDF4) (1.6.4.post1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting netCDF4
+  Downloading netCDF4-1.7.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+Collecting cftime (from netCDF4)
+  Downloading cftime-1.6.4.post1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.7 kB)
 Requirement already satisfied: certifi in /usr/local/lib/python3.11/dist-packages (from netCDF4) (2024.12.14)
 Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages (from netCDF4) (1.26.4)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do pip install netCDF4 if needed</span>
-<span class="kn">import</span> <span class="nn">netCDF4</span>
-<span class="kn">import</span> <span class="nn">pyproj</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_extraction</span> <span class="kn">import</span> <span class="n">image</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="c1"># Function to convert coordinates from WGS84 to EASE-Grid 2.0 projection</span>
-<span class="k">def</span> <span class="nf">WGS84toEASE2</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">):</span>
-    <span class="c1"># Initialise the EASE-Grid 2.0 projection</span>
-    <span class="n">proj_EASE2</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Proj</span><span class="p">(</span><span class="s2">&quot;+proj=laea +lon_0=0 +lat_0=90 +x_0=0 +y_0=0 +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span><span class="p">)</span>
-    <span class="c1"># Initialise the WGS84 projection</span>
-    <span class="n">proj_WGS84</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Proj</span><span class="p">(</span><span class="s2">&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;</span><span class="p">)</span>
-    <span class="c1"># Transform the coordinates from WGS84 to EASE-Grid 2.0</span>
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">proj_WGS84</span><span class="p">,</span> <span class="n">proj_EASE2</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
-
-<span class="c1"># Directory setup for data files</span>
-<span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_Sea-ice_and_Lead_Classification/S3A_OL_1_EFR____20180307T054004_20180307T054119_20180308T091959_0075_028_319_1620_LN1_O_NT_002.SEN3&#39;</span>
-
-<span class="c1"># Load in geolocation data from a NetCDF file</span>
-<span class="n">geolocation</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">directory</span><span class="o">+</span><span class="s1">&#39;/geo_coordinates.nc&#39;</span><span class="p">)</span>
-<span class="n">lat</span> <span class="o">=</span> <span class="n">geolocation</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">][:]</span>
-<span class="n">lon</span> <span class="o">=</span> <span class="n">geolocation</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][:]</span>
-
-<span class="c1"># Load in radiance data for a specific band (Band Oa01) from a NetCDF file</span>
-<span class="n">Band_Oa01</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">directory</span><span class="o">+</span><span class="s1">&#39;/Oa01_radiance.nc&#39;</span><span class="p">)</span>
-<span class="n">Oa01_Radiance</span> <span class="o">=</span> <span class="n">Band_Oa01</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Oa01_radiance&#39;</span><span class="p">][:]</span>
-
-<span class="c1"># Convert the longitude and latitude to EASE-Grid 2.0 coordinates</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">WGS84toEASE2</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
-
-<span class="c1"># Load in additional instrument data from a NetCDF file</span>
-<span class="n">OLCI_file_p</span> <span class="o">=</span> <span class="n">directory</span>
-<span class="n">instrument_data</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span><span class="o">+</span><span class="s1">&#39;/instrument_data.nc&#39;</span><span class="p">)</span>
-<span class="n">solar_flux</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;solar_flux&#39;</span><span class="p">][:]</span>
-<span class="n">solar_flux_Band_Oa01</span> <span class="o">=</span> <span class="n">solar_flux</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Solar flux for Band Oa01</span>
-<span class="n">detector_index</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;detector_index&#39;</span><span class="p">][:]</span>
-
-<span class="c1"># Load in tie geometries (e.g., Solar Zenith Angle) from a NetCDF file</span>
-<span class="n">tie_geometries</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span><span class="o">+</span><span class="s1">&#39;/tie_geometries.nc&#39;</span><span class="p">)</span>
-<span class="n">SZA</span> <span class="o">=</span> <span class="n">tie_geometries</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;SZA&#39;</span><span class="p">][:]</span>
-
-<span class="c1"># Initialise lists to store bands and patches</span>
-<span class="n">Bands</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">Patches</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="c1"># Calculate the number of patches (nx, ny)</span>
-<span class="n">nx</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span>
-<span class="n">ny</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span>
-<span class="n">q</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># Process each band</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">):</span>  <span class="c1"># Loop through 21 bands</span>
-    <span class="n">solar_flux_Band_Oa01</span> <span class="o">=</span> <span class="n">solar_flux</span><span class="p">[</span><span class="n">q</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">bandnumber</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%02d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">Band_Oa_temp</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">directory</span><span class="o">+</span><span class="s1">&#39;/Oa&#39;</span><span class="o">+</span><span class="n">bandnumber</span><span class="o">+</span><span class="s1">&#39;_radiance.nc&#39;</span><span class="p">)</span>
-
-    <span class="n">width</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="s1">&#39;rows&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
-
-    <span class="c1"># Calculate the Top of Atmosphere Bidirectional Reflectance Factor (TOA BRF)</span>
-    <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
-    <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">TOA_BRF</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">TOA_BRF</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-        <span class="n">angle</span><span class="p">[:,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">SZA</span><span class="p">[:,</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">64</span><span class="p">)]</span>
-
-    <span class="n">oa</span> <span class="o">=</span> <span class="n">Band_Oa_temp</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Oa&#39;</span> <span class="o">+</span> <span class="n">bandnumber</span> <span class="o">+</span> <span class="s1">&#39;_radiance&#39;</span><span class="p">][:]</span>
-    <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">oa</span><span class="p">)</span> <span class="o">/</span> <span class="n">solar_flux_Band_Oa01</span><span class="p">[</span><span class="n">detector_index</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
-
-    <span class="n">Bands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">)</span>
-    <span class="c1"># Extract patches of size 3x3 from the TOA BRF and reshape for further processing</span>
-    <span class="n">Patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">extract_patches_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-    <span class="n">q</span> <span class="o">+=</span> <span class="mi">1</span>
-
-<span class="c1"># Convert the list of patches to a NumPy array and reshape for machine learning model input</span>
-<span class="n">Patches_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Patches</span><span class="p">)</span>
-<span class="n">x_test_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">Patches_array</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-3-ab728c836d5a&gt;:16: FutureWarning: This function is deprecated. See: https://pyproj4.github.io/pyproj/stable/gotchas.html#upgrading-to-pyproj-2-from-pyproj-1
-  x, y = pyproj.transform(proj_WGS84, proj_EASE2, lon, lat)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
+Downloading netCDF4-1.7.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (9.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">9.3/9.3 MB</span> <span class=" -Color -Color-Red">85.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading cftime-1.6.4.post1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.4/1.4 MB</span> <span class=" -Color -Color-Red">68.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hInstalling collected packages: cftime, netCDF4
+Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
 </pre></div>
 </div>
 </div>
@@ -605,7 +499,7 @@ Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages 
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="c1"># Load in trained CNN model</span>
-<span class="n">cnn_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2324/Week_2/modelCNN.h5&#39;</span><span class="p">)</span>
+<span class="n">cnn_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_AI_Algorithms/modelCNN.h5&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -791,64 +685,39 @@ Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages 
 <span class="n">transformer_layers</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">mlp_head_units</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
 
+<span class="c1"># # Data augmentation</span>
+<span class="c1"># more_data = keras.Sequential(</span>
+<span class="c1">#     [</span>
+<span class="c1">#         layers.Normalization(),</span>
+<span class="c1">#         layers.Resizing(image_size, image_size),</span>
+<span class="c1">#         layers.RandomFlip(&quot;horizontal&quot;),</span>
+<span class="c1">#         layers.RandomRotation(factor=0.02),</span>
+<span class="c1">#         layers.RandomZoom(</span>
+<span class="c1">#             height_factor=0.2, width_factor=0.2</span>
+<span class="c1">#         ),</span>
+<span class="c1">#     ],</span>
+<span class="c1">#     name=&quot;more_data&quot;,</span>
+<span class="c1"># )</span>
+<span class="c1"># more_data.layers[0].adapt(X_train)</span>
+
 <span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
 
 <span class="c1"># Now load the model</span>
-<span class="n">vit_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2324/Week_2/model.keras&#39;</span><span class="p">,</span>
+<span class="n">vit_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_AI_Algorithms/model.keras&#39;</span><span class="p">,</span>
                       <span class="n">custom_objects</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Patches&#39;</span><span class="p">:</span> <span class="n">Patches</span><span class="p">,</span>
                                     <span class="s1">&#39;PatchEncoder&#39;</span><span class="p">:</span> <span class="n">PatchEncoder</span><span class="p">,</span>
+                                      <span class="c1"># &#39;more_data&#39;: more_data,</span>
                                     <span class="s1">&#39;mlp&#39;</span><span class="p">:</span> <span class="n">mlp</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/dist-packages/keras/src/layers/layer.py:391: UserWarning: `build()` was called on layer &#39;patch_encoder&#39;, however the layer does not have a `build()` method implemented and it looks like it has unbuilt state. This will cause the layer to be marked as built, despite not being actually built, which may cause failures down the line. Make sure to implement a proper `build()` method.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/dist-packages/keras/src/layers/layer.py:393: UserWarning: `build()` was called on layer &#39;patch_encoder&#39;, however the layer does not have a `build()` method implemented and it looks like it has unbuilt state. This will cause the layer to be marked as built, despite not being actually built, which may cause failures down the line. Make sure to implement a proper `build()` method.
   warnings.warn(
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="make-prediction-with-cnn-or-vit">
-<h1>Make prediction with CNN or ViT<a class="headerlink" href="#make-prediction-with-cnn-or-vit" title="Permalink to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make predictions on the full image</span>
-<span class="n">y_pred</span><span class="o">=</span><span class="n">cnn_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test_all</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="n">y_pred1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="c1"># Reshape it for display</span>
-<span class="n">map1</span><span class="o">=</span><span class="n">y_pred1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">8336/8336</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">14s</span> 1ms/step
-</pre></div>
-</div>
-</div>
-</div>
-<section id="display-results">
-<h2>Display Results<a class="headerlink" href="#display-results" title="Permalink to this heading">#</a></h2>
-<p>Visual inspection plays a crucial role here. By juxtaposing the model-generated classified images against the original, we can discern the model’s aptitude in retaining the intrinsic spatial structures and patterns of the original image.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alter the view setting</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">600</span>
-<span class="c1"># Show the map</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7dd431d61950&gt;
-</pre></div>
-</div>
-<img alt="_images/505272c2cd8080387f30db0787b1faa19b84c73030b2d75850eb116db487fd24.png" src="_images/505272c2cd8080387f30db0787b1faa19b84c73030b2d75850eb116db487fd24.png" />
-</div>
-</div>
-</section>
 </section>
 <section id="load-in-random-forest">
 <h1>Load in Random Forest<a class="headerlink" href="#load-in-random-forest" title="Permalink to this heading">#</a></h1>
@@ -858,12 +727,8 @@ Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages 
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">joblib</span>
 
 <span class="c1"># Load the model from the file</span>
-<span class="n">loaded_model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/random_forest_model.pkl&#39;</span><span class="p">)</span>
+<span class="n">rf_model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_AI_Algorithms/random_forest_model.pkl&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model loaded successfully.&quot;</span><span class="p">)</span>
-
-<span class="c1"># Use the loaded model to make predictions</span>
-<span class="n">X_test_reshaped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_test_all</span><span class="p">,</span> <span class="p">(</span><span class="n">x_test_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">y_pred_loaded</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_reshaped</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -871,31 +736,6 @@ Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages 
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model loaded successfully.
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">map1</span><span class="o">=</span><span class="n">y_pred_loaded</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alter the view setting</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">600</span>
-<span class="c1"># Show the map</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7dd428146790&gt;
-</pre></div>
-</div>
-<img alt="_images/577556d1c567e19586e1e7159dcbdaba019d9827459053c25d0e600cbfe110f9.png" src="_images/577556d1c567e19586e1e7159dcbdaba019d9827459053c25d0e600cbfe110f9.png" />
 </div>
 </div>
 </section>
@@ -924,14 +764,39 @@ Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages 
         <span class="n">patch</span> <span class="o">=</span> <span class="n">roi</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span>
         <span class="n">patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
 
-<span class="c1"># Convert the list of patches to a numpy array</span>
+<span class="c1"># Convert the list of patches to a numpy array ---this is for all the NN approach rollout</span>
 <span class="n">x_test_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">patches</span><span class="p">)</span>
-<span class="n">model1</span> <span class="o">=</span> <span class="n">cnn_model</span> <span class="c1"># select your model for example cnn</span>
+<span class="n">model1</span> <span class="o">=</span> <span class="n">cnn_model</span> <span class="c1"># You can change this to vit_model</span>
 <span class="n">y_pred</span><span class="o">=</span><span class="n">model1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test_all</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">250</span><span class="p">)</span>
 <span class="n">y_pred1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">map1</span><span class="o">=</span><span class="n">y_pred1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">298</span><span class="p">,</span> <span class="mi">198</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">237/237</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 8ms/step
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the results</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="c1"># Show the map</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
+<span class="n">save_dir</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>  <span class="c1"># Remove axis for a cleaner image</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_dir</span> <span class="o">+</span> <span class="s2">&quot;map1.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03349d31279af81934fa9aaf28c29b73dc92de68ea77c4003ebe67cd06c69527.png" src="_images/03349d31279af81934fa9aaf28c29b73dc92de68ea77c4003ebe67cd06c69527.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -939,7 +804,7 @@ Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages 
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For random forest rollout</span>
 
 <span class="n">X_test_reshaped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_test_all</span><span class="p">,</span> <span class="p">(</span><span class="n">x_test_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">y_pred_loaded</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_reshaped</span><span class="p">)</span>
+<span class="n">y_pred_loaded</span> <span class="o">=</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_reshaped</span><span class="p">)</span>
 <span class="n">map1</span><span class="o">=</span><span class="n">y_pred_loaded</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">298</span><span class="p">,</span> <span class="mi">198</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -954,10 +819,158 @@ Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages 
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">600</span>
 <span class="c1"># Show the map</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
+<span class="n">save_dir</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>  <span class="c1"># Remove axis for a cleaner image</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_dir</span> <span class="o">+</span> <span class="s2">&quot;map1.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7e48e4ed0cd0&gt;
+</pre></div>
+</div>
+<img alt="_images/91f9459af1e8ffe867e470734324c99940699238744bb52f37d06dc5f9e2af95.png" src="_images/91f9459af1e8ffe867e470734324c99940699238744bb52f37d06dc5f9e2af95.png" />
+</div>
+</div>
+</section>
+<section id="rollout-on-a-full-region">
+<h1>Rollout on a full region<a class="headerlink" href="#rollout-on-a-full-region" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do pip install netCDF4 if needed</span>
+<span class="kn">import</span> <span class="nn">netCDF4</span>
+<span class="kn">import</span> <span class="nn">pyproj</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction</span> <span class="kn">import</span> <span class="n">image</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Function to convert coordinates from WGS84 to EASE-Grid 2.0 projection</span>
+<span class="k">def</span> <span class="nf">WGS84toEASE2</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">):</span>
+    <span class="c1"># Initialise the EASE-Grid 2.0 projection</span>
+    <span class="n">proj_EASE2</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Proj</span><span class="p">(</span><span class="s2">&quot;+proj=laea +lon_0=0 +lat_0=90 +x_0=0 +y_0=0 +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs&quot;</span><span class="p">)</span>
+    <span class="c1"># Initialise the WGS84 projection</span>
+    <span class="n">proj_WGS84</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Proj</span><span class="p">(</span><span class="s2">&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;</span><span class="p">)</span>
+    <span class="c1"># Transform the coordinates from WGS84 to EASE-Grid 2.0</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">proj_WGS84</span><span class="p">,</span> <span class="n">proj_EASE2</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="c1"># Directory setup for data files</span>
+<span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_Sea-ice_and_Lead_Classification/S3A_OL_1_EFR____20180307T054004_20180307T054119_20180308T091959_0075_028_319_1620_LN1_O_NT_002.SEN3&#39;</span>
+
+<span class="c1"># Load in geolocation data from a NetCDF file</span>
+<span class="n">geolocation</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">directory</span><span class="o">+</span><span class="s1">&#39;/geo_coordinates.nc&#39;</span><span class="p">)</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">geolocation</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">][:]</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">geolocation</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][:]</span>
+
+<span class="c1"># Load in radiance data for a specific band (Band Oa01) from a NetCDF file</span>
+<span class="n">Band_Oa01</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">directory</span><span class="o">+</span><span class="s1">&#39;/Oa01_radiance.nc&#39;</span><span class="p">)</span>
+<span class="n">Oa01_Radiance</span> <span class="o">=</span> <span class="n">Band_Oa01</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Oa01_radiance&#39;</span><span class="p">][:]</span>
+
+<span class="c1"># Convert the longitude and latitude to EASE-Grid 2.0 coordinates</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">WGS84toEASE2</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+
+<span class="c1"># Load in additional instrument data from a NetCDF file</span>
+<span class="n">OLCI_file_p</span> <span class="o">=</span> <span class="n">directory</span>
+<span class="n">instrument_data</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span><span class="o">+</span><span class="s1">&#39;/instrument_data.nc&#39;</span><span class="p">)</span>
+<span class="n">solar_flux</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;solar_flux&#39;</span><span class="p">][:]</span>
+<span class="n">solar_flux_Band_Oa01</span> <span class="o">=</span> <span class="n">solar_flux</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Solar flux for Band Oa01</span>
+<span class="n">detector_index</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;detector_index&#39;</span><span class="p">][:]</span>
+
+<span class="c1"># Load in tie geometries (e.g., Solar Zenith Angle) from a NetCDF file</span>
+<span class="n">tie_geometries</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span><span class="o">+</span><span class="s1">&#39;/tie_geometries.nc&#39;</span><span class="p">)</span>
+<span class="n">SZA</span> <span class="o">=</span> <span class="n">tie_geometries</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;SZA&#39;</span><span class="p">][:]</span>
+
+<span class="c1"># Initialise lists to store bands and patches</span>
+<span class="n">Bands</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Patches</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Calculate the number of patches (nx, ny)</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Process each band</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">):</span>  <span class="c1"># Loop through 21 bands</span>
+    <span class="n">solar_flux_Band_Oa01</span> <span class="o">=</span> <span class="n">solar_flux</span><span class="p">[</span><span class="n">q</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">bandnumber</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%02d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">Band_Oa_temp</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">directory</span><span class="o">+</span><span class="s1">&#39;/Oa&#39;</span><span class="o">+</span><span class="n">bandnumber</span><span class="o">+</span><span class="s1">&#39;_radiance.nc&#39;</span><span class="p">)</span>
+
+    <span class="n">width</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="s1">&#39;rows&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="c1"># Calculate the Top of Atmosphere Bidirectional Reflectance Factor (TOA BRF)</span>
+    <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">TOA_BRF</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">TOA_BRF</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">angle</span><span class="p">[:,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">SZA</span><span class="p">[:,</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">64</span><span class="p">)]</span>
+
+    <span class="n">oa</span> <span class="o">=</span> <span class="n">Band_Oa_temp</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Oa&#39;</span> <span class="o">+</span> <span class="n">bandnumber</span> <span class="o">+</span> <span class="s1">&#39;_radiance&#39;</span><span class="p">][:]</span>
+    <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">oa</span><span class="p">)</span> <span class="o">/</span> <span class="n">solar_flux_Band_Oa01</span><span class="p">[</span><span class="n">detector_index</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+
+    <span class="n">Bands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">)</span>
+    <span class="c1"># Extract patches of size 3x3 from the TOA BRF and reshape for further processing</span>
+    <span class="n">Patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">extract_patches_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="n">q</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># Convert the list of patches to a NumPy array and reshape for machine learning model input</span>
+<span class="n">Patches_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Patches</span><span class="p">)</span>
+<span class="n">x_test_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">Patches_array</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<section id="you-can-make-prediction-on-full-image-using-the-code-below-for-cnn-and-vit-model">
+<h2>You can make prediction on full image using the code below (for CNN and ViT model)<a class="headerlink" href="#you-can-make-prediction-on-full-image-using-the-code-below-for-cnn-and-vit-model" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make predictions on the full image</span>
+<span class="n">y_pred</span><span class="o">=</span><span class="n">cnn_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test_all</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y_pred1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Reshape it for display</span>
+<span class="n">map1</span><span class="o">=</span><span class="n">y_pred1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the results</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="c1"># Show the map</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For random forest, the code is a bit different but the logic remains the same. Below cell loads makes prediction using the random forest model loaded.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_test_reshaped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_test_all</span><span class="p">,</span> <span class="p">(</span><span class="n">x_test_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">y_pred_loaded</span> <span class="o">=</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_reshaped</span><span class="p">)</span>
+<span class="n">map1</span><span class="o">=</span><span class="n">y_pred_loaded</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Patches_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the results</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="c1"># Show the map</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">map1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -991,6 +1004,24 @@ Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages 
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter%201%3AFetching_Data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Fetching</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter1%3AData_Colocating_S2_S3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Colocating Sentinel-3 OLCI and Sentinal-2 Optical Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -1017,12 +1048,12 @@ Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages 
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-cnn">Load in CNN</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-vit">Load in ViT</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#make-prediction-with-cnn-or-vit">Make prediction with CNN or ViT</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#display-results">Display Results</a></li>
-</ul>
-</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-random-forest">Load in Random Forest</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rollout-on-a-small-region">Rollout on a Small Region</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rollout-on-a-full-region">Rollout on a full region</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-can-make-prediction-on-full-image-using-the-code-below-for-cnn-and-vit-model">You can make prediction on full image using the code below (for CNN and ViT model)</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>

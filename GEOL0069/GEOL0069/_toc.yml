@@ -16,7 +16,7 @@ parts:
   - caption: Week 3
     chapters:
       - file: Chapter 1:Fetching_Data
-      - file: Chapter_1_rollout
+      - file: Chapter_1_rollout_3
   - caption: Week 4
     chapters:
       - file: Chapter1:Data_Colocating_S2_S3
