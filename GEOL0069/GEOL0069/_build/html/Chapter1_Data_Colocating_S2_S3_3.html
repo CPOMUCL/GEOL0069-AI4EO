@@ -1,0 +1,3128 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Colocating Sentinel-3 OLCI/SRAL and Sentinal-2 Optical Data &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter1_Data_Colocating_S2_S3_3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_Sea_ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_AI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_rollout_3.html">Roll-out on a Full Image</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AUnsupervised_Learning_Methods.html">Unsupervised Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3ARegression.html">Regression Techniques for Predictive Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AAligning_Images.html">Aligning Sentinel-2 and Sentinel-3 OLCI Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3AColocating_data.html">Colocate Sentinel-2 and Sentinel-3 Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1%3ARegression_Part2.html">Application of Regression Techniques in Satellite Imagery Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References1.html">References</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter2_IntrotoGaussianProcesses.html">Introduction to Gaussian Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_Intro_to_GPSat.html">Introduction to GPSat</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_SLA_GPSat_William.html">Interpolation of Sea Level Anomaly using GPSat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_GPSat_along_track-2.html">Along track interpolation</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 9</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ExplainableAI.html">Explainable AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ExplainableAI_Part2.html">Explainable AI Part 2</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FChapter1_Data_Colocating_S2_S3_3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Chapter1_Data_Colocating_S2_S3_3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Colocating Sentinel-3 OLCI/SRAL and Sentinal-2 Optical Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-read-in-functions-needed">Step 0: Read in Functions Needed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-get-the-metadata-for-satellites-sentinel-2-and-sentinel-3-olci-in-this-case">Step 1: Get the Metadata for satellites (Sentinel-2 and Sentinel-3 OLCI in this case)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceeding-with-sentinel-3-olci-download">Proceeding with Sentinel-3 OLCI Download</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="colocating-sentinel-3-olci-sral-and-sentinal-2-optical-data">
+<h1>Colocating Sentinel-3 OLCI/SRAL and Sentinal-2 Optical Data<a class="headerlink" href="#colocating-sentinel-3-olci-sral-and-sentinal-2-optical-data" title="Permalink to this heading">#</a></h1>
+<p>In this section, we embark on a detailed exploration of colocating Sentinel-3 data with Sentinel-2 optical data. Colocation of data from these two satellite missions enables a powerful synergy, harnessing the high spatial resolution of Sentinel-2 and the comprehensive coverage and colocated altimeter data from Sentinel-3. This fusion of datasets provides a richer, more detailed perspective of Earth’s surface.</p>
+<p>In the following sections, we will guide you through the necessary steps to identify and align these datasets.</p>
+<p>Week 4 Materials are available <a class="reference external" href="https://drive.google.com/drive/folders/1SxmGM9_UJk-M5bEOoTfM_4urvr0257H3?usp=share_link">here</a>.</p>
+<section id="step-0-read-in-functions-needed">
+<h2>Step 0: Read in Functions Needed<a class="headerlink" href="#step-0-read-in-functions-needed" title="Permalink to this heading">#</a></h2>
+<p>To streamline our data fetching and processing, we’ll first load the essential functions. These functions are identical to what we have for the data_fetching notebook in week 3. These functions essentially help you get metadata for the 2 satellites you care about.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">shape</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">xml.etree</span> <span class="kn">import</span> <span class="n">ElementTree</span> <span class="k">as</span> <span class="n">ET</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">folium</span>
+
+
+<span class="k">def</span> <span class="nf">make_api_request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">access_token</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">headers</span><span class="p">:</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">401</span><span class="p">,</span> <span class="mi">403</span><span class="p">]:</span>
+        <span class="k">global</span> <span class="n">refresh_token</span>
+        <span class="n">access_token</span> <span class="o">=</span> <span class="n">refresh_access_token</span><span class="p">(</span><span class="n">refresh_token</span><span class="p">)</span>
+        <span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Authorization&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+
+
+<span class="k">def</span> <span class="nf">query_sentinel3_olci_arctic_data</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Queries Sentinel-3 OLCI data within a specified time range from the Copernicus Data Space,</span>
+<span class="sd">    targeting data collected over the Arctic region.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    start_date (str): Start date in &#39;YYYY-MM-DD&#39; format.</span>
+<span class="sd">    end_date (str): End date in &#39;YYYY-MM-DD&#39; format.</span>
+<span class="sd">    token (str): Access token for authentication.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    DataFrame: Contains details about the Sentinel-3 OLCI images.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">all_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">arctic_polygon</span> <span class="o">=</span> <span class="s2">&quot;POLYGON((-180 60, 180 60, 180 90, -180 90, -180 60))&quot;</span>
+    <span class="c1"># arctic_polygon = (</span>
+    <span class="c1">#     &quot;POLYGON ((-81.7 71.7, -81.7 73.8, -75.1 73.8, -75.1 71.7, -81.7 71.7))&quot;</span>
+    <span class="c1"># )</span>
+
+    <span class="n">filter_string</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Collection/Name eq &#39;SENTINEL-3&#39; and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Attributes/OData.CSC.StringAttribute/any(att:att/Name eq &#39;productType&#39; and att/Value eq &#39;OL_1_EFR___&#39;) and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;ContentDate/Start gt </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2">T00:00:00.000Z and ContentDate/Start lt </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">T23:59:59.999Z&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">next_url</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;https://catalogue.dataspace.copernicus.eu/odata/v1/Products?&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;$filter=</span><span class="si">{</span><span class="n">filter_string</span><span class="si">}</span><span class="s2"> and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;OData.CSC.Intersects(area=geography&#39;SRID=4326;</span><span class="si">{</span><span class="n">arctic_polygon</span><span class="si">}</span><span class="s2">&#39;)&amp;&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;$top=1000&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+
+    <span class="k">while</span> <span class="n">next_url</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">make_api_request</span><span class="p">(</span><span class="n">next_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+            <span class="n">all_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">next_url</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;@odata.nextLink&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error fetching data: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_access_and_refresh_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve both access and refresh tokens.&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;grant_type&quot;</span><span class="p">:</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+        <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+        <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;cdse-public&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">tokens</span><span class="p">[</span><span class="s2">&quot;access_token&quot;</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[</span><span class="s2">&quot;refresh_token&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">refresh_access_token</span><span class="p">(</span><span class="n">refresh_token</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Attempt to refresh the access token using the refresh token.&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;grant_type&quot;</span><span class="p">:</span> <span class="s2">&quot;refresh_token&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;refresh_token&quot;</span><span class="p">:</span> <span class="n">refresh_token</span><span class="p">,</span>
+        <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;cdse-public&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># This will throw an error for non-2xx responses</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to refresh token: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Refresh token invalid, attempting re-authentication...&quot;</span><span class="p">)</span>
+            <span class="c1"># Attempt to re-authenticate</span>
+            <span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
+            <span class="c1"># This requires securely managing the credentials, which might not be feasible in all contexts</span>
+            <span class="n">access_token</span><span class="p">,</span> <span class="n">new_refresh_token</span> <span class="o">=</span> <span class="n">get_access_and_refresh_token</span><span class="p">(</span>
+                <span class="n">username</span><span class="p">,</span> <span class="n">password</span>
+            <span class="p">)</span>  <span class="c1"># This is a placeholder</span>
+            <span class="n">refresh_token</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">new_refresh_token</span>  <span class="c1"># Update the global refresh token with the new one</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">access_token</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span>
+
+<span class="k">def</span> <span class="nf">download_single_product</span><span class="p">(</span>
+    <span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">download_dir</span><span class="o">=</span><span class="s2">&quot;downloaded_products&quot;</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download a single product from the Copernicus Data Space.</span>
+
+<span class="sd">    :param product_id: The unique identifier for the product.</span>
+<span class="sd">    :param file_name: The name of the file to be downloaded.</span>
+<span class="sd">    :param access_token: The access token for authorization.</span>
+<span class="sd">    :param download_dir: The directory where the product will be saved.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Ensure the download directory exists</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Construct the download URL</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;https://zipper.dataspace.copernicus.eu/odata/v1/Products(</span><span class="si">{</span><span class="n">product_id</span><span class="si">}</span><span class="s2">)/$value&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Set up the session and headers</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="c1"># Perform the request</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Check if the request was successful</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="c1"># Define the path for the output file</span>
+        <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_dir</span><span class="p">,</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;.zip&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Stream the content to a file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloaded: </span><span class="si">{</span><span class="n">output_file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Failed to download product </span><span class="si">{</span><span class="n">product_id</span><span class="si">}</span><span class="s2">. Status Code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">query_sentinel3_sral_arctic_data</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Queries Sentinel-3 SRAL data within a specified time range from the Copernicus Data Space,</span>
+<span class="sd">    targeting data collected over the Arctic region.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    start_date (str): Start date in &#39;YYYY-MM-DD&#39; format.</span>
+<span class="sd">    end_date (str): End date in &#39;YYYY-MM-DD&#39; format.</span>
+<span class="sd">    token (str): Access token for authentication.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    DataFrame: Contains details about the Sentinel-3 SRAL images.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">all_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># arctic_polygon = &quot;POLYGON((-180 60, 180 60, 180 90, -180 90, -180 60))&quot;</span>
+    <span class="n">arctic_polygon</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;POLYGON ((-81.7 71.7, -81.7 73.8, -75.1 73.8, -75.1 71.7, -81.7 71.7))&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">filter_string</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Collection/Name eq &#39;SENTINEL-3&#39; and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Attributes/OData.CSC.StringAttribute/any(att:att/Name eq &#39;productType&#39; and att/Value eq &#39;SR_2_LAN_SI&#39;) and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;ContentDate/Start gt </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2">T00:00:00.000Z and ContentDate/Start lt </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">T23:59:59.999Z&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">next_url</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;https://catalogue.dataspace.copernicus.eu/odata/v1/Products?&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;$filter=</span><span class="si">{</span><span class="n">filter_string</span><span class="si">}</span><span class="s2"> and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;OData.CSC.Intersects(area=geography&#39;SRID=4326;</span><span class="si">{</span><span class="n">arctic_polygon</span><span class="si">}</span><span class="s2">&#39;)&amp;&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;$top=1000&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+
+    <span class="k">while</span> <span class="n">next_url</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">make_api_request</span><span class="p">(</span>
+            <span class="n">next_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+            <span class="n">all_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">next_url</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;@odata.nextLink&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error fetching data: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">query_sentinel2_arctic_data</span><span class="p">(</span>
+    <span class="n">start_date</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="p">,</span>
+    <span class="n">token</span><span class="p">,</span>
+    <span class="n">min_cloud_percentage</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">max_cloud_percentage</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Queries Sentinel-2 data within a specified time range from the Copernicus Data Space,</span>
+<span class="sd">    considering a range of cloud coverage by treating greater than and less than conditions as separate attributes.</span>
+<span class="sd">    Handles pagination to fetch all available data.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    start_date (str): Start date in &#39;YYYY-MM-DD&#39; format.</span>
+<span class="sd">    end_date (str): End date in &#39;YYYY-MM-DD&#39; format.</span>
+<span class="sd">    token (str): Access token for authentication.</span>
+<span class="sd">    min_cloud_percentage (int): Minimum allowed cloud coverage.</span>
+<span class="sd">    max_cloud_percentage (int): Maximum allowed cloud coverage.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    DataFrame: Contains details about the Sentinel-2 images.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">all_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">arctic_polygon</span> <span class="o">=</span> <span class="s2">&quot;POLYGON((-180 60, 180 60, 180 90, -180 90, -180 60))&quot;</span>
+
+    <span class="n">filter_string</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Collection/Name eq &#39;SENTINEL-2&#39; and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Attributes/OData.CSC.DoubleAttribute/any(att:att/Name eq &#39;cloudCover&#39; and att/Value ge </span><span class="si">{</span><span class="n">min_cloud_percentage</span><span class="si">}</span><span class="s2">) and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Attributes/OData.CSC.DoubleAttribute/any(att:att/Name eq &#39;cloudCover&#39; and att/Value le </span><span class="si">{</span><span class="n">max_cloud_percentage</span><span class="si">}</span><span class="s2">) and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;ContentDate/Start gt </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2">T00:00:00.000Z and ContentDate/Start lt </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">T23:59:59.999Z&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">next_url</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;https://catalogue.dataspace.copernicus.eu/odata/v1/Products?&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;$filter=</span><span class="si">{</span><span class="n">filter_string</span><span class="si">}</span><span class="s2"> and &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;OData.CSC.Intersects(area=geography&#39;SRID=4326;</span><span class="si">{</span><span class="n">arctic_polygon</span><span class="si">}</span><span class="s2">&#39;)&amp;&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;$top=1000&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+
+    <span class="k">while</span> <span class="n">next_url</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">make_api_request</span><span class="p">(</span>
+            <span class="n">next_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+            <span class="n">all_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">next_url</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;@odata.nextLink&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error fetching data: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">plot_results</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">geojson1</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;Satellite1_Footprint&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">))</span>
+            <span class="n">geojson2</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;Satellite2_Footprint&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">))</span>
+
+            <span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">geojson1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;Satellite1_Name&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+            <span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">geojson2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;Satellite2_Name&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error decoding JSON: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">()</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">m</span>
+
+
+<span class="k">def</span> <span class="nf">parse_geofootprint</span><span class="p">(</span><span class="n">footprint</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parses a JSON-like string to extract the GeoJSON and convert to a Shapely geometry.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">geo_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">footprint</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">shape</span><span class="p">(</span><span class="n">geo_json</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">check_collocation</span><span class="p">(</span>
+    <span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">time_window</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="s2">&quot;1 day&quot;</span><span class="p">)</span>
+<span class="p">):</span>
+
+    <span class="n">collocated</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">end_date</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">idx1</span><span class="p">,</span> <span class="n">row1</span> <span class="ow">in</span> <span class="n">df1</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">footprint1</span> <span class="o">=</span> <span class="n">parse_geofootprint</span><span class="p">(</span><span class="n">row1</span><span class="p">[</span><span class="s2">&quot;GeoFootprint&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">footprint1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">s1_start</span> <span class="o">=</span> <span class="n">row1</span><span class="p">[</span><span class="s2">&quot;ContentDate.Start&quot;</span><span class="p">]</span>
+        <span class="n">s1_end</span> <span class="o">=</span> <span class="n">row1</span><span class="p">[</span><span class="s2">&quot;ContentDate.End&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">s1_end</span> <span class="o">&lt;</span> <span class="n">start_date</span> <span class="ow">or</span> <span class="n">s1_start</span> <span class="o">&gt;</span> <span class="n">end_date</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">s1_start_adjusted</span> <span class="o">=</span> <span class="n">s1_start</span> <span class="o">-</span> <span class="n">time_window</span>
+        <span class="n">s1_end_adjusted</span> <span class="o">=</span> <span class="n">s1_end</span> <span class="o">+</span> <span class="n">time_window</span>
+
+        <span class="k">for</span> <span class="n">idx2</span><span class="p">,</span> <span class="n">row2</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">footprint2</span> <span class="o">=</span> <span class="n">parse_geofootprint</span><span class="p">(</span><span class="n">row2</span><span class="p">[</span><span class="s2">&quot;GeoFootprint&quot;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">footprint2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">s2_start</span> <span class="o">=</span> <span class="n">row2</span><span class="p">[</span><span class="s2">&quot;ContentDate.Start&quot;</span><span class="p">]</span>
+            <span class="n">s2_end</span> <span class="o">=</span> <span class="n">row2</span><span class="p">[</span><span class="s2">&quot;ContentDate.End&quot;</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">s2_end</span> <span class="o">&lt;</span> <span class="n">start_date</span> <span class="ow">or</span> <span class="n">s2_start</span> <span class="o">&gt;</span> <span class="n">end_date</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">s1_start_adjusted</span><span class="p">,</span> <span class="n">s2_start</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">min</span><span class="p">(</span><span class="n">s1_end_adjusted</span><span class="p">,</span> <span class="n">s2_end</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">footprint1</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">footprint2</span><span class="p">):</span>
+                    <span class="n">collocated</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;Satellite1_Name&quot;</span><span class="p">:</span> <span class="n">row1</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">],</span>
+                            <span class="s2">&quot;Satellite1_ID&quot;</span><span class="p">:</span> <span class="n">row1</span><span class="p">[</span><span class="s2">&quot;Id&quot;</span><span class="p">],</span>
+                            <span class="s2">&quot;Satellite1_Footprint&quot;</span><span class="p">:</span> <span class="n">row1</span><span class="p">[</span><span class="s2">&quot;GeoFootprint&quot;</span><span class="p">],</span>
+                            <span class="s2">&quot;Satellite2_Name&quot;</span><span class="p">:</span> <span class="n">row2</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">],</span>
+                            <span class="s2">&quot;Satellite2_ID&quot;</span><span class="p">:</span> <span class="n">row2</span><span class="p">[</span><span class="s2">&quot;Id&quot;</span><span class="p">],</span>
+                            <span class="s2">&quot;Satellite2_Footprint&quot;</span><span class="p">:</span> <span class="n">row2</span><span class="p">[</span><span class="s2">&quot;GeoFootprint&quot;</span><span class="p">],</span>
+                            <span class="s2">&quot;Overlap_Start&quot;</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span>
+                                <span class="n">s1_start_adjusted</span><span class="p">,</span> <span class="n">s2_start</span>
+                            <span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+                            <span class="s2">&quot;Overlap_End&quot;</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">s1_end_adjusted</span><span class="p">,</span> <span class="n">s2_end</span><span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+                        <span class="p">}</span>
+                    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">collocated</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">make_timezone_naive</span><span class="p">(</span><span class="n">dt</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a timezone-aware datetime object to timezone-naive in local time.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-1-get-the-metadata-for-satellites-sentinel-2-and-sentinel-3-olci-in-this-case">
+<h2>Step 1: Get the Metadata for satellites (Sentinel-2 and Sentinel-3 OLCI in this case)<a class="headerlink" href="#step-1-get-the-metadata-for-satellites-sentinel-2-and-sentinel-3-olci-in-this-case" title="Permalink to this heading">#</a></h2>
+<p>In this example, we illustrate how we co-locate Sentinel-2 and Sentinel-3 OLCI by fetching the metadata first (the same way we did in week 3). Since we are trying to find co-location between 2 satellites, we fetch 2 tables of metadata, representing 2 satellites we care about. In this case, they are named as object
+‘sentinel3_olci_data’ and ‘sentinel2_data’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">access_token</span><span class="p">,</span> <span class="n">refresh_token</span> <span class="o">=</span> <span class="n">get_access_and_refresh_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2018-06-01&quot;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2018-06-02&quot;</span>
+<span class="n">path_to_save_data</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/GEOL0069/2425/Week 4/&quot;</span> <span class="c1"># Here you can edit where you want to save your metadata</span>
+<span class="n">s3_olci_metadata</span> <span class="o">=</span> <span class="n">query_sentinel3_olci_arctic_data</span><span class="p">(</span>
+    <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">access_token</span>
+<span class="p">)</span>
+
+<span class="n">s2_metadata</span> <span class="o">=</span> <span class="n">query_sentinel2_arctic_data</span><span class="p">(</span>
+    <span class="n">start_date</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="p">,</span>
+    <span class="n">access_token</span><span class="p">,</span>
+    <span class="n">min_cloud_percentage</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_cloud_percentage</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># You can also save the metadata</span>
+<span class="n">s3_olci_metadata</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+    <span class="n">path_to_save_data</span><span class="o">+</span><span class="s2">&quot;sentinel3_olci_metadata.csv&quot;</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">s2_metadata</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+    <span class="n">path_to_save_data</span><span class="o">+</span><span class="s2">&quot;sentinel2_metadata.csv&quot;</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can try to print them to see what these 2 metadata look like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">s3_olci_metadata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-bd6f9091-c54f-40dd-bdef-5cf7b396d166" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>@odata.mediaContentType</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>ContentType</th>
+      <th>ContentLength</th>
+      <th>OriginDate</th>
+      <th>PublicationDate</th>
+      <th>ModificationDate</th>
+      <th>Online</th>
+      <th>EvictionDate</th>
+      <th>S3Path</th>
+      <th>Checksum</th>
+      <th>ContentDate</th>
+      <th>Footprint</th>
+      <th>GeoFootprint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>application/octet-stream</td>
+      <td>9db390cf-cfb4-5112-a1ee-8e5f2707401e</td>
+      <td>S3A_OL_1_EFR____20180601T151119_20180601T15141...</td>
+      <td>application/octet-stream</td>
+      <td>665998933</td>
+      <td>2018-11-01T18:21:34.729000Z</td>
+      <td>2022-05-27T11:46:15.232535Z</td>
+      <td>2023-12-07T10:40:04.296086Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-3/OLCI/OL_1_EFR/2018/06/01/S3...</td>
+      <td>[{'Value': 'c4196f6241364e344781a6293ee6b664',...</td>
+      <td>{'Start': '2018-06-01T15:11:19.387000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-80.6219 84.2705...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-80.6219...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>application/octet-stream</td>
+      <td>ee09722f-66c9-52b9-8bbd-0363cf04c922</td>
+      <td>S3A_OL_1_EFR____20180601T114621_20180601T11492...</td>
+      <td>application/octet-stream</td>
+      <td>0</td>
+      <td>2018-11-01T18:19:53.658000Z</td>
+      <td>2018-06-19T00:00:39.937000Z</td>
+      <td>2018-06-19T00:00:39.937000Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-3/OLCI/OL_1_EFR/2018/06/01/S3...</td>
+      <td>[]</td>
+      <td>{'Start': '2018-06-01T11:46:20.946064Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((155.003 85.3064,...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[155.003,...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>application/octet-stream</td>
+      <td>c10d9364-e17b-5116-9a69-d3a2b0da6290</td>
+      <td>S3A_OL_1_EFR____20180601T234515_20180601T23481...</td>
+      <td>application/octet-stream</td>
+      <td>0</td>
+      <td>2018-11-01T18:25:20.964000Z</td>
+      <td>2018-06-03T06:21:12.283000Z</td>
+      <td>2018-06-03T06:21:12.283000Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-3/OLCI/OL_1_EFR/2018/06/01/S3...</td>
+      <td>[]</td>
+      <td>{'Start': '2018-06-01T23:45:15.491665Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((149.792 52.9492,...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[149.792,...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>application/octet-stream</td>
+      <td>782b7081-7099-50eb-8d70-02e9f28c3659</td>
+      <td>S3A_OL_1_EFR____20180602T030414_20180602T03071...</td>
+      <td>application/octet-stream</td>
+      <td>0</td>
+      <td>2018-11-01T18:27:26.718000Z</td>
+      <td>2018-06-05T00:44:24.893000Z</td>
+      <td>2018-06-05T00:44:24.893000Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-3/OLCI/OL_1_EFR/2018/06/02/S3...</td>
+      <td>[]</td>
+      <td>{'Start': '2018-06-02T03:04:13.933307Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((100.81 63.41, 10...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[100.81, ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>application/octet-stream</td>
+      <td>89a02158-6ce3-51f0-a962-578c0cfc3061</td>
+      <td>S3A_OL_1_EFR____20180602T212905_20180602T21320...</td>
+      <td>application/octet-stream</td>
+      <td>675502028</td>
+      <td>2018-10-28T21:39:59.997000Z</td>
+      <td>2022-05-27T11:46:17.436495Z</td>
+      <td>2023-12-07T10:40:55.357408Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-3/OLCI/OL_1_EFR/2018/06/02/S3...</td>
+      <td>[{'Value': '37ea08b9364f92107c62a9a8f9eb84bf',...</td>
+      <td>{'Start': '2018-06-02T21:29:05.362000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-175.044 84.2832...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-175.044...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>337</th>
+      <td>application/octet-stream</td>
+      <td>2ea51bd6-a5f9-5776-8245-47e577ed51ab</td>
+      <td>S3B_OL_1_EFR____20180602T230525_20180602T23061...</td>
+      <td>application/octet-stream</td>
+      <td>0</td>
+      <td>2020-05-04T15:04:29.740000Z</td>
+      <td>2020-05-04T16:12:07.135006Z</td>
+      <td>2020-05-04T16:12:07.135006Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-3/OLCI/OL_1_EFR/2018/06/02/S3...</td>
+      <td>[]</td>
+      <td>{'Start': '2018-06-02T23:05:24.783000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-14.9877 75.3681...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-14.9877...</td>
+    </tr>
+    <tr>
+      <th>338</th>
+      <td>application/octet-stream</td>
+      <td>16ab2ce3-f5e8-5a02-ab83-ac5cdc858a93</td>
+      <td>S3B_OL_1_EFR____20180602T230619_20180602T23091...</td>
+      <td>application/octet-stream</td>
+      <td>0</td>
+      <td>2020-05-04T15:04:35.938000Z</td>
+      <td>2020-05-04T16:12:35.026723Z</td>
+      <td>2020-05-04T16:12:35.026723Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-3/OLCI/OL_1_EFR/2018/06/02/S3...</td>
+      <td>[]</td>
+      <td>{'Start': '2018-06-02T23:06:18.951000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-15.117827625966...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-15.1178...</td>
+    </tr>
+    <tr>
+      <th>339</th>
+      <td>application/octet-stream</td>
+      <td>2f363e42-e61c-59a4-a51f-f7ccacbc3da4</td>
+      <td>S3B_OL_1_EFR____20180602T231219_20180602T23151...</td>
+      <td>application/octet-stream</td>
+      <td>0</td>
+      <td>2020-05-04T14:41:59.925000Z</td>
+      <td>2020-05-04T16:12:41.395265Z</td>
+      <td>2020-05-04T16:12:41.395265Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-3/OLCI/OL_1_EFR/2018/06/02/S3...</td>
+      <td>[]</td>
+      <td>{'Start': '2018-06-02T23:12:18.951000Z', 'End'...</td>
+      <td>geography'SRID=4326;MULTIPOLYGON (((180 72.052...</td>
+      <td>{'type': 'MultiPolygon', 'coordinates': [[[[18...</td>
+    </tr>
+    <tr>
+      <th>340</th>
+      <td>application/octet-stream</td>
+      <td>be1ab892-3859-5cf6-a734-6ec0b2eb91e8</td>
+      <td>S3B_OL_1_EFR____20180602T231519_20180602T23181...</td>
+      <td>application/octet-stream</td>
+      <td>0</td>
+      <td>2020-05-04T15:04:42.445000Z</td>
+      <td>2020-05-04T16:12:53.766136Z</td>
+      <td>2020-05-04T16:12:53.766136Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-3/OLCI/OL_1_EFR/2018/06/02/S3...</td>
+      <td>[]</td>
+      <td>{'Start': '2018-06-02T23:15:18.951000Z', 'End'...</td>
+      <td>geography'SRID=4326;MULTIPOLYGON (((180 60.384...</td>
+      <td>{'type': 'MultiPolygon', 'coordinates': [[[[18...</td>
+    </tr>
+    <tr>
+      <th>341</th>
+      <td>application/octet-stream</td>
+      <td>b0e85f79-879d-5bf7-9fca-38183beabc8e</td>
+      <td>S3B_OL_1_EFR____20180602T230919_20180602T23121...</td>
+      <td>application/octet-stream</td>
+      <td>0</td>
+      <td>2020-05-04T15:01:01.283000Z</td>
+      <td>2021-06-09T09:36:33.879530Z</td>
+      <td>2021-06-09T09:36:33.879530Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-3/OLCI/OL_1_EFR/2018/06/02/S3...</td>
+      <td>[]</td>
+      <td>{'Start': '2018-06-02T23:09:18.951000Z', 'End'...</td>
+      <td>geography'SRID=4326;MULTIPOLYGON (((159.995083...</td>
+      <td>{'type': 'MultiPolygon', 'coordinates': [[[[15...</td>
+    </tr>
+  </tbody>
+</table>
+<p>342 rows × 15 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-bd6f9091-c54f-40dd-bdef-5cf7b396d166')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-bd6f9091-c54f-40dd-bdef-5cf7b396d166 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-bd6f9091-c54f-40dd-bdef-5cf7b396d166');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-6c9cc0eb-6232-4f16-8bb5-61ee883debf4">
+  <button class="colab-df-quickchart" onclick="quickchart('df-6c9cc0eb-6232-4f16-8bb5-61ee883debf4')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-6c9cc0eb-6232-4f16-8bb5-61ee883debf4 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_1b3413ba-9916-4bed-9800-2a8843e47941">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('s3_olci_metadata')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_1b3413ba-9916-4bed-9800-2a8843e47941 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('s3_olci_metadata');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">s2_metadata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-bcb9bc0f-e7db-47b0-8899-ceec11319ec4" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>@odata.mediaContentType</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>ContentType</th>
+      <th>ContentLength</th>
+      <th>OriginDate</th>
+      <th>PublicationDate</th>
+      <th>ModificationDate</th>
+      <th>Online</th>
+      <th>EvictionDate</th>
+      <th>S3Path</th>
+      <th>Checksum</th>
+      <th>ContentDate</th>
+      <th>Footprint</th>
+      <th>GeoFootprint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>application/octet-stream</td>
+      <td>5d10f832-4996-4b0f-a68a-d58d1d43c0af</td>
+      <td>S2B_MSIL1C_20180602T204019_N0500_R014_T11XMB_2...</td>
+      <td>application/octet-stream</td>
+      <td>526323201</td>
+      <td>2024-02-11T20:43:52.658000Z</td>
+      <td>2024-02-12T01:18:36.812749Z</td>
+      <td>2024-05-10T22:07:05.320823Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-2/MSI/L1C_N0500/2018/06/02/S2...</td>
+      <td>[{'Value': '5a0d07cca2bf18265e9c7b84c64a3b8b',...</td>
+      <td>{'Start': '2018-06-02T20:40:19.024000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-116.68701 73.77...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-116.687...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>application/octet-stream</td>
+      <td>0200999b-0712-4a70-b7a3-4160e5d4f95b</td>
+      <td>S2B_MSIL1C_20180601T225529_N0500_R001_T03WXU_2...</td>
+      <td>application/octet-stream</td>
+      <td>660811240</td>
+      <td>2024-02-13T01:12:13.265000Z</td>
+      <td>2024-02-13T02:35:07.552178Z</td>
+      <td>2024-05-11T15:51:40.346618Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-2/MSI/L1C_N0500/2018/06/01/S2...</td>
+      <td>[{'Value': '8c8ac895d615eadb229d86502cecc0b7',...</td>
+      <td>{'Start': '2018-06-01T22:55:29.024000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-162.22142 71.18...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-162.221...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>application/octet-stream</td>
+      <td>18acad08-6956-4be5-ae83-4bdc98de0ed4</td>
+      <td>S2B_MSIL1C_20180601T225529_N0500_R001_T03WXT_2...</td>
+      <td>application/octet-stream</td>
+      <td>852541420</td>
+      <td>2024-02-13T01:17:09.637000Z</td>
+      <td>2024-02-13T02:51:58.264249Z</td>
+      <td>2024-05-11T15:52:03.476457Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-2/MSI/L1C_N0500/2018/06/01/S2...</td>
+      <td>[{'Value': '5931cd226656090e0f59791788a9b87f',...</td>
+      <td>{'Start': '2018-06-01T22:55:29.024000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-162.343 70.2864...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-162.343...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>application/octet-stream</td>
+      <td>bdadee59-bb88-4917-b390-b7b5489e3833</td>
+      <td>S2A_MSIL2A_20180602T163021_N0500_R083_T24XWP_2...</td>
+      <td>application/octet-stream</td>
+      <td>22280115</td>
+      <td>2024-02-13T01:20:10.983000Z</td>
+      <td>2024-02-13T02:52:05.329300Z</td>
+      <td>2024-05-11T15:52:03.589105Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-2/MSI/L2A_N0500/2018/06/02/S2...</td>
+      <td>[{'Value': 'd4d998840214282d5d32767c7807534b',...</td>
+      <td>{'Start': '2018-06-02T16:30:21.024000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-39.000977 79.32...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-39.0009...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>application/octet-stream</td>
+      <td>bbefc016-6256-4c03-936a-956b55a8c01c</td>
+      <td>S2B_MSIL2A_20180601T225529_N0500_R001_T03WWQ_2...</td>
+      <td>application/octet-stream</td>
+      <td>834579698</td>
+      <td>2024-02-13T01:45:33.763000Z</td>
+      <td>2024-02-13T03:15:06.336369Z</td>
+      <td>2024-05-11T15:52:31.083470Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-2/MSI/L2A_N0500/2018/06/01/S2...</td>
+      <td>[{'Value': '5f32124c8eebc9abc91c054854beab9a',...</td>
+      <td>{'Start': '2018-06-01T22:55:29.024000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-162.4922 66.889...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-162.492...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1831</th>
+      <td>application/octet-stream</td>
+      <td>104b8330-d69e-4386-a064-ed8ee196ab50</td>
+      <td>S2A_MSIL1C_20180601T151911_N0500_R068_T23XPA_2...</td>
+      <td>application/octet-stream</td>
+      <td>472956692</td>
+      <td>2024-02-12T04:22:47.848000Z</td>
+      <td>2024-02-12T06:48:36.921539Z</td>
+      <td>2024-05-10T22:12:10.018582Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-2/MSI/L1C_N0500/2018/06/01/S2...</td>
+      <td>[{'Value': 'ea86325888acc78d13dd18925d1e4fac',...</td>
+      <td>{'Start': '2018-06-01T15:19:11.024000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-38.61331 72.851...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-38.6133...</td>
+    </tr>
+    <tr>
+      <th>1832</th>
+      <td>application/octet-stream</td>
+      <td>e4651090-9523-4f44-a468-b9c3f3a5da68</td>
+      <td>S2A_MSIL1C_20180601T151911_N0500_R068_T24XWL_2...</td>
+      <td>application/octet-stream</td>
+      <td>622640858</td>
+      <td>2024-02-12T04:25:08.829000Z</td>
+      <td>2024-02-12T06:21:56.790984Z</td>
+      <td>2024-05-10T22:11:46.425773Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-2/MSI/L1C_N0500/2018/06/01/S2...</td>
+      <td>[{'Value': '5c2690bfb277f757d8067e9268decb3c',...</td>
+      <td>{'Start': '2018-06-01T15:19:11.024000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-39.000824 77.24...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-39.0008...</td>
+    </tr>
+    <tr>
+      <th>1833</th>
+      <td>application/octet-stream</td>
+      <td>540462fd-b1bd-4f26-b85c-a42094fc4f39</td>
+      <td>S2A_MSIL1C_20180601T151911_N0500_R068_T26XMK_2...</td>
+      <td>application/octet-stream</td>
+      <td>401623686</td>
+      <td>2024-02-12T04:22:49.076000Z</td>
+      <td>2024-02-12T06:46:56.499748Z</td>
+      <td>2024-05-10T22:12:09.531757Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-2/MSI/L1C_N0500/2018/06/01/S2...</td>
+      <td>[{'Value': '888d3fcd13b446beaa2227447d79b5f9',...</td>
+      <td>{'Start': '2018-06-01T15:19:11.024000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-26.62741 76.419...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-26.6274...</td>
+    </tr>
+    <tr>
+      <th>1834</th>
+      <td>application/octet-stream</td>
+      <td>35bd8f3f-2052-4ff1-8c05-6dcd1e75af1a</td>
+      <td>S2A_MSIL1C_20180601T151911_N0500_R068_T26XNL_2...</td>
+      <td>application/octet-stream</td>
+      <td>467324486</td>
+      <td>2024-02-12T04:22:44.206000Z</td>
+      <td>2024-02-12T06:45:49.558232Z</td>
+      <td>2024-05-10T22:12:09.097660Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-2/MSI/L1C_N0500/2018/06/01/S2...</td>
+      <td>[{'Value': 'b35b3a24ddad056a9e8e90d109c7f745',...</td>
+      <td>{'Start': '2018-06-01T15:19:11.024000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-22.546234 77.21...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-22.5462...</td>
+    </tr>
+    <tr>
+      <th>1835</th>
+      <td>application/octet-stream</td>
+      <td>3abbc5ca-a6f9-461c-aa5b-cddff969b7f0</td>
+      <td>S2A_MSIL2A_20180602T213531_N0500_R086_T05VPG_2...</td>
+      <td>application/octet-stream</td>
+      <td>1102825610</td>
+      <td>2024-02-12T06:29:36.304000Z</td>
+      <td>2024-02-12T07:42:22.928112Z</td>
+      <td>2024-05-10T22:13:11.950724Z</td>
+      <td>True</td>
+      <td>9999-12-31T23:59:59.999999Z</td>
+      <td>/eodata/Sentinel-2/MSI/L2A_N0500/2018/06/02/S2...</td>
+      <td>[{'Value': '2b6857b601c13224335def418ba3bf2f',...</td>
+      <td>{'Start': '2018-06-02T21:35:31.024000Z', 'End'...</td>
+      <td>geography'SRID=4326;POLYGON ((-149.22517 60.09...</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-149.225...</td>
+    </tr>
+  </tbody>
+</table>
+<p>1836 rows × 15 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-bcb9bc0f-e7db-47b0-8899-ceec11319ec4')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-bcb9bc0f-e7db-47b0-8899-ceec11319ec4 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-bcb9bc0f-e7db-47b0-8899-ceec11319ec4');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-a6fb3da0-988f-4b11-89fe-32168b792216">
+  <button class="colab-df-quickchart" onclick="quickchart('df-a6fb3da0-988f-4b11-89fe-32168b792216')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-a6fb3da0-988f-4b11-89fe-32168b792216 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_06840d3f-a9ef-4130-bb9e-e7c15b774d72">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('s2_metadata')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_06840d3f-a9ef-4130-bb9e-e7c15b774d72 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('s2_metadata');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<p>From above, we can see that there are 342 rows for S3 OLCI and 1836 rows for S2. And next we will use these metadata to co-locate them and produce another table shows the details of the colocation pairs.</p>
+<p>## Co-locate the data</p>
+<p>In this section we use the metadata we have just produced to produce the co-location pair details. The logic of the code is match rows from S2 and S3 OLCI by their geo_footprint.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s3_olci_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">path_to_save_data</span> <span class="o">+</span> <span class="s2">&quot;sentinel3_olci_metadata.csv&quot;</span>
+<span class="p">)</span>
+<span class="n">s2_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">path_to_save_data</span> <span class="o">+</span> <span class="s2">&quot;sentinel2_metadata.csv&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s3_olci_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate.Start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+    <span class="n">s3_olci_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">eval</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="s2">&quot;Start&quot;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_timezone_naive</span><span class="p">)</span>
+<span class="n">s3_olci_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate.End&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+    <span class="n">s3_olci_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">eval</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="s2">&quot;End&quot;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_timezone_naive</span><span class="p">)</span>
+
+<span class="n">s2_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate.Start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+    <span class="n">s2_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">eval</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="s2">&quot;Start&quot;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_timezone_naive</span><span class="p">)</span>
+<span class="n">s2_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate.End&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+    <span class="n">s2_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">eval</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="s2">&quot;End&quot;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_timezone_naive</span><span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">check_collocation</span><span class="p">(</span>
+    <span class="n">s2_metadata</span><span class="p">,</span> <span class="n">s3_olci_metadata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span><span class="n">time_window</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="s2">&quot;10 minutes&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As usual, you can have a look at the co-location output</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-5247dea4-aa88-45b1-9f56-cff5b94a9621" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Satellite1_Name</th>
+      <th>Satellite1_ID</th>
+      <th>Satellite1_Footprint</th>
+      <th>Satellite2_Name</th>
+      <th>Satellite2_ID</th>
+      <th>Satellite2_Footprint</th>
+      <th>Overlap_Start</th>
+      <th>Overlap_End</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>S2A_MSIL1C_20180601T201851_N0500_R071_T16XER_2...</td>
+      <td>060f93fd-3342-47cd-839e-95c837de5fd2</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-87.0012...</td>
+      <td>S3A_OL_1_EFR____20180601T201417_20180601T20171...</td>
+      <td>58c1eed1-098c-5071-8fa3-568f5b090a53</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-156.343...</td>
+      <td>2018-06-01T20:14:17.050000</td>
+      <td>2018-06-01T20:17:17.050000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>S2A_MSIL1C_20180601T201851_N0500_R071_T16XER_2...</td>
+      <td>060f93fd-3342-47cd-839e-95c837de5fd2</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-87.0012...</td>
+      <td>S3B_OL_1_EFR____20180601T201324_20180601T20162...</td>
+      <td>1e6552b0-0ca1-5214-b28a-8bb9f64ad19b</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-156.033...</td>
+      <td>2018-06-01T20:13:24.146000</td>
+      <td>2018-06-01T20:16:24.146000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>S2A_MSIL2A_20180601T201851_N0500_R071_T11WNV_2...</td>
+      <td>98cfb2f7-6d25-46ce-a68e-aeeee205ed22</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-115.905...</td>
+      <td>S3A_OL_1_EFR____20180601T201717_20180601T20201...</td>
+      <td>747af4a2-ccd0-5fc0-b46d-129267a18be7</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-156.854...</td>
+      <td>2018-06-01T20:17:17.050050</td>
+      <td>2018-06-01T20:20:17.050050</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>S2A_MSIL2A_20180601T201851_N0500_R071_T11WNV_2...</td>
+      <td>98cfb2f7-6d25-46ce-a68e-aeeee205ed22</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-115.905...</td>
+      <td>S3B_OL_1_EFR____20180601T201624_20180601T20192...</td>
+      <td>ef311249-6684-5e35-aaa4-4768ab3694cd</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-156.735...</td>
+      <td>2018-06-01T20:16:24.146000</td>
+      <td>2018-06-01T20:19:24.146000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>S2A_MSIL2A_20180601T201851_N0500_R071_T16XEN_2...</td>
+      <td>7d345969-2abf-4de6-a9f4-3320d76c779b</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-81.9366...</td>
+      <td>S3A_OL_1_EFR____20180601T201417_20180601T20171...</td>
+      <td>58c1eed1-098c-5071-8fa3-568f5b090a53</td>
+      <td>{'type': 'Polygon', 'coordinates': [[[-156.343...</td>
+      <td>2018-06-01T20:14:17.050000</td>
+      <td>2018-06-01T20:17:17.050000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-5247dea4-aa88-45b1-9f56-cff5b94a9621')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-5247dea4-aa88-45b1-9f56-cff5b94a9621 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-5247dea4-aa88-45b1-9f56-cff5b94a9621');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-49f70077-fe63-43ff-af7e-749a41453b9f">
+  <button class="colab-df-quickchart" onclick="quickchart('df-49f70077-fe63-43ff-af7e-749a41453b9f')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-49f70077-fe63-43ff-af7e-749a41453b9f button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<p>With code below, you can visualise the co-located footprint.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="n">map_result</span> <span class="o">=</span> <span class="n">plot_results</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">map_result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_227fc0a7df952a725f64354ed08acaa6 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_227fc0a7df952a725f64354ed08acaa6&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_227fc0a7df952a725f64354ed08acaa6 = L.map(
+                &quot;map_227fc0a7df952a725f64354ed08acaa6&quot;,
+                {
+                    center: [0.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 2,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_6fea719dfb21100e2bba8be5708f727a = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_6fea719dfb21100e2bba8be5708f727a.addTo(map_227fc0a7df952a725f64354ed08acaa6);
+        
+    
+
+        function geo_json_d9aa70064883d455969960a9d5df5a1f_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_d9aa70064883d455969960a9d5df5a1f = L.geoJson(null, {
+                onEachFeature: geo_json_d9aa70064883d455969960a9d5df5a1f_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_d9aa70064883d455969960a9d5df5a1f_add (data) {
+            geo_json_d9aa70064883d455969960a9d5df5a1f
+                .addData(data);
+        }
+            geo_json_d9aa70064883d455969960a9d5df5a1f_add({&quot;coordinates&quot;: [[[-87.00125, 81.7807803066716], [-87.00113, 80.9732636725462], [-80.75702, 80.920298611386], [-80.006714, 81.8974237140705], [-84.87781, 81.9388571578284], [-85.55002, 81.8906885074661], [-86.48227, 81.8203991227847], [-87.00125, 81.7807803066716]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_d9aa70064883d455969960a9d5df5a1f.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_d9aa70064883d455969960a9d5df5a1f.addTo(map_227fc0a7df952a725f64354ed08acaa6);
+        
+    
+
+        function geo_json_3a58230967420c27bef2f0edaba081a3_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_3a58230967420c27bef2f0edaba081a3 = L.geoJson(null, {
+                onEachFeature: geo_json_3a58230967420c27bef2f0edaba081a3_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_3a58230967420c27bef2f0edaba081a3_add (data) {
+            geo_json_3a58230967420c27bef2f0edaba081a3
+                .addData(data);
+        }
+            geo_json_3a58230967420c27bef2f0edaba081a3_add({&quot;coordinates&quot;: [[[-156.343, 84.2811], [-150.143, 84.2552], [-144.075, 84.1643], [-138.232, 84.01], [-132.771, 83.7989], [-127.683, 83.5343], [-123.057, 83.2255], [-118.839, 82.8756], [-115.023, 82.4895], [-111.598, 82.0746], [-108.501, 81.6381], [-105.741, 81.177], [-103.239, 80.6981], [-101.013, 80.2022], [-98.9866, 79.694], [-97.1663, 79.1739], [-95.4867, 78.6436], [-93.9686, 78.1064], [-92.578, 77.5607], [-91.3069, 77.0093], [-79.6128, 77.9718], [-66.5199, 78.3904], [-53.1677, 78.2056], [-40.8136, 77.4439], [-39.6736, 78.0217], [-38.4427, 78.586], [-37.0886, 79.1437], [-35.5898, 79.6982], [-33.9095, 80.2406], [-32.0441, 80.7765], [-29.9375, 81.3006], [-27.5903, 81.8148], [-24.9182, 82.3125], [-21.9094, 82.7956], [-18.4603, 83.2521], [-14.5202, 83.6818], [-10.0823, 84.0742], [-5.00379, 84.4293], [0.716032, 84.7355], [7.03207, 84.9822], [13.956, 85.1636], [21.2721, 85.2696], [28.7841, 85.2956], [30.8362, 87.8982], [180.0, 89.381067043488], [180.0, 90.0], [0.0, 90.0], [-180.0, 90.0], [-180.0, 89.381067043488], [-171.547, 89.4651], [-157.314, 86.8801], [-156.343, 84.2811]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_3a58230967420c27bef2f0edaba081a3.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_3a58230967420c27bef2f0edaba081a3.addTo(map_227fc0a7df952a725f64354ed08acaa6);
+        
+    
+
+        function geo_json_d12562a1d49556f259bd03523fe02710_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_d12562a1d49556f259bd03523fe02710 = L.geoJson(null, {
+                onEachFeature: geo_json_d12562a1d49556f259bd03523fe02710_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_d12562a1d49556f259bd03523fe02710_add (data) {
+            geo_json_d12562a1d49556f259bd03523fe02710
+                .addData(data);
+        }
+            geo_json_d12562a1d49556f259bd03523fe02710_add({&quot;coordinates&quot;: [[[-87.00125, 81.7807803066716], [-87.00113, 80.9732636725462], [-80.75702, 80.920298611386], [-80.006714, 81.8974237140705], [-84.87781, 81.9388571578284], [-85.55002, 81.8906885074661], [-86.48227, 81.8203991227847], [-87.00125, 81.7807803066716]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_d12562a1d49556f259bd03523fe02710.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_d12562a1d49556f259bd03523fe02710.addTo(map_227fc0a7df952a725f64354ed08acaa6);
+        
+    
+
+        function geo_json_f01ae2761a32354a5ca8d4ca59dd8f41_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_f01ae2761a32354a5ca8d4ca59dd8f41 = L.geoJson(null, {
+                onEachFeature: geo_json_f01ae2761a32354a5ca8d4ca59dd8f41_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_f01ae2761a32354a5ca8d4ca59dd8f41_add (data) {
+            geo_json_f01ae2761a32354a5ca8d4ca59dd8f41
+                .addData(data);
+        }
+            geo_json_f01ae2761a32354a5ca8d4ca59dd8f41_add({&quot;coordinates&quot;: [[[-156.03391612099287, 83.79100934188521], [-156.62385364633178, 86.38830022677489], [-156.62385370901015, 86.38830035245132], [-162.25148375912664, 88.98500125560638], [-162.25148474700094, 88.98500137706489], [-172.9126476185497, 89.54050195602518], [-168.75011231713347, 89.53842913037509], [-168.74988768286607, 89.53842913037509], [-157.50011231713347, 89.53842913037509], [-157.49988768286613, 89.53842913037509], [-146.2501123171335, 89.53842913037509], [-146.2498876828661, 89.53842913037509], [-135.0001123171335, 89.53842913037509], [-134.99988768286613, 89.53842913037509], [-123.75011231713354, 89.53842913037509], [-123.74988768286613, 89.53842913037509], [-112.50011231713354, 89.53842913037509], [-112.49988768286616, 89.53842913037509], [-101.25011231713356, 89.53842913037509], [-101.24988768286617, 89.53842913037509], [-90.00011231713356, 89.53842913037509], [-89.99988768286617, 89.53842913037509], [-78.75011231713357, 89.53842913037509], [-78.7498876828662, 89.53842913037509], [-67.50011231713357, 89.53842913037509], [-67.4998876828662, 89.53842913037509], [-56.250112317133585, 89.53842913037509], [-56.24988768286621, 89.53842913037509], [-45.0001123171336, 89.53842913037509], [-44.999887682866216, 89.53842913037509], [-33.750112317133606, 89.53842913037509], [-33.74988768286623, 89.53842913037509], [-22.50011231713362, 89.53842913037509], [-22.49988768286624, 89.53842913037509], [-11.250112317133633, 89.53842913037509], [-11.249887682866252, 89.53842913037509], [-0.000112317133633, 89.53842913037509], [0.000112317133747, 89.53842913037509], [11.249887682866348, 89.53842913037509], [11.250112317133729, 89.53842913037509], [22.499887682866337, 89.53842913037509], [22.500112317133716, 89.53842913037509], [33.74988768286632, 89.53842913037509], [33.750112317133706, 89.53842913037509], [44.99988768286631, 89.53842913037509], [45.00011231713369, 89.53842913037509], [45.49495866849569, 89.53880422475717], [31.72767275750424, 88.39100086855689], [31.727672372497764, 88.39100074538659], [28.86377829142966, 85.79050937944042], [20.535984585714377, 85.75670914837193], [12.460268678265136, 85.63940890550603], [4.90128562634947, 85.43960851522104], [-1.883943498695533, 85.16980803938151], [-7.913539133222428, 84.83790752163864], [-13.161961801415108, 84.45660701352152], [-17.746062504240047, 84.03380652377305], [-17.746062953922266, 84.0338064768828], [-21.645762161819725, 83.57850603010449], [-25.02906045048397, 83.10010564587566], [-27.975558449612553, 82.60570528586106], [-27.97555867672029, 82.60570524401092], [-30.53845647810383, 82.0898049001899], [-32.785254183451116, 81.56040459077272], [-32.78525423173598, 81.56040457847148], [-34.79195185787225, 81.00950430352954], [-36.54244959417903, 80.46000406238267], [-38.105647448689446, 79.90160383524642], [-39.479545441103205, 79.34660363455065], [-40.74164350807944, 78.77680345174889], [-40.741643576205504, 78.77680341902267], [-41.86454173819084, 78.2046032651794], [-42.919725361139584, 77.61381174274102], [-55.52429379973921, 78.27220905147828], [-68.91530391533149, 78.3428091056265], [-81.80281289838943, 77.81500871598546], [-93.13918379788709, 76.76471237227507], [-94.47156387742547, 77.30760449395817], [-94.47156393762569, 77.30760451725358], [-95.92896284324942, 77.84210470288495], [-97.50796174230429, 78.37030490247972], [-99.20596075198803, 78.87950513374504], [-101.09495977067571, 79.38770537666622], [-103.16395892137668, 79.8821056435841], [-105.48095822258965, 80.369105932761], [-107.98795772453829, 80.83180622791956], [-110.7689574182992, 81.27780652421909], [-113.77395749641805, 81.69900683343856], [-113.77395780434225, 81.69900687311126], [-117.14295869385717, 82.09580722268377], [-117.14295888702986, 82.095807243502], [-120.86996035233048, 82.46130757952655], [-124.97396268932884, 82.7985079177901], [-124.97396281107422, 82.79850792678778], [-129.4239664372735, 83.09220826596197], [-134.24097124700626, 83.3414085760257], [-139.35997724177545, 83.53950883966063], [-144.7859843787577, 83.68410904252018], [-150.43499241835926, 83.77040916827899], [-150.43499298639296, 83.7704091736022], [-156.03391612099287, 83.79100934188521]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_f01ae2761a32354a5ca8d4ca59dd8f41.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_f01ae2761a32354a5ca8d4ca59dd8f41.addTo(map_227fc0a7df952a725f64354ed08acaa6);
+        
+    
+
+        function geo_json_d669c712336cb41b0ebbb62e338b1990_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_d669c712336cb41b0ebbb62e338b1990 = L.geoJson(null, {
+                onEachFeature: geo_json_d669c712336cb41b0ebbb62e338b1990_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_d669c712336cb41b0ebbb62e338b1990_add (data) {
+            geo_json_d669c712336cb41b0ebbb62e338b1990
+                .addData(data);
+        }
+            geo_json_d669c712336cb41b0ebbb62e338b1990_add({&quot;coordinates&quot;: [[[-115.905136, 72.0906282956718], [-117.00058, 72.0995811315646], [-117.000565, 71.5873994932855], [-116.89531, 71.6376684747293], [-116.62685, 71.762638764291], [-116.356186, 71.8875168548396], [-116.08191, 72.0119067350435], [-115.905136, 72.0906282956718]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_d669c712336cb41b0ebbb62e338b1990.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_d669c712336cb41b0ebbb62e338b1990.addTo(map_227fc0a7df952a725f64354ed08acaa6);
+        
+    
+
+        function geo_json_105a8e481d1d0036634ca5ca274d5720_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_105a8e481d1d0036634ca5ca274d5720 = L.geoJson(null, {
+                onEachFeature: geo_json_105a8e481d1d0036634ca5ca274d5720_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_105a8e481d1d0036634ca5ca274d5720_add (data) {
+            geo_json_105a8e481d1d0036634ca5ca274d5720
+                .addData(data);
+        }
+            geo_json_105a8e481d1d0036634ca5ca274d5720_add({&quot;coordinates&quot;: [[[-156.854, 73.8567], [-154.643, 73.825], [-152.432, 73.7708], [-150.23, 73.6936], [-148.066, 73.5945], [-145.919, 73.4729], [-143.807, 73.3297], [-141.737, 73.1664], [-139.714, 72.9826], [-137.728, 72.7785], [-135.777, 72.5589], [-133.891, 72.3177], [-132.048, 72.0607], [-130.268, 71.7834], [-128.529, 71.4909], [-126.858, 71.1826], [-125.225, 70.8617], [-123.648, 70.5258], [-122.127, 70.1775], [-120.658, 69.8166], [-115.501, 71.9299], [-109.102, 73.8857], [-101.137, 75.6091], [-91.3174, 77.0081], [-92.5889, 77.5595], [-93.9798, 78.1052], [-95.4982, 78.6423], [-97.1782, 79.1725], [-98.9988, 79.6925], [-101.025, 80.2007], [-103.252, 80.6965], [-105.754, 81.1753], [-108.514, 81.6363], [-111.611, 82.0727], [-115.036, 82.4875], [-118.851, 82.8735], [-123.069, 83.2233], [-127.694, 83.532], [-132.78, 83.7965], [-138.239, 84.0075], [-144.08, 84.1618], [-150.145, 84.2527], [-156.343, 84.2785], [-156.229, 81.6732], [-156.351, 79.0667], [-156.572, 76.4592], [-156.854, 73.8567], [-156.854, 73.8567]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_105a8e481d1d0036634ca5ca274d5720.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_105a8e481d1d0036634ca5ca274d5720.addTo(map_227fc0a7df952a725f64354ed08acaa6);
+        
+    
+
+        function geo_json_a94ed024f7cebec11bd6df551886dce6_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_a94ed024f7cebec11bd6df551886dce6 = L.geoJson(null, {
+                onEachFeature: geo_json_a94ed024f7cebec11bd6df551886dce6_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_a94ed024f7cebec11bd6df551886dce6_add (data) {
+            geo_json_a94ed024f7cebec11bd6df551886dce6
+                .addData(data);
+        }
+            geo_json_a94ed024f7cebec11bd6df551886dce6_add({&quot;coordinates&quot;: [[[-115.905136, 72.0906282956718], [-117.00058, 72.0995811315646], [-117.000565, 71.5873994932855], [-116.89531, 71.6376684747293], [-116.62685, 71.762638764291], [-116.356186, 71.8875168548396], [-116.08191, 72.0119067350435], [-115.905136, 72.0906282956718]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_a94ed024f7cebec11bd6df551886dce6.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_a94ed024f7cebec11bd6df551886dce6.addTo(map_227fc0a7df952a725f64354ed08acaa6);
+        
+    
+
+        function geo_json_db47d1d6e738234700828806cab3a63a_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_db47d1d6e738234700828806cab3a63a = L.geoJson(null, {
+                onEachFeature: geo_json_db47d1d6e738234700828806cab3a63a_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_db47d1d6e738234700828806cab3a63a_add (data) {
+            geo_json_db47d1d6e738234700828806cab3a63a
+                .addData(data);
+        }
+            geo_json_db47d1d6e738234700828806cab3a63a_add({&quot;coordinates&quot;: [[[-156.735, 73.366], [-154.606, 73.3389], [-152.466, 73.2847], [-150.328, 73.208], [-148.207, 73.1092], [-146.133, 72.9901], [-144.075, 72.8492], [-142.027, 72.6841], [-140.054, 72.5064], [-138.108, 72.3054], [-136.242, 72.0849], [-134.389, 71.8479], [-132.586, 71.5939], [-130.808, 71.3205], [-129.109, 71.0348], [-127.455, 70.7331], [-125.872, 70.4221], [-124.318, 70.0923], [-122.812, 69.7521], [-121.355, 69.3969], [-116.392, 71.5359], [-110.251, 73.5241], [-102.603, 75.2959], [-93.1494, 76.7634], [-94.4821, 77.3063], [-95.9398, 77.8408], [-97.5191, 78.3689], [-99.2173, 78.878], [-101.107, 79.3861], [-103.176, 79.8805], [-105.493, 80.3674], [-108.0, 80.83], [-110.781, 81.2759], [-113.786, 81.697], [-117.155, 82.0938], [-120.881, 82.4592], [-124.984, 82.7963], [-129.434, 83.0899], [-134.249, 83.339], [-139.367, 83.537], [-144.79, 83.6816], [-150.438, 83.7679], [-156.034, 83.7884], [-156.018, 81.1828], [-156.19, 78.5755], [-156.44, 75.9689], [-156.735, 73.366]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_db47d1d6e738234700828806cab3a63a.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_db47d1d6e738234700828806cab3a63a.addTo(map_227fc0a7df952a725f64354ed08acaa6);
+        
+    
+
+        function geo_json_69d586c8839fd3690d0376227045ab59_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_69d586c8839fd3690d0376227045ab59 = L.geoJson(null, {
+                onEachFeature: geo_json_69d586c8839fd3690d0376227045ab59_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_69d586c8839fd3690d0376227045ab59_add (data) {
+            geo_json_69d586c8839fd3690d0376227045ab59
+                .addData(data);
+        }
+            geo_json_69d586c8839fd3690d0376227045ab59_add({&quot;coordinates&quot;: [[[-81.936676, 79.2264793885456], [-87.00098, 79.2692070584454], [-87.000916, 78.7558094782379], [-86.90692, 78.7657420584032], [-86.221375, 78.8362959431362], [-85.52698, 78.9052716986292], [-84.82364, 78.9725617767367], [-84.11444, 79.0393196015923], [-83.394165, 79.1030531585403], [-82.668, 79.1661355529544], [-81.936676, 79.2264793885456]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_69d586c8839fd3690d0376227045ab59.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_69d586c8839fd3690d0376227045ab59.addTo(map_227fc0a7df952a725f64354ed08acaa6);
+        
+    
+
+        function geo_json_54ebe597c794550d02564265a3c66827_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_54ebe597c794550d02564265a3c66827 = L.geoJson(null, {
+                onEachFeature: geo_json_54ebe597c794550d02564265a3c66827_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_54ebe597c794550d02564265a3c66827_add (data) {
+            geo_json_54ebe597c794550d02564265a3c66827
+                .addData(data);
+        }
+            geo_json_54ebe597c794550d02564265a3c66827_add({&quot;coordinates&quot;: [[[-156.343, 84.2811], [-150.143, 84.2552], [-144.075, 84.1643], [-138.232, 84.01], [-132.771, 83.7989], [-127.683, 83.5343], [-123.057, 83.2255], [-118.839, 82.8756], [-115.023, 82.4895], [-111.598, 82.0746], [-108.501, 81.6381], [-105.741, 81.177], [-103.239, 80.6981], [-101.013, 80.2022], [-98.9866, 79.694], [-97.1663, 79.1739], [-95.4867, 78.6436], [-93.9686, 78.1064], [-92.578, 77.5607], [-91.3069, 77.0093], [-79.6128, 77.9718], [-66.5199, 78.3904], [-53.1677, 78.2056], [-40.8136, 77.4439], [-39.6736, 78.0217], [-38.4427, 78.586], [-37.0886, 79.1437], [-35.5898, 79.6982], [-33.9095, 80.2406], [-32.0441, 80.7765], [-29.9375, 81.3006], [-27.5903, 81.8148], [-24.9182, 82.3125], [-21.9094, 82.7956], [-18.4603, 83.2521], [-14.5202, 83.6818], [-10.0823, 84.0742], [-5.00379, 84.4293], [0.716032, 84.7355], [7.03207, 84.9822], [13.956, 85.1636], [21.2721, 85.2696], [28.7841, 85.2956], [30.8362, 87.8982], [180.0, 89.381067043488], [180.0, 90.0], [0.0, 90.0], [-180.0, 90.0], [-180.0, 89.381067043488], [-171.547, 89.4651], [-157.314, 86.8801], [-156.343, 84.2811]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_54ebe597c794550d02564265a3c66827.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_54ebe597c794550d02564265a3c66827.addTo(map_227fc0a7df952a725f64354ed08acaa6);
+        
+    
+            var layer_control_2e1ee5554a8c97f28b06d58b7b0cc793_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_6fea719dfb21100e2bba8be5708f727a,
+                },
+                overlays :  {
+                    &quot;S2A_MSIL1C_20180601T201851_N0500_R071_T16XER_20230714T163003.SAFE&quot; : geo_json_d12562a1d49556f259bd03523fe02710,
+                    &quot;S3A_OL_1_EFR____20180601T201417_20180601T201717_20180603T012638_0179_032_014_1440_LN1_O_NT_002.SEN3&quot; : geo_json_54ebe597c794550d02564265a3c66827,
+                    &quot;S3B_OL_1_EFR____20180601T201324_20180601T201624_20200126T011448_0179_008_014_1440_MR1_R_NT_002.SEN3&quot; : geo_json_f01ae2761a32354a5ca8d4ca59dd8f41,
+                    &quot;S2A_MSIL2A_20180601T201851_N0500_R071_T11WNV_20230715T091143.SAFE&quot; : geo_json_a94ed024f7cebec11bd6df551886dce6,
+                    &quot;S3A_OL_1_EFR____20180601T201717_20180601T202017_20180603T012659_0179_032_014_1620_LN1_O_NT_002.SEN3&quot; : geo_json_105a8e481d1d0036634ca5ca274d5720,
+                    &quot;S3B_OL_1_EFR____20180601T201624_20180601T201924_20200126T011435_0180_008_014_1620_MR1_R_NT_002.SEN3&quot; : geo_json_db47d1d6e738234700828806cab3a63a,
+                    &quot;S2A_MSIL2A_20180601T201851_N0500_R071_T16XEN_20230715T091143.SAFE&quot; : geo_json_69d586c8839fd3690d0376227045ab59,
+                },
+            };
+            let layer_control_2e1ee5554a8c97f28b06d58b7b0cc793 = L.control.layers(
+                layer_control_2e1ee5554a8c97f28b06d58b7b0cc793_layers.base_layers,
+                layer_control_2e1ee5554a8c97f28b06d58b7b0cc793_layers.overlays,
+                {
+  &quot;position&quot;: &quot;topright&quot;,
+  &quot;collapsed&quot;: true,
+  &quot;autoZIndex&quot;: true,
+}
+            ).addTo(map_227fc0a7df952a725f64354ed08acaa6);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
+</div>
+<section id="proceeding-with-sentinel-3-olci-download">
+<h3>Proceeding with Sentinel-3 OLCI Download<a class="headerlink" href="#proceeding-with-sentinel-3-olci-download" title="Permalink to this heading">#</a></h3>
+<p>Moving forward, we turn our attention to downloading the Sentinel-3 OLCI data. The process mirrors the approach we took with Sentinel-2, maintaining consistency in our methodology. We’ll apply the same logic of filename conversion and follow the structured steps to retrieve the data from the Copernicus dataspace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">download_dir</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># Replace with your desired download directory</span>
+<span class="n">product_id</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;Satellite1_ID&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># Replace with your desired file id</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;Satellite1_Name&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="c1"># Replace with your desired filename</span>
+<span class="c1"># Download the single product</span>
+<span class="n">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">download_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>## Sentinel-3 SRAL</p>
+<p>It is also possible to co-locate S2/S3 OLCI with S3 SRAL (altimetry data). The overall logic is the same, we just need to fetch the S3 SRAL metadata.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentinel3_sral_data</span> <span class="o">=</span> <span class="n">query_sentinel3_sral_arctic_data</span><span class="p">(</span>
+    <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">access_token</span>
+<span class="p">)</span>
+
+<span class="n">sentinel3_sral_data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+    <span class="n">path_to_save_data</span> <span class="o">+</span> <span class="s2">&quot;s3_sral_metadata.csv&quot;</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now you do the co-locaton again for S3 SRAL with S2 for example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s3_sral_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">path_to_save_data</span> <span class="o">+</span> <span class="s2">&quot;s3_sral_metadata.csv&quot;</span>
+<span class="p">)</span>
+<span class="n">s2_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">path_to_save_data</span> <span class="o">+</span> <span class="s2">&quot;sentinel2_metadata.csv&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s3_sral_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate.Start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+    <span class="n">s3_sral_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">eval</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="s2">&quot;Start&quot;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_timezone_naive</span><span class="p">)</span>
+<span class="n">s3_sral_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate.End&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+    <span class="n">s3_sral_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">eval</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="s2">&quot;End&quot;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_timezone_naive</span><span class="p">)</span>
+
+<span class="n">s2_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate.Start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+    <span class="n">s2_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">eval</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="s2">&quot;Start&quot;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_timezone_naive</span><span class="p">)</span>
+<span class="n">s2_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate.End&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+    <span class="n">s2_metadata</span><span class="p">[</span><span class="s2">&quot;ContentDate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">eval</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="s2">&quot;End&quot;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_timezone_naive</span><span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">check_collocation</span><span class="p">(</span>
+    <span class="n">s2_metadata</span><span class="p">,</span> <span class="n">s3_sral_metadata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span><span class="n">time_window</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="s2">&quot;10 minutes&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now you can plot the co-location results again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="n">map_result</span> <span class="o">=</span> <span class="n">plot_results</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">map_result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_47c85d781de71ac193a622cf5d160d50 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_47c85d781de71ac193a622cf5d160d50&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_47c85d781de71ac193a622cf5d160d50 = L.map(
+                &quot;map_47c85d781de71ac193a622cf5d160d50&quot;,
+                {
+                    center: [0.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 2,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_93cfc38e6e1b23f13fd1a0685dcb339c = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_93cfc38e6e1b23f13fd1a0685dcb339c.addTo(map_47c85d781de71ac193a622cf5d160d50);
+        
+    
+
+        function geo_json_7c624136fbbfd6e32e4e13ef88610050_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_7c624136fbbfd6e32e4e13ef88610050 = L.geoJson(null, {
+                onEachFeature: geo_json_7c624136fbbfd6e32e4e13ef88610050_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_7c624136fbbfd6e32e4e13ef88610050_add (data) {
+            geo_json_7c624136fbbfd6e32e4e13ef88610050
+                .addData(data);
+        }
+            geo_json_7c624136fbbfd6e32e4e13ef88610050_add({&quot;coordinates&quot;: [[[-44.231995, 80.1249909269067], [-43.76352, 79.1449641306286], [-38.53421, 79.1812312679691], [-38.48816, 80.1649517927607], [-44.231995, 80.1249909269067]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_7c624136fbbfd6e32e4e13ef88610050.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_7c624136fbbfd6e32e4e13ef88610050.addTo(map_47c85d781de71ac193a622cf5d160d50);
+        
+    
+
+        function geo_json_cd534e0cd3cc07a8bbc5d6987e989a74_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_cd534e0cd3cc07a8bbc5d6987e989a74 = L.geoJson(null, {
+                onEachFeature: geo_json_cd534e0cd3cc07a8bbc5d6987e989a74_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_cd534e0cd3cc07a8bbc5d6987e989a74_add (data) {
+            geo_json_cd534e0cd3cc07a8bbc5d6987e989a74
+                .addData(data);
+        }
+            geo_json_cd534e0cd3cc07a8bbc5d6987e989a74_add({&quot;coordinates&quot;: [[[55.7431, 68.3082], [53.4084, 70.0036], [50.6882, 71.6667], [47.4784, 73.2879], [43.6409, 74.854], [38.9939, 76.346], [33.3054, 77.737], [26.3009, 78.9889], [17.7118, 80.0491], [7.40489, 80.8509], [-4.39999, 81.3224], [-16.9684, 81.409], [-29.2232, 81.0995], [-40.2347, 80.4323], [-49.5666, 79.4751], [-57.2281, 78.2988], [-63.4514, 76.9625], [-68.518, 75.5103], [-72.6809, 73.9735], [-76.1432, 72.3742], [-79.0609, 70.7278], [-81.5516, 69.0453], [-83.704, 67.3346], [-85.5855, 65.6015], [-87.2474, 63.8504], [-88.7296, 62.0845], [-90.0631, 60.3064], [-91.2724, 58.5181], [-92.3772, 56.721], [-92.3741, 56.7204], [-91.2692, 58.5175], [-90.0597, 60.3058], [-88.726, 62.0839], [-87.2436, 63.8498], [-85.5815, 65.6008], [-83.6998, 67.3339], [-81.5471, 69.0445], [-79.0561, 70.727], [-76.1381, 72.3733], [-72.6755, 73.9725], [-68.5123, 75.5092], [-63.4455, 76.9613], [-57.2222, 78.2975], [-49.561, 79.4737], [-40.23, 80.4307], [-29.2201, 81.0978], [-16.9677, 81.4072], [-4.40179, 81.3206], [7.40102, 80.8492], [17.7066, 80.0476], [26.2951, 78.9875], [33.2995, 77.7357], [38.9881, 76.3448], [43.6353, 74.8529], [47.4732, 73.287], [50.6833, 71.6658], [53.4037, 70.0028], [55.7387, 68.3074], [55.7431, 68.3082]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_cd534e0cd3cc07a8bbc5d6987e989a74.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_cd534e0cd3cc07a8bbc5d6987e989a74.addTo(map_47c85d781de71ac193a622cf5d160d50);
+        
+    
+
+        function geo_json_9bdfbefbde99fbfa41c4770ce65fa766_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_9bdfbefbde99fbfa41c4770ce65fa766 = L.geoJson(null, {
+                onEachFeature: geo_json_9bdfbefbde99fbfa41c4770ce65fa766_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_9bdfbefbde99fbfa41c4770ce65fa766_add (data) {
+            geo_json_9bdfbefbde99fbfa41c4770ce65fa766
+                .addData(data);
+        }
+            geo_json_9bdfbefbde99fbfa41c4770ce65fa766_add({&quot;coordinates&quot;: [[[-44.231995, 80.1249909269067], [-43.76352, 79.1449641306286], [-38.53421, 79.1812312679691], [-38.48816, 80.1649517927607], [-44.231995, 80.1249909269067]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_9bdfbefbde99fbfa41c4770ce65fa766.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_9bdfbefbde99fbfa41c4770ce65fa766.addTo(map_47c85d781de71ac193a622cf5d160d50);
+        
+    
+
+        function geo_json_a4120507979ba2a31e331e204332dcad_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_a4120507979ba2a31e331e204332dcad = L.geoJson(null, {
+                onEachFeature: geo_json_a4120507979ba2a31e331e204332dcad_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_a4120507979ba2a31e331e204332dcad_add (data) {
+            geo_json_a4120507979ba2a31e331e204332dcad
+                .addData(data);
+        }
+            geo_json_a4120507979ba2a31e331e204332dcad_add({&quot;coordinates&quot;: [[[55.8232, 68.3228], [53.4849, 70.0161], [50.7607, 71.677], [47.5465, 73.2959], [43.7044, 74.8595], [39.0529, 76.3489], [33.3608, 77.7372], [26.3549, 78.9863], [17.7689, 80.0436], [7.47236, 80.8427], [-4.31311, 81.3121], [-16.8555, 81.3977], [-29.0841, 81.0884], [-40.0752, 80.4223], [-49.3941, 79.467], [-57.0492, 78.2929], [-63.2702, 76.9589], [-68.3369, 75.509], [-72.5012, 73.9745], [-75.9656, 72.3775], [-78.8855, 70.7332], [-81.3785, 69.0529], [-83.5331, 67.3442], [-85.4167, 65.6132], [-87.0805, 63.8641], [-88.5644, 62.1002], [-89.8995, 60.3241], [-91.1103, 58.5376], [-92.2165, 56.7425], [-92.2134, 56.7419], [-91.1071, 58.5371], [-89.8961, 60.3235], [-88.5609, 62.0996], [-87.0767, 63.8634], [-85.4127, 65.6125], [-83.5289, 67.3435], [-81.374, 69.0521], [-78.8807, 70.7324], [-75.9605, 72.3766], [-72.4958, 73.9736], [-68.3312, 75.5079], [-63.2643, 76.9577], [-57.0433, 78.2916], [-49.3885, 79.4655], [-40.0705, 80.4207], [-29.081, 81.0866], [-16.8548, 81.3959], [-4.3149, 81.3103], [7.4685, 80.841], [17.7637, 80.042], [26.3491, 78.9849], [33.3548, 77.736], [39.0471, 76.3478], [43.6988, 74.8585], [47.5412, 73.295], [50.7557, 71.6762], [53.4802, 70.0153], [55.8188, 68.322], [55.8232, 68.3228]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_a4120507979ba2a31e331e204332dcad.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_a4120507979ba2a31e331e204332dcad.addTo(map_47c85d781de71ac193a622cf5d160d50);
+        
+    
+
+        function geo_json_1687a4eb8492078d6b2d4856ee361808_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_1687a4eb8492078d6b2d4856ee361808 = L.geoJson(null, {
+                onEachFeature: geo_json_1687a4eb8492078d6b2d4856ee361808_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_1687a4eb8492078d6b2d4856ee361808_add (data) {
+            geo_json_1687a4eb8492078d6b2d4856ee361808
+                .addData(data);
+        }
+            geo_json_1687a4eb8492078d6b2d4856ee361808_add({&quot;coordinates&quot;: [[[-60.571625, 78.2574011484509], [-56.569397, 78.2850719467945], [-56.533966, 79.1806417245788], [-56.74707, 79.1371686817363], [-57.27719, 79.0259438369234], [-57.79663, 78.9138265554219], [-58.306366, 78.8010083470066], [-58.80545, 78.6873468827873], [-59.293762, 78.5727766924696], [-59.771667, 78.4573775156709], [-60.240692, 78.3412883467002], [-60.571625, 78.2574011484509]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_1687a4eb8492078d6b2d4856ee361808.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_1687a4eb8492078d6b2d4856ee361808.addTo(map_47c85d781de71ac193a622cf5d160d50);
+        
+    
+
+        function geo_json_8c8865c340ff94cc0cb2af75f21a9566_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_8c8865c340ff94cc0cb2af75f21a9566 = L.geoJson(null, {
+                onEachFeature: geo_json_8c8865c340ff94cc0cb2af75f21a9566_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_8c8865c340ff94cc0cb2af75f21a9566_add (data) {
+            geo_json_8c8865c340ff94cc0cb2af75f21a9566
+                .addData(data);
+        }
+            geo_json_8c8865c340ff94cc0cb2af75f21a9566_add({&quot;coordinates&quot;: [[[55.7431, 68.3082], [53.4084, 70.0036], [50.6882, 71.6667], [47.4784, 73.2879], [43.6409, 74.854], [38.9939, 76.346], [33.3054, 77.737], [26.3009, 78.9889], [17.7118, 80.0491], [7.40489, 80.8509], [-4.39999, 81.3224], [-16.9684, 81.409], [-29.2232, 81.0995], [-40.2347, 80.4323], [-49.5666, 79.4751], [-57.2281, 78.2988], [-63.4514, 76.9625], [-68.518, 75.5103], [-72.6809, 73.9735], [-76.1432, 72.3742], [-79.0609, 70.7278], [-81.5516, 69.0453], [-83.704, 67.3346], [-85.5855, 65.6015], [-87.2474, 63.8504], [-88.7296, 62.0845], [-90.0631, 60.3064], [-91.2724, 58.5181], [-92.3772, 56.721], [-92.3741, 56.7204], [-91.2692, 58.5175], [-90.0597, 60.3058], [-88.726, 62.0839], [-87.2436, 63.8498], [-85.5815, 65.6008], [-83.6998, 67.3339], [-81.5471, 69.0445], [-79.0561, 70.727], [-76.1381, 72.3733], [-72.6755, 73.9725], [-68.5123, 75.5092], [-63.4455, 76.9613], [-57.2222, 78.2975], [-49.561, 79.4737], [-40.23, 80.4307], [-29.2201, 81.0978], [-16.9677, 81.4072], [-4.40179, 81.3206], [7.40102, 80.8492], [17.7066, 80.0476], [26.2951, 78.9875], [33.2995, 77.7357], [38.9881, 76.3448], [43.6353, 74.8529], [47.4732, 73.287], [50.6833, 71.6658], [53.4037, 70.0028], [55.7387, 68.3074], [55.7431, 68.3082]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_8c8865c340ff94cc0cb2af75f21a9566.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_8c8865c340ff94cc0cb2af75f21a9566.addTo(map_47c85d781de71ac193a622cf5d160d50);
+        
+    
+
+        function geo_json_7b4168768be349c83547522119f71278_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_7b4168768be349c83547522119f71278 = L.geoJson(null, {
+                onEachFeature: geo_json_7b4168768be349c83547522119f71278_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_7b4168768be349c83547522119f71278_add (data) {
+            geo_json_7b4168768be349c83547522119f71278
+                .addData(data);
+        }
+            geo_json_7b4168768be349c83547522119f71278_add({&quot;coordinates&quot;: [[[-60.571625, 78.2574011484509], [-56.569397, 78.2850719467945], [-56.533966, 79.1806417245788], [-56.74707, 79.1371686817363], [-57.27719, 79.0259438369234], [-57.79663, 78.9138265554219], [-58.306366, 78.8010083470066], [-58.80545, 78.6873468827873], [-59.293762, 78.5727766924696], [-59.771667, 78.4573775156709], [-60.240692, 78.3412883467002], [-60.571625, 78.2574011484509]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_7b4168768be349c83547522119f71278.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_7b4168768be349c83547522119f71278.addTo(map_47c85d781de71ac193a622cf5d160d50);
+        
+    
+
+        function geo_json_1ffccee0d5993129e89977e21e9790a7_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_1ffccee0d5993129e89977e21e9790a7 = L.geoJson(null, {
+                onEachFeature: geo_json_1ffccee0d5993129e89977e21e9790a7_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_1ffccee0d5993129e89977e21e9790a7_add (data) {
+            geo_json_1ffccee0d5993129e89977e21e9790a7
+                .addData(data);
+        }
+            geo_json_1ffccee0d5993129e89977e21e9790a7_add({&quot;coordinates&quot;: [[[55.8232, 68.3228], [53.4849, 70.0161], [50.7607, 71.677], [47.5465, 73.2959], [43.7044, 74.8595], [39.0529, 76.3489], [33.3608, 77.7372], [26.3549, 78.9863], [17.7689, 80.0436], [7.47236, 80.8427], [-4.31311, 81.3121], [-16.8555, 81.3977], [-29.0841, 81.0884], [-40.0752, 80.4223], [-49.3941, 79.467], [-57.0492, 78.2929], [-63.2702, 76.9589], [-68.3369, 75.509], [-72.5012, 73.9745], [-75.9656, 72.3775], [-78.8855, 70.7332], [-81.3785, 69.0529], [-83.5331, 67.3442], [-85.4167, 65.6132], [-87.0805, 63.8641], [-88.5644, 62.1002], [-89.8995, 60.3241], [-91.1103, 58.5376], [-92.2165, 56.7425], [-92.2134, 56.7419], [-91.1071, 58.5371], [-89.8961, 60.3235], [-88.5609, 62.0996], [-87.0767, 63.8634], [-85.4127, 65.6125], [-83.5289, 67.3435], [-81.374, 69.0521], [-78.8807, 70.7324], [-75.9605, 72.3766], [-72.4958, 73.9736], [-68.3312, 75.5079], [-63.2643, 76.9577], [-57.0433, 78.2916], [-49.3885, 79.4655], [-40.0705, 80.4207], [-29.081, 81.0866], [-16.8548, 81.3959], [-4.3149, 81.3103], [7.4685, 80.841], [17.7637, 80.042], [26.3491, 78.9849], [33.3548, 77.736], [39.0471, 76.3478], [43.6988, 74.8585], [47.5412, 73.295], [50.7557, 71.6762], [53.4802, 70.0153], [55.8188, 68.322], [55.8232, 68.3228]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_1ffccee0d5993129e89977e21e9790a7.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_1ffccee0d5993129e89977e21e9790a7.addTo(map_47c85d781de71ac193a622cf5d160d50);
+        
+    
+
+        function geo_json_186ce509aa6bed4a9713ac32c4d5f95c_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_186ce509aa6bed4a9713ac32c4d5f95c = L.geoJson(null, {
+                onEachFeature: geo_json_186ce509aa6bed4a9713ac32c4d5f95c_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_186ce509aa6bed4a9713ac32c4d5f95c_add (data) {
+            geo_json_186ce509aa6bed4a9713ac32c4d5f95c
+                .addData(data);
+        }
+            geo_json_186ce509aa6bed4a9713ac32c4d5f95c_add({&quot;coordinates&quot;: [[[-44.744415, 81.0105292761511], [-44.18622, 80.0371954762691], [-38.492676, 80.0767959432207], [-38.437378, 81.0604568935422], [-44.68994, 81.0168423597257], [-44.744415, 81.0105292761511]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_186ce509aa6bed4a9713ac32c4d5f95c.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_186ce509aa6bed4a9713ac32c4d5f95c.addTo(map_47c85d781de71ac193a622cf5d160d50);
+        
+    
+
+        function geo_json_791d067b6839abd1693bc8d8518a3f2f_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_791d067b6839abd1693bc8d8518a3f2f = L.geoJson(null, {
+                onEachFeature: geo_json_791d067b6839abd1693bc8d8518a3f2f_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_791d067b6839abd1693bc8d8518a3f2f_add (data) {
+            geo_json_791d067b6839abd1693bc8d8518a3f2f
+                .addData(data);
+        }
+            geo_json_791d067b6839abd1693bc8d8518a3f2f_add({&quot;coordinates&quot;: [[[55.7431, 68.3082], [53.4084, 70.0036], [50.6882, 71.6667], [47.4784, 73.2879], [43.6409, 74.854], [38.9939, 76.346], [33.3054, 77.737], [26.3009, 78.9889], [17.7118, 80.0491], [7.40489, 80.8509], [-4.39999, 81.3224], [-16.9684, 81.409], [-29.2232, 81.0995], [-40.2347, 80.4323], [-49.5666, 79.4751], [-57.2281, 78.2988], [-63.4514, 76.9625], [-68.518, 75.5103], [-72.6809, 73.9735], [-76.1432, 72.3742], [-79.0609, 70.7278], [-81.5516, 69.0453], [-83.704, 67.3346], [-85.5855, 65.6015], [-87.2474, 63.8504], [-88.7296, 62.0845], [-90.0631, 60.3064], [-91.2724, 58.5181], [-92.3772, 56.721], [-92.3741, 56.7204], [-91.2692, 58.5175], [-90.0597, 60.3058], [-88.726, 62.0839], [-87.2436, 63.8498], [-85.5815, 65.6008], [-83.6998, 67.3339], [-81.5471, 69.0445], [-79.0561, 70.727], [-76.1381, 72.3733], [-72.6755, 73.9725], [-68.5123, 75.5092], [-63.4455, 76.9613], [-57.2222, 78.2975], [-49.561, 79.4737], [-40.23, 80.4307], [-29.2201, 81.0978], [-16.9677, 81.4072], [-4.40179, 81.3206], [7.40102, 80.8492], [17.7066, 80.0476], [26.2951, 78.9875], [33.2995, 77.7357], [38.9881, 76.3448], [43.6353, 74.8529], [47.4732, 73.287], [50.6833, 71.6658], [53.4037, 70.0028], [55.7387, 68.3074], [55.7431, 68.3082]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_791d067b6839abd1693bc8d8518a3f2f.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_791d067b6839abd1693bc8d8518a3f2f.addTo(map_47c85d781de71ac193a622cf5d160d50);
+        
+    
+            var layer_control_5680160491703864264f53a981218920_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_93cfc38e6e1b23f13fd1a0685dcb339c,
+                },
+                overlays :  {
+                    &quot;S2A_MSIL1C_20180601T165851_N0500_R069_T24XVP_20230629T083131.SAFE&quot; : geo_json_9bdfbefbde99fbfa41c4770ce65fa766,
+                    &quot;S3A_SR_2_LAN_SI_20180601T164802_20180601T170244_20230506T222705_0882_032_012______LN3_R_NT_005.SEN3&quot; : geo_json_791d067b6839abd1693bc8d8518a3f2f,
+                    &quot;S3B_SR_2_LAN_SI_20180601T164700_20180601T170142_20230802T095521_0881_008_012______LN3_R_NT_005.SEN3&quot; : geo_json_1ffccee0d5993129e89977e21e9790a7,
+                    &quot;S2A_MSIL1C_20180601T165851_N0500_R069_T21XVH_20230629T083131.SAFE&quot; : geo_json_7b4168768be349c83547522119f71278,
+                    &quot;S2A_MSIL1C_20180601T165851_N0500_R069_T24XVQ_20230629T083131.SAFE&quot; : geo_json_186ce509aa6bed4a9713ac32c4d5f95c,
+                },
+            };
+            let layer_control_5680160491703864264f53a981218920 = L.control.layers(
+                layer_control_5680160491703864264f53a981218920_layers.base_layers,
+                layer_control_5680160491703864264f53a981218920_layers.overlays,
+                {
+  &quot;position&quot;: &quot;topright&quot;,
+  &quot;collapsed&quot;: true,
+  &quot;autoZIndex&quot;: true,
+}
+            ).addTo(map_47c85d781de71ac193a622cf5d160d50);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-read-in-functions-needed">Step 0: Read in Functions Needed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-get-the-metadata-for-satellites-sentinel-2-and-sentinel-3-olci-in-this-case">Step 1: Get the Metadata for satellites (Sentinel-2 and Sentinel-3 OLCI in this case)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceeding-with-sentinel-3-olci-download">Proceeding with Sentinel-3 OLCI Download</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados/Weibin Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

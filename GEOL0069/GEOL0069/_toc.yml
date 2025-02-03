@@ -19,7 +19,7 @@ parts:
       - file: Chapter_1_rollout_3
   - caption: Week 4
     chapters:
-      - file: Chapter1:Data_Colocating_S2_S3
+      - file: Chapter1:Data_Colocating_S2_S3_3
       - file: Chapter1:Unsupervised_Learning_Methods
   - caption: Week 5
     chapters:
