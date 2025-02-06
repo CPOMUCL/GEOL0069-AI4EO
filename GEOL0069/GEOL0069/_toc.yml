@@ -20,7 +20,7 @@ parts:
   - caption: Week 4
     chapters:
       - file: Chapter1_Data_Colocating_S2_S3_3
-      - file: Chapter1:Unsupervised_Learning_Methods
+      - file: Chapter1_Unsupervised_Learning_Methods
   - caption: Week 5
     chapters:
       - file: Chapter1:Regression
