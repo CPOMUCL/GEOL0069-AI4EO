@@ -440,6 +440,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-functions-needed">Read in Functions Needed</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots-of-clustered-data">Scatter Plots of Clustered Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#waveform-alignment-using-cross-correlation">Waveform Alignment Using Cross-Correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-with-esa-data">Compare with ESA data</a></li>
 </ul>
             </nav>
@@ -1154,6 +1156,55 @@ Gaussian SSD curve-fit error: Optimal parameters not found: Number of calls to f
 </div>
 </section>
 </section>
+<section id="scatter-plots-of-clustered-data">
+<h2>Scatter Plots of Clustered Data<a class="headerlink" href="#scatter-plots-of-clustered-data" title="Permalink to this heading">#</a></h2>
+<p>This code visualizes the clustering results using scatter plots, where different colors represent different clusters (<code class="docutils literal notranslate"><span class="pre">clusters_gmm</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_cleaned</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">data_cleaned</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">clusters_gmm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;sig_0&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;PP&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_cleaned</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">data_cleaned</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">clusters_gmm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;sig_0&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;SSD&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_cleaned</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">data_cleaned</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">clusters_gmm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;PP&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;SSD&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="waveform-alignment-using-cross-correlation">
+<h2>Waveform Alignment Using Cross-Correlation<a class="headerlink" href="#waveform-alignment-using-cross-correlation" title="Permalink to this heading">#</a></h2>
+<p>This code aligns waveforms in the cluster where <code class="docutils literal notranslate"><span class="pre">clusters_gmm</span> <span class="pre">==</span> <span class="pre">0</span></code> by using cross-correlation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">correlate</span>
+ 
+<span class="c1"># Find the reference point (e.g., the peak)</span>
+<span class="n">reference_point_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+ 
+<span class="c1"># Calculate cross-correlation with the reference point</span>
+<span class="n">aligned_waves</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">wave</span> <span class="ow">in</span> <span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">0</span><span class="p">][::</span><span class="nb">len</span><span class="p">(</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span> <span class="o">//</span> <span class="mi">10</span><span class="p">]:</span>
+    <span class="n">correlation</span> <span class="o">=</span> <span class="n">correlate</span><span class="p">(</span><span class="n">wave</span><span class="p">,</span> <span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">shift</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">wave</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">correlation</span><span class="p">)</span>
+    <span class="n">aligned_wave</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">wave</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+    <span class="n">aligned_waves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aligned_wave</span><span class="p">)</span>
+ 
+<span class="c1"># Plot aligned waves</span>
+<span class="k">for</span> <span class="n">aligned_wave</span> <span class="ow">in</span> <span class="n">aligned_waves</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">aligned_wave</span><span class="p">)</span>
+ 
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Plot of 10 equally spaced functions where clusters_gmm = 0 (aligned)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="compare-with-esa-data">
 <h2>Compare with ESA data<a class="headerlink" href="#compare-with-esa-data" title="Permalink to this heading">#</a></h2>
 <p>In the ESA dataset, sea ice = 1 and lead = 2. Therefore, we need to subtract 1 from it so our predicted labels are comparable with the official product labels.</p>
@@ -1302,6 +1353,8 @@ weighted avg       1.00      1.00      1.00     12195
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-functions-needed">Read in Functions Needed</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots-of-clustered-data">Scatter Plots of Clustered Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#waveform-alignment-using-cross-correlation">Waveform Alignment Using Cross-Correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-with-esa-data">Compare with ESA data</a></li>
 </ul>
   </nav></div>
