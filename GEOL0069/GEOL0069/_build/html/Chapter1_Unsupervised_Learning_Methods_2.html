@@ -440,6 +440,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-functions-needed">Read in Functions Needed</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-with-esa-data">Compare with ESA data</a></li>
 </ul>
             </nav>
         </div>
@@ -693,7 +694,7 @@ Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
 <span class="n">valid_data_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">band_stack</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Reshape for K-means, only including valid data</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">band_stack</span><span class="p">[</span><span class="n">valid_data_mask</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">band_stack</span><span class="p">[</span><span class="n">valid_data_mask</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
 <span class="c1"># K-means clustering</span>
 <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -710,6 +711,8 @@ Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;K-means clustering on Sentinel-2 Bands&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cluster Label&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">del</span> <span class="n">kmeans</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">band_data</span><span class="p">,</span> <span class="n">band_stack</span><span class="p">,</span> <span class="n">valid_data_mask</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">labels_image</span> 
 </pre></div>
 </div>
 </div>
@@ -1122,16 +1125,38 @@ Gaussian SSD curve-fit error: Optimal parameters not found: Number of calls to f
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>  <span class="c1"># plot of all the echos</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">waves_cleaned</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span><span class="o">*</span><span class="n">waves_cleaned</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">waves_cleaned</span><span class="p">)</span>  <span class="c1"># plot of all the echos</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/c0c937680de2eaae4c9bae34b0593db119c97a9f89d6a1bf3960c237de7e9cb0.png" src="_images/c0c937680de2eaae4c9bae34b0593db119c97a9f89d6a1bf3960c237de7e9cb0.png" />
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot echos for the lead cluster</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span><span class="o">*</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># plot of all the echos</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
-<p>Compare with ESA data</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot echos for the sea ice cluster</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span><span class="o">*</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># plot of all the echos</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="compare-with-esa-data">
+<h2>Compare with ESA data<a class="headerlink" href="#compare-with-esa-data" title="Permalink to this heading">#</a></h2>
+<p>In the ESA dataset, sea ice = 1 and lead = 2. Therefore, we need to subtract 1 from it so our predicted labels are comparable with the official product labels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flag_cleaned_modified</span> <span class="o">=</span> <span class="n">flag_cleaned</span> <span class="o">-</span> <span class="mi">1</span>
@@ -1180,7 +1205,6 @@ weighted avg       1.00      1.00      1.00     12195
 </div>
 </div>
 </div>
-</section>
 </section>
 </section>
 
@@ -1278,6 +1302,7 @@ weighted avg       1.00      1.00      1.00     12195
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-functions-needed">Read in Functions Needed</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-with-esa-data">Compare with ESA data</a></li>
 </ul>
   </nav></div>
 
