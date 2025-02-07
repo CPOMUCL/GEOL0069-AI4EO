@@ -62,9 +62,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter1:Unsupervised_Learning_Methods';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Chapter1_Unsupervised_Learning_Methods_2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Regression Techniques for Predictive Analysis" href="Chapter1%3ARegression.html" />
+    <link rel="prev" title="Colocating Sentinel-3 OLCI/SRAL and Sentinal-2 Optical Data" href="Chapter1_Data_Colocating_S2_S3_3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -178,9 +180,9 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Chapter1_Data_Colocating_S2_S3_3.html">Colocating Sentinel-3 OLCI/SRAL and Sentinal-2 Optical Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Chapter1_Unsupervised_Learning_Methods_2.html">Unsupervised Learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Unsupervised Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
 <ul class="nav bd-sidenav">
@@ -289,7 +291,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FChapter1:Unsupervised_Learning_Methods.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FChapter1_Unsupervised_Learning_Methods_2.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -319,7 +321,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/Chapter1:Unsupervised_Learning_Methods.ipynb" target="_blank"
+      <li><a href="_sources/Chapter1_Unsupervised_Learning_Methods_2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -497,6 +499,73 @@ document.write(`
 <p>Below, you’ll find a basic implementation of the K-means clustering algorithm. This serves as a foundational understanding and a starting point for applying the algorithm to your specific data analysis tasks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">rasterio</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting rasterio
+  Downloading rasterio-1.4.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.1 kB)
+Collecting affine (from rasterio)
+  Downloading affine-2.4.0-py3-none-any.whl.metadata (4.0 kB)
+Requirement already satisfied: attrs in /usr/local/lib/python3.11/dist-packages (from rasterio) (25.1.0)
+Requirement already satisfied: certifi in /usr/local/lib/python3.11/dist-packages (from rasterio) (2025.1.31)
+Requirement already satisfied: click&gt;=4.0 in /usr/local/lib/python3.11/dist-packages (from rasterio) (8.1.8)
+Collecting cligj&gt;=0.5 (from rasterio)
+  Downloading cligj-0.7.2-py3-none-any.whl.metadata (5.0 kB)
+Requirement already satisfied: numpy&gt;=1.24 in /usr/local/lib/python3.11/dist-packages (from rasterio) (1.26.4)
+Collecting click-plugins (from rasterio)
+  Downloading click_plugins-1.1.1-py2.py3-none-any.whl.metadata (6.4 kB)
+Requirement already satisfied: pyparsing in /usr/local/lib/python3.11/dist-packages (from rasterio) (3.2.1)
+Downloading rasterio-1.4.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (22.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">22.2/22.2 MB</span> <span class=" -Color -Color-Red">67.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading cligj-0.7.2-py3-none-any.whl (7.1 kB)
+Downloading affine-2.4.0-py3-none-any.whl (15 kB)
+Downloading click_plugins-1.1.1-py2.py3-none-any.whl (7.5 kB)
+Installing collected packages: cligj, click-plugins, affine, rasterio
+Successfully installed affine-2.4.0 click-plugins-1.1.1 cligj-0.7.2 rasterio-1.4.3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">netCDF4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting netCDF4
+  Downloading netCDF4-1.7.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+Collecting cftime (from netCDF4)
+  Downloading cftime-1.6.4.post1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.7 kB)
+Requirement already satisfied: certifi in /usr/local/lib/python3.11/dist-packages (from netCDF4) (2025.1.31)
+Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages (from netCDF4) (1.26.4)
+Downloading netCDF4-1.7.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (9.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">9.3/9.3 MB</span> <span class=" -Color -Color-Red">23.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading cftime-1.6.4.post1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.4/1.4 MB</span> <span class=" -Color -Color-Red">53.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hInstalling collected packages: cftime, netCDF4
+Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python code for K-means clustering</span>
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -506,7 +575,7 @@ document.write(`
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># K-means model</span>
-<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">y_kmeans</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
@@ -519,11 +588,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/weibinchen/miniforge3/envs/s3s2_env/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:1416: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
-  super()._check_params_vs_input(X, default_n_init=10)
-</pre></div>
-</div>
-<img alt="_images/2f8e9ee1b541f2b8dac77470c95995f498b8dd1aad856f5b09b25d5028ccd92a.png" src="_images/2f8e9ee1b541f2b8dac77470c95995f498b8dd1aad856f5b09b25d5028ccd92a.png" />
+<img alt="_images/2771ce4de09219ffbef29472c6b41f15ab284628bc6a150e0475ecac35404218.png" src="_images/2771ce4de09219ffbef29472c6b41f15ab284628bc6a150e0475ecac35404218.png" />
 </div>
 </div>
 </section>
@@ -593,7 +658,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0c2d3cbe81d307a6c1e38a1a1765728bed42aa0b11fb58f2c4820e6fde0c486c.png" src="_images/0c2d3cbe81d307a6c1e38a1a1765728bed42aa0b11fb58f2c4820e6fde0c486c.png" />
+<img alt="_images/dcb27d29bdd9d067b6441de71cff5a81a0949b62174037758ad7280f86eb8845.png" src="_images/dcb27d29bdd9d067b6441de71cff5a81a0949b62174037758ad7280f86eb8845.png" />
 </div>
 </div>
 </section>
@@ -610,7 +675,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;/S2A_MSIL1C_20190301T235611_N0207_R116_T01WCU_20190302T014622.SAFE/GRANULE/L1C_T01WCU_A019275_20190301T235610/IMG_DATA/&quot;</span> <span class="c1"># You need to specify the path</span>
+<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/GEOL0069/2425/Week 4/Unsupervised Learning/S2A_MSIL1C_20190301T235611_N0207_R116_T01WCU_20190302T014622.SAFE/GRANULE/L1C_T01WCU_A019275_20190301T235610/IMG_DATA/&quot;</span> <span class="c1"># You need to specify the path</span>
 <span class="n">bands_paths</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;B4&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B04.jp2&#39;</span><span class="p">,</span>
     <span class="s1">&#39;B3&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B03.jp2&#39;</span><span class="p">,</span>
@@ -619,7 +684,7 @@ document.write(`
 
 <span class="c1"># Read and stack the band images</span>
 <span class="n">band_data</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">]:</span>
+<span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">]:</span>
     <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bands_paths</span><span class="p">[</span><span class="n">band</span><span class="p">])</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
         <span class="n">band_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 
@@ -649,11 +714,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/weibinchen/miniforge3/envs/s3s2_env/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:1416: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
-  super()._check_params_vs_input(X, default_n_init=10)
-</pre></div>
-</div>
-<img alt="_images/af7c1c536e4d3c16db186d28e5de7c6744c63d95c8752fc8cc00c9f7e095d4e6.png" src="_images/af7c1c536e4d3c16db186d28e5de7c6744c63d95c8752fc8cc00c9f7e095d4e6.png" />
+<img alt="_images/c3f37107459383249b41510b2afbb1bdb227371a30c3738d53dc4187a74e0ad6.png" src="_images/c3f37107459383249b41510b2afbb1bdb227371a30c3738d53dc4187a74e0ad6.png" />
 </div>
 </div>
 </section>
@@ -667,7 +728,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Paths to the band images</span>
-<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;/S2A_MSIL1C_20190301T235611_N0207_R116_T01WCU_20190302T014622.SAFE/GRANULE/L1C_T01WCU_A019275_20190301T235610/IMG_DATA/&quot;</span>
+<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/GEOL0069/2425/Week 4/Unsupervised Learning/S2A_MSIL1C_20190301T235611_N0207_R116_T01WCU_20190302T014622.SAFE/GRANULE/L1C_T01WCU_A019275_20190301T235610/IMG_DATA/&quot;</span> <span class="c1"># You need to specify the path</span>
 <span class="n">bands_paths</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;B4&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B04.jp2&#39;</span><span class="p">,</span>
     <span class="s1">&#39;B3&#39;</span><span class="p">:</span> <span class="n">base_path</span> <span class="o">+</span> <span class="s1">&#39;T01WCU_20190301T235611_B03.jp2&#39;</span><span class="p">,</span>
@@ -676,7 +737,7 @@ document.write(`
 
 <span class="c1"># Read and stack the band images</span>
 <span class="n">band_data</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">]:</span>
+<span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">]:</span>
     <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bands_paths</span><span class="p">[</span><span class="n">band</span><span class="p">])</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
         <span class="n">band_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 
@@ -685,7 +746,7 @@ document.write(`
 <span class="n">valid_data_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">band_stack</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Reshape for GMM, only including valid data</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">band_stack</span><span class="p">[</span><span class="n">valid_data_mask</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">band_stack</span><span class="p">[</span><span class="n">valid_data_mask</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
 <span class="c1"># GMM clustering</span>
 <span class="n">gmm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -706,7 +767,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ccbfbeb0d56337e9ff4e84b8ab47a601e958569a7d6d9e0d18278f2a976b4b40.png" src="_images/ccbfbeb0d56337e9ff4e84b8ab47a601e958569a7d6d9e0d18278f2a976b4b40.png" />
+<img alt="_images/7ee5d31cf7bfbacc2dade42e31c69e4bf5d21c1cb7c9bc175dc56ee567a04480.png" src="_images/7ee5d31cf7bfbacc2dade42e31c69e4bf5d21c1cb7c9bc175dc56ee567a04480.png" />
 </div>
 </div>
 </section>
@@ -724,15 +785,11 @@ document.write(`
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">griddata</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap</span>
 <span class="kn">import</span> <span class="nn">numpy.ma</span> <span class="k">as</span> <span class="nn">ma</span>
 <span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
 <span class="kn">import</span> <span class="nn">scipy.spatial</span> <span class="k">as</span> <span class="nn">spatial</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">KDTree</span>
-
-<span class="kn">import</span> <span class="nn">pyproj</span>
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span><span class="p">,</span> <span class="n">DBSCAN</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span><span class="n">MinMaxScaler</span>
 <span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
@@ -873,7 +930,9 @@ document.write(`
 <span class="k">def</span> <span class="nf">calculate_SSD</span><span class="p">(</span><span class="n">RIP</span><span class="p">):</span>
 
     <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
-    <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">asarray</span> <span class="k">as</span> <span class="n">ar</span><span class="p">,</span><span class="n">exp</span>
+    <span class="c1"># from scipy import asarray as ar,exp</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">asarray</span> <span class="k">as</span> <span class="n">ar</span><span class="p">,</span> <span class="n">exp</span>
+
     <span class="n">do_plot</span><span class="o">=</span><span class="s1">&#39;Off&#39;</span>
 
     <span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
@@ -930,30 +989,37 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">SAR_file</span><span class="o">=</span><span class="s1">&#39;S3A_SR_2_LAN_SI_20190307T005808_20190307T012503_20230527T225016_1614_042_131______LN3_R_NT_005.SEN3&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;overlapping SAR file is&#39;</span><span class="p">,</span><span class="n">SAR_file</span><span class="p">)</span>
-<span class="n">SAR_data</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">SAR_file</span><span class="o">+</span><span class="s1">&#39;/enhanced_measurement.nc&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 4/Unsupervised Learning/&#39;</span>
+<span class="n">SAR_file</span> <span class="o">=</span> <span class="s1">&#39;S3A_SR_2_LAN_SI_20190307T005808_20190307T012503_20230527T225016_1614_042_131______LN3_R_NT_005.SEN3&#39;</span>
+<span class="n">SAR_data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">SAR_file</span> <span class="o">+</span> <span class="s1">&#39;/enhanced_measurement.nc&#39;</span><span class="p">)</span>
 
-<span class="n">SAR_lat</span><span class="p">,</span> <span class="n">SAR_lon</span><span class="p">,</span> <span class="n">waves</span><span class="p">,</span> <span class="n">sig_0</span><span class="p">,</span> <span class="n">RIP</span><span class="o">=</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;lat_20_ku&#39;</span><span class="p">),</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;lon_20_ku&#39;</span><span class="p">),</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;waveform_20_ku&#39;</span><span class="p">),</span><span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;sig0_water_20_ku&#39;</span><span class="p">),</span><span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;rip_20_ku&#39;</span><span class="p">)</span><span class="c1">#unpack_gpod(&#39;Sigma0_20Hz&#39;)</span>
-<span class="n">SAR_index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">SAR_lat</span><span class="p">))</span>
+<span class="n">SAR_lat</span> <span class="o">=</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;lat_20_ku&#39;</span><span class="p">)</span>
+<span class="n">SAR_lon</span> <span class="o">=</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;lon_20_ku&#39;</span><span class="p">)</span>
+<span class="n">waves</span>   <span class="o">=</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;waveform_20_ku&#39;</span><span class="p">)</span>
+<span class="n">sig_0</span>   <span class="o">=</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;sig0_water_20_ku&#39;</span><span class="p">)</span>
+<span class="n">RIP</span>     <span class="o">=</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;rip_20_ku&#39;</span><span class="p">)</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="n">unpack_gpod</span><span class="p">(</span><span class="s1">&#39;surf_type_class_20_ku&#39;</span><span class="p">)</span>
 
-<span class="n">find</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">SAR_lat</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">99999</span><span class="p">)</span><span class="c1">#60</span>
-<span class="n">SAR_lat</span><span class="o">=</span><span class="n">SAR_lat</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
-<span class="n">SAR_lon</span><span class="o">=</span><span class="n">SAR_lon</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
-<span class="n">SAR_index</span><span class="o">=</span><span class="n">SAR_index</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
-<span class="n">waves</span><span class="o">=</span><span class="n">waves</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
-<span class="n">sig_0</span><span class="o">=</span><span class="n">sig_0</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
-<span class="n">RIP</span><span class="o">=</span><span class="n">RIP</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
+<span class="c1"># Filter out bad data points using criteria (here, lat &gt;= -99999)</span>
+<span class="n">find</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">SAR_lat</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">99999</span><span class="p">)</span>
+<span class="n">SAR_lat</span> <span class="o">=</span> <span class="n">SAR_lat</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
+<span class="n">SAR_lon</span> <span class="o">=</span> <span class="n">SAR_lon</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
+<span class="n">waves</span>   <span class="o">=</span> <span class="n">waves</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
+<span class="n">sig_0</span>   <span class="o">=</span> <span class="n">sig_0</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
+<span class="n">RIP</span>     <span class="o">=</span> <span class="n">RIP</span><span class="p">[</span><span class="n">find</span><span class="p">]</span>
 
-<span class="n">PP</span><span class="o">=</span><span class="n">peakiness</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>
-<span class="n">SSD</span><span class="o">=</span><span class="n">calculate_SSD</span><span class="p">(</span><span class="n">RIP</span><span class="p">)</span>
-<span class="n">sig_0_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sig_0</span><span class="p">)</span>  <span class="c1"># Replace [...] with your data</span>
-<span class="n">RIP_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">RIP</span><span class="p">)</span>
-<span class="n">PP_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">PP</span><span class="p">)</span>
-<span class="n">SSD_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SSD</span><span class="p">)</span>
+<span class="c1"># Calculate additional features</span>
+<span class="n">PP</span> <span class="o">=</span> <span class="n">peakiness</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>
+<span class="n">SSD</span> <span class="o">=</span> <span class="n">calculate_SSD</span><span class="p">(</span><span class="n">RIP</span><span class="p">)</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">sig_0_np</span><span class="p">,</span><span class="n">PP_np</span><span class="p">,</span> <span class="n">SSD_np</span><span class="p">))</span>
+<span class="c1"># Convert to numpy arrays (if not already)</span>
+<span class="n">sig_0_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sig_0</span><span class="p">)</span>
+<span class="n">PP_np</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">PP</span><span class="p">)</span>
+<span class="n">SSD_np</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SSD</span><span class="p">)</span>
+
+<span class="c1"># Create data matrix</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">sig_0_np</span><span class="p">,</span> <span class="n">PP_np</span><span class="p">,</span> <span class="n">SSD_np</span><span class="p">))</span>
+
 <span class="c1"># Standardize the data</span>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">data_normalized</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -961,11 +1027,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>overlapping SAR file is S3A_SR_2_LAN_SI_20190307T005808_20190307T012503_20230527T225016_1614_042_131______LN3_R_NT_005.SEN3
-Running peakiness function...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running peakiness function...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vj/y1xmlvz14mx3w9q4j79d5ll80000gn/T/ipykernel_93121/264357313.py:67: RuntimeWarning: Mean of empty slice
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-4-df8dce6d9cd2&gt;:63: RuntimeWarning: Mean of empty slice
   noise_floor=np.nanmean(waves[10:20])
 </pre></div>
 </div>
@@ -979,9 +1044,19 @@ Gaussian SSD curve-fit error: Optimal parameters not found: Number of calls to f
 <p>There are some NaN values in the dataset so one way to deal with this is to delete them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nan_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data_normalized</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove any rows that contain NaN values</span>
+<span class="n">nan_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data_normalized</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of NaN values in the array: </span><span class="si">{</span><span class="n">nan_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
 <span class="n">data_cleaned</span> <span class="o">=</span> <span class="n">data_normalized</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data_normalized</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data_normalized</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">waves_cleaned</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">waves</span><span class="p">)[</span><span class="n">mask</span><span class="p">]</span> 
+<span class="n">flag_cleaned</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">flag</span><span class="p">)[</span><span class="n">mask</span><span class="p">]</span>
+
+<span class="n">data_cleaned</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="p">[(</span><span class="n">flag_cleaned</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">flag_cleaned</span><span class="o">==</span><span class="mi">2</span><span class="p">)]</span>
+<span class="n">waves_cleaned</span> <span class="o">=</span> <span class="n">waves_cleaned</span><span class="p">[(</span><span class="n">flag_cleaned</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">flag_cleaned</span><span class="o">==</span><span class="mi">2</span><span class="p">)]</span>
+<span class="n">flag_cleaned</span> <span class="o">=</span> <span class="n">flag_cleaned</span><span class="p">[(</span><span class="n">flag_cleaned</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">flag_cleaned</span><span class="o">==</span><span class="mi">2</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -1006,13 +1081,101 @@ Gaussian SSD curve-fit error: Optimal parameters not found: Number of calls to f
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unique</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">clusters_gmm</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">class_counts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">unique</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">class_counts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cluster counts:&quot;</span><span class="p">,</span> <span class="n">class_counts</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: 18945, 1: 4947}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cluster counts: {0: 8880, 1: 3315}
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can plot the mean waveform of each class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mean and standard deviation for all echoes</span>
+<span class="n">mean_ice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">0</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">std_ice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mean_ice</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ice&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mean_ice</span><span class="p">)),</span> <span class="n">mean_ice</span> <span class="o">-</span> <span class="n">std_ice</span><span class="p">,</span> <span class="n">mean_ice</span> <span class="o">+</span> <span class="n">std_ice</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+
+<span class="n">mean_lead</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">1</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">std_lead</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">waves_cleaned</span><span class="p">[</span><span class="n">clusters_gmm</span><span class="o">==</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mean_lead</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lead&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mean_lead</span><span class="p">)),</span> <span class="n">mean_lead</span> <span class="o">-</span> <span class="n">std_lead</span><span class="p">,</span> <span class="n">mean_lead</span> <span class="o">+</span> <span class="n">std_lead</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Plot of mean and standard deviation for each class&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x79c383dfbfd0&gt;
+</pre></div>
+</div>
+<img alt="_images/240bb79574a14fe77cfc7d59a43b7e3b278ccb8e1a2adba1c06f51693abf2c3d.png" src="_images/240bb79574a14fe77cfc7d59a43b7e3b278ccb8e1a2adba1c06f51693abf2c3d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>  <span class="c1"># plot of all the echos</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c0c937680de2eaae4c9bae34b0593db119c97a9f89d6a1bf3960c237de7e9cb0.png" src="_images/c0c937680de2eaae4c9bae34b0593db119c97a9f89d6a1bf3960c237de7e9cb0.png" />
+</div>
+</div>
+<p>Compare with ESA data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flag_cleaned_modified</span> <span class="o">=</span> <span class="n">flag_cleaned</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span>
+
+<span class="n">true_labels</span> <span class="o">=</span> <span class="n">flag_cleaned_modified</span>   <span class="c1"># true labels from the ESA dataset</span>
+<span class="n">predicted_gmm</span> <span class="o">=</span> <span class="n">clusters_gmm</span>          <span class="c1"># predicted labels from GMM method</span>
+
+<span class="c1"># Compute confusion matrix</span>
+<span class="n">conf_matrix</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_gmm</span><span class="p">)</span>
+
+<span class="c1"># Print confusion matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Confusion Matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conf_matrix</span><span class="p">)</span>
+
+<span class="c1"># Compute classification report</span>
+<span class="n">class_report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_gmm</span><span class="p">)</span>
+
+<span class="c1"># Print classification report</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Classification Report:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">class_report</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix:
+[[8856   22]
+ [  24 3293]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+         0.0       1.00      1.00      1.00      8878
+         1.0       0.99      0.99      0.99      3317
+
+    accuracy                           1.00     12195
+   macro avg       1.00      1.00      1.00     12195
+weighted avg       1.00      1.00      1.00     12195
 </pre></div>
 </div>
 </div>
@@ -1052,6 +1215,24 @@ Gaussian SSD curve-fit error: Optimal parameters not found: Number of calls to f
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter1_Data_Colocating_S2_S3_3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Colocating Sentinel-3 OLCI/SRAL and Sentinal-2 Optical Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter1%3ARegression.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Regression Techniques for Predictive Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
