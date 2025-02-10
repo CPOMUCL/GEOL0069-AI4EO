@@ -23,7 +23,7 @@ parts:
       - file: Chapter1_Unsupervised_Learning_Methods_2
   - caption: Week 5
     chapters:
-      - file: Chapter1:Regression
+      - file: Chapter1_Regression
       - file: Chapter1:Aligning_Images
   - caption: Week 6
     chapters:
