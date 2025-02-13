@@ -24,7 +24,8 @@ parts:
   - caption: Week 5
     chapters:
       - file: Chapter1_Regression
-      - file: Chapter1:Aligning_Images
+      - file: Creating_training_data_fromS3_S2
+      - file: Chapter1_Regression_Part2_2425
   - caption: Week 6
     chapters:
       - file: Chapter1:Colocating_data
