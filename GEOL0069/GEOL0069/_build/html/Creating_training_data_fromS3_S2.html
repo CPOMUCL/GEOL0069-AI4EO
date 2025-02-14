@@ -955,6 +955,7 @@ Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
 <h2>Step 3: Find collocated pixels using KDTree<a class="headerlink" href="#step-3-find-collocated-pixels-using-kdtree" title="Permalink to this heading">#</a></h2>
 <p>The code constructs a KDTree from S3 coordinates to quickly find the nearest S3 pixel for each S2 data point based on their (x, y) positions. It then groups S2 points by their nearest S3 neighbor and computes an aggregated value (sea ice concentration) for each S3 pixel. In the end, we create a dataset that we could use for ML activities.</p>
 <p>The logic of our KDTree is for each Sentinel‑2 pixel to find its nearest Sentinel‑3 pixel, ensuring that every fine-resolution S2 measurement is uniquely assigned to a single coarse-resolution S3 pixel—this approach avoids the pitfalls of using a fixed radius around each S3 pixel, which could potentially miss some S2 pixels or count them more than once. A illustration is shown here.</p>
+<p><img alt="S2S3 KDTree" src="Users/weibinchen/Desktop/UCL/PhD_Year_1/GEOL0069/GEOL0069-AI4EO/GEOL0069/GEOL0069/S3S2KDtree.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">KDTree</span>
