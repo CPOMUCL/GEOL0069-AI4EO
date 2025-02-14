@@ -24,7 +24,7 @@ parts:
   - caption: Week 5
     chapters:
       - file: Chapter1_Regression
-      - file: Creating_training_data_fromS3_S2
+      - file: Creating_training_data_fromS3_S2-2
       - file: Chapter1_Regression_Part2_2425
   - caption: Week 6
     chapters:
