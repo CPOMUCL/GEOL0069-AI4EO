@@ -759,7 +759,7 @@ Successfully installed GPy-1.13.2 paramz-0.9.6 scipy-1.12.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "2493dc8c0955429d95d2fa7aeb51cbfa"}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Mean Squared Error (MSE) on the test set is: 0.003859773428732748
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "2493dc8c0955429d95d2fa7aeb51cbfa", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Mean Squared Error (MSE) on the test set is: 0.003859773428732748
 </pre></div>
 </div>
 <img alt="_images/b64f8f83c1b1241a7bd7949e2d393e3ed3bce8f33ba2ee55f9d31e3aaf8db55f.png" src="_images/b64f8f83c1b1241a7bd7949e2d393e3ed3bce8f33ba2ee55f9d31e3aaf8db55f.png" />
@@ -805,7 +805,11 @@ Successfully installed GPy-1.13.2 paramz-0.9.6 scipy-1.12.0
 </section>
 <section id="rollout">
 <h2>Rollout<a class="headerlink" href="#rollout" title="Permalink to this heading">#</a></h2>
-<p>Now we can test our model on another part of OLCI image. We will use polynomial regression as an example.</p>
+<p>Now we can test our model on another part of OLCI image. It is from the same pair of S3/S2 imagery and the relavant mask limits are:</p>
+<p>zoom_x_min = 390000.0</p>
+<p>zoom_x_max = 410000.0</p>
+<p>zoom_y_min = 7790230.0</p>
+<p>zoom_y_max = 7820000.0</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
