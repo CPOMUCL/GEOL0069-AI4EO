@@ -28,9 +28,8 @@ parts:
       - file: Chapter1_Regression_Part2_2425
   - caption: Week 6
     chapters:
-      - file: Chapter1:Colocating_data
-      - file: Chapter1:Regression_Part2
-      - file: References1
+      - file: Week6_Imagery_alignment_intro
+      - file: Week6_Imagery_alignment_application
   - caption: Week 7
     chapters:
       - file: Chapter2_IntrotoGaussianProcesses
