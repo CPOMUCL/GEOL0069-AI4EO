@@ -28,8 +28,8 @@ parts:
       - file: Chapter1_Regression_Part2_2425
   - caption: Week 6
     chapters:
-      - file: Week6_Imagery_alignment_intro
-      - file: Week6_Imagery_alignment_application
+      - file: Imagery_alignment_intro
+      - file: Imagery_alignment_application
   - caption: Week 7
     chapters:
       - file: Chapter2_IntrotoGaussianProcesses
