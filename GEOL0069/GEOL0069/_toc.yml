@@ -30,6 +30,8 @@ parts:
     chapters:
       - file: Imagery_alignment_intro
       - file: Imagery_alignment_application
+      - file: Creating_training_data_from_aligned_misaligned_imagery
+      - file: Regression_Application_MPF_aligned_misaligned_training_data
   - caption: Week 7
     chapters:
       - file: Chapter2_IntrotoGaussianProcesses
