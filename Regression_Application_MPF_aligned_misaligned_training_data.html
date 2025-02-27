@@ -1,0 +1,1369 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Regression Application on Melt Pond Fractions (MPF) &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Regression_Application_MPF_aligned_misaligned_training_data';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction to Gaussian Processes" href="Chapter2_IntrotoGaussianProcesses.html" />
+    <link rel="prev" title="Creating Training Data from Aligned and Misaligned Imagery" href="Creating_training_data_from_aligned_misaligned_imagery.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_Sea_ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_AI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_rollout_3.html">Roll-out on a Full Image</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Data_Colocating_S2_S3_3.html">Colocating Sentinel-3 OLCI/SRAL and Sentinal-2 Optical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Unsupervised_Learning_Methods_2.html">Unsupervised Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Regression.html">Regression Techniques for Predictive Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Creating_training_data_fromS3_S2-2.html">Creating Training Data from Sentinel-2 and Sentinel-3 OLCI Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Regression_Part2_2425.html">Application of Regression Techniques in Satellite Imagery Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Imagery_alignment_intro.html">Imagery Alignment: Introduction and Simple Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Imagery_alignment_application.html">Images alignment on S3/S2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating_training_data_from_aligned_misaligned_imagery.html">Creating Training Data from Aligned and Misaligned Imagery</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regression Application on Melt Pond Fractions (MPF)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter2_IntrotoGaussianProcesses.html">Introduction to Gaussian Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_Intro_to_GPSat.html">Introduction to GPSat</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_SLA_GPSat_William.html">Interpolation of Sea Level Anomaly using GPSat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_GPSat_along_track-2.html">Along track interpolation</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 9</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ExplainableAI.html">Explainable AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ExplainableAI_Part2.html">Explainable AI Part 2</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FRegression_Application_MPF_aligned_misaligned_training_data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Regression_Application_MPF_aligned_misaligned_training_data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Regression Application on Melt Pond Fractions (MPF)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Regression Application on Melt Pond Fractions (MPF)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-overview">Workflow Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-training-and-test-data">Load Training and Test Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression-models">Polynomial Regression Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-network-models">Neural Network Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regression-models">Gaussian Process Regression Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-model-comparison">Summary and Model Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-objective">Key Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-data-preparation-data-loading">Test Data Preparation &amp; Data Loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-1-extract-test-data-from-a-new-sub-subarea">Cell 1: Extract Test Data from a New Sub-Subarea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-2-load-and-prepare-training-and-test-data">Cell 2: Load and Prepare Training and Test Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Polynomial Regression Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-network-regression-model">Neural Network Regression Model</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-processes-regression-model">Gaussian Processes Regression Model</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="regression-application-on-melt-pond-fractions-mpf">
+<h1>Regression Application on Melt Pond Fractions (MPF)<a class="headerlink" href="#regression-application-on-melt-pond-fractions-mpf" title="Permalink to this heading">#</a></h1>
+<p>This notebook applies regression models to predict <strong>Melt Pond Fraction (MPF)</strong> using co-located <strong>Sentinel-2</strong> (S2) and <strong>Sentinel-3</strong> (S3) data. The aim is to <strong>evaluate the impact of spatial alignment between S2 and S3 data on model performance</strong>.</p>
+<p>The notebook uses two training datasets:</p>
+<ul class="simple">
+<li><p><strong>Aligned training data:</strong> S3 coordinates corrected using ECC-based alignment.</p></li>
+<li><p><strong>Misaligned training data:</strong> S3 coordinates with a known artificial shift applied.</p></li>
+</ul>
+<p>A separate <strong>test area</strong> is selected to evaluate generalization performance.</p>
+<section id="workflow-overview">
+<h2>Workflow Overview<a class="headerlink" href="#workflow-overview" title="Permalink to this heading">#</a></h2>
+<section id="load-training-and-test-data">
+<h3>Load Training and Test Data<a class="headerlink" href="#load-training-and-test-data" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Loads pre-processed <strong>aligned</strong> and <strong>misaligned</strong> training datasets.</p></li>
+<li><p>Loads test data (from a different area).</p></li>
+<li><p>Applies <strong>feature scaling</strong> to ensure all models work on normalized data.</p></li>
+</ul>
+</section>
+<section id="polynomial-regression-models">
+<h3>Polynomial Regression Models<a class="headerlink" href="#polynomial-regression-models" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Trains <strong>polynomial regression (degree 2)</strong> models using both aligned and misaligned data.</p></li>
+<li><p>Makes MPF predictions on the test set.</p></li>
+<li><p>Evaluates performance using <strong>Mean Squared Error (MSE)</strong> and <strong>R²</strong>.</p></li>
+<li><p>Visualizes:</p>
+<ul>
+<li><p>Predicted MPF maps across the test area.</p></li>
+<li><p>Actual vs. predicted MPF scatter plots.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="neural-network-models">
+<h3>Neural Network Models<a class="headerlink" href="#neural-network-models" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Trains <strong>identical feedforward neural networks (same architecture)</strong> on both aligned and misaligned data.</p></li>
+<li><p>Makes MPF predictions on the test set.</p></li>
+<li><p>Evaluates and visualizes results, similar to polynomial models.</p></li>
+</ul>
+</section>
+<section id="gaussian-process-regression-models">
+<h3>Gaussian Process Regression Models<a class="headerlink" href="#gaussian-process-regression-models" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Applies <strong>Sparse Gaussian Process Regression (GPR)</strong> for efficient modeling on larger datasets.</p></li>
+<li><p>Trains models separately for aligned and misaligned data.</p></li>
+<li><p>Generates MPF predictions and visualizations.</p></li>
+<li><p>Uses <strong>subsampling techniques</strong> to make GPR computationally feasible.</p></li>
+</ul>
+</section>
+<section id="summary-and-model-comparison">
+<h3>Summary and Model Comparison<a class="headerlink" href="#summary-and-model-comparison" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Combines performance metrics (MSE, R²) for all models.</p></li>
+<li><p>Calculates the <strong>percentage improvement from alignment</strong> for each model type.</p></li>
+<li><p>Produces <strong>summary bar plots</strong> comparing performance across all models and alignment settings.</p></li>
+</ul>
+</section>
+</section>
+<section id="key-objective">
+<h2>Key Objective<a class="headerlink" href="#key-objective" title="Permalink to this heading">#</a></h2>
+<p>This notebook directly <strong>quantifies the benefit of spatial alignment (correcting for sea ice drift and sensor mismatch) on MPF prediction accuracy</strong>, providing insight into how critical precise co-location is for multi-sensor fusion in polar remote sensing.</p>
+</section>
+<hr class="docutils" />
+<section id="test-data-preparation-data-loading">
+<h2>Test Data Preparation &amp; Data Loading<a class="headerlink" href="#test-data-preparation-data-loading" title="Permalink to this heading">#</a></h2>
+<section id="cell-1-extract-test-data-from-a-new-sub-subarea">
+<h3>Cell 1: Extract Test Data from a New Sub-Subarea<a class="headerlink" href="#cell-1-extract-test-data-from-a-new-sub-subarea" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Loads <strong>Sentinel-2 (S2)</strong>, <strong>Sentinel-3 (S3)</strong>, and <strong>Melt Pond Fraction (MPF)</strong> data.</p></li>
+<li><p>Defines a new <strong>test sub-subarea</strong> distinct from the training area.</p></li>
+<li><p>Filters S2, S3, and MPF data to match this new area.</p></li>
+<li><p>Uses <strong>KDTree</strong> to associate S2 pixels with their nearest S3 pixels.</p></li>
+<li><p>Computes the <strong>mean MPF for each S3 pixel</strong>, effectively mapping MPF onto the S3 grid.</p></li>
+<li><p>Visualises S2 reflectance, MPF, and S3 reflectance in the test area.</p></li>
+<li><p>Saves the resulting <strong>test dataset</strong> for use in model evaluation.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="cell-2-load-and-prepare-training-and-test-data">
+<h3>Cell 2: Load and Prepare Training and Test Data<a class="headerlink" href="#cell-2-load-and-prepare-training-and-test-data" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Loads:</p>
+<ul>
+<li><p><strong>Aligned training data</strong> (after ECC correction)</p></li>
+<li><p><strong>Misaligned training data</strong> (with manually applied shift)</p></li>
+<li><p><strong>Test data</strong> (extracted in the previous cell)</p></li>
+</ul>
+</li>
+<li><p>Separately scales features for:</p>
+<ul>
+<li><p>Aligned training and test data.</p></li>
+<li><p>Misaligned training and test data.</p></li>
+</ul>
+</li>
+<li><p>Prepares normalized input features (<code class="docutils literal notranslate"><span class="pre">X</span></code>) and target MPF (<code class="docutils literal notranslate"><span class="pre">y</span></code>) for both aligned and misaligned cases.</p></li>
+<li><p>Displays the number of training and test samples for both scenarios.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">KDTree</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="c1"># 1) Load zoomed S2, S3, MPF data</span>
+<span class="n">save_path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2324/Week 6 2025&#39;</span>
+<span class="n">s2_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">save_path</span> <span class="o">+</span> <span class="s1">&#39;/s2_zoomed_data.npz&#39;</span><span class="p">)</span>
+<span class="n">s3_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">save_path</span> <span class="o">+</span> <span class="s1">&#39;/s3_zoomed_data.npz&#39;</span><span class="p">)</span>
+<span class="n">mpf_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">save_path</span> <span class="o">+</span> <span class="s1">&#39;/mpf_zoomed_data.npz&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2) Extract arrays</span>
+<span class="n">s2_x_all</span><span class="p">,</span> <span class="n">s2_y_all</span> <span class="o">=</span> <span class="n">s2_data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">s2_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+<span class="n">band_s2_all</span> <span class="o">=</span> <span class="n">s2_data</span><span class="p">[</span><span class="s1">&#39;band_data&#39;</span><span class="p">]</span>
+<span class="n">mpf_all</span> <span class="o">=</span> <span class="n">mpf_data</span><span class="p">[</span><span class="s1">&#39;mpf&#39;</span><span class="p">]</span>
+<span class="n">s3_x_all</span><span class="p">,</span> <span class="n">s3_y_all</span> <span class="o">=</span> <span class="n">s3_data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">s3_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+<span class="n">band_s3_all</span> <span class="o">=</span> <span class="n">s3_data</span><span class="p">[</span><span class="s1">&#39;reflectance&#39;</span><span class="p">]</span>
+
+<span class="c1"># 3) Define a test sub-subarea (different from training area)</span>
+<span class="n">test_x_min</span><span class="p">,</span> <span class="n">test_x_max</span> <span class="o">=</span> <span class="mf">550000.0</span><span class="p">,</span> <span class="mf">570000.0</span>
+<span class="n">test_y_min</span><span class="p">,</span> <span class="n">test_y_max</span> <span class="o">=</span> <span class="mf">7430000.0</span><span class="p">,</span> <span class="mf">7450000.0</span>
+
+<span class="c1"># Filter S2 &amp; MPF</span>
+<span class="n">cond_s2_test</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">s2_x_all</span> <span class="o">&gt;=</span> <span class="n">test_x_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">s2_x_all</span> <span class="o">&lt;=</span> <span class="n">test_x_max</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">s2_y_all</span> <span class="o">&gt;=</span> <span class="n">test_y_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">s2_y_all</span> <span class="o">&lt;=</span> <span class="n">test_y_max</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">s2_x</span> <span class="o">=</span> <span class="n">s2_x_all</span><span class="p">[</span><span class="n">cond_s2_test</span><span class="p">]</span>
+<span class="n">s2_y</span> <span class="o">=</span> <span class="n">s2_y_all</span><span class="p">[</span><span class="n">cond_s2_test</span><span class="p">]</span>
+<span class="n">band_s2</span> <span class="o">=</span> <span class="n">band_s2_all</span><span class="p">[</span><span class="n">cond_s2_test</span><span class="p">]</span>
+<span class="n">mpf_vals</span> <span class="o">=</span> <span class="n">mpf_all</span><span class="p">[</span><span class="n">cond_s2_test</span><span class="p">]</span>
+
+<span class="c1">#  Filter S3</span>
+<span class="n">cond_s3_test</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">s3_x_all</span> <span class="o">&gt;=</span> <span class="n">test_x_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">s3_x_all</span> <span class="o">&lt;=</span> <span class="n">test_x_max</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">s3_y_all</span> <span class="o">&gt;=</span> <span class="n">test_y_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">s3_y_all</span> <span class="o">&lt;=</span> <span class="n">test_y_max</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">s3_x</span> <span class="o">=</span> <span class="n">s3_x_all</span><span class="p">[</span><span class="n">cond_s3_test</span><span class="p">]</span>
+<span class="n">s3_y</span> <span class="o">=</span> <span class="n">s3_y_all</span><span class="p">[</span><span class="n">cond_s3_test</span><span class="p">]</span>
+<span class="n">band_s3</span> <span class="o">=</span> <span class="n">band_s3_all</span><span class="p">[</span><span class="n">cond_s3_test</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S2 points in test area: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">s2_x</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S3 points in test area: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">s3_x</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 4) PLOT S2, MPF, and S3 in test area</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s2_x</span><span class="p">,</span> <span class="n">s2_y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">band_s2</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;S2 Band 0 reflectance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;S2 in Test Area&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">test_x_min</span><span class="p">,</span> <span class="n">test_x_max</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">test_y_min</span><span class="p">,</span> <span class="n">test_y_max</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s2_x</span><span class="p">,</span> <span class="n">s2_y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">mpf_vals</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;MPF in Test Area (same coords as S2)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">test_x_min</span><span class="p">,</span> <span class="n">test_x_max</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">test_y_min</span><span class="p">,</span> <span class="n">test_y_max</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s3_x</span><span class="p">,</span> <span class="n">s3_y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">band_s3</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;S3 Band 0 reflectance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;S3 in Test Area&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">test_x_min</span><span class="p">,</span> <span class="n">test_x_max</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">test_y_min</span><span class="p">,</span> <span class="n">test_y_max</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 5) Use KDTree to associate S2 -&gt; S3</span>
+<span class="n">s2_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">s2_x</span><span class="p">,</span> <span class="n">s2_y</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">s3_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">s3_x</span><span class="p">,</span> <span class="n">s3_y</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span><span class="n">s3_points</span><span class="p">)</span>
+
+<span class="n">distances</span><span class="p">,</span> <span class="n">s3_idx_for_s2</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">s2_points</span><span class="p">)</span>
+
+<span class="c1"># 6) Group S2 indices by S3 index</span>
+<span class="n">grouped</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">s2_idx</span><span class="p">,</span> <span class="n">s3_idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s3_idx_for_s2</span><span class="p">):</span>
+    <span class="n">grouped</span><span class="p">[</span><span class="n">s3_idx</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s2_idx</span><span class="p">)</span>
+
+<span class="c1"># 7) Compute mean MPF for each S3 pixel</span>
+<span class="n">mpf_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s3_points</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">s3_i</span><span class="p">,</span> <span class="n">s2_list</span> <span class="ow">in</span> <span class="n">grouped</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">mpf_for_this_s3</span> <span class="o">=</span> <span class="n">mpf_vals</span><span class="p">[</span><span class="n">s2_list</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">mpf_for_this_s3</span><span class="p">)):</span>
+        <span class="n">mpf_avg</span><span class="p">[</span><span class="n">s3_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">mpf_for_this_s3</span><span class="p">)</span>
+
+<span class="c1"># 8) Remove NaNs</span>
+<span class="n">valid_s3</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">mpf_avg</span><span class="p">)</span>
+<span class="n">s3_x_clean</span> <span class="o">=</span> <span class="n">s3_x</span><span class="p">[</span><span class="n">valid_s3</span><span class="p">]</span>
+<span class="n">s3_y_clean</span> <span class="o">=</span> <span class="n">s3_y</span><span class="p">[</span><span class="n">valid_s3</span><span class="p">]</span>
+<span class="n">band_s3_clean</span> <span class="o">=</span> <span class="n">band_s3</span><span class="p">[</span><span class="n">valid_s3</span><span class="p">]</span>
+<span class="n">mpf_clean</span> <span class="o">=</span> <span class="n">mpf_avg</span><span class="p">[</span><span class="n">valid_s3</span><span class="p">]</span>
+
+<span class="c1"># 9) Plot the S3-located MPF distribution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s3_x_clean</span><span class="p">,</span> <span class="n">s3_y_clean</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">mpf_clean</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">0.018</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mean MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;MPF mapped to S3 coords in Test Area&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">test_x_min</span><span class="p">,</span> <span class="n">test_x_max</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">test_y_min</span><span class="p">,</span> <span class="n">test_y_max</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 10) Save dataset</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;s3_x&quot;</span><span class="p">:</span> <span class="n">s3_x_clean</span><span class="p">,</span>
+    <span class="s2">&quot;s3_y&quot;</span><span class="p">:</span> <span class="n">s3_y_clean</span><span class="p">,</span>
+    <span class="s2">&quot;s3_features&quot;</span><span class="p">:</span> <span class="n">band_s3_clean</span><span class="p">,</span>
+    <span class="s2">&quot;mpf_target&quot;</span><span class="p">:</span> <span class="n">mpf_clean</span>
+<span class="p">}</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">save_path</span> <span class="o">+</span> <span class="s1">&#39;/test_data.npz&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">test_data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test data extraction complete.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S2 points in test area: 501501
+S3 points in test area: 2534
+</pre></div>
+</div>
+<img alt="_images/e82f6a711ef0c4b2aafe93792033ba1269594992611715f6bd164339c10df7b3.png" src="_images/e82f6a711ef0c4b2aafe93792033ba1269594992611715f6bd164339c10df7b3.png" />
+<img alt="_images/2853a7c664ce677c5f1e0fd3cdc3b6acbd3df92122ef8e73add28b3a7fc2fbfb.png" src="_images/2853a7c664ce677c5f1e0fd3cdc3b6acbd3df92122ef8e73add28b3a7fc2fbfb.png" />
+<img alt="_images/268f1d293096a0db1f65092e7b804bd3547045ba363cf6ba29798eb477dedc23.png" src="_images/268f1d293096a0db1f65092e7b804bd3547045ba363cf6ba29798eb477dedc23.png" />
+<img alt="_images/7b5d019efb6d897bad605a9e9237ca98f3f606f6c99ccb8d6e08707583e2e52a.png" src="_images/7b5d019efb6d897bad605a9e9237ca98f3f606f6c99ccb8d6e08707583e2e52a.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test data extraction complete.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cell 1: Load Training and Test Data</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="c1"># Load aligned training data</span>
+<span class="n">train_align</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2324/Week 6 2025/training_data_subsubarea_aligned.npz&#39;</span><span class="p">)</span>
+<span class="n">X_train_align_raw</span> <span class="o">=</span> <span class="n">train_align</span><span class="p">[</span><span class="s1">&#39;s3_features&#39;</span><span class="p">]</span>
+<span class="n">y_train_align</span> <span class="o">=</span> <span class="n">train_align</span><span class="p">[</span><span class="s1">&#39;mpf_target&#39;</span><span class="p">]</span>
+
+<span class="c1"># Load misaligned training data</span>
+<span class="n">train_noalign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2324/Week 6 2025/training_data_subsubarea_noalign.npz&#39;</span><span class="p">)</span>
+<span class="n">X_train_noalign_raw</span> <span class="o">=</span> <span class="n">train_noalign</span><span class="p">[</span><span class="s1">&#39;s3_features&#39;</span><span class="p">]</span>
+<span class="n">y_train_noalign</span> <span class="o">=</span> <span class="n">train_noalign</span><span class="p">[</span><span class="s1">&#39;mpf_target&#39;</span><span class="p">]</span>
+
+<span class="c1"># Load test data</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2324/Week 6 2025/test_data.npz&#39;</span><span class="p">)</span>
+<span class="n">X_test_raw</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;s3_features&#39;</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;mpf_target&#39;</span><span class="p">]</span>
+<span class="n">test_x</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;s3_x&#39;</span><span class="p">]</span>
+<span class="n">test_y</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;s3_y&#39;</span><span class="p">]</span>
+
+<span class="c1"># Normalise data</span>
+<span class="n">scaler_align</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train_align</span> <span class="o">=</span> <span class="n">scaler_align</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_align_raw</span><span class="p">)</span>
+<span class="n">X_test_align</span> <span class="o">=</span> <span class="n">scaler_align</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_raw</span><span class="p">)</span>
+
+<span class="n">scaler_noalign</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train_noalign</span> <span class="o">=</span> <span class="n">scaler_noalign</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_noalign_raw</span><span class="p">)</span>
+<span class="n">X_test_noalign</span> <span class="o">=</span> <span class="n">scaler_noalign</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_raw</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Aligned data: </span><span class="si">{</span><span class="n">X_train_align</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> training samples, </span><span class="si">{</span><span class="n">X_test_align</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> test samples&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Misaligned data: </span><span class="si">{</span><span class="n">X_train_noalign</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> training samples, </span><span class="si">{</span><span class="n">X_test_noalign</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> test samples&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Aligned data: 4733 training samples, 2386 test samples
+Misaligned data: 4725 training samples, 2386 test samples
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h2>Polynomial Regression Models<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cell 2: Polynomial Regression Models</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># Polynomial features</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Aligned data model</span>
+<span class="n">X_poly_train_align</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_align</span><span class="p">)</span>
+<span class="n">model_poly_align</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model_poly_align</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_poly_train_align</span><span class="p">,</span> <span class="n">y_train_align</span><span class="p">)</span>
+
+<span class="c1"># Misaligned data model</span>
+<span class="n">X_poly_train_noalign</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_noalign</span><span class="p">)</span>
+<span class="n">model_poly_noalign</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model_poly_noalign</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_poly_train_noalign</span><span class="p">,</span> <span class="n">y_train_noalign</span><span class="p">)</span>
+
+<span class="c1"># Test predictions</span>
+<span class="n">X_poly_test_align</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_align</span><span class="p">)</span>
+<span class="n">y_pred_poly_align</span> <span class="o">=</span> <span class="n">model_poly_align</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_poly_test_align</span><span class="p">)</span>
+
+<span class="n">X_poly_test_noalign</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_noalign</span><span class="p">)</span>
+<span class="n">y_pred_poly_noalign</span> <span class="o">=</span> <span class="n">model_poly_noalign</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_poly_test_noalign</span><span class="p">)</span>
+
+<span class="c1"># Calculate metrics</span>
+<span class="n">mse_align</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly_align</span><span class="p">)</span>
+<span class="n">r2_align</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly_align</span><span class="p">)</span>
+
+<span class="n">mse_noalign</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly_noalign</span><span class="p">)</span>
+<span class="n">r2_noalign</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly_noalign</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Polynomial Regression (Degree 2) Results:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Aligned Model: MSE = </span><span class="si">{</span><span class="n">mse_align</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R² = </span><span class="si">{</span><span class="n">r2_align</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Misaligned Model: MSE = </span><span class="si">{</span><span class="n">mse_noalign</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R² = </span><span class="si">{</span><span class="n">r2_noalign</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot predicted MPF maps</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sc1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_poly_align</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">0.018</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polynomial Model (Trained on Aligned Data)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">550000</span><span class="p">,</span> <span class="mi">570000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">7430000</span><span class="p">,</span> <span class="mi">7450000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sc2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_poly_noalign</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">0.018</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polynomial Model (Trained on Misaligned Data)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">550000</span><span class="p">,</span> <span class="mi">570000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">7430000</span><span class="p">,</span> <span class="mi">7450000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot actual vs predicted</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly_align</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Aligned Model: Actual vs Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly_noalign</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Misaligned Model: Actual vs Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Polynomial Regression (Degree 2) Results:
+Aligned Model: MSE = 0.0001, R² = 0.4985
+Misaligned Model: MSE = 0.0002, R² = 0.1431
+</pre></div>
+</div>
+<img alt="_images/e54088708b26be00a94b92e270ad5a194f03a7532e0f380903d4bd436948a7af.png" src="_images/e54088708b26be00a94b92e270ad5a194f03a7532e0f380903d4bd436948a7af.png" />
+<img alt="_images/9ab8d0565523c17ccc00f155bc026436ae848a010d66bceebe303925df98a4b1.png" src="_images/9ab8d0565523c17ccc00f155bc026436ae848a010d66bceebe303925df98a4b1.png" />
+</div>
+</div>
+</section>
+<section id="neural-network-regression-model">
+<h2>Neural Network Regression Model<a class="headerlink" href="#neural-network-regression-model" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cell 3: Neural Network Models</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+
+<span class="c1"># For reproducibility</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Function to create model with same architecture</span>
+<span class="k">def</span> <span class="nf">create_nn_model</span><span class="p">(</span><span class="n">input_dim</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,)),</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">])</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="c1"># Train model on aligned data</span>
+<span class="n">model_nn_align</span> <span class="o">=</span> <span class="n">create_nn_model</span><span class="p">(</span><span class="n">X_train_align</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">model_nn_align</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X_train_align</span><span class="p">,</span> <span class="n">y_train_align</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="c1"># Train model on misaligned data</span>
+<span class="n">model_nn_noalign</span> <span class="o">=</span> <span class="n">create_nn_model</span><span class="p">(</span><span class="n">X_train_noalign</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">model_nn_noalign</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X_train_noalign</span><span class="p">,</span> <span class="n">y_train_noalign</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="c1"># Test predictions</span>
+<span class="n">y_pred_nn_align</span> <span class="o">=</span> <span class="n">model_nn_align</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_align</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">y_pred_nn_noalign</span> <span class="o">=</span> <span class="n">model_nn_noalign</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_noalign</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Calculate metrics</span>
+<span class="n">mse_align</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn_align</span><span class="p">)</span>
+<span class="n">r2_align</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn_align</span><span class="p">)</span>
+
+<span class="n">mse_noalign</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn_noalign</span><span class="p">)</span>
+<span class="n">r2_noalign</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn_noalign</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Neural Network Results:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Aligned Model: MSE = </span><span class="si">{</span><span class="n">mse_align</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R² = </span><span class="si">{</span><span class="n">r2_align</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Misaligned Model: MSE = </span><span class="si">{</span><span class="n">mse_noalign</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R² = </span><span class="si">{</span><span class="n">r2_noalign</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot predicted MPF maps</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sc1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_nn_align</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">0.018</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Neural Network (Trained on Aligned Data)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">550000</span><span class="p">,</span> <span class="mi">570000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">7430000</span><span class="p">,</span> <span class="mi">7450000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sc2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_nn_noalign</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">0.018</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Neural Network (Trained on Misaligned Data)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">550000</span><span class="p">,</span> <span class="mi">570000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">7430000</span><span class="p">,</span> <span class="mi">7450000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot actual vs predicted</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn_align</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Aligned Model: Actual vs Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn_noalign</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Misaligned Model: Actual vs Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /usr/local/lib/python3.11/dist-packages/keras/src/layers/core/dense.py:87: UserWarning:Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">75/75</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 4ms/step
+<span class=" -Color -Color-Bold">75/75</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 3ms/step
+Neural Network Results:
+Aligned Model: MSE = 0.0004, R² = -0.5509
+Misaligned Model: MSE = 0.0004, R² = -0.4126
+</pre></div>
+</div>
+<img alt="_images/2e037e56af8569af73ac02a45972b0a829c49f21229c09c7fe8ea14e11687b1a.png" src="_images/2e037e56af8569af73ac02a45972b0a829c49f21229c09c7fe8ea14e11687b1a.png" />
+<img alt="_images/6020335581e0d0c9ab8e5ba6479aa07c7124a0a02a944ae6e779be5318568976.png" src="_images/6020335581e0d0c9ab8e5ba6479aa07c7124a0a02a944ae6e779be5318568976.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="gaussian-processes-regression-model">
+<h1>Gaussian Processes Regression Model<a class="headerlink" href="#gaussian-processes-regression-model" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install Gpy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting Gpy
+  Downloading GPy-1.13.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.3 kB)
+Requirement already satisfied: numpy&lt;2.0.0,&gt;=1.7 in /usr/local/lib/python3.11/dist-packages (from Gpy) (1.26.4)
+Requirement already satisfied: six in /usr/local/lib/python3.11/dist-packages (from Gpy) (1.17.0)
+Collecting paramz&gt;=0.9.6 (from Gpy)
+  Downloading paramz-0.9.6-py3-none-any.whl.metadata (1.4 kB)
+Requirement already satisfied: cython&gt;=0.29 in /usr/local/lib/python3.11/dist-packages (from Gpy) (3.0.12)
+Collecting scipy&lt;=1.12.0,&gt;=1.3.0 (from Gpy)
+  Downloading scipy-1.12.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">60.4/60.4 kB</span> <span class=" -Color -Color-Red">4.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: decorator&gt;=4.0.10 in /usr/local/lib/python3.11/dist-packages (from paramz&gt;=0.9.6-&gt;Gpy) (4.4.2)
+Downloading GPy-1.13.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.8/3.8 MB</span> <span class=" -Color -Color-Red">54.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading paramz-0.9.6-py3-none-any.whl (103 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">103.2/103.2 kB</span> <span class=" -Color -Color-Red">8.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading scipy-1.12.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">38.4/38.4 MB</span> <span class=" -Color -Color-Red">33.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hInstalling collected packages: scipy, paramz, Gpy
+  Attempting uninstall: scipy
+    Found existing installation: scipy 1.13.1
+    Uninstalling scipy-1.13.1:
+      Successfully uninstalled scipy-1.13.1
+Successfully installed Gpy-1.13.2 paramz-0.9.6 scipy-1.12.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cell 4: Gaussian Process Regression Models</span>
+<span class="kn">import</span> <span class="nn">GPy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># For computational efficiency with GPR, subsample if datasets are large</span>
+<span class="n">max_train_samples</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="k">if</span> <span class="n">X_train_align</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_train_samples</span><span class="p">:</span>
+    <span class="n">idx_align</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X_train_align</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">max_train_samples</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">X_train_align_sub</span> <span class="o">=</span> <span class="n">X_train_align</span><span class="p">[</span><span class="n">idx_align</span><span class="p">]</span>
+    <span class="n">y_train_align_sub</span> <span class="o">=</span> <span class="n">y_train_align</span><span class="p">[</span><span class="n">idx_align</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">X_train_align_sub</span> <span class="o">=</span> <span class="n">X_train_align</span>
+    <span class="n">y_train_align_sub</span> <span class="o">=</span> <span class="n">y_train_align</span>
+
+<span class="k">if</span> <span class="n">X_train_noalign</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_train_samples</span><span class="p">:</span>
+    <span class="n">idx_noalign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X_train_noalign</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">max_train_samples</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">X_train_noalign_sub</span> <span class="o">=</span> <span class="n">X_train_noalign</span><span class="p">[</span><span class="n">idx_noalign</span><span class="p">]</span>
+    <span class="n">y_train_noalign_sub</span> <span class="o">=</span> <span class="n">y_train_noalign</span><span class="p">[</span><span class="n">idx_noalign</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">X_train_noalign_sub</span> <span class="o">=</span> <span class="n">X_train_noalign</span>
+    <span class="n">y_train_noalign_sub</span> <span class="o">=</span> <span class="n">y_train_noalign</span>
+
+<span class="c1"># Aligned model</span>
+<span class="n">kernel_align</span> <span class="o">=</span> <span class="n">GPy</span><span class="o">.</span><span class="n">kern</span><span class="o">.</span><span class="n">RBF</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">X_train_align_sub</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">num_inducing</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">X_train_align_sub</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">gp_align</span> <span class="o">=</span> <span class="n">GPy</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">SparseGPRegression</span><span class="p">(</span>
+    <span class="n">X_train_align_sub</span><span class="p">,</span>
+    <span class="n">y_train_align_sub</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">kernel_align</span><span class="p">,</span>
+    <span class="n">num_inducing</span><span class="o">=</span><span class="n">num_inducing</span>
+<span class="p">)</span>
+<span class="n">gp_align</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Misaligned model</span>
+<span class="n">kernel_noalign</span> <span class="o">=</span> <span class="n">GPy</span><span class="o">.</span><span class="n">kern</span><span class="o">.</span><span class="n">RBF</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">X_train_noalign_sub</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">num_inducing</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">X_train_noalign_sub</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">gp_noalign</span> <span class="o">=</span> <span class="n">GPy</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">SparseGPRegression</span><span class="p">(</span>
+    <span class="n">X_train_noalign_sub</span><span class="p">,</span>
+    <span class="n">y_train_noalign_sub</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">kernel_noalign</span><span class="p">,</span>
+    <span class="n">num_inducing</span><span class="o">=</span><span class="n">num_inducing</span>
+<span class="p">)</span>
+<span class="n">gp_noalign</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Test predictions</span>
+<span class="n">y_pred_gp_align</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">gp_align</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_align</span><span class="p">)</span>
+<span class="n">y_pred_gp_align</span> <span class="o">=</span> <span class="n">y_pred_gp_align</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">y_pred_gp_noalign</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">gp_noalign</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_noalign</span><span class="p">)</span>
+<span class="n">y_pred_gp_noalign</span> <span class="o">=</span> <span class="n">y_pred_gp_noalign</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Calculate metrics</span>
+<span class="n">mse_align</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp_align</span><span class="p">)</span>
+<span class="n">r2_align</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp_align</span><span class="p">)</span>
+
+<span class="n">mse_noalign</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp_noalign</span><span class="p">)</span>
+<span class="n">r2_noalign</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp_noalign</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gaussian Process Regression Results:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Aligned Model: MSE = </span><span class="si">{</span><span class="n">mse_align</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R² = </span><span class="si">{</span><span class="n">r2_align</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Misaligned Model: MSE = </span><span class="si">{</span><span class="n">mse_noalign</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R² = </span><span class="si">{</span><span class="n">r2_noalign</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot predicted MPF maps</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sc1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_gp_align</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.018</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian Process (Trained on Aligned Data)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">550000</span><span class="p">,</span> <span class="mi">570000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">7430000</span><span class="p">,</span> <span class="mi">7450000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sc2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_gp_noalign</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.018</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian Process (Trained on Misaligned Data)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">550000</span><span class="p">,</span> <span class="mi">570000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">7430000</span><span class="p">,</span> <span class="mi">7450000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot actual vs predicted</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp_align</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Aligned Model: Actual vs Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp_noalign</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted MPF&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Misaligned Model: Actual vs Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gaussian Process Regression Results:
+Aligned Model: MSE = 0.0002, R² = 0.4006
+Misaligned Model: MSE = 0.0003, R² = -0.0004
+</pre></div>
+</div>
+<img alt="_images/d541eb01dd14b03154fd42cb3ecdc49a6a75ff4e03a3a35b5f485a23c53f3ecd.png" src="_images/d541eb01dd14b03154fd42cb3ecdc49a6a75ff4e03a3a35b5f485a23c53f3ecd.png" />
+<img alt="_images/301a593f99c5a96cfcaac8c110ec82261f019cf71703ef5adfa9183de9039b86.png" src="_images/301a593f99c5a96cfcaac8c110ec82261f019cf71703ef5adfa9183de9039b86.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cell 5: Summary and Comparison of All Models</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Create summary dataframe</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Polynomial Regression&#39;</span><span class="p">,</span> <span class="s1">&#39;Neural Network&#39;</span><span class="p">,</span> <span class="s1">&#39;Gaussian Process&#39;</span><span class="p">]</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MSE&#39;</span><span class="p">,</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">([</span><span class="n">models</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Aligned&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">]]),</span>
+                          <span class="n">columns</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+
+    <span class="c1"># Polynomial regression results</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Polynomial Regression&#39;</span><span class="p">,</span> <span class="s1">&#39;Aligned&#39;</span><span class="p">),</span> <span class="s1">&#39;MSE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse_align_poly</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly_align</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Polynomial Regression&#39;</span><span class="p">,</span> <span class="s1">&#39;Aligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly_align</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Polynomial Regression&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;MSE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse_noalign_poly</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly_noalign</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Polynomial Regression&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly_noalign</span><span class="p">)</span>
+
+    <span class="c1"># Neural network results</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Neural Network&#39;</span><span class="p">,</span> <span class="s1">&#39;Aligned&#39;</span><span class="p">),</span> <span class="s1">&#39;MSE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse_align_nn</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn_align</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Neural Network&#39;</span><span class="p">,</span> <span class="s1">&#39;Aligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn_align</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Neural Network&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;MSE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse_noalign_nn</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn_noalign</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Neural Network&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn_noalign</span><span class="p">)</span>
+
+    <span class="c1"># Gaussian process results</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Gaussian Process&#39;</span><span class="p">,</span> <span class="s1">&#39;Aligned&#39;</span><span class="p">),</span> <span class="s1">&#39;MSE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse_align_gp</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp_align</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Gaussian Process&#39;</span><span class="p">,</span> <span class="s1">&#39;Aligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp_align</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Gaussian Process&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;MSE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse_noalign_gp</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp_noalign</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Gaussian Process&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp_noalign</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model Performance Summary:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+    <span class="c1"># Calculate improvement from alignment</span>
+    <span class="n">improvement</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">models</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MSE Improvement %&#39;</span><span class="p">,</span> <span class="s1">&#39;R² Improvement %&#39;</span><span class="p">])</span>
+
+    <span class="n">improvement</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Polynomial Regression&#39;</span><span class="p">,</span> <span class="s1">&#39;MSE Improvement %&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">mse_noalign_poly</span> <span class="o">-</span> <span class="n">mse_align_poly</span><span class="p">)</span> <span class="o">/</span> <span class="n">mse_noalign_poly</span>
+    <span class="n">improvement</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Neural Network&#39;</span><span class="p">,</span> <span class="s1">&#39;MSE Improvement %&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">mse_noalign_nn</span> <span class="o">-</span> <span class="n">mse_align_nn</span><span class="p">)</span> <span class="o">/</span> <span class="n">mse_noalign_nn</span>
+    <span class="n">improvement</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Gaussian Process&#39;</span><span class="p">,</span> <span class="s1">&#39;MSE Improvement %&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">mse_noalign_gp</span> <span class="o">-</span> <span class="n">mse_align_gp</span><span class="p">)</span> <span class="o">/</span> <span class="n">mse_noalign_gp</span>
+
+    <span class="n">improvement</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Polynomial Regression&#39;</span><span class="p">,</span> <span class="s1">&#39;R² Improvement %&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Polynomial Regression&#39;</span><span class="p">,</span> <span class="s1">&#39;Aligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span> <span class="o">-</span>
+                                                                 <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Polynomial Regression&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Polynomial Regression&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">])</span>
+    <span class="n">improvement</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Neural Network&#39;</span><span class="p">,</span> <span class="s1">&#39;R² Improvement %&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Neural Network&#39;</span><span class="p">,</span> <span class="s1">&#39;Aligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span> <span class="o">-</span>
+                                                        <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Neural Network&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Neural Network&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">])</span>
+    <span class="n">improvement</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Gaussian Process&#39;</span><span class="p">,</span> <span class="s1">&#39;R² Improvement %&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Gaussian Process&#39;</span><span class="p">,</span> <span class="s1">&#39;Aligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span> <span class="o">-</span>
+                                                           <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Gaussian Process&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s1">&#39;Gaussian Process&#39;</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Improvement from Alignment:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">improvement</span><span class="p">)</span>
+
+    <span class="c1"># Barplot of MSE for all models</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">))</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mf">0.35</span>
+
+    <span class="n">aligned_mse</span> <span class="o">=</span> <span class="p">[</span><span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;Aligned&#39;</span><span class="p">),</span> <span class="s1">&#39;MSE&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+    <span class="n">misaligned_mse</span> <span class="o">=</span> <span class="p">[</span><span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;MSE&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">aligned_mse</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Aligned&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">misaligned_mse</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Misaligned&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mean Squared Error&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;MSE Comparison: Aligned vs Misaligned Training&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">models</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Barplot of R² for all models</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="n">aligned_r2</span> <span class="o">=</span> <span class="p">[</span><span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;Aligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+    <span class="n">misaligned_r2</span> <span class="o">=</span> <span class="p">[</span><span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;Misaligned&#39;</span><span class="p">),</span> <span class="s1">&#39;R²&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">aligned_r2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Aligned&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">misaligned_r2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Misaligned&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;R² Score&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;R² Comparison: Aligned vs Misaligned Training&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">models</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Run all model cells first to calculate metrics for each model&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model Performance Summary:
+                                       MSE        R²
+Polynomial Regression Aligned     0.000128   0.49848
+                      Misaligned  0.000219  0.143142
+Neural Network        Aligned     0.000242  0.049608
+                      Misaligned  0.000357 -0.401585
+Gaussian Process      Aligned     0.000153  0.400597
+                      Misaligned  0.000255 -0.000429
+
+Improvement from Alignment:
+                      MSE Improvement % R² Improvement %
+Polynomial Regression         41.469892       248.241605
+Neural Network                32.191573       112.352961
+Gaussian Process              40.085398     93569.062716
+</pre></div>
+</div>
+<img alt="_images/1d8cbb6858f7f29b2b33e74f882330b5d0930c158e5fa2a9d4791d7f47cf4b83.png" src="_images/1d8cbb6858f7f29b2b33e74f882330b5d0930c158e5fa2a9d4791d7f47cf4b83.png" />
+<img alt="_images/007bf85f073f8663082318a6820ff2f3d4b8fa88551adcaa9c2df5e6b8a71e7d.png" src="_images/007bf85f073f8663082318a6820ff2f3d4b8fa88551adcaa9c2df5e6b8a71e7d.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Creating_training_data_from_aligned_misaligned_imagery.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Creating Training Data from Aligned and Misaligned Imagery</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Chapter2_IntrotoGaussianProcesses.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to Gaussian Processes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Regression Application on Melt Pond Fractions (MPF)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-overview">Workflow Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-training-and-test-data">Load Training and Test Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression-models">Polynomial Regression Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-network-models">Neural Network Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-process-regression-models">Gaussian Process Regression Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-model-comparison">Summary and Model Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-objective">Key Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-data-preparation-data-loading">Test Data Preparation &amp; Data Loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-1-extract-test-data-from-a-new-sub-subarea">Cell 1: Extract Test Data from a New Sub-Subarea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-2-load-and-prepare-training-and-test-data">Cell 2: Load and Prepare Training and Test Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Polynomial Regression Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-network-regression-model">Neural Network Regression Model</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-processes-regression-model">Gaussian Processes Regression Model</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados/Weibin Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
