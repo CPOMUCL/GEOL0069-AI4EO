@@ -41,6 +41,8 @@ parts:
       - file: Chapter_2_GPSat_along_track-3
       - file: Chapter_2_SLA_GPSat_eddies
       - file: Chapter_2_SLA_GPSat_GPOD
+      - file: Eddies_from_altimetry_part1-2
+      - file: Eddies_from_altimetry_part2
   - caption: Week 9
     chapters:
       - file: ExplainableAI
