@@ -45,8 +45,8 @@ parts:
       - file: Eddies_from_altimetry_part2
   - caption: Week 9
     chapters:
-      - file: ExplainableAI
-      - file: ExplainableAI_Part2
+      - file: Week9_XAI
+
       
 
 
