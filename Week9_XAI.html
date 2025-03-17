@@ -1,0 +1,1574 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Explainable AI &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Week9_XAI';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Finding Ocean Eddies using Satellite Altimetry: Part 2" href="Eddies_from_altimetry_part2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_Sea_ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_AI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_rollout_3.html">Roll-out on a Full Image</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Data_Colocating_S2_S3_3.html">Colocating Sentinel-3 OLCI/SRAL and Sentinal-2 Optical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Unsupervised_Learning_Methods_2.html">Unsupervised Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Regression.html">Regression Techniques for Predictive Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Creating_training_data_fromS3_S2-2.html">Creating Training Data from Sentinel-2 and Sentinel-3 OLCI Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Regression_Part2_2425.html">Application of Regression Techniques in Satellite Imagery Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Imagery_alignment_intro.html">Imagery Alignment: Introduction and Simple Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Imagery_alignment_application.html">Images alignment on S3/S2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating_training_data_from_aligned_misaligned_imagery.html">Creating Training Data from Aligned and Misaligned Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Regression_Application_MPF_aligned_misaligned_training_data.html">Regression Application on Melt Pond Fractions (MPF)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter2_IntrotoGaussianProcesses.html">Introduction to Gaussian Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_Intro_to_GPSat.html">Introduction to GPSat</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_GPSat_along_track-3.html">GPSat Along-Track Interpolation</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_SLA_GPSat_eddies.html">Interpolation of Sea Level Anomaly using GPSat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_SLA_GPSat_GPOD.html">Sea Level Anomaly Interpolation Using GPSat (GPOD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Eddies_from_altimetry_part1-2.html">Finding Ocean Eddies using Satellite Altimetry: Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Eddies_from_altimetry_part2.html">Finding Ocean Eddies using Satellite Altimetry: Part 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 9</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Explainable AI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FWeek9_XAI.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Week9_XAI.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Explainable AI</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-explainability-important">Why is Explainability Important?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancing-trust-and-confidence"><strong>1️⃣ Enhancing Trust and Confidence</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-model-performance-and-reliability"><strong>2️⃣ Improving Model Performance and Reliability</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-feature-importance">Understanding Feature Importance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-feature-importance"><strong>What is Feature Importance?</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intrinsic-vs-post-hoc-interpretability"><strong>Intrinsic vs. Post Hoc Interpretability</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intrinsic-interpretability"><strong>Intrinsic Interpretability</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#post-hoc-interpretability">🔎 <strong>Post Hoc Interpretability</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-across-different-models"><strong>Feature Importance Across Different Models</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression-coefficients-as-feature-importance"><strong>1️⃣ Polynomial Regression - Coefficients as Feature Importance</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks-permutation-importance-shap"><strong>2️⃣ Neural Networks - Permutation Importance &amp; SHAP</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-processes-ard-kernel-length-scales"><strong>3️⃣ Gaussian Processes - ARD Kernel Length-Scales</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-this-matter"><strong>🔎 Why Does This Matter?</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-in-polynomial-regression">Feature Importance in Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-in-neural-networks">Feature Importance in Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-in-gaussian-process-regression-gpr">Feature Importance in Gaussian Process Regression (GPR)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="explainable-ai">
+<h1>Explainable AI<a class="headerlink" href="#explainable-ai" title="Permalink to this heading">#</a></h1>
+<p>Week 9 materials can be accessed <a class="reference external" href="https://drive.google.com/drive/folders/12nrtsTAP9R4s9ydOVMcOxWEKi37Z-NVT?usp=sharing">here</a>.</p>
+<p>In week 9, we will focus a little more on how to interpret some of the models we’ve covered. EXplainable AI is a major purpose of an AI algorithm because we are always tring to understand what it’s doing and not using them as a blackbox.</p>
+<section id="why-is-explainability-important">
+<h2>Why is Explainability Important?<a class="headerlink" href="#why-is-explainability-important" title="Permalink to this heading">#</a></h2>
+<p>Explainable AI (XAI) or interpretable AI is crucial for ensuring that machine learning models are transparent, reliable, and trustworthy.</p>
+<section id="enhancing-trust-and-confidence">
+<h3><strong>1️⃣ Enhancing Trust and Confidence</strong><a class="headerlink" href="#enhancing-trust-and-confidence" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Transparency</strong>: Understanding how a model makes decisions builds trust in its outputs. This is especially important in critical applications where mistakes could have serious consequences. For instance, if we deploy a model to detect lead contamination over an extended period, we need to know how the model arrives at its conclusions. This insight can also help us explore whether the model could be applied to related problems.</p></li>
+<li><p><strong>Accountability</strong>: Explainability makes it easier to <strong>trace</strong> and <strong>justify</strong> a model’s decisions. This is essential for identifying and correcting biases, ensuring fairness, and understanding the scientific principles behind why a model works. By improving transparency, we can extend model applications to new areas with greater confidence.</p></li>
+</ul>
+</section>
+<section id="improving-model-performance-and-reliability">
+<h3><strong>2️⃣ Improving Model Performance and Reliability</strong><a class="headerlink" href="#improving-model-performance-and-reliability" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Debugging and Improvement</strong>: Interpretability helps developers <strong>identify biases, errors, and limitations</strong> in models. By understanding why a model makes certain predictions, we can target specific improvements, leading to more accurate and reliable systems.</p></li>
+<li><p><strong>Feature Importance</strong>: Knowing which features contribute most to predictions helps researchers focus on <strong>collecting and processing the most relevant data</strong>, reducing costs and improving model efficiency.</p></li>
+</ul>
+<p>This week, we will focus on <strong>feature importance</strong>, exploring which parts of the data contribute the most to a model’s inference process. This will help us understand model behavior and make data-driven optimizations.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="understanding-feature-importance">
+<h2>Understanding Feature Importance<a class="headerlink" href="#understanding-feature-importance" title="Permalink to this heading">#</a></h2>
+<p>Before diving into specific interpretability techniques like <strong>feature importance in Polynomial Regression, Neural Networks, and Gaussian Processes (GPs)</strong>, we first need a <strong>foundational understanding of feature importance in interpretable machine learning</strong>. This will prepare us to analyze how different models highlight significant input features.</p>
+<section id="what-is-feature-importance">
+<h3><strong>What is Feature Importance?</strong><a class="headerlink" href="#what-is-feature-importance" title="Permalink to this heading">#</a></h3>
+<p>Feature importance helps us <strong>identify which input features have the greatest influence on a model’s predictions</strong>. This understanding is crucial for both developing and interpreting machine learning models, as it provides insights into:</p>
+<ul class="simple">
+<li><p>The <strong>underlying structure of the data</strong>.</p></li>
+<li><p>How the <strong>model makes decisions</strong>.</p></li>
+<li><p>Which features can be <strong>optimized or discarded</strong> to improve efficiency.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="intrinsic-vs-post-hoc-interpretability">
+<h3><strong>Intrinsic vs. Post Hoc Interpretability</strong><a class="headerlink" href="#intrinsic-vs-post-hoc-interpretability" title="Permalink to this heading">#</a></h3>
+<section id="intrinsic-interpretability">
+<h4><strong>Intrinsic Interpretability</strong><a class="headerlink" href="#intrinsic-interpretability" title="Permalink to this heading">#</a></h4>
+<p>Some models, like <strong>Polynomial Regression</strong> and <strong>Random Forests</strong>, naturally provide feature importance. Their transparent structure allows us to extract importance scores directly from the model’s learned parameters (e.g., coefficients in polynomial regression).</p>
+</section>
+<section id="post-hoc-interpretability">
+<h4>🔎 <strong>Post Hoc Interpretability</strong><a class="headerlink" href="#post-hoc-interpretability" title="Permalink to this heading">#</a></h4>
+<p>For complex models like <strong>Neural Networks</strong> and <strong>Gaussian Processes</strong>, feature importance is not readily available. Instead, we use <strong>post hoc methods</strong> such as:</p>
+<ul class="simple">
+<li><p><strong>Permutation Importance</strong> (shuffling feature values and measuring impact).</p></li>
+<li><p><strong>SHAP (SHapley Additive Explanations)</strong> (quantifying feature contributions to predictions).</p></li>
+<li><p><strong>Kernel Length-Scales in Gaussian Processes</strong> (determining feature sensitivity).</p></li>
+</ul>
+<p>These techniques <strong>analyze the model’s outputs after training</strong> to infer which features were most influential.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="feature-importance-across-different-models">
+<h3><strong>Feature Importance Across Different Models</strong><a class="headerlink" href="#feature-importance-across-different-models" title="Permalink to this heading">#</a></h3>
+<p>We will explore <strong>three different methods</strong> for assessing feature importance:</p>
+<section id="polynomial-regression-coefficients-as-feature-importance">
+<h4><strong>1️⃣ Polynomial Regression - Coefficients as Feature Importance</strong><a class="headerlink" href="#polynomial-regression-coefficients-as-feature-importance" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Polynomial Regression extends linear models by including <strong>squared</strong> and <strong>interaction</strong> terms.</p></li>
+<li><p><strong>Feature importance is determined by the learned model coefficients</strong>: larger absolute coefficients indicate greater influence.</p></li>
+</ul>
+</section>
+<section id="neural-networks-permutation-importance-shap">
+<h4><strong>2️⃣ Neural Networks - Permutation Importance &amp; SHAP</strong><a class="headerlink" href="#neural-networks-permutation-importance-shap" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Neural Networks do not provide direct feature importance, so we use:</p>
+<ul>
+<li><p><strong>Permutation Importance</strong> (shuffling features to measure impact).</p></li>
+<li><p><strong>SHAP Values</strong> (assigning contribution scores to each feature).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="gaussian-processes-ard-kernel-length-scales">
+<h4><strong>3️⃣ Gaussian Processes - ARD Kernel Length-Scales</strong><a class="headerlink" href="#gaussian-processes-ard-kernel-length-scales" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Gaussian Process Regression (GPR) with an <strong>ARD (Automatic Relevance Determination) kernel</strong> assigns <strong>individual length-scales</strong> to each feature.</p></li>
+<li><p><strong>Smaller length-scales indicate higher importance</strong>, as the model is more sensitive to those features.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="why-does-this-matter">
+<h3><strong>🔎 Why Does This Matter?</strong><a class="headerlink" href="#why-does-this-matter" title="Permalink to this heading">#</a></h3>
+<p>Feature importance analysis is not just theoretical; it has <strong>practical implications</strong> in:
+<strong>Optimising Models</strong> – Removing unimportant features reduces complexity.  <strong>Data Collection Strategies</strong> – Prioritizing the most relevant data saves resources.<br />
+<strong>Making AI More Explainable</strong> – Transparency improves trust and adoption of ML models.</p>
+<p>Through this exploration, we aim to understand what drives model decisions and how we can enhance interpretability across different machine learning approaches.</p>
+<p>Below we dive in, we need to install ‘GPy’. Because the numpy version it requires is different from the native numpy in colab session, please run the cell below and restart the session.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install GPy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting GPy
+  Downloading GPy-1.13.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.3 kB)
+Collecting numpy&lt;2.0.0,&gt;=1.7 (from GPy)
+  Downloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">61.0/61.0 kB</span> <span class=" -Color -Color-Red">3.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: six in /usr/local/lib/python3.11/dist-packages (from GPy) (1.17.0)
+Collecting paramz&gt;=0.9.6 (from GPy)
+  Downloading paramz-0.9.6-py3-none-any.whl.metadata (1.4 kB)
+Requirement already satisfied: cython&gt;=0.29 in /usr/local/lib/python3.11/dist-packages (from GPy) (3.0.12)
+Collecting scipy&lt;=1.12.0,&gt;=1.3.0 (from GPy)
+  Downloading scipy-1.12.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">60.4/60.4 kB</span> <span class=" -Color -Color-Red">731.1 kB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: decorator&gt;=4.0.10 in /usr/local/lib/python3.11/dist-packages (from paramz&gt;=0.9.6-&gt;GPy) (4.4.2)
+Downloading GPy-1.13.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.8/3.8 MB</span> <span class=" -Color -Color-Red">36.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">18.3/18.3 MB</span> <span class=" -Color -Color-Red">26.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading paramz-0.9.6-py3-none-any.whl (103 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">103.2/103.2 kB</span> <span class=" -Color -Color-Red">10.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading scipy-1.12.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">38.4/38.4 MB</span> <span class=" -Color -Color-Red">11.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hInstalling collected packages: numpy, scipy, paramz, GPy
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.0.2
+    Uninstalling numpy-2.0.2:
+      Successfully uninstalled numpy-2.0.2
+  Attempting uninstall: scipy
+    Found existing installation: scipy 1.14.1
+    Uninstalling scipy-1.14.1:
+      Successfully uninstalled scipy-1.14.1
+Successfully installed GPy-1.13.2 numpy-1.26.4 paramz-0.9.6 scipy-1.12.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.26.4
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now, please restart the session by: navigate to <strong>Runtime → Restart session</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">dataset_path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2324/Week_6/2425_test/s3_ML_dataset.npz&#39;</span> <span class="c1"># change it to the directory where you saved the dataset from the last notebook</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">)</span>
+<span class="n">input_features</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span>
+<span class="n">target_variables</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">input_features</span><span class="p">,</span> <span class="n">target_variables</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training features shape:&quot;</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing features shape:&quot;</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training targets shape:&quot;</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing targets shape:&quot;</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training features shape: (11556, 21)
+Testing features shape: (2889, 21)
+Training targets shape: (11556,)
+Testing targets shape: (2889,)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="feature-importance-in-polynomial-regression">
+<h3>Feature Importance in Polynomial Regression<a class="headerlink" href="#feature-importance-in-polynomial-regression" title="Permalink to this heading">#</a></h3>
+<p>Polynomial regression extends linear regression by adding interaction and squared terms. Feature importance in polynomial regression can be determined by analyzing the model’s learned <strong>coefficients</strong>.</p>
+<ul class="simple">
+<li><p><strong>Larger absolute coefficient values</strong> indicate a stronger influence on predictions.</p></li>
+<li><p><strong>Squared and interaction terms</strong> help capture nonlinear relationships.</p></li>
+</ul>
+<p>In the following section, we extract and visualize feature importance based on the learned coefficients of the polynomial regression model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="n">polynomial_features</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_poly_train</span> <span class="o">=</span> <span class="n">polynomial_features</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="n">model_poly</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model_poly</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_poly_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">X_poly_test</span> <span class="o">=</span> <span class="n">polynomial_features</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">y_pred_poly</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_poly_test</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Mean Squared Error (MSE) on the test set is: </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">sample_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_test</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_pred_poly</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polynomial Regression with Degree 2 - Test Set Prediction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;First Feature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Mean Squared Error (MSE) on the test set is: 0.003137400137094489
+</pre></div>
+</div>
+<img alt="_images/e9d70a955683292e63ae73a3df8ebdb07cf0c5e8cd7539f1ebeeb1acccc8a2ff.png" src="_images/e9d70a955683292e63ae73a3df8ebdb07cf0c5e8cd7539f1ebeeb1acccc8a2ff.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">num_original_features</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">original_feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Feature</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_original_features</span><span class="p">)]</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">polynomial_features</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(</span><span class="n">input_features</span><span class="o">=</span><span class="n">original_feature_names</span><span class="p">)</span>
+
+<span class="c1"># Extract coefficients from the trained model</span>
+<span class="n">coefficients</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">feature_importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="n">feature_names</span><span class="p">,</span> <span class="s1">&#39;Coefficient&#39;</span><span class="p">:</span> <span class="n">coefficients</span><span class="p">})</span>
+
+<span class="c1"># Compute absolute coefficients for ranking</span>
+<span class="n">feature_importance_df</span><span class="p">[</span><span class="s1">&#39;Abs_Coefficient&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature_importance_df</span><span class="p">[</span><span class="s1">&#39;Coefficient&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
+<span class="n">feature_importance_df</span> <span class="o">=</span> <span class="n">feature_importance_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Abs_Coefficient&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">feature_importance_df</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">feature_importance_df</span><span class="p">[</span><span class="s1">&#39;Feature&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">],</span> <span class="n">feature_importance_df</span><span class="p">[</span><span class="s1">&#39;Abs_Coefficient&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Absolute Coefficient Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Features&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Top 10 Most Important Features in Polynomial Regression&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-e23324d5-eb0a-4f4e-9114-3a2fae06f19a" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature</th>
+      <th>Coefficient</th>
+      <th>Abs_Coefficient</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>252</th>
+      <td>Feature20^2</td>
+      <td>-2.788747e+00</td>
+      <td>2.788747e+00</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Feature4</td>
+      <td>-2.477132e+00</td>
+      <td>2.477132e+00</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Feature5</td>
+      <td>-2.423360e+00</td>
+      <td>2.423360e+00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Feature3</td>
+      <td>-2.397877e+00</td>
+      <td>2.397877e+00</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Feature9</td>
+      <td>-2.234714e+00</td>
+      <td>2.234714e+00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>Feature2 Feature12</td>
+      <td>5.515843e-03</td>
+      <td>5.515843e-03</td>
+    </tr>
+    <tr>
+      <th>209</th>
+      <td>Feature12 Feature13</td>
+      <td>-5.450385e-03</td>
+      <td>5.450385e-03</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>Feature2 Feature7</td>
+      <td>-4.422029e-03</td>
+      <td>4.422029e-03</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>Feature1 Feature12</td>
+      <td>-6.594941e-04</td>
+      <td>6.594941e-04</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>8.371683e-07</td>
+      <td>8.371683e-07</td>
+    </tr>
+  </tbody>
+</table>
+<p>253 rows × 3 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-e23324d5-eb0a-4f4e-9114-3a2fae06f19a')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-e23324d5-eb0a-4f4e-9114-3a2fae06f19a button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-e23324d5-eb0a-4f4e-9114-3a2fae06f19a');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-e31da4b0-8ca5-4595-8b33-c9edb1f548fb">
+  <button class="colab-df-quickchart" onclick="quickchart('df-e31da4b0-8ca5-4595-8b33-c9edb1f548fb')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-e31da4b0-8ca5-4595-8b33-c9edb1f548fb button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_fe5c9761-4857-4c35-a4ed-317cdb051860">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('feature_importance_df')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_fe5c9761-4857-4c35-a4ed-317cdb051860 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('feature_importance_df');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div><img alt="_images/79984c7422c156f7886a90f1584f3b881eaa3168838a499f69f48b466c46a2f4.png" src="_images/79984c7422c156f7886a90f1584f3b881eaa3168838a499f69f48b466c46a2f4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="c1"># Identify the top 5 original features (before polynomial transformation)</span>
+<span class="n">top5_original_features</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">feature_importance_df</span><span class="p">[</span><span class="n">feature_importance_df</span><span class="p">[</span><span class="s2">&quot;Feature&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Feature\d+$&#39;</span><span class="p">)]</span>
+    <span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Abs_Coefficient&quot;</span><span class="p">)[</span><span class="s2">&quot;Feature&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Top 5 Original Features for Polynomial Regression: </span><span class="si">{</span><span class="n">top5_original_features</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extract column indices corresponding to selected features</span>
+<span class="n">top5_indices_poly</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Feature&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">top5_original_features</span><span class="p">]</span>
+
+<span class="c1"># Reduce dataset to only selected original features</span>
+<span class="n">X_train_poly_top5</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="n">top5_indices_poly</span><span class="p">]</span>
+<span class="n">X_test_poly_top5</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="n">top5_indices_poly</span><span class="p">]</span>
+
+<span class="c1"># Apply polynomial transformation</span>
+<span class="n">polynomial_features_top5</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_poly_train_top5</span> <span class="o">=</span> <span class="n">polynomial_features_top5</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_poly_top5</span><span class="p">)</span>
+<span class="n">X_poly_test_top5</span> <span class="o">=</span> <span class="n">polynomial_features_top5</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_poly_top5</span><span class="p">)</span>
+
+<span class="c1"># Retrain the Polynomial Regression model</span>
+<span class="n">model_poly_top5</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model_poly_top5</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_poly_train_top5</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">y_pred_poly_top5</span> <span class="o">=</span> <span class="n">model_poly_top5</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_poly_test_top5</span><span class="p">)</span>
+
+<span class="c1"># Calculate and compare MSE</span>
+<span class="n">mse_poly_top5</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly_top5</span><span class="p">)</span>
+<span class="n">mse_poly_full</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_poly</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔹 Polynomial Regression MSE - All Features: </span><span class="si">{</span><span class="n">mse_poly_full</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, Top 5 Features: </span><span class="si">{</span><span class="n">mse_poly_top5</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📌 Top 5 Original Features for Polynomial Regression: [&#39;Feature4&#39;, &#39;Feature5&#39;, &#39;Feature3&#39;, &#39;Feature9&#39;, &#39;Feature8&#39;]
+🔹 Polynomial Regression MSE - All Features: 0.0031, Top 5 Features: 0.0033
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="feature-importance-in-neural-networks">
+<h3>Feature Importance in Neural Networks<a class="headerlink" href="#feature-importance-in-neural-networks" title="Permalink to this heading">#</a></h3>
+<p>Unlike traditional models, neural networks do not have explicit feature importance scores. Instead, we estimate importance using <strong>permutation importance</strong> and <strong>SHAP (SHapley Additive exPlanations)</strong>.</p>
+<ul class="simple">
+<li><p><strong>Permutation Importance</strong> measures how much the model’s error increases when a feature’s values are randomly shuffled.</p></li>
+<li><p><strong>SHAP values</strong> explain how each feature contributes to individual predictions.</p></li>
+</ul>
+<p>Below, we apply these methods to interpret the neural network’s decision-making process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="n">model_nn</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">21</span><span class="p">,)),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">model_nn</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">)</span>
+
+<span class="n">model_nn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model_nn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Mean Squared Error (MSE) on the test set is: </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">model_nn</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+<span class="n">y_pred_nn</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">sample_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_test</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_pred_nn</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Neural Network Regression - Test Set Prediction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;First Feature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Target&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/10
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /usr/local/lib/python3.11/dist-packages/keras/src/layers/core/dense.py:87: UserWarning:Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">362/362</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 4ms/step - loss: 0.0190
+Epoch 2/10
+<span class=" -Color -Color-Bold">362/362</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - loss: 0.0061
+Epoch 3/10
+<span class=" -Color -Color-Bold">362/362</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - loss: 0.0051
+Epoch 4/10
+<span class=" -Color -Color-Bold">362/362</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - loss: 0.0047
+Epoch 5/10
+<span class=" -Color -Color-Bold">362/362</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - loss: 0.0042
+Epoch 6/10
+<span class=" -Color -Color-Bold">362/362</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - loss: 0.0042
+Epoch 7/10
+<span class=" -Color -Color-Bold">362/362</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - loss: 0.0042
+Epoch 8/10
+<span class=" -Color -Color-Bold">362/362</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - loss: 0.0041
+Epoch 9/10
+<span class=" -Color -Color-Bold">362/362</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - loss: 0.0041
+Epoch 10/10
+<span class=" -Color -Color-Bold">362/362</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - loss: 0.0042
+<span class=" -Color -Color-Bold">91/91</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 4ms/step
+The Mean Squared Error (MSE) on the test set is: 0.0035458731777080923
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "sequential_1"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                         </span>┃<span style="font-weight: bold"> Output Shape                </span>┃<span style="font-weight: bold">         Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ dense_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">256</span>)                 │           <span style="color: #00af00; text-decoration-color: #00af00">5,632</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">256</span>)                 │          <span style="color: #00af00; text-decoration-color: #00af00">65,792</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)                   │             <span style="color: #00af00; text-decoration-color: #00af00">257</span> │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">215,045</span> (840.02 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">71,681</span> (280.00 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Optimizer params: </span><span style="color: #00af00; text-decoration-color: #00af00">143,364</span> (560.02 KB)
+</pre>
+</div><img alt="_images/0ca1e95845de21c271c45f3480baadb28b69337264e8cfb3e54ec5f3439cf039.png" src="_images/0ca1e95845de21c271c45f3480baadb28b69337264e8cfb3e54ec5f3439cf039.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">shap</span>
+
+<span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">Explainer</span><span class="p">(</span><span class="n">model_nn</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
+<span class="n">shap_values</span> <span class="o">=</span> <span class="n">explainer</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">summary_plot</span><span class="p">(</span><span class="n">shap_values</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PermutationExplainer explainer: 2890it [03:11, 14.25it/s]
+</pre></div>
+</div>
+<img alt="_images/69fe96669e180e90af22cf0aae274f8ea3dbd2b1871d84ce922004067a440a75.png" src="_images/69fe96669e180e90af22cf0aae274f8ea3dbd2b1871d84ce922004067a440a75.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">shap</span>
+
+<span class="n">shap_importance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">shap_values</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Mean absolute SHAP value per feature</span>
+
+<span class="n">feature_importance_df_nn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Feature&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Feature</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+    <span class="s2">&quot;Importance&quot;</span><span class="p">:</span> <span class="n">shap_importance</span>
+<span class="p">})</span>
+
+<span class="n">top5_nn</span> <span class="o">=</span> <span class="n">feature_importance_df_nn</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Importance&quot;</span><span class="p">)[</span><span class="s2">&quot;Feature&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Top 5 Features for Neural Network: </span><span class="si">{</span><span class="n">top5_nn</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">top5_indices_nn</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Feature&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">top5_nn</span><span class="p">]</span>
+
+<span class="n">X_train_nn_top5</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="n">top5_indices_nn</span><span class="p">]</span>
+<span class="n">X_test_nn_top5</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="n">top5_indices_nn</span><span class="p">]</span>
+
+
+<span class="n">model_nn_top5</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,)),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">model_nn_top5</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">)</span>
+<span class="n">model_nn_top5</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_nn_top5</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Make Predictions</span>
+<span class="n">y_pred_nn_top5</span> <span class="o">=</span> <span class="n">model_nn_top5</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_nn_top5</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Calculate MSE</span>
+<span class="n">mse_nn_top5</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn_top5</span><span class="p">)</span>
+<span class="n">mse_nn_full</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔹 Neural Network MSE - All Features: </span><span class="si">{</span><span class="n">mse_nn_full</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, Top 5 Features: </span><span class="si">{</span><span class="n">mse_nn_top5</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PermutationExplainer explainer: 2890it [03:12, 14.19it/s]
+ /usr/local/lib/python3.11/dist-packages/keras/src/layers/core/dense.py:87: UserWarning:Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📌 Top 5 Features for Neural Network: [&#39;Feature20&#39;, &#39;Feature17&#39;, &#39;Feature16&#39;, &#39;Feature11&#39;, &#39;Feature18&#39;]
+<span class=" -Color -Color-Bold">91/91</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 3ms/step
+🔹 Neural Network MSE - All Features: 0.0035, Top 5 Features: 0.0042
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="feature-importance-in-gaussian-process-regression-gpr">
+<h3>Feature Importance in Gaussian Process Regression (GPR)<a class="headerlink" href="#feature-importance-in-gaussian-process-regression-gpr" title="Permalink to this heading">#</a></h3>
+<p>Gaussian Process Regression (GPR) uses a kernel function to model complex relationships. When using an <strong>ARD (Automatic Relevance Determination) kernel</strong>, each feature gets an independent <strong>length-scale</strong>:</p>
+<ul class="simple">
+<li><p><strong>Smaller length-scales</strong> indicate the model is more sensitive to that feature, meaning it has higher importance.</p></li>
+<li><p><strong>Larger length-scales</strong> mean the feature has less influence on predictions.</p></li>
+</ul>
+<p>In the next section, we compute feature importance using the inverse of the length-scales from the trained GPR model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.26.4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">GPy</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="n">kernel</span> <span class="o">=</span> <span class="n">GPy</span><span class="o">.</span><span class="n">kern</span><span class="o">.</span><span class="n">RBF</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">ARD</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">num_inducing</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Train Sparse Gaussian Process Regression with ARD</span>
+<span class="n">gp</span> <span class="o">=</span> <span class="n">GPy</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">SparseGPRegression</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">num_inducing</span><span class="o">=</span><span class="n">num_inducing</span><span class="p">)</span>
+<span class="n">gp</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">y_pred_gp</span><span class="p">,</span> <span class="n">variance</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">y_pred_gp</span> <span class="o">=</span> <span class="n">y_pred_gp</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Mean Squared Error (MSE) on the test set is: </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extract length-scales for each feature (smaller = more important)</span>
+<span class="n">length_scales</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">kern</span><span class="o">.</span><span class="n">lengthscale</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Compute feature importance as 1 / length-scale</span>
+<span class="n">feature_importance</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">length_scales</span>
+
+<span class="c1"># Create a DataFrame</span>
+<span class="n">feature_importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Feature&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Feature </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">length_scales</span><span class="p">))],</span>
+    <span class="s2">&quot;Length-Scale&quot;</span><span class="p">:</span> <span class="n">length_scales</span><span class="p">,</span>
+    <span class="s2">&quot;Importance&quot;</span><span class="p">:</span> <span class="n">feature_importance</span>
+<span class="p">})</span>
+
+<span class="c1"># Sort by importance (higher = more important)</span>
+<span class="n">feature_importance_df</span> <span class="o">=</span> <span class="n">feature_importance_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Importance&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Display feature importance DataFrame</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Feature Importance based on ARD Kernel:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feature_importance_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>  <span class="c1"># Show top 10 important features</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">feature_importance_df</span><span class="p">[</span><span class="s2">&quot;Feature&quot;</span><span class="p">],</span> <span class="n">feature_importance_df</span><span class="p">[</span><span class="s2">&quot;Importance&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;skyblue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Feature Importance (1 / Length-Scale)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Feature&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Feature Importance in Gaussian Process Regression (ARD Kernel)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>  <span class="c1"># Highest importance at the top</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "58efb7faa47840eb87368d64389c5808"}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Mean Squared Error (MSE) on the test set is: 0.0031077073475976776
+
+Feature Importance based on ARD Kernel:
+       Feature  Length-Scale  Importance
+20  Feature 21      0.833075    1.200371
+17  Feature 18      0.958873    1.042890
+10  Feature 11      0.969100    1.031885
+16  Feature 17      0.970376    1.030528
+5    Feature 6      0.981548    1.018799
+7    Feature 8      0.986074    1.014123
+13  Feature 14      0.992900    1.007151
+4    Feature 5      0.994113    1.005922
+11  Feature 12      1.009720    0.990373
+8    Feature 9      1.010618    0.989493
+</pre></div>
+</div>
+<img alt="_images/f56919e38fca694e36ca8f0db0f0c1ddc47335db4c927abd9df0ac8c941c4c16.png" src="_images/f56919e38fca694e36ca8f0db0f0c1ddc47335db4c927abd9df0ac8c941c4c16.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">GPy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="c1"># Select top 5 most important features</span>
+<span class="n">top5_gp</span> <span class="o">=</span> <span class="n">feature_importance_df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Importance&quot;</span><span class="p">)[</span><span class="s2">&quot;Feature&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="c1"># Convert feature names to zero-based indices</span>
+<span class="n">top5_indices_gp</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Feature &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">top5_gp</span><span class="p">]</span>
+
+<span class="c1"># Print the corrected feature names</span>
+<span class="n">corrected_top5_gp</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Feature </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">top5_indices_gp</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Top 5 Features for Gaussian Process Regression: </span><span class="si">{</span><span class="n">corrected_top5_gp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert feature names to zero-based indices (subtract 1)</span>
+<span class="n">top5_indices_gp</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Feature &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">top5_gp</span><span class="p">]</span>
+
+<span class="c1"># Reduce dataset to only selected features</span>
+<span class="n">X_train_gp_top5</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="n">top5_indices_gp</span><span class="p">]</span>
+<span class="n">X_test_gp_top5</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="n">top5_indices_gp</span><span class="p">]</span>
+
+<span class="c1"># Retrain the GP model using only these features</span>
+<span class="n">kernel_top5</span> <span class="o">=</span> <span class="n">GPy</span><span class="o">.</span><span class="n">kern</span><span class="o">.</span><span class="n">RBF</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ARD</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gp_top5</span> <span class="o">=</span> <span class="n">GPy</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">SparseGPRegression</span><span class="p">(</span><span class="n">X_train_gp_top5</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">kernel_top5</span><span class="p">,</span> <span class="n">num_inducing</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">gp_top5</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Make Predictions</span>
+<span class="n">y_pred_gp_top5</span><span class="p">,</span> <span class="n">variance_gp_top5</span> <span class="o">=</span> <span class="n">gp_top5</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_gp_top5</span><span class="p">)</span>
+<span class="n">y_pred_gp_top5</span> <span class="o">=</span> <span class="n">y_pred_gp_top5</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Calculate MSE for comparison</span>
+<span class="n">mse_gp_top5</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp_top5</span><span class="p">)</span>
+<span class="n">mse_gp_full</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gp</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔹 Gaussian Process MSE - All Features: </span><span class="si">{</span><span class="n">mse_gp_full</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, Top 5 Features: </span><span class="si">{</span><span class="n">mse_gp_top5</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📌 Top 5 Features for Gaussian Process Regression: [&#39;Feature 20&#39;, &#39;Feature 17&#39;, &#39;Feature 10&#39;, &#39;Feature 16&#39;, &#39;Feature 5&#39;]
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "14effcbed163476493cb8846a0a4e59e"}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🔹 Gaussian Process MSE - All Features: 0.0031, Top 5 Features: 0.0033
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Eddies_from_altimetry_part2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Finding Ocean Eddies using Satellite Altimetry: Part 2</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-explainability-important">Why is Explainability Important?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancing-trust-and-confidence"><strong>1️⃣ Enhancing Trust and Confidence</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-model-performance-and-reliability"><strong>2️⃣ Improving Model Performance and Reliability</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-feature-importance">Understanding Feature Importance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-feature-importance"><strong>What is Feature Importance?</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intrinsic-vs-post-hoc-interpretability"><strong>Intrinsic vs. Post Hoc Interpretability</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intrinsic-interpretability"><strong>Intrinsic Interpretability</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#post-hoc-interpretability">🔎 <strong>Post Hoc Interpretability</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-across-different-models"><strong>Feature Importance Across Different Models</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression-coefficients-as-feature-importance"><strong>1️⃣ Polynomial Regression - Coefficients as Feature Importance</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks-permutation-importance-shap"><strong>2️⃣ Neural Networks - Permutation Importance &amp; SHAP</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-processes-ard-kernel-length-scales"><strong>3️⃣ Gaussian Processes - ARD Kernel Length-Scales</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-this-matter"><strong>🔎 Why Does This Matter?</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-in-polynomial-regression">Feature Importance in Polynomial Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-in-neural-networks">Feature Importance in Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-in-gaussian-process-regression-gpr">Feature Importance in Gaussian Process Regression (GPR)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados/Weibin Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
