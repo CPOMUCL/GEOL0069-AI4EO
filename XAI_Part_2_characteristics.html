@@ -1,0 +1,1810 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>XAI for Sea Ice Classification of Waveform &#8212; GEOL0069 Guide Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'XAI_Part_2_characteristics';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="XAI for Sea Ice Roughness from Waveform" href="XAI_Part_2_characteristics_roughness.html" />
+    <link rel="prev" title="XAI for Sea Ice Classification of Waveform" href="XAI_Part_2_fullwaveform_aligned.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to GEOL0069 AI for Earth Observation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3APreparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AIRIS.html">Introduction to Intelligently Reinforced Image Segmentation (IRIS)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AML.html">Introduction to AI/Machine Learning</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_Sea_ice_and_Lead_Classification.html">Sea-ice and Lead Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_AI_Algorithms.html">AI/Machine Learning Implementation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter%201%3AFetching_Data.html">Data Fetching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_1_rollout_3.html">Roll-out on a Full Image</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Data_Colocating_S2_S3_3.html">Colocating Sentinel-3 OLCI/SRAL and Sentinal-2 Optical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Unsupervised_Learning_Methods_2.html">Unsupervised Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Regression.html">Regression Techniques for Predictive Analysis</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Creating_training_data_fromS3_S2-2.html">Creating Training Data from Sentinel-2 and Sentinel-3 OLCI Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter1_Regression_Part2_2425.html">Application of Regression Techniques in Satellite Imagery Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Imagery_alignment_intro.html">Imagery Alignment: Introduction and Simple Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Imagery_alignment_application.html">Images alignment on S3/S2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating_training_data_from_aligned_misaligned_imagery.html">Creating Training Data from Aligned and Misaligned Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Regression_Application_MPF_aligned_misaligned_training_data.html">Regression Application on Melt Pond Fractions (MPF)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter2_IntrotoGaussianProcesses.html">Introduction to Gaussian Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_Intro_to_GPSat.html">Introduction to GPSat</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_GPSat_along_track-3.html">GPSat Along-Track Interpolation</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_SLA_GPSat_eddies.html">Interpolation of Sea Level Anomaly using GPSat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Chapter_2_SLA_GPSat_GPOD.html">Sea Level Anomaly Interpolation Using GPSat (GPOD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Eddies_from_altimetry_part1-2.html">Finding Ocean Eddies using Satellite Altimetry: Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Eddies_from_altimetry_part2.html">Finding Ocean Eddies using Satellite Altimetry: Part 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 9</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Week9_XAI.html">Explainable AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XAI_Part_2_fullwaveform_aligned.html">XAI for Sea Ice Classification of Waveform</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">XAI for Sea Ice Classification of Waveform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XAI_Part_2_characteristics_roughness.html">XAI for Sea Ice Roughness from Waveform</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FXAI_Part_2_characteristics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/XAI_Part_2_characteristics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>XAI for Sea Ice Classification of Waveform</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#models-implemented">Models Implemented</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-analysis-techniques">Key Analysis Techniques</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">1. Data Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cnn-model-for-waveform-classification">2. CNN Model for Waveform Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evaluation-explainability-shap-gradients">3. Model Evaluation &amp; Explainability (SHAP &amp; Gradients)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-based-classification-models-with-engineered-waveform-features">4. Tree-Based Classification Models with Engineered Waveform Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest"><strong>Random Forest</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting"><strong>Gradient Boosting</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost"><strong>XGBoost</strong></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="xai-for-sea-ice-classification-of-waveform">
+<h1>XAI for Sea Ice Classification of Waveform<a class="headerlink" href="#xai-for-sea-ice-classification-of-waveform" title="Permalink to this heading">#</a></h1>
+<p>This notebook demonstrates techniques for classifying sea ice and leads from waveform data using both deep learning and tree-based methods and the ways to show which waveform characteristics contributes the most to the classification.</p>
+<section id="models-implemented">
+<h2>Models Implemented<a class="headerlink" href="#models-implemented" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>CNN</strong>: Captures patterns directly from raw waveforms</p></li>
+<li><p><strong>Random Forest</strong>: Robust ensemble approach with inherent feature importance</p></li>
+<li><p><strong>Gradient Boosting</strong>: Sequential learning focused on misclassification correction</p></li>
+<li><p><strong>XGBoost</strong>: Optimised gradient boosting with regularisation</p></li>
+</ul>
+</section>
+<section id="key-analysis-techniques">
+<h2>Key Analysis Techniques<a class="headerlink" href="#key-analysis-techniques" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Preprocessing of waveform characteristics</p></li>
+<li><p>SHAP values for CNN interpretability</p></li>
+<li><p>Model comparison with confusion matrices</p></li>
+<li><p>Identification of consensus important regions across models</p></li>
+</ul>
+<p>The notebook identifies which waveform characteristics are most discriminative for sea ice classification, offering insights that may improve for waveform classification.</p>
+</section>
+<section id="data-preprocessing">
+<h2>1. Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Reads waveform data from a CSV file and processes it into structured arrays.</p></li>
+<li><p>Handles missing values and class label inconsistencies.</p></li>
+<li><p>Splits data into training and test sets while scaling features for consistency.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="cnn-model-for-waveform-classification">
+<h2>2. CNN Model for Waveform Classification<a class="headerlink" href="#cnn-model-for-waveform-classification" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Implements a Convolutional Neural Network (CNN) to classify sea ice and leads from radar waveform characteristics.</p></li>
+<li><p>Uses multiple convolutional layers with batch normalisation, max pooling, dropout, and dense layers.</p></li>
+<li><p>Compiles with the Adam optimizer and binary cross-entropy loss, monitoring performance with accuracy and AUC metrics.</p></li>
+<li><p>Trains with early stopping and learning rate reduction strategies to prevent overfitting.</p></li>
+<li><p>Plots training history to assess model performance over epochs.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="model-evaluation-explainability-shap-gradients">
+<h2>3. Model Evaluation &amp; Explainability (SHAP &amp; Gradients)<a class="headerlink" href="#model-evaluation-explainability-shap-gradients" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Evaluates the trained CNN model on the test set, reporting accuracy, confusion matrix, and classification metrics.</p></li>
+<li><p>Uses <strong>SHAP (SHapley Additive Explanations)</strong> values to interpret feature importance, identifying key waveform regions influencing classification.</p></li>
+<li><p>Helps in understanding which waveform characteristics contribute most to sea ice classification decisions.</p></li>
+</ul>
+<p>We need to install GPY and restart session as we did in our last notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install Gpy
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">BatchNormalization</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.callbacks</span> <span class="kn">import</span> <span class="n">EarlyStopping</span><span class="p">,</span> <span class="n">ReduceLROnPlateau</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">ast</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">median_abs_deviation</span>
+<span class="kn">import</span> <span class="nn">shap</span>
+
+<span class="c1"># Function to parse string representation of waveform array into numeric values</span>
+<span class="k">def</span> <span class="nf">parse_waveform</span><span class="p">(</span><span class="n">waveform_str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse the string representation of waveform array into numeric values&quot;&quot;&quot;</span>
+    <span class="n">cleaned_str</span> <span class="o">=</span> <span class="n">waveform_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;e+&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Use ast.literal_eval for safe evaluation of the string as a list</span>
+        <span class="n">waveform_list</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">cleaned_str</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">waveform_list</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">SyntaxError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Manual parsing fallback</span>
+            <span class="n">values_str</span> <span class="o">=</span> <span class="n">waveform_str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;[]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values_str</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">val</span><span class="p">:</span>  <span class="c1"># Skip empty strings</span>
+                    <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e2</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error parsing waveform: </span><span class="si">{</span><span class="n">e2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+
+<span class="c1"># ----- Waveform Feature Extraction Functions -----</span>
+
+<span class="k">def</span> <span class="nf">extract_waveform_features</span><span class="p">(</span><span class="n">waveform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract features from a radar waveform as described in the literature&quot;&quot;&quot;</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Normalize waveform for relative measurements</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">waveform</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">norm_waveform</span> <span class="o">=</span> <span class="n">waveform</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">waveform</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">norm_waveform</span> <span class="o">=</span> <span class="n">waveform</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># 1. Leading Edge Width (LEW)</span>
+    <span class="c1"># Find the positions where the waveform crosses 30% and 70% thresholds on rising edge</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Find the maximum position</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">norm_waveform</span><span class="p">)</span>
+
+        <span class="c1"># Find indexes before the peak where waveform crosses 30% and 70% thresholds</span>
+        <span class="n">thresh_30_idx</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">thresh_70_idx</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_idx</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">0.3</span> <span class="ow">and</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.3</span><span class="p">:</span>
+                <span class="c1"># Interpolate to find more precise bin position</span>
+                <span class="n">frac</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.3</span> <span class="o">-</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">thresh_30_idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">frac</span>
+            <span class="k">if</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">0.7</span> <span class="ow">and</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.7</span><span class="p">:</span>
+                <span class="c1"># Interpolate to find more precise bin position</span>
+                <span class="n">frac</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.7</span> <span class="o">-</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">thresh_70_idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">frac</span>
+
+        <span class="c1"># If thresholds weren&#39;t found before peak, use default values</span>
+        <span class="k">if</span> <span class="n">thresh_30_idx</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">thresh_70_idx</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">features</span><span class="p">[</span><span class="s1">&#39;lew&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">features</span><span class="p">[</span><span class="s1">&#39;lew&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">thresh_70_idx</span> <span class="o">-</span> <span class="n">thresh_30_idx</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">features</span><span class="p">[</span><span class="s1">&#39;lew&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># 2. Waveform Maximum (Wm)</span>
+    <span class="n">features</span><span class="p">[</span><span class="s1">&#39;wm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">waveform</span><span class="p">)</span>
+
+    <span class="c1"># 3. Trailing Edge Decline (Ted)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Exponential decay function for fitting</span>
+        <span class="k">def</span> <span class="nf">exp_decay</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">waveform</span><span class="p">)</span>
+        <span class="n">trailing_edge</span> <span class="o">=</span> <span class="n">waveform</span><span class="p">[</span><span class="n">max_idx</span><span class="p">:]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">trailing_edge</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># Need at least a few points for fitting</span>
+            <span class="n">x_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">trailing_edge</span><span class="p">))</span>
+
+            <span class="c1"># Avoid curve_fit errors by ensuring positive values</span>
+            <span class="n">trailing_edge_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">trailing_edge</span><span class="p">,</span> <span class="mf">1e-10</span><span class="p">)</span>
+
+            <span class="c1"># Initial guess for parameters</span>
+            <span class="n">p0</span> <span class="o">=</span> <span class="p">[</span><span class="n">trailing_edge_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.1</span><span class="p">]</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Fit exponential decay to trailing edge</span>
+                <span class="n">popt</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">exp_decay</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">trailing_edge_pos</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="n">p0</span><span class="p">,</span> <span class="n">maxfev</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+                <span class="n">features</span><span class="p">[</span><span class="s1">&#39;ted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Decay rate parameter</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">features</span><span class="p">[</span><span class="s1">&#39;ted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">features</span><span class="p">[</span><span class="s1">&#39;ted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">features</span><span class="p">[</span><span class="s1">&#39;ted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># 4. Waveform Noise (Wn) - MAD of trailing edge residuals</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">waveform</span><span class="p">)</span>
+        <span class="n">trailing_edge</span> <span class="o">=</span> <span class="n">waveform</span><span class="p">[</span><span class="n">max_idx</span><span class="p">:]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">trailing_edge</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="ow">and</span> <span class="s1">&#39;ted&#39;</span> <span class="ow">in</span> <span class="n">features</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;ted&#39;</span><span class="p">]):</span>
+            <span class="c1"># Using the fitted parameters from Ted</span>
+            <span class="n">x_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">trailing_edge</span><span class="p">))</span>
+            <span class="n">fitted_values</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="s1">&#39;wm&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;ted&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">x_data</span><span class="p">)</span>
+
+            <span class="c1"># Calculate residuals</span>
+            <span class="n">residuals</span> <span class="o">=</span> <span class="n">trailing_edge</span> <span class="o">-</span> <span class="n">fitted_values</span>
+
+            <span class="c1"># MAD of residuals</span>
+            <span class="n">features</span><span class="p">[</span><span class="s1">&#39;wn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">median_abs_deviation</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">features</span><span class="p">[</span><span class="s1">&#39;wn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">features</span><span class="p">[</span><span class="s1">&#39;wn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># 5. Waveform Width (Ww)</span>
+    <span class="c1"># Count bins with power &gt; 0</span>
+    <span class="n">features</span><span class="p">[</span><span class="s1">&#39;ww&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">waveform</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># 6. Leading Edge Slope (Les)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">norm_waveform</span><span class="p">)</span>
+
+        <span class="c1"># Find bins where waveform exceeds 30% of max</span>
+        <span class="n">thresh_30_idx</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_idx</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">0.3</span> <span class="ow">and</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.3</span><span class="p">:</span>
+                <span class="n">thresh_30_idx</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">thresh_30_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Calculate difference between max bin and first 30% threshold bin</span>
+            <span class="n">features</span><span class="p">[</span><span class="s1">&#39;les&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_idx</span> <span class="o">-</span> <span class="n">thresh_30_idx</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">features</span><span class="p">[</span><span class="s1">&#39;les&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">features</span><span class="p">[</span><span class="s1">&#39;les&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># 7. Trailing Edge Slope (Tes)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">norm_waveform</span><span class="p">)</span>
+
+        <span class="c1"># Find last bin where waveform exceeds 30% of max</span>
+        <span class="n">thresh_30_idx</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">norm_waveform</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_idx</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">0.3</span> <span class="ow">and</span> <span class="n">norm_waveform</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.3</span><span class="p">:</span>
+                <span class="n">thresh_30_idx</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">thresh_30_idx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Calculate difference between last 30% threshold bin and max bin</span>
+            <span class="n">features</span><span class="p">[</span><span class="s1">&#39;tes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">thresh_30_idx</span> <span class="o">-</span> <span class="n">max_idx</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">features</span><span class="p">[</span><span class="s1">&#39;tes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">features</span><span class="p">[</span><span class="s1">&#39;tes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># 8. Pulse Peakiness (PP) - common waveform feature in literature</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">features</span><span class="p">[</span><span class="s1">&#39;pp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="s1">&#39;wm&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">waveform</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">features</span><span class="p">[</span><span class="s1">&#39;pp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># 9. Max position (relative bin where the maximum occurs)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">features</span><span class="p">[</span><span class="s1">&#39;max_pos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">waveform</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">waveform</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">features</span><span class="p">[</span><span class="s1">&#39;max_pos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="k">return</span> <span class="n">features</span>
+
+<span class="k">def</span> <span class="nf">extract_waveforms_and_features</span><span class="p">(</span><span class="n">roughness</span><span class="p">,</span> <span class="n">target_column</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process all waveforms and extract features&quot;&quot;&quot;</span>
+    <span class="c1"># Lists to store data</span>
+    <span class="n">feature_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">target_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">valid_indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">raw_waveforms</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracting features from waveforms...&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Process each row</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">roughness</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">%</span> <span class="mi">500</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing row </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">roughness</span><span class="p">)</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Get the waveform and class</span>
+            <span class="n">waveform_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Matched_Waveform_20_Ku&#39;</span><span class="p">])</span>
+            <span class="n">waveform_array</span> <span class="o">=</span> <span class="n">parse_waveform</span><span class="p">(</span><span class="n">waveform_str</span><span class="p">)</span>
+
+            <span class="c1"># Get class label</span>
+            <span class="n">class_label</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">target_column</span><span class="p">])</span>
+
+            <span class="c1"># Extract features if valid waveform</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">waveform_array</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># Extract features</span>
+                <span class="n">features</span> <span class="o">=</span> <span class="n">extract_waveform_features</span><span class="p">(</span><span class="n">waveform_array</span><span class="p">)</span>
+
+                <span class="c1"># Skip if any feature is NaN</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">values</span><span class="p">()))):</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># Store data</span>
+                <span class="n">feature_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+                <span class="n">target_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">class_label</span><span class="p">)</span>
+                <span class="n">valid_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+                <span class="n">raw_waveforms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">waveform_array</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>  <span class="c1"># Print first few errors</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing row </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+    <span class="c1"># Convert to numpy arrays</span>
+    <span class="n">X_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_list</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">target_list</span><span class="p">)</span>
+    <span class="n">X_raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">raw_waveforms</span><span class="p">)</span>
+
+    <span class="c1"># Create feature names</span>
+    <span class="n">feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Leading Edge Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Waveform Maximum&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Trailing Edge Decline&#39;</span><span class="p">,</span> <span class="s1">&#39;Waveform Noise&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Waveform Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Leading Edge Slope&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Trailing Edge Slope&#39;</span><span class="p">,</span> <span class="s1">&#39;Pulse Peakiness&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Max Position&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">X_features</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_raw</span><span class="p">,</span> <span class="n">valid_indices</span><span class="p">,</span> <span class="n">feature_names</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ----- Main Processing -----</span>
+<span class="n">roughness</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2324/Week 9 2025/updated_filtered_matched_uit_sentinel3_L2_alongtrack_2023_04_official.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">roughness</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting waveform feature extraction and classification...&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define the target column</span>
+<span class="n">target_column</span> <span class="o">=</span> <span class="s1">&#39;Sea_Ice_Class&#39;</span>
+<span class="k">if</span> <span class="n">target_column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">roughness</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Warning: </span><span class="si">{</span><span class="n">target_column</span><span class="si">}</span><span class="s2"> not found. Available columns: </span><span class="si">{</span><span class="n">roughness</span><span class="o">.</span><span class="n">columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Will use &#39;Lead_Class&#39; as target instead.&quot;</span><span class="p">)</span>
+    <span class="n">target_column</span> <span class="o">=</span> <span class="s1">&#39;Lead_Class&#39;</span>
+
+<span class="c1"># Extract features from all waveforms</span>
+<span class="n">X_features</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_raw</span><span class="p">,</span> <span class="n">valid_indices</span><span class="p">,</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="n">extract_waveforms_and_features</span><span class="p">(</span><span class="n">roughness</span><span class="p">,</span> <span class="n">target_column</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extracted </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)</span><span class="si">}</span><span class="s2"> features from </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_features</span><span class="p">)</span><span class="si">}</span><span class="s2"> valid waveforms&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Features: </span><span class="si">{</span><span class="n">feature_names</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Feature data shape: </span><span class="si">{</span><span class="n">X_features</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Class distribution: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check for NaN values</span>
+<span class="n">nan_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">X_features</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_features_clean</span> <span class="o">=</span> <span class="n">X_features</span><span class="p">[</span><span class="o">~</span><span class="n">nan_mask</span><span class="p">]</span>
+<span class="n">y_clean</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">nan_mask</span><span class="p">]</span>
+<span class="n">X_raw_clean</span> <span class="o">=</span> <span class="n">X_raw</span><span class="p">[</span><span class="o">~</span><span class="n">nan_mask</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Removed </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">nan_mask</span><span class="p">)</span><span class="si">}</span><span class="s2"> samples with NaN values&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Clean feature data shape: </span><span class="si">{</span><span class="n">X_features_clean</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Split data into training and test sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_raw_train</span><span class="p">,</span> <span class="n">X_raw_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X_features_clean</span><span class="p">,</span> <span class="n">y_clean</span><span class="p">,</span> <span class="n">X_raw_clean</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_clean</span>
+<span class="p">)</span>
+
+<span class="c1"># Scale features</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       3A=0_3B=1  Orbit_#  Segment_#     Datenumber   Latitude  Longitude  \
+0              0        1          1  738977.028790  74.432732 -73.103512   
+1              0        1          1  738977.028790  74.435182 -73.109831   
+2              0        1          1  738977.028791  74.437633 -73.116151   
+3              0        1          1  738977.028791  74.440083 -73.122474   
+4              0        1          1  738977.028792  74.442533 -73.128797   
+...          ...      ...        ...            ...        ...        ...   
+28720          0      843        843  739006.699439  71.763165 -74.486482   
+28721          0      843        843  739006.699440  71.760574 -74.491177   
+28722          0      843        843  739006.699440  71.757982 -74.495872   
+28723          0      843        843  739006.699450  71.711313 -74.580159   
+28724          0      843        843  739006.699451  71.708719 -74.584830   
+
+       Radar_Freeboard  Surface_Height_WGS84  Sea_Surface_Height_Interp_WGS84  \
+0            -0.044136             14.319994                        14.364129   
+1            -0.099506             14.265998                        14.365504   
+2             0.029215             14.396251                        14.367035   
+3             0.062597             14.431502                        14.368905   
+4            -0.044797             14.326136                        14.370932   
+...                ...                   ...                              ...   
+28720         0.362561              0.308307                        -0.054254   
+28721         0.276995              0.205567                        -0.071428   
+28722         0.301225              0.211470                        -0.089755   
+28723         0.165803             -0.241391                        -0.407193   
+28724         0.255920             -0.165441                        -0.421361   
+
+       SSH_Uncertainty  ...  Lead_Class  Sea_Ice_Roughness  \
+0             0.000254  ...           0           0.017885   
+1             0.000232  ...           0           0.003315   
+2             0.000212  ...           0           0.018211   
+3             0.000192  ...           0           0.051418   
+4             0.000173  ...           0           0.046983   
+...                ...  ...         ...                ...   
+28720         0.014538  ...           0           0.067003   
+28721         0.014706  ...           0           0.040842   
+28722         0.014876  ...           0           0.034679   
+28723         0.018095  ...           0           0.443806   
+28724         0.018284  ...           0           0.058687   
+
+       Sea_Ice_Concentration  Seconds_since_2000  Year  Month  Day  \
+0                     1.0000        7.336249e+08  2023      4    1   
+1                     1.0000        7.336249e+08  2023      4    1   
+2                     1.0000        7.336249e+08  2023      4    1   
+3                     1.0000        7.336249e+08  2023      4    1   
+4                     1.0000        7.336249e+08  2023      4    1   
+...                      ...                 ...   ...    ...  ...   
+28720                 0.9083        7.361884e+08  2023      4   30   
+28721                 0.9083        7.361884e+08  2023      4   30   
+28722                 0.9083        7.361884e+08  2023      4   30   
+28723                 0.9083        7.361884e+08  2023      4   30   
+28724                 0.9083        7.361884e+08  2023      4   30   
+
+              Proj_X        Proj_Y  \
+0      646585.001913  8.269660e+06   
+1      646373.758053  8.269917e+06   
+2      646162.531358  8.270174e+06   
+3      645951.280450  8.270431e+06   
+4      645740.085773  8.270688e+06   
+...              ...           ...   
+28720  622709.601630  7.969277e+06   
+28721  622562.605479  7.968979e+06   
+28722  622415.569925  7.968680e+06   
+28723  619768.967681  7.963311e+06   
+28724  619621.913813  7.963013e+06   
+
+                                  Matched_Waveform_20_Ku  
+0      [2.524e+00,2.780e+00,2.194e+00,2.286e+00,2.054...  
+1      [2.381e+00,2.182e+00,2.332e+00,2.352e+00,1.857...  
+2      [2.173e+00,1.961e+00,2.388e+00,2.075e+00,2.609...  
+3      [2.202e+00,2.223e+00,2.049e+00,2.213e+00,2.138...  
+4      [3.252e+00,2.874e+00,2.988e+00,2.789e+00,2.546...  
+...                                                  ...  
+28720                                                NaN  
+28721                                                NaN  
+28722                                                NaN  
+28723                                                NaN  
+28724                                                NaN  
+
+[28725 rows x 23 columns]
+Starting waveform feature extraction and classification...
+Extracting features from waveforms...
+Processing row 0/28725...
+Processing row 500/28725...
+Processing row 1000/28725...
+Processing row 1500/28725...
+Processing row 2000/28725...
+Processing row 2500/28725...
+Processing row 3000/28725...
+Processing row 3500/28725...
+Processing row 4000/28725...
+Processing row 4500/28725...
+Processing row 5000/28725...
+Processing row 5500/28725...
+Processing row 6000/28725...
+Processing row 6500/28725...
+Processing row 7000/28725...
+Processing row 7500/28725...
+Processing row 8000/28725...
+Processing row 8500/28725...
+Processing row 9000/28725...
+Processing row 9500/28725...
+Processing row 10000/28725...
+Processing row 10500/28725...
+Processing row 11000/28725...
+Processing row 11500/28725...
+Processing row 12000/28725...
+Processing row 12500/28725...
+Processing row 13000/28725...
+Processing row 13500/28725...
+Processing row 14000/28725...
+Processing row 14500/28725...
+Processing row 15000/28725...
+Processing row 15500/28725...
+Processing row 16000/28725...
+Processing row 16500/28725...
+Processing row 17000/28725...
+Processing row 17500/28725...
+Processing row 18000/28725...
+Processing row 18500/28725...
+Processing row 19000/28725...
+Processing row 19500/28725...
+Processing row 20000/28725...
+Processing row 20500/28725...
+Processing row 21000/28725...
+Processing row 21500/28725...
+Processing row 22000/28725...
+Processing row 22500/28725...
+Processing row 23000/28725...
+Processing row 23500/28725...
+Processing row 24000/28725...
+Processing row 24500/28725...
+Processing row 25000/28725...
+Processing row 25500/28725...
+Processing row 26000/28725...
+Processing row 26500/28725...
+Processing row 27000/28725...
+Processing row 27500/28725...
+Processing row 28000/28725...
+Processing row 28500/28725...
+Extracted 9 features from 12765 valid waveforms
+Features: [&#39;Leading Edge Width&#39;, &#39;Waveform Maximum&#39;, &#39;Trailing Edge Decline&#39;, &#39;Waveform Noise&#39;, &#39;Waveform Width&#39;, &#39;Leading Edge Slope&#39;, &#39;Trailing Edge Slope&#39;, &#39;Pulse Peakiness&#39;, &#39;Max Position&#39;]
+Feature data shape: (12765, 9)
+Class distribution: [  604 12161]
+Removed 0 samples with NaN values
+Clean feature data shape: (12765, 9)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="c1"># ----- Neural Network Model for Feature-Based Classification -----</span>
+
+<span class="c1"># Build a simple neural network model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],)),</span>
+    <span class="n">BatchNormalization</span><span class="p">(),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="c1"># Compile the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">AUC</span><span class="p">()]</span>
+<span class="p">)</span>
+
+<span class="c1"># Model summary</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+<span class="c1"># Callbacks</span>
+<span class="n">callbacks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">restore_best_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">ReduceLROnPlateau</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_lr</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="c1"># Apply class weights if imbalanced</span>
+<span class="n">class_weights</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+    <span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
+    <span class="n">class_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">class_counts</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">class_counts</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>  <span class="c1"># If imbalanced</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Detected class imbalance, applying class weights&quot;</span><span class="p">)</span>
+        <span class="n">class_weights</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">n_samples</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_classes</span> <span class="o">*</span> <span class="n">count</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">class_counts</span><span class="p">)}</span>
+
+<span class="c1"># Train the model</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Training neural network model...&quot;</span><span class="p">)</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+    <span class="n">class_weight</span><span class="o">=</span><span class="n">class_weights</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="c1"># Plot training history</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validation Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training and Validation Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validation Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training and Validation Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># ----- Model Evaluation -----</span>
+
+
+<span class="n">y_pred_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred_prob</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Classification Report:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+
+<span class="n">conf_matrix</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">conf_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
+            <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Lead (0)&#39;</span><span class="p">,</span> <span class="s1">&#39;Sea Ice (1)&#39;</span><span class="p">],</span>
+            <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Lead (0)&#39;</span><span class="p">,</span> <span class="s1">&#39;Sea Ice (1)&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       3A=0_3B=1  Orbit_#  Segment_#     Datenumber   Latitude  Longitude  \
+0              0        1          1  738977.028790  74.432732 -73.103512   
+1              0        1          1  738977.028790  74.435182 -73.109831   
+2              0        1          1  738977.028791  74.437633 -73.116151   
+3              0        1          1  738977.028791  74.440083 -73.122474   
+4              0        1          1  738977.028792  74.442533 -73.128797   
+...          ...      ...        ...            ...        ...        ...   
+28720          0      843        843  739006.699439  71.763165 -74.486482   
+28721          0      843        843  739006.699440  71.760574 -74.491177   
+28722          0      843        843  739006.699440  71.757982 -74.495872   
+28723          0      843        843  739006.699450  71.711313 -74.580159   
+28724          0      843        843  739006.699451  71.708719 -74.584830   
+
+       Radar_Freeboard  Surface_Height_WGS84  Sea_Surface_Height_Interp_WGS84  \
+0            -0.044136             14.319994                        14.364129   
+1            -0.099506             14.265998                        14.365504   
+2             0.029215             14.396251                        14.367035   
+3             0.062597             14.431502                        14.368905   
+4            -0.044797             14.326136                        14.370932   
+...                ...                   ...                              ...   
+28720         0.362561              0.308307                        -0.054254   
+28721         0.276995              0.205567                        -0.071428   
+28722         0.301225              0.211470                        -0.089755   
+28723         0.165803             -0.241391                        -0.407193   
+28724         0.255920             -0.165441                        -0.421361   
+
+       SSH_Uncertainty  ...  Lead_Class  Sea_Ice_Roughness  \
+0             0.000254  ...           0           0.017885   
+1             0.000232  ...           0           0.003315   
+2             0.000212  ...           0           0.018211   
+3             0.000192  ...           0           0.051418   
+4             0.000173  ...           0           0.046983   
+...                ...  ...         ...                ...   
+28720         0.014538  ...           0           0.067003   
+28721         0.014706  ...           0           0.040842   
+28722         0.014876  ...           0           0.034679   
+28723         0.018095  ...           0           0.443806   
+28724         0.018284  ...           0           0.058687   
+
+       Sea_Ice_Concentration  Seconds_since_2000  Year  Month  Day  \
+0                     1.0000        7.336249e+08  2023      4    1   
+1                     1.0000        7.336249e+08  2023      4    1   
+2                     1.0000        7.336249e+08  2023      4    1   
+3                     1.0000        7.336249e+08  2023      4    1   
+4                     1.0000        7.336249e+08  2023      4    1   
+...                      ...                 ...   ...    ...  ...   
+28720                 0.9083        7.361884e+08  2023      4   30   
+28721                 0.9083        7.361884e+08  2023      4   30   
+28722                 0.9083        7.361884e+08  2023      4   30   
+28723                 0.9083        7.361884e+08  2023      4   30   
+28724                 0.9083        7.361884e+08  2023      4   30   
+
+              Proj_X        Proj_Y  \
+0      646585.001913  8.269660e+06   
+1      646373.758053  8.269917e+06   
+2      646162.531358  8.270174e+06   
+3      645951.280450  8.270431e+06   
+4      645740.085773  8.270688e+06   
+...              ...           ...   
+28720  622709.601630  7.969277e+06   
+28721  622562.605479  7.968979e+06   
+28722  622415.569925  7.968680e+06   
+28723  619768.967681  7.963311e+06   
+28724  619621.913813  7.963013e+06   
+
+                                  Matched_Waveform_20_Ku  
+0      [2.524e+00,2.780e+00,2.194e+00,2.286e+00,2.054...  
+1      [2.381e+00,2.182e+00,2.332e+00,2.352e+00,1.857...  
+2      [2.173e+00,1.961e+00,2.388e+00,2.075e+00,2.609...  
+3      [2.202e+00,2.223e+00,2.049e+00,2.213e+00,2.138...  
+4      [3.252e+00,2.874e+00,2.988e+00,2.789e+00,2.546...  
+...                                                  ...  
+28720                                                NaN  
+28721                                                NaN  
+28722                                                NaN  
+28723                                                NaN  
+28724                                                NaN  
+
+[28725 rows x 23 columns]
+Starting waveform feature extraction and classification...
+Extracting features from waveforms...
+Processing row 0/28725...
+Processing row 500/28725...
+Processing row 1000/28725...
+Processing row 1500/28725...
+Processing row 2000/28725...
+Processing row 2500/28725...
+Processing row 3000/28725...
+Processing row 3500/28725...
+Processing row 4000/28725...
+Processing row 4500/28725...
+Processing row 5000/28725...
+Processing row 5500/28725...
+Processing row 6000/28725...
+Processing row 6500/28725...
+Processing row 7000/28725...
+Processing row 7500/28725...
+Processing row 8000/28725...
+Processing row 8500/28725...
+Processing row 9000/28725...
+Processing row 9500/28725...
+Processing row 10000/28725...
+Processing row 10500/28725...
+Processing row 11000/28725...
+Processing row 11500/28725...
+Processing row 12000/28725...
+Processing row 12500/28725...
+Processing row 13000/28725...
+Processing row 13500/28725...
+Processing row 14000/28725...
+Processing row 14500/28725...
+Processing row 15000/28725...
+Processing row 15500/28725...
+Processing row 16000/28725...
+Processing row 16500/28725...
+Processing row 17000/28725...
+Processing row 17500/28725...
+Processing row 18000/28725...
+Processing row 18500/28725...
+Processing row 19000/28725...
+Processing row 19500/28725...
+Processing row 20000/28725...
+Processing row 20500/28725...
+Processing row 21000/28725...
+Processing row 21500/28725...
+Processing row 22000/28725...
+Processing row 22500/28725...
+Processing row 23000/28725...
+Processing row 23500/28725...
+Processing row 24000/28725...
+Processing row 24500/28725...
+Processing row 25000/28725...
+Processing row 25500/28725...
+Processing row 26000/28725...
+Processing row 26500/28725...
+Processing row 27000/28725...
+Processing row 27500/28725...
+Processing row 28000/28725...
+Processing row 28500/28725...
+Extracted 9 features from 12765 valid waveforms
+Features: [&#39;Leading Edge Width&#39;, &#39;Waveform Maximum&#39;, &#39;Trailing Edge Decline&#39;, &#39;Waveform Noise&#39;, &#39;Waveform Width&#39;, &#39;Leading Edge Slope&#39;, &#39;Trailing Edge Slope&#39;, &#39;Pulse Peakiness&#39;, &#39;Max Position&#39;]
+Feature data shape: (12765, 9)
+Class distribution: [  604 12161]
+Removed 0 samples with NaN values
+Clean feature data shape: (12765, 9)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/dist-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "sequential_1"</span>
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                         </span>┃<span style="font-weight: bold"> Output Shape                </span>┃<span style="font-weight: bold">         Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ dense_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)                  │             <span style="color: #00af00; text-decoration-color: #00af00">160</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization_1                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)                  │              <span style="color: #00af00; text-decoration-color: #00af00">64</span> │
+│ (<span style="color: #0087ff; text-decoration-color: #0087ff">BatchNormalization</span>)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)                  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)                  │               <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">8</span>)                   │             <span style="color: #00af00; text-decoration-color: #00af00">136</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)                  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">8</span>)                   │               <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                      │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)                   │               <span style="color: #00af00; text-decoration-color: #00af00">9</span> │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">369</span> (1.44 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">337</span> (1.32 KB)
+</pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">32</span> (128.00 B)
+</pre>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Detected class imbalance, applying class weights
+
+Training neural network model...
+Epoch 1/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">7s</span> 14ms/step - accuracy: 0.5987 - auc_1: 0.5160 - loss: 1.0171 - val_accuracy: 0.5859 - val_auc_1: 0.9090 - val_loss: 0.5763 - learning_rate: 0.0010
+Epoch 2/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - accuracy: 0.6790 - auc_1: 0.8197 - loss: 0.5255 - val_accuracy: 0.6721 - val_auc_1: 0.9266 - val_loss: 0.4585 - learning_rate: 0.0010
+Epoch 3/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7154 - auc_1: 0.8620 - loss: 0.4470 - val_accuracy: 0.7367 - val_auc_1: 0.9282 - val_loss: 0.3785 - learning_rate: 0.0010
+Epoch 4/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - accuracy: 0.7772 - auc_1: 0.8951 - loss: 0.4121 - val_accuracy: 0.7288 - val_auc_1: 0.9296 - val_loss: 0.3542 - learning_rate: 0.0010
+Epoch 5/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7839 - auc_1: 0.9084 - loss: 0.3748 - val_accuracy: 0.7239 - val_auc_1: 0.9302 - val_loss: 0.3491 - learning_rate: 0.0010
+Epoch 6/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - accuracy: 0.7602 - auc_1: 0.9008 - loss: 0.3841 - val_accuracy: 0.7024 - val_auc_1: 0.9261 - val_loss: 0.3546 - learning_rate: 0.0010
+Epoch 7/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 5ms/step - accuracy: 0.7219 - auc_1: 0.9073 - loss: 0.3571 - val_accuracy: 0.6960 - val_auc_1: 0.9287 - val_loss: 0.3392 - learning_rate: 0.0010
+Epoch 8/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 5ms/step - accuracy: 0.7216 - auc_1: 0.9023 - loss: 0.3778 - val_accuracy: 0.6985 - val_auc_1: 0.9304 - val_loss: 0.3253 - learning_rate: 0.0010
+Epoch 9/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7148 - auc_1: 0.9115 - loss: 0.3437 - val_accuracy: 0.6931 - val_auc_1: 0.9301 - val_loss: 0.3325 - learning_rate: 0.0010
+Epoch 10/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - accuracy: 0.7191 - auc_1: 0.9179 - loss: 0.3579 - val_accuracy: 0.7000 - val_auc_1: 0.9325 - val_loss: 0.3224 - learning_rate: 0.0010
+Epoch 11/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7230 - auc_1: 0.9275 - loss: 0.3244 - val_accuracy: 0.7073 - val_auc_1: 0.9335 - val_loss: 0.3016 - learning_rate: 0.0010
+Epoch 12/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - accuracy: 0.7053 - auc_1: 0.9204 - loss: 0.3358 - val_accuracy: 0.6902 - val_auc_1: 0.9337 - val_loss: 0.3186 - learning_rate: 0.0010
+Epoch 13/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7208 - auc_1: 0.9276 - loss: 0.3272 - val_accuracy: 0.6882 - val_auc_1: 0.9304 - val_loss: 0.3309 - learning_rate: 0.0010
+Epoch 14/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7141 - auc_1: 0.9289 - loss: 0.3243 - val_accuracy: 0.7044 - val_auc_1: 0.9376 - val_loss: 0.3119 - learning_rate: 0.0010
+Epoch 15/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7205 - auc_1: 0.9120 - loss: 0.3443 - val_accuracy: 0.6843 - val_auc_1: 0.9323 - val_loss: 0.3252 - learning_rate: 0.0010
+Epoch 16/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7030 - auc_1: 0.9160 - loss: 0.3447 - val_accuracy: 0.6872 - val_auc_1: 0.9353 - val_loss: 0.3182 - learning_rate: 0.0010
+Epoch 17/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7090 - auc_1: 0.9258 - loss: 0.3164 - val_accuracy: 0.6970 - val_auc_1: 0.9358 - val_loss: 0.3050 - learning_rate: 5.0000e-04
+Epoch 18/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 5ms/step - accuracy: 0.7129 - auc_1: 0.9254 - loss: 0.3153 - val_accuracy: 0.6853 - val_auc_1: 0.9327 - val_loss: 0.3222 - learning_rate: 5.0000e-04
+Epoch 19/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 5ms/step - accuracy: 0.7125 - auc_1: 0.9290 - loss: 0.3093 - val_accuracy: 0.6936 - val_auc_1: 0.9363 - val_loss: 0.3136 - learning_rate: 5.0000e-04
+Epoch 20/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7094 - auc_1: 0.9136 - loss: 0.3430 - val_accuracy: 0.6911 - val_auc_1: 0.9364 - val_loss: 0.3267 - learning_rate: 5.0000e-04
+Epoch 21/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - accuracy: 0.7106 - auc_1: 0.9217 - loss: 0.3138 - val_accuracy: 0.6975 - val_auc_1: 0.9386 - val_loss: 0.3131 - learning_rate: 5.0000e-04
+Epoch 22/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - accuracy: 0.7096 - auc_1: 0.9174 - loss: 0.3282 - val_accuracy: 0.6907 - val_auc_1: 0.9359 - val_loss: 0.3247 - learning_rate: 2.5000e-04
+Epoch 23/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - accuracy: 0.7119 - auc_1: 0.9241 - loss: 0.3325 - val_accuracy: 0.6902 - val_auc_1: 0.9373 - val_loss: 0.3151 - learning_rate: 2.5000e-04
+Epoch 24/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - accuracy: 0.7017 - auc_1: 0.9295 - loss: 0.3036 - val_accuracy: 0.6911 - val_auc_1: 0.9370 - val_loss: 0.3170 - learning_rate: 2.5000e-04
+Epoch 25/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7080 - auc_1: 0.9372 - loss: 0.2912 - val_accuracy: 0.6980 - val_auc_1: 0.9383 - val_loss: 0.3081 - learning_rate: 2.5000e-04
+Epoch 26/50
+<span class=" -Color -Color-Bold">256/256</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 4ms/step - accuracy: 0.7060 - auc_1: 0.9212 - loss: 0.3306 - val_accuracy: 0.6911 - val_auc_1: 0.9385 - val_loss: 0.3177 - learning_rate: 2.5000e-04
+</pre></div>
+</div>
+<img alt="_images/95140114ed0756c40e13ace88cad96975bec29030189b1336554f24085289ab4.png" src="_images/95140114ed0756c40e13ace88cad96975bec29030189b1336554f24085289ab4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">80/80</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 3ms/step
+
+Accuracy: 0.7086
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.14      0.98      0.24       121
+           1       1.00      0.69      0.82      2432
+
+    accuracy                           0.71      2553
+   macro avg       0.57      0.84      0.53      2553
+weighted avg       0.96      0.71      0.79      2553
+</pre></div>
+</div>
+<img alt="_images/4b94b005bb41835eed15c05b171f6241bea494b28813c42d4a7dbea3fde07162.png" src="_images/4b94b005bb41835eed15c05b171f6241bea494b28813c42d4a7dbea3fde07162.png" />
+<img alt="_images/ed4c4c4ed9c524a16d2ec9b1c58d652fda30f5a10777851f70121c6f87731645.png" src="_images/ed4c4c4ed9c524a16d2ec9b1c58d652fda30f5a10777851f70121c6f87731645.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ----- Feature Importance Analysis -----</span>
+
+<span class="c1"># Use SHAP for feature importance</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Calculating feature importance using SHAP values...&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Create an explainer for the model</span>
+    <span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">Explainer</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train_scaled</span><span class="p">)</span>
+    <span class="n">shap_values</span> <span class="o">=</span> <span class="n">explainer</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span>
+
+    <span class="c1"># Get mean absolute SHAP values for feature importance</span>
+    <span class="n">feature_importance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">shap_values</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Create a DataFrame for better visualization</span>
+    <span class="n">importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="n">feature_names</span><span class="p">,</span>
+        <span class="s1">&#39;Importance&#39;</span><span class="p">:</span> <span class="n">feature_importance</span>
+    <span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Feature Importance Ranking:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">importance_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Feature&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Plot feature importance</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">importance_df</span><span class="p">[</span><span class="s1">&#39;Feature&#39;</span><span class="p">],</span> <span class="n">importance_df</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Mean |SHAP Value|&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feature&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Feature Importance (SHAP Values)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Plot SHAP summary plot (this shows direction of impact too)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">shap</span><span class="o">.</span><span class="n">summary_plot</span><span class="p">(</span><span class="n">shap_values</span><span class="p">,</span> <span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;SHAP Summary Plot&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error calculating SHAP values: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Simple feature importance from model weights (for dense layers)</span>
+    <span class="c1"># This is a simpler approach that works when SHAP fails</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">importance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Create a DataFrame for better visualization</span>
+    <span class="n">importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="n">feature_names</span><span class="p">,</span>
+        <span class="s1">&#39;Importance&#39;</span><span class="p">:</span> <span class="n">importance</span>
+    <span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Feature Importance Ranking (from model weights):&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">importance_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Feature&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Plot feature importance</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">importance_df</span><span class="p">[</span><span class="s1">&#39;Feature&#39;</span><span class="p">],</span> <span class="n">importance_df</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Absolute Weight Magnitude&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feature&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Feature Importance (Neural Network Weights)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waveform feature-based classification complete!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculating feature importance using SHAP values...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ExactExplainer explainer: 2554it [00:45, 46.92it/s]                          
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feature Importance Ranking:
+Leading Edge Width: 0.0947
+Pulse Peakiness: 0.0826
+Leading Edge Slope: 0.0653
+Trailing Edge Slope: 0.0598
+Waveform Maximum: 0.0378
+Trailing Edge Decline: 0.0332
+Waveform Noise: 0.0253
+Max Position: 0.0145
+Waveform Width: 0.0000
+</pre></div>
+</div>
+<img alt="_images/5bf9e08b81e5ebd985bc5255df6a5350ea0308487ce55cd967fe34d4d47cfc4e.png" src="_images/5bf9e08b81e5ebd985bc5255df6a5350ea0308487ce55cd967fe34d4d47cfc4e.png" />
+<img alt="_images/2e87c7820fd1a1eeccde921d309dae96ea9f9c14627b2c418e4f0ab1befe35cf.png" src="_images/2e87c7820fd1a1eeccde921d309dae96ea9f9c14627b2c418e4f0ab1befe35cf.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Waveform feature-based classification complete!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tree-based-classification-models-with-engineered-waveform-features">
+<h2>4. Tree-Based Classification Models with Engineered Waveform Features<a class="headerlink" href="#tree-based-classification-models-with-engineered-waveform-features" title="Permalink to this heading">#</a></h2>
+<section id="random-forest">
+<h3><strong>Random Forest</strong><a class="headerlink" href="#random-forest" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Trains a <strong>Random Forest Classifier</strong> with 100 trees and class balancing on extracted waveform features.</p></li>
+<li><p>Evaluates model performance using accuracy and classification metrics.</p></li>
+<li><p>Ranks feature importance to identify the most influential waveform characteristics (e.g., <strong>Pulse Peakiness, Leading Edge Width</strong>).</p></li>
+</ul>
+</section>
+<section id="gradient-boosting">
+<h3><strong>Gradient Boosting</strong><a class="headerlink" href="#gradient-boosting" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Implements a <strong>Gradient Boosting Classifier</strong> on waveform features, optimising misclassified samples.</p></li>
+<li><p>Evaluates model performance using accuracy and classification metrics.</p></li>
+<li><p>Ranks feature importance to identify the most influential waveform characteristics (e.g., <strong>Pulse Peakiness, Leading Edge Width</strong>).</p></li>
+</ul>
+</section>
+<section id="xgboost">
+<h3><strong>XGBoost</strong><a class="headerlink" href="#xgboost" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Trains an <strong>XGBoost Classifier</strong> using engineered waveform features, leveraging regularised gradient boosting.</p></li>
+<li><p>Evaluates model performance using accuracy and classification metrics.</p></li>
+<li><p>Ranks feature importance to identify the most influential waveform characteristics (e.g., <strong>Pulse Peakiness, Leading Edge Width</strong>).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Function to plot feature importance overlaid on average waveforms</span>
+<span class="k">def</span> <span class="nf">plot_importance_on_waveform</span><span class="p">(</span><span class="n">feature_importance</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">X_clean</span><span class="p">,</span> <span class="n">y_clean</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="c1"># Plot average waveforms</span>
+    <span class="n">waveforms_class0</span> <span class="o">=</span> <span class="n">X_clean</span><span class="p">[</span><span class="n">y_clean</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">waveforms_class1</span> <span class="o">=</span> <span class="n">X_clean</span><span class="p">[</span><span class="n">y_clean</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">waveforms_class0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">waveforms_class0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lead (Class 0)&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">waveforms_class1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">waveforms_class1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sea Ice (Class 1)&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="c1"># Scale importance for visualization</span>
+    <span class="n">max_wave_amp</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">waveforms_class0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">waveforms_class0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">waveforms_class1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">waveforms_class1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">feature_importance</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Avoid division by zero</span>
+        <span class="n">importance_scaling</span> <span class="o">=</span> <span class="n">max_wave_amp</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">feature_importance</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">feature_importance</span><span class="p">)),</span>
+                <span class="n">feature_importance</span> <span class="o">*</span> <span class="n">importance_scaling</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Feature Importance&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1">: Feature Importance vs. Waveform Patterns&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample Index&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude / Importance&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Training Random Forest Classifier with Waveform Features ===&quot;</span><span class="p">)</span>
+<span class="n">rf_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Train the model on extracted features</span>
+<span class="n">rf_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">y_pred_rf</span> <span class="o">=</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span>
+<span class="n">y_pred_prob_rf</span> <span class="o">=</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Evaluate</span>
+<span class="n">accuracy_rf</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_rf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Random Forest Accuracy: </span><span class="si">{</span><span class="n">accuracy_rf</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Classification Report:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_rf</span><span class="p">))</span>
+
+<span class="c1"># Get feature importance</span>
+<span class="n">feature_importance_rf</span> <span class="o">=</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">feature_importances_</span>
+
+<span class="c1"># Create feature importance visualization</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="n">feature_names</span><span class="p">,</span>
+    <span class="s1">&#39;Importance&#39;</span><span class="p">:</span> <span class="n">feature_importance_rf</span>
+<span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">importance_df</span><span class="p">[</span><span class="s1">&#39;Feature&#39;</span><span class="p">],</span> <span class="n">importance_df</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Random Forest Feature Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Training Random Forest Classifier with Waveform Features ===
+Random Forest Accuracy: 0.9749
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.80      0.63      0.70       121
+           1       0.98      0.99      0.99      2432
+
+    accuracy                           0.97      2553
+   macro avg       0.89      0.81      0.85      2553
+weighted avg       0.97      0.97      0.97      2553
+</pre></div>
+</div>
+<img alt="_images/dc78d0777089ea1b996ea7ed8e19242fea2b20a32ceb3a78a7f2ba99cbff9654.png" src="_images/dc78d0777089ea1b996ea7ed8e19242fea2b20a32ceb3a78a7f2ba99cbff9654.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Training Gradient Boosting Classifier with Waveform Features ===&quot;</span><span class="p">)</span>
+<span class="n">gb_model</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="c1"># Train the model on extracted features</span>
+<span class="n">gb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">y_pred_gb</span> <span class="o">=</span> <span class="n">gb_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span>
+<span class="n">y_pred_prob_gb</span> <span class="o">=</span> <span class="n">gb_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Evaluate</span>
+<span class="n">accuracy_gb</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gb</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gradient Boosting Accuracy: </span><span class="si">{</span><span class="n">accuracy_gb</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Classification Report:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_gb</span><span class="p">))</span>
+
+<span class="c1"># Get feature importance</span>
+<span class="n">feature_importance_gb</span> <span class="o">=</span> <span class="n">gb_model</span><span class="o">.</span><span class="n">feature_importances_</span>
+
+<span class="c1"># Create feature importance visualization</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="n">feature_names</span><span class="p">,</span>
+    <span class="s1">&#39;Importance&#39;</span><span class="p">:</span> <span class="n">feature_importance_gb</span>
+<span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">importance_df</span><span class="p">[</span><span class="s1">&#39;Feature&#39;</span><span class="p">],</span> <span class="n">importance_df</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gradient Boosting Feature Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Training Gradient Boosting Classifier with Waveform Features ===
+Gradient Boosting Accuracy: 0.9738
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.80      0.60      0.68       121
+           1       0.98      0.99      0.99      2432
+
+    accuracy                           0.97      2553
+   macro avg       0.89      0.79      0.83      2553
+weighted avg       0.97      0.97      0.97      2553
+</pre></div>
+</div>
+<img alt="_images/645e2d8ebf2cec603eb64cf188a230785eb7dcefec5bf817b2877b193df714ca.png" src="_images/645e2d8ebf2cec603eb64cf188a230785eb7dcefec5bf817b2877b193df714ca.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Training XGBoost Classifier with Waveform Features ===&quot;</span><span class="p">)</span>
+<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;logloss&#39;</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="c1"># Train the model on extracted features</span>
+<span class="n">xgb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">y_pred_xgb</span> <span class="o">=</span> <span class="n">xgb_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span>
+<span class="n">y_pred_prob_xgb</span> <span class="o">=</span> <span class="n">xgb_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Evaluate</span>
+<span class="n">accuracy_xgb</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_xgb</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;XGBoost Accuracy: </span><span class="si">{</span><span class="n">accuracy_xgb</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Classification Report:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_xgb</span><span class="p">))</span>
+
+<span class="c1"># Get feature importance</span>
+<span class="n">feature_importance_xgb</span> <span class="o">=</span> <span class="n">xgb_model</span><span class="o">.</span><span class="n">feature_importances_</span>
+
+<span class="c1"># Create feature importance visualization</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="n">feature_names</span><span class="p">,</span>
+    <span class="s1">&#39;Importance&#39;</span><span class="p">:</span> <span class="n">feature_importance_xgb</span>
+<span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">importance_df</span><span class="p">[</span><span class="s1">&#39;Feature&#39;</span><span class="p">],</span> <span class="n">importance_df</span><span class="p">[</span><span class="s1">&#39;Importance&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XGBoost Feature Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Training XGBoost Classifier with Waveform Features ===
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/dist-packages/xgboost/core.py:158: UserWarning: [16:53:31] WARNING: /workspace/src/learner.cc:740: 
+Parameters: { &quot;use_label_encoder&quot; } are not used.
+
+  warnings.warn(smsg, UserWarning)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>XGBoost Accuracy: 0.9745
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.84      0.57      0.68       121
+           1       0.98      0.99      0.99      2432
+
+    accuracy                           0.97      2553
+   macro avg       0.91      0.78      0.83      2553
+weighted avg       0.97      0.97      0.97      2553
+</pre></div>
+</div>
+<img alt="_images/519c3d1ecf16480ea524fe011f0a165a42b9c42b878cd17430cb163bf8c484ee.png" src="_images/519c3d1ecf16480ea524fe011f0a165a42b9c42b878cd17430cb163bf8c484ee.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="XAI_Part_2_fullwaveform_aligned.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">XAI for Sea Ice Classification of Waveform</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="XAI_Part_2_characteristics_roughness.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">XAI for Sea Ice Roughness from Waveform</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#models-implemented">Models Implemented</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-analysis-techniques">Key Analysis Techniques</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">1. Data Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cnn-model-for-waveform-classification">2. CNN Model for Waveform Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evaluation-explainability-shap-gradients">3. Model Evaluation &amp; Explainability (SHAP &amp; Gradients)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-based-classification-models-with-engineered-waveform-features">4. Tree-Based Classification Models with Engineered Waveform Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest"><strong>Random Forest</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting"><strong>Gradient Boosting</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost"><strong>XGBoost</strong></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michel Tsamados/Weibin Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
