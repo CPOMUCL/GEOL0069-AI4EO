@@ -46,6 +46,9 @@ parts:
   - caption: Week 9
     chapters:
       - file: Week9_XAI
+      - file: XAI_Part_2_fullwaveform_aligned
+      - file: XAI_Part_2_characteristics
+      - file: XAI_Part_2_characteristics_roughness
 
       
 
