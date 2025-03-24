@@ -49,6 +49,9 @@ parts:
       - file: XAI_Part_2_fullwaveform_aligned
       - file: XAI_Part_2_characteristics
       - file: XAI_Part_2_characteristics_roughness
+  - caption: Week 10
+    chapters:
+      - file: final_assessment
 
       
 
