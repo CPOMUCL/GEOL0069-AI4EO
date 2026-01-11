@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,9 +39,8 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -78,15 +77,6 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -147,14 +137,13 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-  
     
     
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="GEOL0069 Guide Book - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="GEOL0069 Guide Book - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
@@ -398,10 +387,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
@@ -409,7 +398,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
@@ -436,6 +425,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-sea-ice-topography-classification">Example: Sea Ice Topography Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-why-docker">Installation: Why Docker?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-docker-to-access-iris-prerequisites">Using Docker to Access Iris - Prerequisites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pulling-the-iris-docker-image">Pulling the Iris Docker Image</a><ul class="nav section-nav flex-column">
@@ -463,6 +453,20 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-intelligently-reinforced-image-segmentation-iris">
 <h1>Introduction to Intelligently Reinforced Image Segmentation (IRIS)<a class="headerlink" href="#introduction-to-intelligently-reinforced-image-segmentation-iris" title="Permalink to this heading">#</a></h1>
 <p>Throughout this project, we have extensively utilised IRIS, a user-friendly, web-based Flask application developed by ESA-PhiLab, with special thanks to Alistair Francis whose guidance has been instrumental. IRIS has been indispensable in our workflow, particularly in the efficient generation of ground-truth training data for our machine learning tasks. Its intuitive ‘click &amp; train’ functionality has greatly simplified the process of creating accurate masks for Earth observation datasets, enhancing our capabilities in dataset creation. You can access the original repo at <a class="github reference external" href="https://github.com/ESA-PhiLab/iris">ESA-PhiLab/iris</a>.</p>
+<section id="example-sea-ice-topography-classification">
+<h2>Example: Sea Ice Topography Classification<a class="headerlink" href="#example-sea-ice-topography-classification" title="Permalink to this heading">#</a></h2>
+<p>This example demonstrates segmenting sea ice imagery into the following categories:</p>
+<ul class="simple">
+<li><p><strong>Smooth surface</strong></p></li>
+<li><p><strong>Rough surface</strong></p></li>
+<li><p><strong>Melt pond</strong></p></li>
+<li><p><strong>Slush</strong></p></li>
+<li><p><strong>Land</strong></p></li>
+<li><p><strong>Clouds</strong></p></li>
+</ul>
+<p><a class="reference external" href="http://ec2-18-134-252-192.eu-west-2.compute.amazonaws.com">Try this example yourself</a></p>
+<p><img alt="Interface" src="_images/example_interface.png" /></p>
+</section>
 <section id="installation-why-docker">
 <h2>Installation: Why Docker?<a class="headerlink" href="#installation-why-docker" title="Permalink to this heading">#</a></h2>
 <p>The direct installation of Iris from the GitHub repository can be complex and time-consuming, requiring manual installation of dependencies and configuration setup. By leveraging Docker, users can easily deploy and run Iris in a containerized environment, eliminating the need for manual dependency management and providing a consistent and reproducible execution environment. Docker simplifies the deployment process, enhances portability across different machines, and ensures consistent behaviour, making it an ideal solution for users looking for a streamlined and hassle-free way to access and use the Iris application.</p>
@@ -517,7 +521,7 @@ This map is generated using the cell below:<div class="cell docutils container">
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="k">def</span> <span class="nf">plot_results_from_footprints</span><span class="p">(</span><span class="n">geofootprints</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a Folium map from a list of geo footprints and names.</span>
 
 <span class="sd">    Args:</span>
@@ -674,10 +678,11 @@ To save the output masks generated by IRIS, you can click on the ‘Save’ butt
 
               
               
-              
-              
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="Chapter%201%3APreparation.html"
@@ -697,7 +702,10 @@ To save the output masks generated by IRIS, you can click on the ‘Save’ butt
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -712,6 +720,7 @@ To save the output masks generated by IRIS, you can click on the ‘Save’ butt
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-sea-ice-topography-classification">Example: Sea Ice Topography Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-why-docker">Installation: Why Docker?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-docker-to-access-iris-prerequisites">Using Docker to Access Iris - Prerequisites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pulling-the-iris-docker-image">Pulling the Iris Docker Image</a><ul class="nav section-nav flex-column">
@@ -772,8 +781,8 @@ By Michel Tsamados/Weibin Chen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>
