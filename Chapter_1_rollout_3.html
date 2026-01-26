@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,8 +39,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -77,6 +78,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -137,13 +147,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-light" alt="GEOL0069 Guide Book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="GEOL0069 Guide Book - Home"/>`);</script>
   
   
 </a></div>
@@ -387,10 +398,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -398,7 +409,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -453,7 +464,6 @@ document.write(`
                   
   <section id="roll-out-on-a-full-image">
 <h1>Roll-out on a Full Image<a class="headerlink" href="#roll-out-on-a-full-image" title="Permalink to this heading">#</a></h1>
-<p>📘 <strong>Interactive Version</strong>: For a hands-on experience with this chapter’s content, access the interactive notebook in <a class="reference external" href="https://drive.google.com/file/d/1cARKeNoHdfwK7nh_LrM0YCyHXQHae96h/view?usp=sharing">Google Colab</a>.</p>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Applying machine learning models to entire, full-sized images—especially in the realm of image processing—presents a distinct set of challenges and opportunities. Such a “roll-out” doesn’t just involve stretching a model’s capabilities across larger pixel dimensions; it tests the model’s capacity to consistently and correctly generate outputs, be it segmentation or classification maps, across varying regions of an image.</p>
@@ -673,8 +683,8 @@ Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
     <span class="c1"># Load the best weights</span>
     <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">checkpoint_filepath</span><span class="p">)</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">top_5_accuracy</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test accuracy: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test top 5 accuracy: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">top_5_accuracy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test accuracy: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test top 5 accuracy: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">top_5_accuracy</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">history</span>
 
@@ -857,6 +867,8 @@ Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction</span> <span class="kn">import</span> <span class="n">image</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">h5py</span> <span class="c1"># Import h5py</span>
 
 <span class="c1"># Function to convert coordinates from WGS84 to EASE-Grid 2.0 projection</span>
 <span class="k">def</span> <span class="nf">WGS84toEASE2</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">):</span>
@@ -869,30 +881,51 @@ Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 
 <span class="c1"># Directory setup for data files</span>
-<span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/GEOL0069/2425/Week 2/Week2_Sea-ice_and_Lead_Classification/S3A_OL_1_EFR____20180307T054004_20180307T054119_20180308T091959_0075_028_319_1620_LN1_O_NT_002.SEN3&#39;</span>
+<span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/PhD Year 3/GEOL0069_test_2026/Week 3/S3A_OL_1_EFR____20180307T054004_20180307T054119_20180308T091959_0075_028_319_1620_LN1_O_NT_002.SEN3&#39;</span>
 
-<span class="c1"># Load in geolocation data from a NetCDF file</span>
-<span class="n">geolocation</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">directory</span><span class="o">+</span><span class="s1">&#39;/geo_coordinates.nc&#39;</span><span class="p">)</span>
-<span class="n">lat</span> <span class="o">=</span> <span class="n">geolocation</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">][:]</span>
-<span class="n">lon</span> <span class="o">=</span> <span class="n">geolocation</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][:]</span>
+<span class="c1"># Load in geolocation data using h5py as netCDF4 was having issues with this specific file</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;geo_coordinates.nc&#39;</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf_geo</span><span class="p">:</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="n">hf_geo</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">][:]</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="n">hf_geo</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][:]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Successfully loaded geo_coordinates.nc with h5py.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading geo_coordinates.nc with h5py: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="c1"># Re-raise if h5py also fails</span>
 
 <span class="c1"># Load in radiance data for a specific band (Band Oa01) from a NetCDF file</span>
-<span class="n">Band_Oa01</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">directory</span><span class="o">+</span><span class="s1">&#39;/Oa01_radiance.nc&#39;</span><span class="p">)</span>
-<span class="n">Oa01_Radiance</span> <span class="o">=</span> <span class="n">Band_Oa01</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Oa01_radiance&#39;</span><span class="p">][:]</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;Oa01_radiance.nc&#39;</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf_oa01</span><span class="p">:</span>
+        <span class="n">Oa01_Radiance</span> <span class="o">=</span> <span class="n">hf_oa01</span><span class="p">[</span><span class="s1">&#39;Oa01_radiance&#39;</span><span class="p">][:]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Successfully loaded Oa01_radiance.nc with h5py.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading Oa01_radiance.nc with h5py: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="c1"># Re-raise if h5py also fails</span>
 
 <span class="c1"># Convert the longitude and latitude to EASE-Grid 2.0 coordinates</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">WGS84toEASE2</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
 
 <span class="c1"># Load in additional instrument data from a NetCDF file</span>
 <span class="n">OLCI_file_p</span> <span class="o">=</span> <span class="n">directory</span>
-<span class="n">instrument_data</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span><span class="o">+</span><span class="s1">&#39;/instrument_data.nc&#39;</span><span class="p">)</span>
-<span class="n">solar_flux</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;solar_flux&#39;</span><span class="p">][:]</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">OLCI_file_p</span><span class="p">,</span> <span class="s1">&#39;instrument_data.nc&#39;</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf_instrument</span><span class="p">:</span>
+        <span class="n">solar_flux</span> <span class="o">=</span> <span class="n">hf_instrument</span><span class="p">[</span><span class="s1">&#39;solar_flux&#39;</span><span class="p">][:]</span>
+        <span class="n">detector_index</span> <span class="o">=</span> <span class="n">hf_instrument</span><span class="p">[</span><span class="s1">&#39;detector_index&#39;</span><span class="p">][:]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Successfully loaded instrument_data.nc with h5py.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading instrument_data.nc with h5py: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="c1"># Re-raise if h5py also fails</span>
+
 <span class="n">solar_flux_Band_Oa01</span> <span class="o">=</span> <span class="n">solar_flux</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Solar flux for Band Oa01</span>
-<span class="n">detector_index</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;detector_index&#39;</span><span class="p">][:]</span>
 
 <span class="c1"># Load in tie geometries (e.g., Solar Zenith Angle) from a NetCDF file</span>
-<span class="n">tie_geometries</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">OLCI_file_p</span><span class="o">+</span><span class="s1">&#39;/tie_geometries.nc&#39;</span><span class="p">)</span>
-<span class="n">SZA</span> <span class="o">=</span> <span class="n">tie_geometries</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;SZA&#39;</span><span class="p">][:]</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">OLCI_file_p</span><span class="p">,</span> <span class="s1">&#39;tie_geometries.nc&#39;</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf_tie_geometries</span><span class="p">:</span>
+        <span class="n">SZA</span> <span class="o">=</span> <span class="n">hf_tie_geometries</span><span class="p">[</span><span class="s1">&#39;SZA&#39;</span><span class="p">][:]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Successfully loaded tie_geometries.nc with h5py.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading tie_geometries.nc with h5py: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="c1"># Re-raise if h5py also fails</span>
 
 <span class="c1"># Initialise lists to store bands and patches</span>
 <span class="n">Bands</span> <span class="o">=</span> <span class="p">[]</span>
@@ -908,10 +941,21 @@ Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
     <span class="n">solar_flux_Band_Oa01</span> <span class="o">=</span> <span class="n">solar_flux</span><span class="p">[</span><span class="n">q</span><span class="p">]</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">bandnumber</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%02d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">Band_Oa_temp</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">directory</span><span class="o">+</span><span class="s1">&#39;/Oa&#39;</span><span class="o">+</span><span class="n">bandnumber</span><span class="o">+</span><span class="s1">&#39;_radiance.nc&#39;</span><span class="p">)</span>
+    <span class="n">band_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;Oa&#39;</span><span class="o">+</span><span class="n">bandnumber</span><span class="o">+</span><span class="s1">&#39;_radiance.nc&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">band_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf_oa_temp</span><span class="p">:</span>
+            <span class="n">oa</span> <span class="o">=</span> <span class="n">hf_oa_temp</span><span class="p">[</span><span class="s1">&#39;Oa&#39;</span> <span class="o">+</span> <span class="n">bandnumber</span> <span class="o">+</span> <span class="s1">&#39;_radiance&#39;</span><span class="p">][:]</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">band_path</span><span class="p">)</span><span class="si">}</span><span class="s2"> with h5py: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="c1"># Re-raise if h5py also fails</span>
 
-    <span class="n">width</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="n">instrument_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="s1">&#39;rows&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+    <span class="c1"># Note: &#39;columns&#39; and &#39;rows&#39; dimensions are usually in instrument_data.nc or the radiance files themselves.</span>
+    <span class="c1"># Since we&#39;re using h5py, we&#39;ll try to get them from the Oa01_radiance file for consistency</span>
+    <span class="c1"># or potentially directly from the oa array if consistent.</span>
+    <span class="c1"># Assuming dimensions are consistent across bands, we can get them from the first loaded radiance.</span>
+    <span class="c1"># If instrument_data.nc was successfully loaded with h5py and contains these dimensions, use those.</span>
+    <span class="c1"># For now, let&#39;s assume `Oa01_Radiance` gives us the height and width.</span>
+    <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">Oa01_Radiance</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># Adjust if dimensions are not consistent or need to be derived differently.</span>
 
     <span class="c1"># Calculate the Top of Atmosphere Bidirectional Reflectance Factor (TOA BRF)</span>
     <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
@@ -919,8 +963,6 @@ Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
         <span class="n">angle</span><span class="p">[:,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">SZA</span><span class="p">[:,</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">64</span><span class="p">)]</span>
 
-    <span class="n">oa</span> <span class="o">=</span> <span class="n">Band_Oa_temp</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Oa&#39;</span> <span class="o">+</span> <span class="n">bandnumber</span> <span class="o">+</span> <span class="s1">&#39;_radiance&#39;</span><span class="p">][:]</span>
-    <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">TOA_BRF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">oa</span><span class="p">)</span> <span class="o">/</span> <span class="n">solar_flux_Band_Oa01</span><span class="p">[</span><span class="n">detector_index</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
 
     <span class="n">Bands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TOA_BRF</span><span class="p">)</span>
@@ -1010,11 +1052,10 @@ Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="Chapter%201%3AFetching_Data.html"
@@ -1034,10 +1075,7 @@ Successfully installed cftime-1.6.4.post1 netCDF4-1.7.2
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1114,8 +1152,8 @@ By Michel Tsamados/Weibin Chen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,8 +39,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -75,6 +76,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -135,13 +145,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-light" alt="GEOL0069 Guide Book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="GEOL0069 Guide Book - Home"/>`);</script>
   
   
 </a></div>
@@ -385,10 +396,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -396,7 +407,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -475,7 +486,7 @@ document.write(`
 
 
 <span class="k">def</span> <span class="nf">find_matched_satellite_images</span><span class="p">(</span><span class="n">S3_date_range</span><span class="p">,</span> <span class="n">S3_spatial_extent</span><span class="p">,</span> <span class="n">boundary_geometry</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to find matched Sentinel-2 image IDs for each Sentinel-3 image in the given date range and spatial extent.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -505,7 +516,7 @@ document.write(`
     <span class="k">return</span> <span class="n">matched_pairs</span>
 
 <span class="k">def</span> <span class="nf">parse_gee_filename</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parses the Google Earth Engine filename to extract satellite name, sensing date, and start time.</span>
 
 <span class="sd">    Parameters:</span>
@@ -520,7 +531,7 @@ document.write(`
     <span class="k">return</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">tile_number</span>
 
 <span class="k">def</span> <span class="nf">parse_gee_filename_s3</span><span class="p">(</span><span class="n">gee_filename</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parses the Google Earth Engine filename to extract satellite name, sensing date, and start time.</span>
 
 <span class="sd">    Parameters:</span>
@@ -542,7 +553,7 @@ document.write(`
 
 <span class="c1"># Function to get an access token</span>
 <span class="k">def</span> <span class="nf">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Retrieves access token from Copernicus Dataspace using the provided credentials.</span>
 
 <span class="sd">    Parameters:</span>
@@ -566,7 +577,7 @@ document.write(`
 
 <span class="c1"># Function to query Sentinel-2 data from Copernicus Data Space</span>
 <span class="k">def</span> <span class="nf">query_sentinel2_data</span><span class="p">(</span><span class="n">sensing_start_date</span><span class="p">,</span> <span class="n">tile_number</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Queries the Sentinel-2 data from the Copernicus Data Space based on sensing start date, tile number, and access token.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters:</span>
@@ -598,7 +609,7 @@ document.write(`
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
 
 <span class="k">def</span> <span class="nf">extract_correct_product_name</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">tile_number</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extracts the correct product name and ID from a dataframe based on a specific start time and tile number.</span>
 
 <span class="sd">    Parameters:</span>
@@ -618,7 +629,7 @@ document.write(`
     <span class="k">return</span> <span class="n">filtered_products</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">filtered_products</span><span class="o">.</span><span class="n">empty</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span> <span class="n">filtered_products</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">filtered_products</span><span class="o">.</span><span class="n">empty</span> <span class="k">else</span> <span class="kc">None</span>
 
 <span class="k">def</span> <span class="nf">process_image_pair</span><span class="p">(</span><span class="n">s2_ee_image_id</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Processes a pair of Sentinel-2 images by querying the Copernicus Data Space to find the corresponding product name and ID.</span>
 
 <span class="sd">    Parameters:</span>
@@ -638,7 +649,7 @@ document.write(`
     <span class="k">return</span> <span class="n">extract_correct_product_name</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sensing_start_date</span><span class="p">,</span> <span class="n">tile_number</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">download_single_product</span><span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">download_dir</span><span class="o">=</span><span class="s2">&quot;downloaded_products&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Download a single product from the Copernicus Data Space.</span>
 
 <span class="sd">    :param product_id: The unique identifier for the product.</span>
@@ -675,7 +686,7 @@ document.write(`
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to download product </span><span class="si">{</span><span class="n">product_id</span><span class="si">}</span><span class="s2">. Status Code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">query_sentinel3_olci_data</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">sensing_date</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Queries Sentinel-3 OLCI data from Copernicus Data Space based on satellite name, sensing date, and start time.</span>
 
 <span class="sd">    Parameters:</span>
@@ -696,7 +707,7 @@ document.write(`
         <span class="sa">f</span><span class="s2">&quot;https://catalogue.dataspace.copernicus.eu/odata/v1/Products?&quot;</span>
         <span class="sa">f</span><span class="s2">&quot;$filter=contains(Name,&#39;</span><span class="si">{</span><span class="n">satellite</span><span class="si">}</span><span class="s2">&#39;) and &quot;</span>
         <span class="sa">f</span><span class="s2">&quot;ContentDate/Start ge </span><span class="si">{</span><span class="n">sensing_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.000Z&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> and &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;ContentDate/Start le </span><span class="si">{</span><span class="p">(</span><span class="n">sensing_datetime</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.000Z&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&amp;&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;ContentDate/Start le </span><span class="si">{</span><span class="p">(</span><span class="n">sensing_datetime</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.000Z&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&amp;&quot;</span>
         <span class="sa">f</span><span class="s2">&quot;$orderby=ContentDate/Start&amp;$top=1000&quot;</span>
     <span class="p">)</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
@@ -724,7 +735,7 @@ document.write(`
 
 
 <span class="k">def</span> <span class="nf">fetch_S3_images_by_area_and_date</span><span class="p">(</span><span class="n">date_range</span><span class="p">,</span> <span class="n">spatial_extent</span><span class="p">,</span> <span class="n">area_of_interest</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fetches Sentinel-3 OLCI images based on a specified date range and area of interest.</span>
 <span class="sd">    </span>
 <span class="sd">    :param date_range: List containing the start and end dates (e.g., [&#39;2018-06-01&#39;, &#39;2018-06-02&#39;])</span>
@@ -768,7 +779,7 @@ document.write(`
     <span class="k">return</span> <span class="n">S3_image_details</span>
 
 <span class="k">def</span> <span class="nf">get_s2_images_in_arctic</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">max_cloud_percentage</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Retrieves Sentinel-2 images within the Arctic region for a specified date range and cloud coverage limit.</span>
 
 <span class="sd">    Parameters:</span>
@@ -795,7 +806,7 @@ document.write(`
 
 
 <span class="k">def</span> <span class="nf">find_colocated_s3_for_s2</span><span class="p">(</span><span class="n">s2_image</span><span class="p">,</span> <span class="n">buffer_distance</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">time_window_hours</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Finds Sentinel-3 images that are temporally and spatially colocated with a given Sentinel-2 image.</span>
 
 <span class="sd">    Parameters:</span>
@@ -949,7 +960,7 @@ S3B_OL_1_EFR____20190301T232521_20190301T232821_20190303T043409_0179_022_301_180
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">get_access_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Obtain an access token to the Copernicus Data Space Ecosystem.</span>
 <span class="sd">    Necessary for the download of hosted products.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -965,7 +976,7 @@ S3B_OL_1_EFR____20190301T232521_20190301T232821_20190303T043409_0179_022_301_180
 <span class="c1">#=============================================================================================================================================================#</span>
 
 <span class="k">def</span> <span class="nf">get_new_access_token</span><span class="p">(</span><span class="n">refresh_token</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Obtain a new access token to the Copernicus Data Space Ecosystem using a previously provided refesh token.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">p</span> <span class="o">=</span>  <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;curl --location --request POST &#39;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token&#39; </span><span class="se">\</span>
@@ -979,7 +990,7 @@ S3B_OL_1_EFR____20190301T232521_20190301T232821_20190303T043409_0179_022_301_180
 <span class="c1">#=============================================================================================================================================================#</span>
 
 <span class="k">def</span> <span class="nf">get_S3_SI_search_results_df</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Obtain a pandas dataframe of Sentinel-3 sea ice thematic products for a given date.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">json</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://catalogue.dataspace.copernicus.eu/odata/v1/Products?$filter=Collection/Name eq &#39;SENTINEL-3&#39; and Attributes/OData.CSC.StringAttribute/any(att:att/Name eq &#39;productType&#39; and att/OData.CSC.StringAttribute/Value eq &#39;SR_2_LAN_SI&#39;) and Attributes/OData.CSC.StringAttribute/any(att:att/Name eq &#39;timeliness&#39; and att/OData.CSC.StringAttribute/Value eq &#39;NT&#39;) and ContentDate/Start gt </span><span class="si">{</span><span class="p">(</span><span class="n">date</span><span class="o">-</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> and ContentDate/End lt </span><span class="si">{</span><span class="p">(</span><span class="n">date</span><span class="o">+</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&amp;$top=1000&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -996,7 +1007,7 @@ S3B_OL_1_EFR____20190301T232521_20190301T232821_20190303T043409_0179_022_301_180
 <span class="c1">#=============================================================================================================================================================#</span>
 
 <span class="k">def</span> <span class="nf">filter_duplicate_products_versions</span><span class="p">(</span><span class="n">results_df</span><span class="p">,</span> <span class="n">keep_latest</span><span class="o">=</span><span class="kc">True</span> <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Filter Sentinel-3 product dataframe to remove duplicate verions of files.</span>
 <span class="sd">    By default, we keep the latest version of the file. E.g., where an operation version</span>
 <span class="sd">    and a reprocessed version exists, we keep the reprocessed version.</span>
@@ -1030,7 +1041,7 @@ S3B_OL_1_EFR____20190301T232521_20190301T232821_20190303T043409_0179_022_301_180
 
 
 <span class="k">def</span> <span class="nf">get_date_from_olci_filename</span><span class="p">(</span><span class="n">olci_filename</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extracts the date from an OLCI filename.</span>
 
 <span class="sd">    Parameters:</span>
@@ -1073,7 +1084,7 @@ S3B_OL_1_EFR____20190301T232521_20190301T232821_20190303T043409_0179_022_301_180
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="k">def</span> <span class="nf">check_overlap</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">olci_filename</span><span class="p">,</span> <span class="n">olci_start</span><span class="p">,</span> <span class="n">olci_end</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Checks if the SAR file&#39;s sensing period overlaps with the OLCI file&#39;s sensing period and if it&#39;s from the same satellite.</span>
 
 <span class="sd">    Parameters:</span>
@@ -1161,16 +1172,12 @@ S3B_OL_1_EFR____20190301T232521_20190301T232821_20190303T043409_0179_022_301_180
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1238,8 +1245,8 @@ By Michel Tsamados/Weibin Chen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>
