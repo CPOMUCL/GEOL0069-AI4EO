@@ -17,6 +17,7 @@ parts:
     chapters:
       - file: Chapter 1:Fetching_Data
       - file: Chapter_1_rollout_3
+      - file: Borneo_deforestation_monitoring_kmeans
   - caption: Week 4
     chapters:
       - file: Chapter1_Data_Colocating_S2_S3_3
