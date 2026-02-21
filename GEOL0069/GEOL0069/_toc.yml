@@ -29,8 +29,8 @@ parts:
       - file: Chapter1_Regression_Part2_2425
   - caption: Week 6
     chapters:
-      - file: Imagery_alignment_intro
-      - file: Imagery_alignment_application
+      - file: Unit_1.1_Imagery_alignment_intro
+      - file: Unit_1.2_Imagery_alignment_application
       - file: Creating_training_data_from_aligned_misaligned_imagery
       - file: Regression_Application_MPF_aligned_misaligned_training_data
   - caption: Week 7
