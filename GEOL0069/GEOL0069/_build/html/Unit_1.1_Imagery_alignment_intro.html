@@ -427,7 +427,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-and-context">1. Introduction and Context</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-methods-for-image-alignment">1.1 Three Methods for Image Alignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#four-methods-for-image-alignment">1.1 Four Methods for Image Alignment</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-synthetic-images-for-example">Create synthetic images for example</a></li>
@@ -464,8 +464,8 @@ document.write(`
 <li><p>Scene dynamics (moving sea ice, vegetation changes, etc.).</p></li>
 <li><p>Acquisition timing differences (the Earth or ice might move between acquisitions).</p></li>
 </ul>
-<section id="three-methods-for-image-alignment">
-<h3>1.1 Three Methods for Image Alignment<a class="headerlink" href="#three-methods-for-image-alignment" title="Permalink to this heading">#</a></h3>
+<section id="four-methods-for-image-alignment">
+<h3>1.1 Four Methods for Image Alignment<a class="headerlink" href="#four-methods-for-image-alignment" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Auto-correlation (Cross-correlation)</strong></p>
 <ul class="simple">
@@ -485,6 +485,13 @@ document.write(`
 <li><p>An iterative, gradient-based approach (available in OpenCV’s <code class="docutils literal notranslate"><span class="pre">findTransformECC</span></code>) that maximizes a correlation measure between two images.</p></li>
 <li><p>Can be used for translation, affine, or homography alignment, but here we focus on translation mode.</p></li>
 <li><p>Often converges quickly and handles small or moderate shifts well.</p></li>
+</ul>
+</li>
+<li><p><strong>SEA-RAFT (Optical Flow–Based Estimation)</strong></p>
+<ul class="simple">
+<li><p>A state-of-the-art deep learning approach that predicts dense pixel-wise motion (optical flow) between frames.</p></li>
+<li><p>While computationally intensive and complex to train, it offers superior accuracy by leveraging pretrained weights from large-scale computer vision datasets.</p></li>
+<li><p>For this work, we utilize the authors’ pretrained models, though performance could be further optimised through fine-tuning specifically on satellite imagery.</p></li>
 </ul>
 </li>
 </ol>
@@ -512,7 +519,6 @@ document.write(`
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">correlate2d</span>
-<span class="kn">import</span> <span class="nn">ot</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
@@ -1547,7 +1553,7 @@ Resolving deltas: 100% (51/51), done.
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-and-context">1. Introduction and Context</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-methods-for-image-alignment">1.1 Three Methods for Image Alignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#four-methods-for-image-alignment">1.1 Four Methods for Image Alignment</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-synthetic-images-for-example">Create synthetic images for example</a></li>
